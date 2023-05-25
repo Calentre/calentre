@@ -1,4 +1,4 @@
-import 'package:calentre/config/extensions/padding.dart';
+import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +34,7 @@ class SocialSignIn extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     iconFramer(imageTitle: 'logo.svg'),
+                    const SizedBox().x10(),
                     Text(
                       "Calentre",
                       style: Theme.of(context)
@@ -43,7 +44,7 @@ class SocialSignIn extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox().h2(),
+                const SizedBox().y10(),
                 const Text("Continue to Login/Signup"),
                 const Text("Create an Account with Google"),
                 const Text("Other Options coming soon"),
