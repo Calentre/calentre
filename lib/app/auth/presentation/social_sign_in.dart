@@ -1,5 +1,6 @@
 import 'package:calentre/config/extensions/padding.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
 
 class SocialSignIn extends StatelessWidget {
@@ -29,12 +30,18 @@ class SocialSignIn extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "Calentre",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineLarge!
-                      .copyWith(fontWeight: FontWeight.w900),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    iconFramer(imageTitle: 'logo.svg'),
+                    Text(
+                      "Calentre",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineLarge!
+                          .copyWith(fontWeight: FontWeight.w900),
+                    ),
+                  ],
                 ),
                 const SizedBox().h2(),
                 const Text("Continue to Login/Signup"),
