@@ -1,4 +1,5 @@
 import 'package:calentre/config/extensions/padding.dart';
+import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class SocialSignIn extends StatelessWidget {
@@ -8,7 +9,21 @@ class SocialSignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Card(
+        child: Container(
+          padding: const EdgeInsets.only(top: 48, bottom: 48),
+          constraints: const BoxConstraints(
+            // minWidth: MediaQuery.sizeOf(context).width * .5,
+            maxWidth: 1000,
+          ),
+          width: MediaQuery.sizeOf(context).width * .5,
+          decoration: BoxDecoration(
+            color: AppColors.grey.s900,
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+              color: AppColors.grey.s700,
+              width: 1.0,
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -22,9 +37,9 @@ class SocialSignIn extends StatelessWidget {
                       .copyWith(fontWeight: FontWeight.w900),
                 ),
                 const SizedBox().h2(),
-                const Text("Logo"),
-                const Text("Logo"),
-                const Text("Logo"),
+                const Text("Continue to Login/Signup"),
+                const Text("Create an Account with Google"),
+                const Text("Other Options coming soon"),
               ],
             ),
           ),
