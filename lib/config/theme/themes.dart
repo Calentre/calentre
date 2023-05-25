@@ -5,6 +5,7 @@ class AppTheme {
   static ThemeData darkTheme() {
     return ThemeData(
         scaffoldBackgroundColor: AppColors.grey.s950,
+        textTheme: TextTheme(),
         colorScheme: ColorScheme(
             brightness: Brightness.dark,
             primary: AppColors.grey.s950,
