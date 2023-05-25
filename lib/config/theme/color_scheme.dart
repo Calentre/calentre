@@ -12,6 +12,6 @@ ColorScheme colorScheme() {
       onError: AppColors.foundation.white,
       background: AppColors.grey.s950,
       onBackground: AppColors.foundation.white,
-      surface: AppColors.grey.s900,
+      surface: AppColors.grey.s850,
       onSurface: AppColors.foundation.white);
 }
