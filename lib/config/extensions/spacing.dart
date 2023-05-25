@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//Vertical Spacing
+
 extension SizedBoxSpacing on SizedBox {
   SizedBox y2() {
     return const SizedBox(
@@ -61,7 +63,7 @@ extension SizedBoxSpacing on SizedBox {
     );
   }
 
-  //Vertical Spac
+  //Horizontal Spacing
   SizedBox x2() {
     return const SizedBox(
       width: 2,

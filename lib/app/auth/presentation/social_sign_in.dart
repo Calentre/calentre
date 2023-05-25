@@ -1,5 +1,6 @@
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
 
@@ -39,14 +40,17 @@ class SocialSignIn extends StatelessWidget {
                       "Calentre",
                       style: Theme.of(context)
                           .textTheme
-                          .headlineLarge!
+                          .displaySmall!
                           .copyWith(fontWeight: FontWeight.w900),
                     ),
                   ],
                 ),
                 const SizedBox().y10(),
-                const Text("Continue to Login/Signup"),
-                const Text("Create an Account with Google"),
+                Text(
+                  "Continue to Login/Signup",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                AppButton(title: "Login with Google"),
                 const Text("Other Options coming soon"),
               ],
             ),

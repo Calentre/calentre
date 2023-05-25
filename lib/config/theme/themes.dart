@@ -10,6 +10,7 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.grey.s950,
       textTheme: textTheme(),
       colorScheme: colorScheme(),
+      buttonTheme: const ButtonThemeData(minWidth: 1000),
     );
   }
 }
