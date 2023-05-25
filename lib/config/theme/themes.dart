@@ -1,22 +1,14 @@
+import 'package:calentre/config/theme/color_scheme.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/config/theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
   static ThemeData darkTheme() {
     return ThemeData(
-        scaffoldBackgroundColor: AppColors.grey.s950,
-        textTheme: TextTheme(),
-        colorScheme: ColorScheme(
-            brightness: Brightness.dark,
-            primary: AppColors.grey.s950,
-            onPrimary: AppColors.foundation.white,
-            secondary: AppColors.grey.s950,
-            onSecondary: AppColors.foundation.white,
-            error: AppColors.foundation.error,
-            onError: AppColors.foundation.white,
-            background: AppColors.grey.s950,
-            onBackground: AppColors.foundation.white,
-            surface: AppColors.grey.s900,
-            onSurface: AppColors.foundation.white));
+      scaffoldBackgroundColor: AppColors.grey.s950,
+      textTheme: textTheme(),
+      colorScheme: colorScheme(),
+    );
   }
 }
