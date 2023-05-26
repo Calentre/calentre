@@ -16,9 +16,7 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: buttonStyle(context),
-      onPressed: () {
-        print("The button was pressed");
-      },
+      onPressed: () {},
       child: SizedBox(
         height: 50,
         width: 500,
@@ -34,7 +32,10 @@ class AppButton extends StatelessWidget {
                 child: icon,
               ),
               const SizedBox().x10(),
-              FittedBox(fit: BoxFit.none, child: Text(title)),
+              FittedBox(
+                fit: BoxFit.none,
+                child: Text(title),
+              ),
             ],
           ),
         ),
