@@ -48,15 +48,18 @@ class SocialSignIn extends StatelessWidget {
                 const SizedBox().y20(),
                 Text(
                   "Continue to Login/Signup",
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                const SizedBox().y10(),
+                const SizedBox().y20(),
+                const SizedBox().y20(),
                 AppButton(
                   title: "Login with Google",
                   icon: iconFramer(imageTitle: 'google.png'),
                 ),
                 const SizedBox().y10(),
-                const AppButton(title: "Other Options are coming soon"),
+                AppButton(
+                    title: "Other Options are coming soon",
+                    icon: iconFramer(imageTitle: 'slack.png')),
               ],
             ),
           ),

@@ -22,16 +22,21 @@ class AppButton extends StatelessWidget {
       child: SizedBox(
         height: 50,
         width: 500,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 30,
-              child: icon,
-            ),
-            const SizedBox().x10(),
-            Text(title),
-          ],
+        child: Align(
+          alignment: Alignment.center,
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            // mainAxisSize: MainAxisSize.min,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 30,
+                child: icon,
+              ),
+              const SizedBox().x10(),
+              FittedBox(fit: BoxFit.none, child: Text(title)),
+            ],
+          ),
         ),
       ),
     );
