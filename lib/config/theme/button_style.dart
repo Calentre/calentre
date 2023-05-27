@@ -10,11 +10,15 @@ ButtonStyle buttonStyle(BuildContext context) {
         (states) => AppColors.foundation.white,
       ),
       backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (states) => AppColors.grey.s850,
+        //leave opacity at 0 (zero) so we can have pointer cursor on the web
+        (states) => Colors.white.withOpacity(0),
+      ),
+      shadowColor: MaterialStateProperty.resolveWith<Color>(
+        (states) => Colors.transparent,
       ),
       splashFactory: InkRipple.splashFactory,
       overlayColor: MaterialStateProperty.resolveWith<Color>(
-        (states) => AppColors.grey.s900,
+        (states) => AppColors.foundation.white.withOpacity(.2),
       ),
       side: MaterialStateProperty.all(
         BorderSide(
