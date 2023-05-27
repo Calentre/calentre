@@ -6,11 +6,14 @@ class EventsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: BorderCard(
-        child: Text(
-          "Events View",
-          textAlign: TextAlign.center,
+    return Container(
+      margin: const EdgeInsets.only(top: 24),
+      child: const Center(
+        child: BorderCard(
+          child: Text(
+            "Events View",
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
