@@ -31,7 +31,6 @@ class AppButton extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 30,
                 child: icon,
               ),
               const SizedBox().x10(),
