@@ -1,4 +1,4 @@
-import 'package:calentre/app/calentreHome/presentation/widgets/tabBar.dart';
+import 'package:calentre/app/calentreHome/presentation/widgets/tab_bar.dart';
 import 'package:calentre/app/events/presentation/events.dart';
 import 'package:calentre/shared/navbar.dart';
 import 'package:flutter/material.dart';

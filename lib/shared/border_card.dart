@@ -1,3 +1,4 @@
+import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +11,9 @@ class BorderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(top: 48, bottom: 48),
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           // minWidth: MediaQuery.sizeOf(context).width * .5,
-          maxWidth: 1000,
+          maxWidth: WebConstraints.maxWidth,
         ),
         width: MediaQuery.sizeOf(context).width * .5,
         decoration: BoxDecoration(

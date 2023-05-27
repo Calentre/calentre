@@ -4,10 +4,15 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton(
-      {super.key, required this.title, this.icon, required this.onPressed});
+      {super.key,
+      required this.title,
+      this.icon,
+      required this.onPressed,
+      this.width});
 
   final String title;
   final Widget? icon;
+  final double? width;
   final void Function() onPressed;
 
   @override
@@ -17,7 +22,7 @@ class AppButton extends StatelessWidget {
       onPressed: onPressed,
       child: SizedBox(
         height: 50,
-        width: 500,
+        width: width,
         child: Align(
           alignment: Alignment.center,
           child: Wrap(
