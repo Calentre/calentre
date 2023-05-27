@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static Grey grey = Grey.instance;
   static Foundation foundation = Foundation.instance;
+  static Gradient gradient = Gradient.instance;
 }
 
 //All colors must be created as a singleton.
@@ -33,4 +34,20 @@ class Foundation {
   Color white = const Color(0xffFFFFFF);
   Color link = const Color(0xff4E95FF);
   Color error = const Color(0xffAB0000);
+}
+
+class Gradient {
+  Gradient._();
+  static Gradient? _instance;
+  static Gradient get instance {
+    _instance ??= Gradient._();
+    return _instance!;
+  }
+
+  Color g011 = const Color(0xff3A77ED);
+  Color g012 = const Color(0xffA600CF);
+  Color g021 = const Color(0xffF8B453);
+  Color g022 = const Color(0xffF8419D);
+  Color g031 = const Color(0xffA675E9);
+  Color g032 = const Color(0xff0AAEF8);
 }

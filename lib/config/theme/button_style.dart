@@ -10,7 +10,10 @@ ButtonStyle buttonStyle(BuildContext context) {
         (states) => AppColors.foundation.white,
       ),
       backgroundColor: MaterialStateProperty.resolveWith<Color>(
-        (states) => AppColors.grey.s850,
+        (states) => Colors.transparent,
+      ),
+      shadowColor: MaterialStateProperty.resolveWith<Color>(
+        (states) => Colors.transparent,
       ),
       splashFactory: InkRipple.splashFactory,
       overlayColor: MaterialStateProperty.resolveWith<Color>(
