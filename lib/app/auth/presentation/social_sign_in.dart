@@ -1,6 +1,7 @@
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
@@ -16,21 +17,7 @@ class SocialSignIn extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.only(top: 48, bottom: 48),
-              constraints: const BoxConstraints(
-                // minWidth: MediaQuery.sizeOf(context).width * .5,
-                maxWidth: 1000,
-              ),
-              width: MediaQuery.sizeOf(context).width * .5,
-              decoration: BoxDecoration(
-                color: AppColors.grey.s900,
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(
-                  color: AppColors.grey.s700,
-                  width: 1.0,
-                ),
-              ),
+            BorderCard(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
