@@ -1,8 +1,11 @@
-import 'package:calentre/app/auth/presentation/social_sign_in.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/themes.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -12,12 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      themeMode: ThemeMode.light,
-      // darkTheme: AppTheme.darkTheme(),
-      theme: AppTheme.darkTheme(),
-      home: const SocialSignIn(),
+    return MaterialApp.router(
+      title: 'Calentre',
+      themeMode: ThemeMode.dark,
+      darkTheme: AppTheme.darkTheme(),
+      // theme: AppTheme.darkTheme(),
+      routerConfig: routerConfig,
     );
   }
 }
