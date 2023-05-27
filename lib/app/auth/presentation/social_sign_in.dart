@@ -1,8 +1,10 @@
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SocialSignIn extends StatelessWidget {
   const SocialSignIn({super.key});
@@ -57,12 +59,19 @@ class SocialSignIn extends StatelessWidget {
                     const SizedBox().y20(),
                     AppButton(
                       title: "Login with Google",
-                      icon: iconFramer(imageTitle: 'google.png'),
+                      icon: iconFramer(
+                        imageTitle: 'google.png',
+                      ),
+                      onPressed: () {
+                        context.goNamed(AppRoutes.calentreHome);
+                      },
                     ),
                     const SizedBox().y10(),
                     AppButton(
-                        title: "Other Options are coming soon",
-                        icon: iconFramer(imageTitle: 'slack.png')),
+                      title: "Other Options are coming soon",
+                      icon: iconFramer(imageTitle: 'slack.png'),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),

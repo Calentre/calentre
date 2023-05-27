@@ -3,20 +3,18 @@ import 'package:calentre/config/theme/button_style.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({
-    super.key,
-    required this.title,
-    this.icon,
-  });
+  const AppButton(
+      {super.key, required this.title, this.icon, required this.onPressed});
 
   final String title;
   final Widget? icon;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: buttonStyle(context),
-      onPressed: () {},
+      onPressed: onPressed,
       child: SizedBox(
         height: 50,
         width: 500,
