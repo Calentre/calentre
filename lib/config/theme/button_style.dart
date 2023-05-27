@@ -17,7 +17,7 @@ ButtonStyle buttonStyle(BuildContext context) {
       ),
       splashFactory: InkRipple.splashFactory,
       overlayColor: MaterialStateProperty.resolveWith<Color>(
-        (states) => AppColors.grey.s900,
+        (states) => AppColors.grey.s900.withOpacity(.3),
       ),
       side: MaterialStateProperty.all(
         BorderSide(

@@ -9,11 +9,13 @@ class AppButton extends StatelessWidget {
       required this.title,
       this.icon,
       required this.onPressed,
+      this.gradient,
       this.width});
 
   final String title;
   final Widget? icon;
   final double? width;
+  final bool? gradient;
   final void Function() onPressed;
 
   @override
@@ -21,11 +23,14 @@ class AppButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1000.0),
-        gradient: LinearGradient(
-          colors: [AppColors.gradient.g011, AppColors.gradient.g012],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: (gradient ?? false) ? null : AppColors.grey.s850,
+        gradient: (gradient ?? false)
+            ? LinearGradient(
+                colors: [AppColors.gradient.g011, AppColors.gradient.g012],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )
+            : null,
       ),
       child: ElevatedButton(
         style: buttonStyle(context),

@@ -23,6 +23,7 @@ class AppTabBar extends StatelessWidget {
             children: [
               Expanded(
                 child: AppButton(
+                  gradient: true,
                   title: "Events",
                   onPressed: () {},
                   icon: const FaIcon(
