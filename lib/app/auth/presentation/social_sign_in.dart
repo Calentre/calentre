@@ -70,11 +70,11 @@ class SocialSignIn extends StatelessWidget {
             const SizedBox().y20(),
             const SizedBox().y20(),
             Text(
-                "By signing up, you agree to our Privacy Policy and Terms of Use.",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall!
-                    .copyWith(color: AppColors.grey.s500))
+              "By signing up, you agree to our Privacy Policy and Terms of Use.",
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: AppColors.grey.s500,
+                  ),
+            )
           ],
         ),
       ),
