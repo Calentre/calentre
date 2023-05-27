@@ -1,3 +1,4 @@
+import 'package:calentre/app/events/presentation/events.dart';
 import 'package:flutter/material.dart';
 
 class CalentreHome extends StatelessWidget {
@@ -7,7 +8,7 @@ class CalentreHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Calentre Home"),
+        child: EventsView(),
       ),
     );
   }
