@@ -1,6 +1,8 @@
+import 'package:calentre/app/home/presentation/bloc/home_bloc.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
 
@@ -15,12 +17,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Calentre',
-      themeMode: ThemeMode.dark,
-      darkTheme: AppTheme.darkTheme(),
-      // theme: AppTheme.darkTheme(),
-      routerConfig: routerConfig,
-    );
+    return BlocProvider(
+        create: (context) => HomeViewBloc(),
+        child: MaterialApp.router(
+          title: 'Calentre',
+          themeMode: ThemeMode.dark,
+          darkTheme: AppTheme.darkTheme(),
+          // theme: AppTheme.darkTheme(),
+          routerConfig: routerConfig,
+        ));
   }
 }
