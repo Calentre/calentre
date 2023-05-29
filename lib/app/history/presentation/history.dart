@@ -15,10 +15,10 @@ class HistoryView extends StatelessWidget {
         child: BorderCard(
           child: Column(
             children: [
-              iconFramer(imageTitle: "events-placeholder.svg", size: 300),
+              iconFramer(imageTitle: "history-placeholder.svg", size: 300),
               const SizedBox().y20(),
               Text(
-                "You have no History",
+                "You have no history",
                 style: TextStyle(color: AppColors.grey.s300),
                 textAlign: TextAlign.center,
               ),
