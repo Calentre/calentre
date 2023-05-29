@@ -40,7 +40,7 @@ tabBarViewSelector(state) {
   } else if (state is UpdateState) {
     switch (state.viewIndex) {
       case 0:
-        const Column(
+        return const Column(
           children: [
             AppTabBar(
               currentIndex: 0,
@@ -48,21 +48,19 @@ tabBarViewSelector(state) {
             EventsView(),
           ],
         );
-        break;
 
       case 1:
-        const Column(
+        return const Column(
           children: [
             AppTabBar(
-              currentIndex: 2,
+              currentIndex: 1,
             ),
             HistoryView()
           ],
         );
 
-        break;
       case 2:
-        const Column(
+        return const Column(
           children: [
             AppTabBar(
               currentIndex: 2,
@@ -70,7 +68,6 @@ tabBarViewSelector(state) {
             PaymentsView()
           ],
         );
-        break;
 
       default:
     }

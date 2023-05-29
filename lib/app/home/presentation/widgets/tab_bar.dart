@@ -31,7 +31,9 @@ class AppTabBar extends StatelessWidget {
                   gradient: currentIndex == 0 ? true : false,
                   title: "Events",
                   onPressed: () {
-                    context.read<HomeViewBloc>().add(EventViewEvent());
+                    return BlocProvider.of<HomeViewBloc>(context)
+                        .add(EventViewEvent());
+                    // context.read<HomeViewBloc>().add(EventViewEvent());
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.calendarDay,
@@ -42,10 +44,10 @@ class AppTabBar extends StatelessWidget {
               const SizedBox().x10(),
               Expanded(
                 child: AppButton(
-                  gradient: currentIndex == 0 ? true : false,
+                  gradient: currentIndex == 1 ? true : false,
                   title: "History",
                   onPressed: () {
-                    context.read<HomeViewBloc>().add(HistoryViewEvent());
+                    return context.read<HomeViewBloc>().add(HistoryViewEvent());
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.userClock,
@@ -56,10 +58,10 @@ class AppTabBar extends StatelessWidget {
               const SizedBox().x10(),
               Expanded(
                 child: AppButton(
-                  gradient: currentIndex == 0 ? true : false,
+                  gradient: currentIndex == 2 ? true : false,
                   title: "Payments",
                   onPressed: () {
-                    context.read<HomeViewBloc>().add(PaymentViewEvent());
+                    return context.read<HomeViewBloc>().add(PaymentViewEvent());
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.creditCard,

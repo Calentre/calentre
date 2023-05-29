@@ -1,8 +1,6 @@
 class HomeViewStates {}
 
-class InitialState extends HomeViewStates {
-  final int viewIndex = 0;
-}
+class InitialState extends HomeViewStates {}
 
 class UpdateState extends HomeViewStates {
   final int? viewIndex;

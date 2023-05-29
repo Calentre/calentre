@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:calentre/app/home/presentation/bloc/home_event.dart';
 import 'package:calentre/app/home/presentation/bloc/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +10,7 @@ class HomeViewBloc extends Bloc<HomeViewEvents, HomeViewStates> {
     on<PaymentViewEvent>(onClickPaymentView);
   }
 
-  FutureOr<void> onClickEventsView(
+  void onClickEventsView(
       EventViewEvent event, Emitter<HomeViewStates> emit) async {
     viewIndex = 0;
     emit(UpdateState(viewIndex));
