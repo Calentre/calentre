@@ -15,18 +15,18 @@ class HomeViewBloc extends Bloc<HomeViewEvents, HomeViewStates> {
   FutureOr<void> onClickEventsView(
       EventViewEvent event, Emitter<HomeViewStates> emit) async {
     viewIndex = 0;
-    UpdateState(viewIndex);
+    emit(UpdateState(viewIndex));
   }
 
   void onClickHistoryView(
       HistoryViewEvent event, Emitter<HomeViewStates> emit) async {
     viewIndex = 1;
-    UpdateState(viewIndex);
+    emit(UpdateState(viewIndex));
   }
 
   void onClickPaymentView(
       PaymentViewEvent event, Emitter<HomeViewStates> emit) async {
     viewIndex = 2;
-    UpdateState(viewIndex);
+    emit(UpdateState(viewIndex));
   }
 }
