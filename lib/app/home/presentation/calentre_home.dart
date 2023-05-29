@@ -19,8 +19,7 @@ class CalentreHome extends StatelessWidget {
         return Column(
           children: [
             const NavBar(),
-            const AppTabBar(),
-            Container(child: tabBarViewSelector(state))
+            tabBarViewSelector(state),
           ],
         );
       })),
@@ -30,18 +29,47 @@ class CalentreHome extends StatelessWidget {
 
 tabBarViewSelector(state) {
   if (state is InitialState) {
-    return const EventsView();
+    return const Column(
+      children: [
+        AppTabBar(
+          currentIndex: 0,
+        ),
+        EventsView(),
+      ],
+    );
   } else if (state is UpdateState) {
     switch (state.viewIndex) {
       case 0:
-        const EventsView();
+        const Column(
+          children: [
+            AppTabBar(
+              currentIndex: 0,
+            ),
+            EventsView(),
+          ],
+        );
         break;
 
       case 1:
-        const HistoryView();
+        const Column(
+          children: [
+            AppTabBar(
+              currentIndex: 2,
+            ),
+            HistoryView()
+          ],
+        );
+
         break;
       case 2:
-        const PaymentsView();
+        const Column(
+          children: [
+            AppTabBar(
+              currentIndex: 2,
+            ),
+            PaymentsView()
+          ],
+        );
         break;
 
       default:
