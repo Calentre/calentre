@@ -11,20 +11,18 @@ class HistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 24),
-      child: Center(
-        child: BorderCard(
-          child: Column(
-            children: [
-              iconFramer(imageTitle: "history-placeholder.svg", size: 300),
-              const SizedBox().y20(),
-              Text(
-                "You have no history",
-                style: TextStyle(color: AppColors.grey.s300),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox().y10(),
-            ],
-          ),
+      child: BorderCard(
+        child: Column(
+          children: [
+            iconFramer(imageTitle: "history-placeholder.svg", size: 300),
+            const SizedBox().y20(),
+            Text(
+              "You have no history",
+              style: TextStyle(color: AppColors.grey.s300),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox().y10(),
+          ],
         ),
       ),
     );

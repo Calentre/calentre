@@ -1,6 +1,7 @@
 import 'package:calentre/config/constraints/max_width_container.dart';
 import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,10 @@ class EventsList extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Event List"),
+                Text(
+                  "All Events",
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
                 AppButton(
                   title: "+ New Event",
                   size: ButtonSize.small,
@@ -26,7 +30,7 @@ class EventsList extends StatelessWidget {
                 )
               ],
             ),
-            const Center(
+            BorderCard(
               child: Text("This is the List of stateless"),
             ),
           ],
