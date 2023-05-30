@@ -1,3 +1,4 @@
+import 'package:calentre/app/events/presentation/widgets/event_card.dart';
 import 'package:calentre/config/constraints/max_width_container.dart';
 import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -30,9 +31,7 @@ class EventsList extends StatelessWidget {
                 )
               ],
             ),
-            BorderCard(
-              child: Text("This is the List of stateless"),
-            ),
+            const EventCard()
           ],
         ),
       ),
