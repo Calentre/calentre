@@ -1,7 +1,10 @@
+import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
+import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
@@ -17,7 +20,7 @@ class EventCard extends StatelessWidget {
               Container(
                 constraints: const BoxConstraints(
                   minWidth: 96,
-                  maxWidth: 138,
+                  maxWidth: 118,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -30,7 +33,7 @@ class EventCard extends StatelessWidget {
                             maxWidth: 108,
                           ),
                           child: Text(
-                            "\$ 400",
+                            "\$4,000",
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                         ),
@@ -52,7 +55,40 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Text("Massive Shit")
+              const SizedBox().x10(),
+              Expanded(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("The Coach Training Live session"),
+                      Text("No Description"),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Copy Link"),
+                          Row(
+                            children: [
+                              AppButton(
+                                title: "+ New Event",
+                                size: ButtonSize.small,
+                                onPressed: () {},
+                              ),
+                              const SizedBox().x4(),
+                              AppButton(
+                                title: "+ New Event",
+                                size: ButtonSize.small,
+                                icon: FaIcon(FontAwesomeIcons.handDots),
+                                onPressed: () {},
+                              )
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
