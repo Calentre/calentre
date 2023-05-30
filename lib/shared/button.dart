@@ -1,21 +1,27 @@
+import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/button_style.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton(
-      {super.key,
-      required this.title,
-      this.icon,
-      required this.onPressed,
-      this.gradient,
-      this.width});
+  const AppButton({
+    super.key,
+    required this.title,
+    this.icon,
+    required this.onPressed,
+    this.gradient,
+    this.width,
+    this.size,
+    this.color,
+  });
 
   final String title;
   final Widget? icon;
   final double? width;
   final bool? gradient;
+  final ButtonSize? size;
+  final Color? color;
   final void Function() onPressed;
 
   @override
@@ -23,7 +29,7 @@ class AppButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1000.0),
-        color: (gradient ?? false) ? null : AppColors.grey.s850,
+        color: (gradient ?? false) ? null : color ?? AppColors.grey.s850,
         gradient: (gradient ?? false)
             ? LinearGradient(
                 colors: [AppColors.gradient.g011, AppColors.gradient.g012],
@@ -36,7 +42,7 @@ class AppButton extends StatelessWidget {
         style: buttonStyle(context),
         onPressed: onPressed,
         child: SizedBox(
-          height: 50,
+          height: size == ButtonSize.small ? 25 : 50,
           width: width,
           child: Align(
             alignment: Alignment.center,
@@ -51,7 +57,14 @@ class AppButton extends StatelessWidget {
                 const SizedBox().x10(),
                 FittedBox(
                   fit: BoxFit.none,
-                  child: Text(title),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: color != null
+                            ? AppColors.grey.s950
+                            : AppColors.foundation.white),
+                  ),
                 ),
               ],
             ),

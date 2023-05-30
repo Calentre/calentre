@@ -8,6 +8,7 @@ class WebContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
+      child: child,
     );
   }
 }
