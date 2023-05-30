@@ -1,8 +1,10 @@
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
+import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PaymentsView extends StatelessWidget {
   const PaymentsView({super.key});
@@ -15,7 +17,7 @@ class PaymentsView extends StatelessWidget {
         child: BorderCard(
           child: Column(
             children: [
-              iconFramer(imageTitle: "events-placeholder.svg", size: 300),
+              iconFramer(imageTitle: "payments-placeholder.svg", size: 300),
               const SizedBox().y20(),
               Text(
                 "You not added any payments",
@@ -23,6 +25,16 @@ class PaymentsView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox().y10(),
+              AppButton(
+                title: "Add payments method",
+                width: 300,
+                gradient: true,
+                onPressed: () {},
+                icon: const FaIcon(
+                  FontAwesomeIcons.boltLightning,
+                  color: Colors.amber,
+                ),
+              )
             ],
           ),
         ),
