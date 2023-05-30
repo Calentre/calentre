@@ -38,7 +38,10 @@ class EventCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox().y4(),
-                        const Text("30mins"),
+                        Text(
+                          "30mins",
+                          style: TextStyle(color: AppColors.grey.s500),
+                        ),
                         const SizedBox().y4(),
                         Icon(
                           Icons.stop,
@@ -57,28 +60,38 @@ class EventCard extends StatelessWidget {
               ),
               const SizedBox().x10(),
               Expanded(
-                child: Container(
+                child: SizedBox(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("The Coach Training Live session"),
-                      Text("No Description"),
+                      Text(
+                        "The Coach Training Live session",
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const Text("No Description"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Copy Link"),
+                          const Text("Copy Link"),
                           Row(
                             children: [
                               AppButton(
-                                title: "+ New Event",
+                                title: "Visit Link",
                                 size: ButtonSize.small,
+                                icon: const FaIcon(
+                                  FontAwesomeIcons.squareArrowUpRight,
+                                  size: 16,
+                                ),
                                 onPressed: () {},
                               ),
                               const SizedBox().x4(),
                               AppButton(
-                                title: "+ New Event",
+                                title: "Open",
                                 size: ButtonSize.small,
-                                icon: FaIcon(FontAwesomeIcons.handDots),
+                                icon: const Icon(
+                                  Icons.more_vert_rounded,
+                                  size: 16,
+                                ),
                                 onPressed: () {},
                               )
                             ],
