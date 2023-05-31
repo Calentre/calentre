@@ -11,33 +11,40 @@ class EventsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 24.0),
-      child: WebContainer(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "All Events",
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                AppButton(
-                  title: "+ New Event",
-                  size: ButtonSize.small,
-                  color: AppColors.foundation.white,
-                  onPressed: () {},
-                )
-              ],
-            ),
-            const SizedBox().y20(),
-            const EventCard(),
-            const SizedBox().y20(),
-            const EventCard(),
-          ],
+    return LayoutBuilder(builder: (context, constraints) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 24.0),
+        child: WebContainer(
+          height: MediaQuery.of(context).size.height * .75,
+          child: ListView(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "All Events",
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  AppButton(
+                    title: "+ New Event",
+                    size: ButtonSize.small,
+                    color: AppColors.foundation.white,
+                    onPressed: () {},
+                  )
+                ],
+              ),
+              const SizedBox().y20(),
+              const EventCard(),
+              const SizedBox().y20(),
+              const EventCard(),
+              const SizedBox().y20(),
+              const EventCard(),
+              const SizedBox().y20(),
+              const EventCard(),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
