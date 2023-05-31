@@ -14,17 +14,18 @@ class CalentreHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child:
+      body:
           BlocBuilder<HomeViewBloc, HomeViewStates>(builder: (context, state) {
         return SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const NavBar(),
               tabBarViewSelector(state),
             ],
           ),
         );
-      })),
+      }),
     );
   }
 }
