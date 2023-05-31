@@ -16,11 +16,13 @@ class CalentreHome extends StatelessWidget {
     return Scaffold(
       body: Center(child:
           BlocBuilder<HomeViewBloc, HomeViewStates>(builder: (context, state) {
-        return Column(
-          children: [
-            const NavBar(),
-            tabBarViewSelector(state),
-          ],
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              const NavBar(),
+              tabBarViewSelector(state),
+            ],
+          ),
         );
       })),
     );

@@ -12,11 +12,10 @@ class EventsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 24.0),
-        child: WebContainer(
-          height: MediaQuery.of(context).size.height * .75,
-          child: ListView(
+      return WebContainer(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 24),
+          child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,10 +36,14 @@ class EventsList extends StatelessWidget {
               const EventCard(),
               const SizedBox().y20(),
               const EventCard(),
-              const SizedBox().y20(),
               const EventCard(),
-              const SizedBox().y20(),
               const EventCard(),
+              const EventCard(),
+              const EventCard(),
+              // const SizedBox().y20(),
+              // const EventCard(),
+              // const SizedBox().y20(),
+              // const EventCard(),
             ],
           ),
         ),
