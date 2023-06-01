@@ -6,6 +6,6 @@ class PaymentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PaymentsEmptyState();
+    return const PaymentsEmptyState();
   }
 }
