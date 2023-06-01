@@ -13,6 +13,7 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return BorderCard(
+        verticalPadding: 24,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
@@ -34,7 +35,7 @@ class EventCard extends StatelessWidget {
                           ),
                           child: Text(
                             "\$4,000",
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                         ),
                         const SizedBox().y4(),
