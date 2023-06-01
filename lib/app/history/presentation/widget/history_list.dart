@@ -18,7 +18,7 @@ class HistoryList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "All Events",
+                    "All History",
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],

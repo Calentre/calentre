@@ -15,6 +15,7 @@ class HistoryCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 constraints: const BoxConstraints(
@@ -68,25 +69,20 @@ class HistoryCard extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const Text("30mins - Life Coaching and meeting"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("WolaKin@gmail.com"),
-                          Row(
-                            children: [
-                              const FaIcon(FontAwesomeIcons.paypal),
-                              const SizedBox().x4(),
-                              Text(
-                                "n\$5",
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                            ],
-                          )
-                        ],
-                      )
+                      const Text("WolaKin@gmail.com")
                     ],
                   ),
                 ),
+              ),
+              Row(
+                children: [
+                  const FaIcon(FontAwesomeIcons.paypal),
+                  const SizedBox().x4(),
+                  Text(
+                    "n\$5",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ],
               )
             ],
           ),
