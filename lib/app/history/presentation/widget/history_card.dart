@@ -11,6 +11,7 @@ class HistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return BorderCard(
+        verticalPadding: 24,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
