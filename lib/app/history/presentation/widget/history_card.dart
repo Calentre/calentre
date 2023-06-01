@@ -40,11 +40,12 @@ class HistoryCard extends StatelessWidget {
                           child: Text(
                             "30th",
                             style: Theme.of(context).textTheme.titleLarge,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         const SizedBox().y4(),
                         Text(
-                          "30mins",
+                          "Sept",
                           style: TextStyle(color: AppColors.grey.s500),
                         ),
                       ],
@@ -77,11 +78,12 @@ class HistoryCard extends StatelessWidget {
               Row(
                 children: [
                   const FaIcon(FontAwesomeIcons.paypal),
-                  const SizedBox().x4(),
+                  const SizedBox().x10(),
                   Text(
-                    "n\$5",
-                    style: Theme.of(context).textTheme.titleLarge,
+                    "\$5",
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
+                  const SizedBox().x10(),
                 ],
               )
             ],
