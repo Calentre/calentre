@@ -40,6 +40,5 @@ class PaymentsEmptyState extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
