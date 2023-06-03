@@ -1,7 +1,4 @@
-import 'package:calentre/config/extensions/spacing.dart';
-import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/shared/border_card.dart';
-import 'package:calentre/utils/icon_framer.dart';
+import 'package:calentre/app/history/presentation/widget/history_list.dart';
 import 'package:flutter/material.dart';
 
 class HistoryView extends StatelessWidget {
@@ -9,22 +6,7 @@ class HistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 24),
-      child: BorderCard(
-        child: Column(
-          children: [
-            iconFramer(imageTitle: "history-placeholder.svg", size: 300),
-            const SizedBox().y20(),
-            Text(
-              "You have no history",
-              style: TextStyle(color: AppColors.grey.s300),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox().y10(),
-          ],
-        ),
-      ),
-    );
+    // return HistoryEmptyState();
+    return HistoryList();
   }
 }

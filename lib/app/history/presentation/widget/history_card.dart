@@ -1,13 +1,11 @@
-import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
-import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class EventCard extends StatelessWidget {
-  const EventCard({super.key});
+class HistoryCard extends StatelessWidget {
+  const HistoryCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +15,7 @@ class EventCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 constraints: const BoxConstraints(
@@ -28,25 +27,26 @@ class EventCard extends StatelessWidget {
                   children: [
                     Column(
                       children: [
+                        Text(
+                          "2023",
+                          style: TextStyle(color: AppColors.grey.s500),
+                        ),
+                        const SizedBox().y4(),
                         Container(
                           constraints: const BoxConstraints(
                             minWidth: 96,
                             maxWidth: 108,
                           ),
                           child: Text(
-                            "\$4,000",
-                            style: Theme.of(context).textTheme.headlineSmall,
+                            "30th",
+                            style: Theme.of(context).textTheme.titleLarge,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                         const SizedBox().y4(),
                         Text(
-                          "30mins",
+                          "Sept",
                           style: TextStyle(color: AppColors.grey.s500),
-                        ),
-                        const SizedBox().y4(),
-                        Icon(
-                          Icons.stop,
-                          color: AppColors.foundation.error,
                         ),
                       ],
                     ),
@@ -66,42 +66,25 @@ class EventCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "The Coach Training Live session",
+                        "Wola Kin",
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      const Text("No Description"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("Copy Link"),
-                          Row(
-                            children: [
-                              AppButton(
-                                title: "Visit Link",
-                                size: ButtonSize.small,
-                                icon: const FaIcon(
-                                  FontAwesomeIcons.squareArrowUpRight,
-                                  size: 16,
-                                ),
-                                onPressed: () {},
-                              ),
-                              const SizedBox().x4(),
-                              AppButton(
-                                title: "Open",
-                                size: ButtonSize.small,
-                                icon: const Icon(
-                                  Icons.more_vert_rounded,
-                                  size: 16,
-                                ),
-                                onPressed: () {},
-                              )
-                            ],
-                          )
-                        ],
-                      )
+                      const Text("30mins - Life Coaching and meeting"),
+                      const Text("WolaKin@gmail.com")
                     ],
                   ),
                 ),
+              ),
+              Row(
+                children: [
+                  const FaIcon(FontAwesomeIcons.paypal),
+                  const SizedBox().x10(),
+                  Text(
+                    "\$5",
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox().x10(),
+                ],
               )
             ],
           ),
