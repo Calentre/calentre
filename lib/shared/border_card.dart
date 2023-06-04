@@ -14,10 +14,8 @@ class BorderCard extends StatelessWidget {
         padding: EdgeInsets.only(
             top: verticalPadding ?? 48, bottom: verticalPadding ?? 48),
         constraints: BoxConstraints(
-          minWidth: MediaQuery.sizeOf(context).width * .5,
           maxWidth: WebConstraints.maxWidth,
         ),
-        width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
           color: AppColors.grey.s900,
           borderRadius: BorderRadius.circular(10.0),
