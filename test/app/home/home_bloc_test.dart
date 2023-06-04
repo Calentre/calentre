@@ -6,21 +6,38 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("HomeViewBloc Test", () {
-    HomeViewBloc homeViewBloc = HomeViewBloc();
+    HomeViewBloc homeViewBloc() {
+      return HomeViewBloc();
+    }
 
     test("// HomeViewState should return InitialState() class as initial state",
         () {
-      expect(homeViewBloc.state, InitialState());
+      expect(homeViewBloc().state, InitialState());
     });
 
-    blocTest("// on click HistoryView should return viewIndex = 1",
-        build: () => homeViewBloc,
-        act: (homeViewBloc) {
-          return homeViewBloc.add(HistoryViewEvent());
-        },
-        expect: () => [UpdateState(1)],
-        tearDown: () {
-          return homeViewBloc.close();
-        });
+    blocTest(
+      "// on click EventsView should return UpdateState(viewIndex: 0)",
+      build: () => homeViewBloc(),
+      act: (homeViewBloc) {
+        return homeViewBloc.add(EventViewEvent());
+      },
+      expect: () => [UpdateState(0)],
+    );
+    blocTest(
+      "// on click HistoryView should return viewIndex = 1",
+      build: () => homeViewBloc(),
+      act: (homeViewBloc) {
+        return homeViewBloc.add(HistoryViewEvent());
+      },
+      expect: () => [UpdateState(1)],
+    );
+    blocTest(
+      "// on click PaymentView should return viewIndex = 2",
+      build: () => homeViewBloc(),
+      act: (homeViewBloc) {
+        return homeViewBloc.add(PaymentViewEvent());
+      },
+      expect: () => [UpdateState(2)],
+    );
   });
 }
