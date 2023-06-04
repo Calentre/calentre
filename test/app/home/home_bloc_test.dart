@@ -24,7 +24,7 @@ void main() {
       expect: () => [UpdateState(0)],
     );
     blocTest(
-      "// on click HistoryView should return viewIndex = 1",
+      "// on click HistoryView should return UpdateState(viewIndex: 1)",
       build: () => homeViewBloc(),
       act: (homeViewBloc) {
         return homeViewBloc.add(HistoryViewEvent());
@@ -32,7 +32,7 @@ void main() {
       expect: () => [UpdateState(1)],
     );
     blocTest(
-      "// on click PaymentView should return viewIndex = 2",
+      "// on click PaymentView should return UpdateState(viewIndex: 2)",
       build: () => homeViewBloc(),
       act: (homeViewBloc) {
         return homeViewBloc.add(PaymentViewEvent());
