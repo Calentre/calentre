@@ -11,6 +11,28 @@ class AppTheme {
       textTheme: textTheme(),
       colorScheme: colorScheme(),
       buttonTheme: const ButtonThemeData(minWidth: 1000),
+      inputDecorationTheme: InputDecorationTheme(
+        focusColor: AppColors.grey.s700,
+        fillColor: AppColors.grey.s900,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.grey.s500,
+            width: 1,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.gradient.g011,
+            width: 1,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.grey.s500,
+            width: 1,
+          ),
+        ),
+      ),
     );
   }
 }

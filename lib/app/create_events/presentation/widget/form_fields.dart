@@ -1,3 +1,4 @@
+import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class CreateEventFormFields extends StatelessWidget {
@@ -9,7 +10,17 @@ class CreateEventFormFields extends StatelessWidget {
       children: [
         Form(
             child: Column(
-          children: [TextFormField()],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Enter Event Name"),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: "Event Name",
+                filled: true,
+              ),
+              cursorColor: AppColors.foundation.white,
+            )
+          ],
         ))
       ],
     );

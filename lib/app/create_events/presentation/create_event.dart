@@ -55,7 +55,7 @@ class CreateEventView extends StatelessWidget {
               Container(
                   width: 700,
                   padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: CreateEventFormFields())
+                  child: const CreateEventFormFields())
             ],
           ),
         ),
