@@ -1,5 +1,5 @@
-import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/shared/navbar.dart';
 import 'package:flutter/material.dart';
 
 class CreateEventView extends StatelessWidget {
@@ -10,9 +10,10 @@ class CreateEventView extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
+          // constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
           child: Column(
             children: [
+              const NavBar(),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [Text("create Event"), Text("Save")],
