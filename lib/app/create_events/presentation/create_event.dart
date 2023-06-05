@@ -1,3 +1,4 @@
+import 'package:calentre/app/create_events/presentation/widget/form_fields.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -50,7 +51,11 @@ class CreateEventView extends StatelessWidget {
                         width: 1.0,
                       ),
                     ),
-                  ))
+                  )),
+              Container(
+                  width: 700,
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: CreateEventFormFields())
             ],
           ),
         ),

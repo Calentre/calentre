@@ -1,4 +1,4 @@
-import 'package:calentre/app/events/presentation/create_event.dart';
+import 'package:calentre/app/create_events/presentation/create_event.dart';
 import 'package:calentre/app/home/presentation/calentre_home.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/auth/presentation/social_sign_in.dart';
