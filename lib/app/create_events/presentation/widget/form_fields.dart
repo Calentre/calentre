@@ -1,3 +1,4 @@
+import 'package:calentre/app/create_events/presentation/widget/video_call_type_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -103,6 +104,7 @@ class CreateEventFormFields extends StatelessWidget {
                           const SizedBox().y10(),
                           TextFormField(
                             decoration: const InputDecoration(
+                              suffix: SizedBox(child: FormDropDown()),
                               hintText: "Select",
                               filled: true,
                             ),
