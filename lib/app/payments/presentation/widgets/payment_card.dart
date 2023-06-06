@@ -13,14 +13,14 @@ class PaymentCard extends StatelessWidget {
       return BorderCard(
         verticalPadding: 24,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  FaIcon(FontAwesomeIcons.paypal),
+                  const FaIcon(FontAwesomeIcons.paypal),
                   const SizedBox().x10(),
                   Text(
                     "\$5",

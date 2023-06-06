@@ -7,7 +7,7 @@ class WebContainer extends StatelessWidget {
   final double? height;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height,
       width: WebConstraints.maxWidth,
       // constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
