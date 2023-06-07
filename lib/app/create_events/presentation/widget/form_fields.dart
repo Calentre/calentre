@@ -1,6 +1,7 @@
 import 'package:calentre/app/create_events/presentation/widget/video_call_type_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -130,9 +131,88 @@ class CreateEventFormFields extends StatelessWidget {
                   )
                 ],
               ),
+              const SizedBox().y20(),
+              const SizedBox().y10(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Meeting Link",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox().y10(),
+                  TextFormField(
+                    initialValue: "https://calentre.com/LilYatchy",
+                    readOnly: true,
+                    decoration: const InputDecoration(
+                      filled: true,
+                    ),
+                    cursorColor: AppColors.foundation.white,
+                  ),
+                ],
+              ),
+              const SizedBox().y20(),
+              const SizedBox().y10(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Payment",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.w100),
+                  ),
+                  const SizedBox().y10(),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                        color: AppColors.grey.s900,
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(color: AppColors.grey.s500)),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(child: FormDropDown()),
+                        FaIcon(FontAwesomeIcons.circleChevronDown)
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox().y20(),
+              const SizedBox().y10(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Amount",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox().y10(),
+                  TextFormField(
+                    initialValue: "\$5",
+                    readOnly: true,
+                    decoration: const InputDecoration(
+                      filled: true,
+                    ),
+                    cursorColor: AppColors.foundation.white,
+                  ),
+                ],
+              ),
             ],
           ),
-        )
+        ),
+        const SizedBox().y20(),
+        const SizedBox().y10(),
+        AppButton(title: "Create Event", gradient: true, onPressed: () {})
       ],
     );
   }

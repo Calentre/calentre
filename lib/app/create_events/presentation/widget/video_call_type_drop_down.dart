@@ -19,7 +19,7 @@ class _FormDropDownState extends State<FormDropDown> {
       autofocus: true,
       iconEnabledColor: Colors.transparent,
       focusColor: AppColors.grey.s850,
-      dropdownColor: AppColors.grey.s700,
+      dropdownColor: AppColors.grey.s850,
       value: list.first,
       icon: const Icon(Icons.arrow_downward),
       elevation: 16,
