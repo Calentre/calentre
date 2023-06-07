@@ -1,3 +1,4 @@
+import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class FormDropDown extends StatefulWidget {
@@ -13,13 +14,19 @@ class _FormDropDownState extends State<FormDropDown> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
+      padding: const EdgeInsets.only(right: 24),
+      borderRadius: BorderRadius.circular(2),
+      autofocus: true,
+      iconEnabledColor: Colors.transparent,
+      focusColor: AppColors.grey.s850,
+      dropdownColor: AppColors.grey.s700,
       value: list.first,
       icon: const Icon(Icons.arrow_downward),
       elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
+      style: TextStyle(color: AppColors.foundation.white),
       underline: Container(
         height: 2,
-        color: Colors.deepPurpleAccent,
+        color: AppColors.grey.s850,
       ),
       onChanged: (String? value) {
         // This is called when the user selects an item.

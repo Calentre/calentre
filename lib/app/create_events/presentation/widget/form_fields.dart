@@ -2,6 +2,7 @@ import 'package:calentre/app/create_events/presentation/widget/video_call_type_d
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CreateEventFormFields extends StatelessWidget {
   const CreateEventFormFields({super.key});
@@ -69,20 +70,27 @@ class CreateEventFormFields extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Video Call type",
+                            "Platform",
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              hintText: "Select",
-                              filled: true,
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                                color: AppColors.grey.s900,
+                                borderRadius: BorderRadius.circular(3),
+                                border: Border.all(color: AppColors.grey.s500)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(child: FormDropDown()),
+                                FaIcon(FontAwesomeIcons.circleChevronDown)
+                              ],
                             ),
-                            cursorColor: AppColors.foundation.white,
-                          ),
+                          )
                         ],
                       ),
                     ),
@@ -102,14 +110,20 @@ class CreateEventFormFields extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              suffix: SizedBox(child: FormDropDown()),
-                              hintText: "Select",
-                              filled: true,
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                                color: AppColors.grey.s900,
+                                borderRadius: BorderRadius.circular(3),
+                                border: Border.all(color: AppColors.grey.s500)),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(child: FormDropDown()),
+                                FaIcon(FontAwesomeIcons.circleChevronDown)
+                              ],
                             ),
-                            cursorColor: AppColors.foundation.white,
-                          ),
+                          )
                         ],
                       ),
                     ),
