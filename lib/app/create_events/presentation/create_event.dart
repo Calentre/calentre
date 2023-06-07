@@ -27,7 +27,7 @@ class CreateEventView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const FaIcon(FontAwesomeIcons.circleArrowLeft),
+                        const FaIcon(FontAwesomeIcons.circleChevronLeft),
                         const SizedBox().x20(),
                         Text("Create Event",
                             style: Theme.of(context).textTheme.headlineSmall),
