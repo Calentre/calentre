@@ -3,7 +3,6 @@ import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CreateEventFormFields extends StatelessWidget {
   const CreateEventFormFields({super.key});
@@ -78,20 +77,7 @@ class CreateEventFormFields extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 12),
-                            decoration: BoxDecoration(
-                                color: AppColors.grey.s900,
-                                borderRadius: BorderRadius.circular(3),
-                                border: Border.all(color: AppColors.grey.s500)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(child: FormDropDown()),
-                                FaIcon(FontAwesomeIcons.circleChevronDown)
-                              ],
-                            ),
-                          )
+                          const FormDropDown()
                         ],
                       ),
                     ),
@@ -111,20 +97,7 @@ class CreateEventFormFields extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            decoration: BoxDecoration(
-                                color: AppColors.grey.s900,
-                                borderRadius: BorderRadius.circular(3),
-                                border: Border.all(color: AppColors.grey.s500)),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(child: FormDropDown()),
-                                FaIcon(FontAwesomeIcons.circleChevronDown)
-                              ],
-                            ),
-                          )
+                          const FormDropDown()
                         ],
                       ),
                     ),
@@ -168,20 +141,7 @@ class CreateEventFormFields extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.w100),
                   ),
                   const SizedBox().y10(),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                        color: AppColors.grey.s900,
-                        borderRadius: BorderRadius.circular(3),
-                        border: Border.all(color: AppColors.grey.s500)),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(child: FormDropDown()),
-                        FaIcon(FontAwesomeIcons.circleChevronDown)
-                      ],
-                    ),
-                  )
+                  const FormDropDown()
                 ],
               ),
               const SizedBox().y20(),
