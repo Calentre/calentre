@@ -1,11 +1,13 @@
 import 'package:calentre/app/create_events/presentation/widget/form_fields.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateEventView extends StatelessWidget {
   const CreateEventView({super.key});
@@ -27,7 +29,12 @@ class CreateEventView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const FaIcon(FontAwesomeIcons.circleArrowLeft),
+                        InkWell(
+                            onTap: () {
+                              context.goNamed(AppRoutes.calentreHome);
+                            },
+                            child: const FaIcon(
+                                FontAwesomeIcons.circleChevronLeft)),
                         const SizedBox().x20(),
                         Text("Create Event",
                             style: Theme.of(context).textTheme.headlineSmall),
