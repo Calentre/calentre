@@ -1,12 +1,17 @@
-import 'package:calentre/app/create_events/presentation/widget/video_call_type_drop_down.dart';
+import 'package:calentre/app/create_events/presentation/widget/form_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 
-class CreateEventFormFields extends StatelessWidget {
+class CreateEventFormFields extends StatefulWidget {
   const CreateEventFormFields({super.key});
 
+  @override
+  State<CreateEventFormFields> createState() => _CreateEventFormFieldsState();
+}
+
+class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -77,7 +82,7 @@ class CreateEventFormFields extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          const FormDropDown()
+                          // const FormDropDown()
                         ],
                       ),
                     ),
@@ -97,7 +102,7 @@ class CreateEventFormFields extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          const FormDropDown()
+                          // const FormDropDown()
                         ],
                       ),
                     ),
@@ -141,7 +146,7 @@ class CreateEventFormFields extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.w100),
                   ),
                   const SizedBox().y10(),
-                  const FormDropDown()
+                  // const FormDropDown()
                 ],
               ),
               const SizedBox().y20(),

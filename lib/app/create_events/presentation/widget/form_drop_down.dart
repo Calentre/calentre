@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FormDropDown extends StatefulWidget {
-  const FormDropDown({super.key});
+  const FormDropDown(
+      {super.key,
+      required this.list,
+      required this.onChanged,
+      required this.items});
+
+  final List<String> list;
+  final void Function(String?)? onChanged;
+  final List<DropdownMenuItem<String>> items;
 
   @override
   State<FormDropDown> createState() => _FormDropDownState();
@@ -11,11 +19,10 @@ class FormDropDown extends StatefulWidget {
 
 class _FormDropDownState extends State<FormDropDown> {
   String dropdownValue = "";
-  List<String> list = <String>["zoom", "Google Meet", "Teams"];
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
           color: AppColors.grey.s900,
           borderRadius: BorderRadius.circular(3),
@@ -31,7 +38,7 @@ class _FormDropDownState extends State<FormDropDown> {
             iconEnabledColor: Colors.transparent,
             focusColor: AppColors.grey.s850,
             dropdownColor: AppColors.grey.s850,
-            value: list.first,
+            value: dropdownValue == "" ? widget.list.first : dropdownValue,
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
             style: TextStyle(color: AppColors.foundation.white),
@@ -39,22 +46,20 @@ class _FormDropDownState extends State<FormDropDown> {
               height: 2,
               color: AppColors.grey.s850,
             ),
-            onChanged: (String? value) {
-              // This is called when the user selects an item.
-              setState(() {
-                dropdownValue = value!;
-              });
-            },
-            items: list.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
+            onChanged: widget.onChanged,
+            items: widget.items,
           )),
-          FaIcon(FontAwesomeIcons.circleChevronDown)
+          const FaIcon(FontAwesomeIcons.circleChevronDown)
         ],
       ),
     );
   }
 }
+
+
+// widget.list.map<DropdownMenuItem<String>>((String value) {
+//               return DropdownMenuItem<String>(
+//                 value: value,
+//                 child: Text(value),
+//               );
+//             }).toList()
