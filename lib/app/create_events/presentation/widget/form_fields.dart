@@ -1,4 +1,5 @@
 import 'package:calentre/app/create_events/presentation/widget/form_drop_down.dart';
+import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
@@ -82,7 +83,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          // const FormDropDown()
+                          const PlatformDropDown()
                         ],
                       ),
                     ),

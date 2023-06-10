@@ -2,23 +2,25 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// ignore: must_be_immutable
 class FormDropDown extends StatefulWidget {
-  const FormDropDown(
+  FormDropDown(
       {super.key,
       required this.list,
       required this.onChanged,
-      required this.items});
+      required this.items,
+      required this.currentValue});
 
   final List<String> list;
   final void Function(String?)? onChanged;
   final List<DropdownMenuItem<String>> items;
+  String currentValue;
 
   @override
   State<FormDropDown> createState() => _FormDropDownState();
 }
 
 class _FormDropDownState extends State<FormDropDown> {
-  String dropdownValue = "";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +40,7 @@ class _FormDropDownState extends State<FormDropDown> {
             iconEnabledColor: Colors.transparent,
             focusColor: AppColors.grey.s850,
             dropdownColor: AppColors.grey.s850,
-            value: dropdownValue == "" ? widget.list.first : dropdownValue,
+            value: widget.currentValue,
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
             style: TextStyle(color: AppColors.foundation.white),
