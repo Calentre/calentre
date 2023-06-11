@@ -1,4 +1,4 @@
-import 'package:calentre/app/create_events/presentation/widget/form_drop_down.dart';
+import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
 import 'package:flutter/material.dart';
 
 class PlatformDropDown extends StatefulWidget {
