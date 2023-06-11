@@ -21,7 +21,10 @@ class _PlatformDropDownState extends State<PlatformDropDown> {
     return BlocBuilder<FormDropDownBloc, FormDropDownState>(
         builder: (context, state) {
       return FormDropDown(
-        currentValue: currentValue == "" ? list.first : currentValue,
+        currentValue:
+            BlocProvider.of<FormDropDownBloc>(context).dropDownValue == ""
+                ? list.first
+                : BlocProvider.of<FormDropDownBloc>(context).dropDownValue,
         list: list,
         onChanged: (String? value) {
           // setState(() {
