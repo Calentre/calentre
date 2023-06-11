@@ -31,7 +31,7 @@ class AppTabBar extends StatelessWidget {
                   gradient: currentIndex == 0 ? true : false,
                   title: "Events",
                   onPressed: () {
-                    return BlocProvider.of<HomeViewBloc>(context)
+                    BlocProvider.of<HomeViewBloc>(context)
                         .add(EventViewEvent());
                     // context.read<HomeViewBloc>().add(EventViewEvent());
                   },
@@ -47,7 +47,7 @@ class AppTabBar extends StatelessWidget {
                   gradient: currentIndex == 1 ? true : false,
                   title: "History",
                   onPressed: () {
-                    return context.read<HomeViewBloc>().add(HistoryViewEvent());
+                    context.read<HomeViewBloc>().add(HistoryViewEvent());
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.userClock,
@@ -61,7 +61,7 @@ class AppTabBar extends StatelessWidget {
                   gradient: currentIndex == 2 ? true : false,
                   title: "Payments",
                   onPressed: () {
-                    return context.read<HomeViewBloc>().add(PaymentViewEvent());
+                    context.read<HomeViewBloc>().add(PaymentViewEvent());
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.creditCard,
