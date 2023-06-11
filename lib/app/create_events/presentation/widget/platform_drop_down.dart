@@ -20,7 +20,6 @@ class _PlatformDropDownState extends State<PlatformDropDown> {
       onChanged: (String? value) {
         setState(() {
           currentValue = value!;
-          print("The changed value is $value!");
         });
       },
       items: list.map<DropdownMenuItem<String>>((String value) {
