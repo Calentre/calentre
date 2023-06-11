@@ -10,6 +10,7 @@ class FormDropDownBloc extends Bloc<FormDropDownEvents, FormDropDownState> {
 
   void onClickDropDownItem(
       SelectDropDownValueEvent event, Emitter<FormDropDownState> emit) async {
+    print("Drop down value is $dropDownValue");
     emit(FormDropDownUpdatedState(value: dropDownValue));
   }
 }
