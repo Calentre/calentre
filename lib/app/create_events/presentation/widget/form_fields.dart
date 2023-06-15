@@ -1,3 +1,6 @@
+import 'package:calentre/app/create_events/presentation/bloc/duration_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/payment_type_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/platform_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -19,8 +22,11 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<FormDropDownBloc>(
-            key: const ValueKey("platformDropDown"),
-            create: (context) => FormDropDownBloc())
+            create: (context) => DurationDropDownBloc()),
+        BlocProvider<FormDropDownBloc>(
+            create: (context) => PlatformDropDownBloc()),
+        BlocProvider<FormDropDownBloc>(
+            create: (context) => PaymentDropDownBloc()),
       ],
       child: Column(
         children: [
