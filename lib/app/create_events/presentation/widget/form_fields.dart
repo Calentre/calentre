@@ -25,8 +25,8 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
             create: (context) => DurationDropDownBloc()),
         BlocProvider<PlatformDropDownBloc>(
             create: (context) => PlatformDropDownBloc()),
-        BlocProvider<PaymentDropDownBloc>(
-            create: (context) => PaymentDropDownBloc()),
+        BlocProvider<EventTypeDropDownBloc>(
+            create: (context) => EventTypeDropDownBloc()),
       ],
       child: Column(
         children: [
