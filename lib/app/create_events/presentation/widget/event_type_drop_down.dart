@@ -16,16 +16,7 @@ class _EventTypeDropDownState extends State<EventTypeDropDown> {
   String currentValue = "";
   @override
   Widget build(BuildContext context) {
-    List<String> list = <String>[
-      "5 min",
-      "10 min",
-      "15 min",
-      "20 min",
-      "30 min",
-      "45 min",
-      "1 hour",
-      "Custom "
-    ];
+    List<String> list = <String>["Free ", "Paid "];
 
     return BlocBuilder<EventTypeDropDownBloc, FormDropDownState>(
         builder: (context, state) {
