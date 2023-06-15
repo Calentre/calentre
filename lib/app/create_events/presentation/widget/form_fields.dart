@@ -1,11 +1,11 @@
 import 'package:calentre/app/create_events/presentation/bloc/duration_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/bloc/payment_type_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/bloc/platform_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/widget/duration_drop_down.dart';
 import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,11 +21,11 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<FormDropDownBloc>(
+        BlocProvider<DurationDropDownBloc>(
             create: (context) => DurationDropDownBloc()),
-        BlocProvider<FormDropDownBloc>(
+        BlocProvider<PlatformDropDownBloc>(
             create: (context) => PlatformDropDownBloc()),
-        BlocProvider<FormDropDownBloc>(
+        BlocProvider<PaymentDropDownBloc>(
             create: (context) => PaymentDropDownBloc()),
       ],
       child: Column(
@@ -116,7 +116,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                                   .copyWith(fontWeight: FontWeight.w100),
                             ),
                             const SizedBox().y10(),
-                            // const FormDropDown()
+                            const DurationDropDown()
                           ],
                         ),
                       ),
