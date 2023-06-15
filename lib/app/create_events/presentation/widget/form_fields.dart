@@ -16,8 +16,6 @@ class CreateEventFormFields extends StatefulWidget {
 class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   @override
   Widget build(BuildContext context) {
-    ///returns multiple instance of the FormDropDownBloc and differentiates
-    ///them with the valueKey()
     return MultiBlocProvider(
       providers: [
         BlocProvider<FormDropDownBloc>(
