@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class FormDropDownState extends Equatable {
+  final String value = "";
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [value];
 }
 
 class FormDropDownInitialState extends FormDropDownState {

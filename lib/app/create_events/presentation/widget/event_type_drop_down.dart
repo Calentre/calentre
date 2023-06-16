@@ -1,4 +1,4 @@
-import 'package:calentre/app/create_events/presentation/bloc/payment_type_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
@@ -32,7 +32,7 @@ class _EventTypeDropDownState extends State<EventTypeDropDown> {
           // });
           BlocProvider.of<EventTypeDropDownBloc>(
             context,
-            listen: false,
+            // listen: false,
           ).dropDownValue = value!;
           BlocProvider.of<EventTypeDropDownBloc>(context)
               .add(SelectDropDownValueEvent());
