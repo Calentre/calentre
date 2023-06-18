@@ -1,3 +1,6 @@
+import 'package:calentre/app/create_events/presentation/bloc/duration_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/platform_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/widget/form_fields.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
@@ -6,6 +9,7 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,7 +66,14 @@ class CreateEventView extends StatelessWidget {
               Container(
                   width: 700,
                   padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: const CreateEventFormFields())
+                  child: MultiBlocProvider(providers: [
+                    BlocProvider<DurationDropDownBloc>(
+                        create: (context) => DurationDropDownBloc()),
+                    BlocProvider<PlatformDropDownBloc>(
+                        create: (context) => PlatformDropDownBloc()),
+                    BlocProvider<EventTypeDropDownBloc>(
+                        create: (context) => EventTypeDropDownBloc()),
+                  ], child: const CreateEventFormFields()))
             ],
           ),
         ),
