@@ -1,6 +1,7 @@
 import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/widget/duration_drop_down.dart';
 import 'package:calentre/app/create_events/presentation/widget/event_type_drop_down.dart';
+import 'package:calentre/app/create_events/presentation/widget/multi_booking_drop_down.dart';
 import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -154,8 +155,6 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   const EventTypeDropDown()
                 ],
               ),
-              const SizedBox().y20(),
-              const SizedBox().y10(),
               BlocBuilder<EventTypeDropDownBloc, FormDropDownState>(
                   builder: (context, state) {
                 debugPrint("Event type rebuild");
@@ -168,14 +167,13 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                 ));
                 if (state is FormDropDownInitialState ||
                     bloc.dropDownValue == "Free") {
-                  print(BlocProvider.of<EventTypeDropDownBloc>(
-                    context,
-                  ).dropDownValue);
-                  return const Text("Free");
+                  return Container();
                 } else {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox().y20(),
+                      const SizedBox().y10(),
                       Text(
                         "Amount",
                         style: Theme.of(context)
@@ -185,8 +183,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                       ),
                       const SizedBox().y10(),
                       TextFormField(
-                        initialValue: "\$55",
-                        readOnly: true,
+                        initialValue: "\$5",
                         decoration: const InputDecoration(
                           filled: true,
                         ),
@@ -196,6 +193,23 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   );
                 }
               }),
+              const SizedBox().y20(),
+              const SizedBox().y10(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Allow Mutiple Time Slot booking?",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.w100),
+                  ),
+                  const SizedBox().y10(),
+                  const MultiBookingDropDown()
+                ],
+              ),
             ],
           ),
         ),
