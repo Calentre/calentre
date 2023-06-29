@@ -158,32 +158,43 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
               const SizedBox().y10(),
               BlocBuilder<EventTypeDropDownBloc, FormDropDownState>(
                   builder: (context, state) {
-                print(context.read<EventTypeDropDownBloc>().dropDownValue);
-                return (state is FormDropDownUpdatedState &&
-                        context.read<EventTypeDropDownBloc>().dropDownValue ==
-                            "Paid")
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Amount",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .copyWith(fontWeight: FontWeight.normal),
-                          ),
-                          const SizedBox().y10(),
-                          TextFormField(
-                            initialValue: "\$5",
-                            readOnly: true,
-                            decoration: const InputDecoration(
-                              filled: true,
-                            ),
-                            cursorColor: AppColors.foundation.white,
-                          ),
-                        ],
-                      )
-                    : Container();
+                debugPrint("Event type rebuild");
+                debugPrint('$state');
+                print(BlocProvider.of<EventTypeDropDownBloc>(
+                  context,
+                ).dropDownValue);
+                var bloc = (BlocProvider.of<EventTypeDropDownBloc>(
+                  context,
+                ));
+                if (state is FormDropDownInitialState ||
+                    bloc.dropDownValue == "Free") {
+                  print(BlocProvider.of<EventTypeDropDownBloc>(
+                    context,
+                  ).dropDownValue);
+                  return const Text("Free");
+                } else {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Amount",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .copyWith(fontWeight: FontWeight.normal),
+                      ),
+                      const SizedBox().y10(),
+                      TextFormField(
+                        initialValue: "\$55",
+                        readOnly: true,
+                        decoration: const InputDecoration(
+                          filled: true,
+                        ),
+                        cursorColor: AppColors.foundation.white,
+                      ),
+                    ],
+                  );
+                }
               }),
             ],
           ),
