@@ -1,5 +1,6 @@
 import 'package:calentre/app/create_events/presentation/create_event.dart';
 import 'package:calentre/app/home/presentation/calentre_home.dart';
+import 'package:calentre/app/set_availability/presentation/set_availability_view.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/auth/presentation/social_sign_in.dart';
 
@@ -7,6 +8,7 @@ class AppRoutes {
   static String socialSignIn = 'socialSignIn';
   static String calentreHome = 'calentreHome';
   static String createEvent = 'createEvent';
+  static String setAvailabilityView = 'setAvailability';
 }
 
 final routerConfig = GoRouter(
@@ -25,6 +27,11 @@ final routerConfig = GoRouter(
       name: AppRoutes.createEvent,
       path: '/create-event',
       builder: (context, state) => const CreateEventView(),
+    ),
+    GoRoute(
+      name: AppRoutes.setAvailabilityView,
+      path: '/set-availability',
+      builder: (context, state) => const SetAvailabilityView(),
     ),
   ],
 );

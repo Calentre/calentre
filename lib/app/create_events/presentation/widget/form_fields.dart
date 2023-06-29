@@ -4,11 +4,13 @@ import 'package:calentre/app/create_events/presentation/widget/event_type_drop_d
 import 'package:calentre/app/create_events/presentation/widget/multi_booking_drop_down.dart';
 import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateEventFormFields extends StatefulWidget {
   const CreateEventFormFields({super.key});
@@ -215,7 +217,12 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
         ),
         const SizedBox().y20(),
         const SizedBox().y10(),
-        AppButton(title: "Create Event", gradient: true, onPressed: () {})
+        AppButton(
+            title: "Set Availability",
+            gradient: true,
+            onPressed: () {
+              context.pushNamed(AppRoutes.setAvailabilityView);
+            })
       ],
     );
   }
