@@ -1,5 +1,5 @@
 import 'package:calentre/app/set_availability/presentation/bloc/time_drop_down_bloc.dart';
-import 'package:calentre/app/set_availability/presentation/widgets/time_drop_down.dart';
+import 'package:calentre/app/set_availability/presentation/widgets/scheduler.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -12,18 +12,6 @@ import 'package:go_router/go_router.dart';
 
 class SetAvailabilityView extends StatelessWidget {
   const SetAvailabilityView({super.key});
-
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.blue;
-    }
-    return Colors.red;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,82 +78,7 @@ class SetAvailabilityView extends StatelessWidget {
                             Text("Choose your Available time for this event"),
                       ),
                       const SizedBox().y20(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(bottom: 8.0),
-                                  child: Text("Day"),
-                                ),
-                                FormBorderCard(
-                                  verticalPadding: 11.5,
-                                  leftPadding: 12,
-                                  width: double.maxFinite,
-                                  child: Row(
-                                    children: [
-                                      Checkbox(
-                                        checkColor: Colors.white,
-                                        fillColor:
-                                            MaterialStateProperty.resolveWith(
-                                                getColor),
-                                        value: true,
-                                        onChanged: (bool? value) {
-                                          // setState(() {
-                                          //   isChecked = value!;
-                                          // });
-                                        },
-                                      ),
-                                      const Text("Mon"),
-                                      const SizedBox().x10(),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox().x14(),
-                          const Expanded(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 8.0),
-                                child: Text("Start"),
-                              ),
-                              TimeDropDown()
-                            ],
-                          )),
-                          const SizedBox().x14(),
-                          const Expanded(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 8.0),
-                                child: Text("End"),
-                              ),
-                              TimeDropDown()
-                            ],
-                          )),
-                          const SizedBox().x14(),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 18),
-                            child: FaIcon(FontAwesomeIcons.solidSquarePlus),
-                          ),
-                          const SizedBox().x14(),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 18),
-                            child: FaIcon(FontAwesomeIcons.trash),
-                          ),
-                        ],
-                      ),
+                      const AvailabilityScheduler()
                     ],
                   ),
                 )
