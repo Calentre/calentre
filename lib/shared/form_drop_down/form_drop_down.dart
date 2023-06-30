@@ -46,7 +46,7 @@ class _FormDropDownState extends State<FormDropDown> {
             style: TextStyle(color: AppColors.foundation.white),
             underline: Container(
               height: 2,
-              color: AppColors.grey.s850,
+              color: Colors.transparent,
             ),
             onChanged: widget.onChanged,
             items: widget.items,

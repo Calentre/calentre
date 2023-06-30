@@ -1,11 +1,12 @@
-import 'package:calentre/app/create_events/presentation/widget/event_type_drop_down.dart';
-import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
+import 'package:calentre/app/set_availability/presentation/bloc/time_drop_down_bloc.dart';
+import 'package:calentre/app/set_availability/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,144 +27,150 @@ class SetAvailabilityView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          // constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
-          child: Column(
-            children: [
-              const NavBar(),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                width: WebConstraints.maxWidth,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              context.pop();
-                            },
-                            child: const FaIcon(
-                                FontAwesomeIcons.circleChevronLeft)),
-                        const SizedBox().x20(),
-                        Text("Set Availability",
-                            style: Theme.of(context).textTheme.headlineSmall),
-                      ],
-                    ),
-                    AppButton(
-                      title: "Publish Link",
-                      onPressed: () {},
-                      gradient: true,
-                      width: 100,
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: AppColors.grey.s700,
-                        width: 1.0,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TimeDropDownBloc>(create: (context) => TimeDropDownBloc()),
+      ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: SizedBox(
+            // constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
+            child: Column(
+              children: [
+                const NavBar(),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  width: WebConstraints.maxWidth,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                context.pop();
+                              },
+                              child: const FaIcon(
+                                  FontAwesomeIcons.circleChevronLeft)),
+                          const SizedBox().x20(),
+                          Text("Set Availability",
+                              style: Theme.of(context).textTheme.headlineSmall),
+                        ],
                       ),
-                    ),
-                  )),
-              const SizedBox().y20(),
-              const SizedBox().y20(),
-              Container(
-                width: 700,
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                height: 700,
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 20.0),
-                      child: Text("Choose your Available time for this event"),
-                    ),
-                    const SizedBox().y20(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Column(
+                      AppButton(
+                        title: "Publish Link",
+                        onPressed: () {},
+                        gradient: true,
+                        width: 100,
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: AppColors.grey.s700,
+                          width: 1.0,
+                        ),
+                      ),
+                    )),
+                const SizedBox().y20(),
+                const SizedBox().y20(),
+                Container(
+                  width: 700,
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  height: 700,
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 20.0),
+                        child:
+                            Text("Choose your Available time for this event"),
+                      ),
+                      const SizedBox().y20(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 8.0),
+                                  child: Text("Day"),
+                                ),
+                                FormBorderCard(
+                                  verticalPadding: 11.5,
+                                  leftPadding: 12,
+                                  width: double.maxFinite,
+                                  child: Row(
+                                    children: [
+                                      Checkbox(
+                                        checkColor: Colors.white,
+                                        fillColor:
+                                            MaterialStateProperty.resolveWith(
+                                                getColor),
+                                        value: true,
+                                        onChanged: (bool? value) {
+                                          // setState(() {
+                                          //   isChecked = value!;
+                                          // });
+                                        },
+                                      ),
+                                      const Text("Mon"),
+                                      const SizedBox().x10(),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox().x14(),
+                          const Expanded(
+                              child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(bottom: 8.0),
-                                child: Text("Day"),
+                                child: Text("Start"),
                               ),
-                              FormBorderCard(
-                                verticalPadding: 11.5,
-                                leftPadding: 12,
-                                width: double.maxFinite,
-                                child: Row(
-                                  children: [
-                                    Checkbox(
-                                      checkColor: Colors.white,
-                                      fillColor:
-                                          MaterialStateProperty.resolveWith(
-                                              getColor),
-                                      value: true,
-                                      onChanged: (bool? value) {
-                                        // setState(() {
-                                        //   isChecked = value!;
-                                        // });
-                                      },
-                                    ),
-                                    Text("Mon"),
-                                    SizedBox().x10(),
-                                  ],
-                                ),
-                              ),
+                              TimeDropDown()
                             ],
-                          ),
-                        ),
-                        const SizedBox().x14(),
-                        Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
-                              child: Text("Start"),
-                            ),
-                            // EventTypeDropDown()
-                          ],
-                        )),
-                        const SizedBox().x14(),
-                        Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 8.0),
-                              child: Text("End"),
-                            ),
-                            TextFormField(
-                              initialValue: "\$5",
-                              decoration: const InputDecoration(
-                                filled: true,
+                          )),
+                          const SizedBox().x14(),
+                          const Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 8.0),
+                                child: Text("End"),
                               ),
-                              cursorColor: AppColors.foundation.white,
-                            )
-                          ],
-                        )),
-                        const SizedBox().x14(),
-                        const FaIcon(FontAwesomeIcons.solidSquarePlus),
-                        const SizedBox().x14(),
-                        const FaIcon(FontAwesomeIcons.trash)
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
+                              TimeDropDown()
+                            ],
+                          )),
+                          const SizedBox().x14(),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 18),
+                            child: FaIcon(FontAwesomeIcons.solidSquarePlus),
+                          ),
+                          const SizedBox().x14(),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 18),
+                            child: FaIcon(FontAwesomeIcons.trash),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
