@@ -161,9 +161,6 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   builder: (context, state) {
                 debugPrint("Event type rebuild");
                 debugPrint('$state');
-                print(BlocProvider.of<EventTypeDropDownBloc>(
-                  context,
-                ).dropDownValue);
                 var bloc = (BlocProvider.of<EventTypeDropDownBloc>(
                   context,
                 ));
