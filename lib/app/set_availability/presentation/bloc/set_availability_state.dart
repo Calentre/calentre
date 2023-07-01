@@ -5,7 +5,7 @@ class SetAvailabilityStates extends Equatable {
   List<Object?> get props => [];
 }
 
-class ExtraTimeFieldInitialState extends Equatable {
+class ExtraTimeFieldInitialState extends SetAvailabilityStates {
   ///This value assumes the length of the List (array) that controls the
   ///generation of the extra time field.
   final double listLength = 0;
@@ -14,12 +14,12 @@ class ExtraTimeFieldInitialState extends Equatable {
   List<Object> get props => [listLength];
 }
 
-class ExtraTimeFieldUpdatedState extends Equatable {
+class ExtraTimeFieldUpdatedState extends SetAvailabilityStates {
   ///This value assumes the length of the List (array) that controls the
   ///generation of the extra time field.
   final double listLength;
 
-  const ExtraTimeFieldUpdatedState(this.listLength);
+  ExtraTimeFieldUpdatedState(this.listLength);
 
   @override
   List<Object> get props => [listLength];
