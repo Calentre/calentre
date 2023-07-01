@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SetAvailabilityBloc
     extends Bloc<SetAvailabilityEvents, SetAvailabilityStates> {
-  double listLength = 0;
+  int listLength = 0;
 
   SetAvailabilityBloc() : super(ExtraTimeFieldInitialState()) {
     on<AddExtraTimeFieldEvent>(onClickAddExtraTimeField);

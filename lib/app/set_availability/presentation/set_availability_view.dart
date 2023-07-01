@@ -1,3 +1,4 @@
+import 'package:calentre/app/set_availability/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/app/set_availability/presentation/bloc/time_drop_down_bloc.dart';
 import 'package:calentre/app/set_availability/presentation/widgets/scheduler.dart';
 import 'package:calentre/config/constraints/constraints.dart';
@@ -18,6 +19,8 @@ class SetAvailabilityView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TimeDropDownBloc>(create: (context) => TimeDropDownBloc()),
+        BlocProvider<SetAvailabilityBloc>(
+            create: (context) => SetAvailabilityBloc()),
       ],
       child: Scaffold(
         body: SingleChildScrollView(
@@ -78,7 +81,7 @@ class SetAvailabilityView extends StatelessWidget {
                             Text("Choose your Available time for this event"),
                       ),
                       const SizedBox().y20(),
-                      const AvailabilityScheduler()
+                      const AvailabilityScheduler(),
                     ],
                   ),
                 )
