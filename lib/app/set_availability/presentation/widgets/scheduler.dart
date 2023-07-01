@@ -83,12 +83,12 @@ class AvailabilityScheduler extends StatelessWidget {
         )),
         const SizedBox().x14(),
         const Padding(
-          padding: EdgeInsets.only(top: 18),
+          padding: EdgeInsets.only(top: 24),
           child: FaIcon(FontAwesomeIcons.solidSquarePlus),
         ),
         const SizedBox().x14(),
         const Padding(
-          padding: EdgeInsets.only(top: 18),
+          padding: EdgeInsets.only(top: 24),
           child: FaIcon(FontAwesomeIcons.trash),
         ),
       ],
