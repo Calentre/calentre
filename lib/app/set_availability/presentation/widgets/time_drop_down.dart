@@ -18,36 +18,39 @@ class _TimeDropDownState extends State<TimeDropDown> {
   Widget build(BuildContext context) {
     List<String> list = <String>["12:00 AM", "12:30 AM", "1:00 AM"];
 
-    return BlocBuilder<TimeDropDownBloc, FormDropDownState>(
-        builder: (context, state) {
-      return FormDropDown(
-        currentValue:
-            BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
-                ? list.first
-                : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
-        list: list,
-        onChanged: (String? value) {
-          // setState(() {
-          //   currentValue = value!;
-          // });
-          BlocProvider.of<TimeDropDownBloc>(
-            context,
-            // listen: false,
-          ).dropDownValue = value!;
-          BlocProvider.of<TimeDropDownBloc>(context)
-              .add(SelectDropDownValueEvent());
-        },
-        items: list.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Row(
-              children: [
-                Text(value),
-              ],
-            ),
-          );
-        }).toList(),
-      );
-    });
+    return BlocProvider<TimeDropDownBloc>(
+      create: (context) => TimeDropDownBloc(),
+      child: BlocBuilder<TimeDropDownBloc, FormDropDownState>(
+          builder: (context, state) {
+        return FormDropDown(
+          currentValue:
+              BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
+                  ? list.first
+                  : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
+          list: list,
+          onChanged: (String? value) {
+            // setState(() {
+            //   currentValue = value!;
+            // });
+            BlocProvider.of<TimeDropDownBloc>(
+              context,
+              // listen: false,
+            ).dropDownValue = value!;
+            BlocProvider.of<TimeDropDownBloc>(context)
+                .add(SelectDropDownValueEvent());
+          },
+          items: list.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Row(
+                children: [
+                  Text(value),
+                ],
+              ),
+            );
+          }).toList(),
+        );
+      }),
+    );
   }
 }

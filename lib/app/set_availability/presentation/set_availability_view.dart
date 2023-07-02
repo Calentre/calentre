@@ -82,6 +82,7 @@ class SetAvailabilityView extends StatelessWidget {
                       ),
                       const SizedBox().y20(),
                       const AvailabilityScheduler(),
+                      const AvailabilityScheduler(),
                     ],
                   ),
                 )
