@@ -1,5 +1,6 @@
 import 'package:calentre/app/create_events/presentation/bloc/duration_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/multibooking_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/bloc/platform_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/widget/form_fields.dart';
 import 'package:calentre/config/constraints/constraints.dart';
@@ -73,6 +74,8 @@ class CreateEventView extends StatelessWidget {
                         create: (context) => PlatformDropDownBloc()),
                     BlocProvider<EventTypeDropDownBloc>(
                         create: (context) => EventTypeDropDownBloc()),
+                    BlocProvider<MultiBookingDropDownBloc>(
+                        create: (context) => MultiBookingDropDownBloc()),
                   ], child: const CreateEventFormFields()))
             ],
           ),

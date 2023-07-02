@@ -1,13 +1,16 @@
 import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
 import 'package:calentre/app/create_events/presentation/widget/duration_drop_down.dart';
 import 'package:calentre/app/create_events/presentation/widget/event_type_drop_down.dart';
+import 'package:calentre/app/create_events/presentation/widget/multi_booking_drop_down.dart';
 import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateEventFormFields extends StatefulWidget {
   const CreateEventFormFields({super.key});
@@ -154,43 +157,69 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   const EventTypeDropDown()
                 ],
               ),
-              const SizedBox().y20(),
-              const SizedBox().y10(),
               BlocBuilder<EventTypeDropDownBloc, FormDropDownState>(
                   builder: (context, state) {
-                print(context.read<EventTypeDropDownBloc>().dropDownValue);
-                return (state is FormDropDownUpdatedState &&
-                        context.read<EventTypeDropDownBloc>().dropDownValue ==
-                            "Paid")
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Amount",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .copyWith(fontWeight: FontWeight.normal),
-                          ),
-                          const SizedBox().y10(),
-                          TextFormField(
-                            initialValue: "\$5",
-                            readOnly: true,
-                            decoration: const InputDecoration(
-                              filled: true,
-                            ),
-                            cursorColor: AppColors.foundation.white,
-                          ),
-                        ],
-                      )
-                    : Container();
+                debugPrint("Event type rebuild");
+                debugPrint('$state');
+                var bloc = (BlocProvider.of<EventTypeDropDownBloc>(
+                  context,
+                ));
+                if (state is FormDropDownInitialState ||
+                    bloc.dropDownValue == "Free") {
+                  return Container();
+                } else {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox().y20(),
+                      const SizedBox().y10(),
+                      Text(
+                        "Amount",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .copyWith(fontWeight: FontWeight.normal),
+                      ),
+                      const SizedBox().y10(),
+                      TextFormField(
+                        initialValue: "\$5",
+                        decoration: const InputDecoration(
+                          filled: true,
+                        ),
+                        cursorColor: AppColors.foundation.white,
+                      ),
+                    ],
+                  );
+                }
               }),
+              const SizedBox().y20(),
+              const SizedBox().y10(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Allow Mutiple Time Slot booking?",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.w100),
+                  ),
+                  const SizedBox().y10(),
+                  const MultiBookingDropDown()
+                ],
+              ),
             ],
           ),
         ),
         const SizedBox().y20(),
         const SizedBox().y10(),
-        AppButton(title: "Create Event", gradient: true, onPressed: () {})
+        AppButton(
+            title: "Set Availability",
+            gradient: true,
+            onPressed: () {
+              context.pushNamed(AppRoutes.setAvailabilityView);
+            })
       ],
     );
   }

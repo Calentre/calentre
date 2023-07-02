@@ -1,40 +1,41 @@
-import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
+import 'package:calentre/app/create_events/presentation/bloc/multibooking_drop_down_bloc.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EventTypeDropDown extends StatefulWidget {
-  const EventTypeDropDown({super.key});
+class MultiBookingDropDown extends StatefulWidget {
+  const MultiBookingDropDown({super.key});
 
   @override
-  State<EventTypeDropDown> createState() => _EventTypeDropDownState();
+  State<MultiBookingDropDown> createState() => _MultiBookingDropDownState();
 }
 
-class _EventTypeDropDownState extends State<EventTypeDropDown> {
+class _MultiBookingDropDownState extends State<MultiBookingDropDown> {
   String currentValue = "";
   @override
   Widget build(BuildContext context) {
-    List<String> list = <String>["Free", "Paid"];
+    List<String> list = <String>["No", "Yes"];
 
-    return BlocBuilder<EventTypeDropDownBloc, FormDropDownState>(
+    return BlocBuilder<MultiBookingDropDownBloc, FormDropDownState>(
         builder: (context, state) {
       return FormDropDown(
-        currentValue:
-            BlocProvider.of<EventTypeDropDownBloc>(context).dropDownValue == ""
-                ? list.first
-                : BlocProvider.of<EventTypeDropDownBloc>(context).dropDownValue,
+        currentValue: BlocProvider.of<MultiBookingDropDownBloc>(context)
+                    .dropDownValue ==
+                ""
+            ? list.first
+            : BlocProvider.of<MultiBookingDropDownBloc>(context).dropDownValue,
         list: list,
         onChanged: (String? value) {
           // setState(() {
           //   currentValue = value!;
           // });
-          BlocProvider.of<EventTypeDropDownBloc>(
+          BlocProvider.of<MultiBookingDropDownBloc>(
             context,
             // listen: false,
           ).dropDownValue = value!;
-          BlocProvider.of<EventTypeDropDownBloc>(context)
+          BlocProvider.of<MultiBookingDropDownBloc>(context)
               .add(SelectDropDownValueEvent());
         },
         items: list.map<DropdownMenuItem<String>>((String value) {
