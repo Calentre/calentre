@@ -81,7 +81,7 @@ class AvailabilityScheduler extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: (isFirstElement ?? false)
-                        ? const Text("start")
+                        ? const Text("Sart")
                         : Container(),
                   ),
                   const TimeDropDown(),
@@ -89,7 +89,10 @@ class AvailabilityScheduler extends StatelessWidget {
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).listLength,
-                      (index) => const TimeDropDown())
+                      (index) => const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: TimeDropDown(),
+                          ))
                 ],
               )),
               const SizedBox().x14(),
@@ -101,7 +104,7 @@ class AvailabilityScheduler extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: (isFirstElement ?? false)
-                        ? const Text("start")
+                        ? const Text("End")
                         : Container(),
                   ),
                   const TimeDropDown(),
@@ -110,7 +113,10 @@ class AvailabilityScheduler extends StatelessWidget {
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).listLength,
-                      (index) => const TimeDropDown())
+                      (index) => const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: TimeDropDown(),
+                          ))
                 ],
               )),
               const SizedBox().x14(),
@@ -159,7 +165,14 @@ class AvailabilityScheduler extends StatelessWidget {
                         context,
                       ).add(RemoveExtraTimeFieldEvent());
                     },
-                    child: const FaIcon(FontAwesomeIcons.trash)),
+                    child: BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).listLength ==
+                            0
+                        ? Container()
+                        : const FaIcon(
+                            FontAwesomeIcons.trash,
+                          )),
               ],
             ),
           );
