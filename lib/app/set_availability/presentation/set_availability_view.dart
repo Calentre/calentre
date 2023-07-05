@@ -83,11 +83,20 @@ class SetAvailabilityView extends StatelessWidget {
                       ),
                       const SizedBox().y20(),
                       AvailabilityScheduler(isFirstElement: true, day: "Mon"),
-                      ...days.map((day) => Padding(
-                            padding: const EdgeInsets.only(top: 28.0),
-                            child: AvailabilityScheduler(
-                              day: day,
-                            ),
+                      ...days.map((day) => Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: (8.0 + 8), bottom: 8),
+                                child: Divider(
+                                  thickness: .5,
+                                  color: AppColors.grey.s500,
+                                ),
+                              ),
+                              AvailabilityScheduler(
+                                day: day,
+                              ),
+                            ],
                           ))
                     ],
                   ),

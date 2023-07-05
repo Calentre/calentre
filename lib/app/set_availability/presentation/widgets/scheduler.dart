@@ -29,6 +29,9 @@ class AvailabilityScheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var bloc = BlocProvider.of<SetAvailabilityBloc>(
+      context,
+    );
     return BlocProvider<SetAvailabilityBloc>(
         create: (context) => SetAvailabilityBloc(),
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
@@ -58,11 +61,14 @@ class AvailabilityScheduler extends StatelessWidget {
                           checkColor: Colors.white,
                           fillColor:
                               MaterialStateProperty.resolveWith(getColor),
-                          value: true,
+                          value: BlocProvider.of<SetAvailabilityBloc>(
+                            context,
+                          ).checkBoxState,
                           onChanged: (bool? value) {
-                            // setState(() {
-                            //   isChecked = value!;
-                            // });
+                            print("The value is $value");
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).add(CheckBoxEvent());
                           },
                         ),
                         Text(day),
