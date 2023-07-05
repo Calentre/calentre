@@ -12,7 +12,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class SetAvailabilityView extends StatelessWidget {
-  const SetAvailabilityView({super.key});
+  SetAvailabilityView({super.key});
+
+  final List<String> days = ["Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +82,10 @@ class SetAvailabilityView extends StatelessWidget {
                             Text("Choose your Available time for this event"),
                       ),
                       const SizedBox().y20(),
-                      AvailabilityScheduler(),
-                      AvailabilityScheduler(),
+                      AvailabilityScheduler(isFirstElement: true, day: "Mon"),
+                      ...days.map((e) => AvailabilityScheduler(
+                            day: e,
+                          ))
                     ],
                   ),
                 )

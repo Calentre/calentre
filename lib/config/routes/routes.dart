@@ -31,7 +31,7 @@ final routerConfig = GoRouter(
     GoRoute(
       name: AppRoutes.setAvailabilityView,
       path: '/set-availability',
-      builder: (context, state) => const SetAvailabilityView(),
+      builder: (context, state) => SetAvailabilityView(),
     ),
   ],
 );

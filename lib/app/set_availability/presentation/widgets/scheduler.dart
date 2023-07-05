@@ -9,7 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AvailabilityScheduler extends StatelessWidget {
-  AvailabilityScheduler({super.key});
+  AvailabilityScheduler({super.key, this.isFirstElement, required this.day});
+  final bool? isFirstElement;
+  final String day;
 
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -40,9 +42,11 @@ class AvailabilityScheduler extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text("Day"),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false)
+                        ? const Text("Day")
+                        : Container(),
                   ),
                   FormBorderCard(
                     verticalPadding: 8,
@@ -61,7 +65,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             // });
                           },
                         ),
-                        const Text("Mon"),
+                        Text(day),
                         const SizedBox().x10(),
                       ],
                     ),
@@ -74,9 +78,11 @@ class AvailabilityScheduler extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text("Start"),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false)
+                        ? const Text("start")
+                        : Container(),
                   ),
                   const TimeDropDown(),
                   ...List.generate(
@@ -92,9 +98,11 @@ class AvailabilityScheduler extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text("End"),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false)
+                        ? const Text("start")
+                        : Container(),
                   ),
                   const TimeDropDown(),
                   // ... extraTimeFieldList.map((e) => const TimeDropDown()),
@@ -130,7 +138,7 @@ class AvailabilityScheduler extends StatelessWidget {
     return ((index ?? -1) >= 0)
         ? Container()
         : Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: EdgeInsets.only(top: (isFirstElement ?? false) ? 40 : 20),
             child: Row(
               children: [
                 InkWell(
