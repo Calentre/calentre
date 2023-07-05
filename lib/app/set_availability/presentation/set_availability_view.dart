@@ -72,7 +72,6 @@ class SetAvailabilityView extends StatelessWidget {
                 Container(
                   width: 700,
                   padding: const EdgeInsets.symmetric(vertical: 24),
-                  height: 700,
                   child: Column(
                     children: [
                       const Padding(
@@ -81,8 +80,8 @@ class SetAvailabilityView extends StatelessWidget {
                             Text("Choose your Available time for this event"),
                       ),
                       const SizedBox().y20(),
-                      const AvailabilityScheduler(),
-                      const AvailabilityScheduler(),
+                      AvailabilityScheduler(),
+                      AvailabilityScheduler(),
                     ],
                   ),
                 )
