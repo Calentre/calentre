@@ -3,6 +3,7 @@ import 'package:calentre/app/set_availability/presentation/bloc/time_drop_down_b
 import 'package:calentre/app/set_availability/presentation/widgets/scheduler.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/navbar.dart';
@@ -12,7 +13,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class SetAvailabilityView extends StatelessWidget {
-  const SetAvailabilityView({super.key});
+  SetAvailabilityView({super.key});
+
+  final List<String> days = ["Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,6 @@ class SetAvailabilityView extends StatelessWidget {
                 Container(
                   width: 700,
                   padding: const EdgeInsets.symmetric(vertical: 24),
-                  height: 700,
                   child: Column(
                     children: [
                       const Padding(
@@ -81,9 +83,36 @@ class SetAvailabilityView extends StatelessWidget {
                             Text("Choose your Available time for this event"),
                       ),
                       const SizedBox().y20(),
-                      const AvailabilityScheduler(),
-                      const AvailabilityScheduler(),
+                      AvailabilityScheduler(isFirstElement: true, day: "Mon"),
+                      ...days.map((day) => Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: (8.0 + 8), bottom: 8),
+                                child: Divider(
+                                  thickness: .5,
+                                  color: AppColors.grey.s500,
+                                ),
+                              ),
+                              AvailabilityScheduler(
+                                day: day,
+                              ),
+                            ],
+                          ))
                     ],
+                  ),
+                ),
+                const SizedBox().y20(),
+                AppButton(
+                  title: "Finish",
+                  width: 600,
+                  gradient: true,
+                  onPressed: () {
+                    context.goNamed(AppRoutes.completionFeedBack);
+                  },
+                  icon: const FaIcon(
+                    FontAwesomeIcons.boltLightning,
+                    color: Colors.amber,
                   ),
                 )
               ],

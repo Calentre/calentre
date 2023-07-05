@@ -9,7 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AvailabilityScheduler extends StatelessWidget {
-  const AvailabilityScheduler({super.key});
+  AvailabilityScheduler({super.key, this.isFirstElement, required this.day});
+  final bool? isFirstElement;
+  final String day;
 
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -23,6 +25,8 @@ class AvailabilityScheduler extends StatelessWidget {
     return Colors.red;
   }
 
+  final List extraTimeFieldList = [];
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SetAvailabilityBloc>(
@@ -31,14 +35,18 @@ class AvailabilityScheduler extends StatelessWidget {
             builder: (context, state) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text("Day"),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false)
+                        ? const Text("Day")
+                        : Container(),
                   ),
                   FormBorderCard(
                     verticalPadding: 8,
@@ -50,14 +58,17 @@ class AvailabilityScheduler extends StatelessWidget {
                           checkColor: Colors.white,
                           fillColor:
                               MaterialStateProperty.resolveWith(getColor),
-                          value: true,
+                          value: BlocProvider.of<SetAvailabilityBloc>(
+                            context,
+                          ).checkBoxState,
                           onChanged: (bool? value) {
-                            // setState(() {
-                            //   isChecked = value!;
-                            // });
+                            debugPrint("The value is $value");
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).add(CheckBoxEvent());
                           },
                         ),
-                        const Text("Mon"),
+                        Text(day),
                         const SizedBox().x10(),
                       ],
                     ),
@@ -65,55 +76,128 @@ class AvailabilityScheduler extends StatelessWidget {
                 ],
               ),
               const SizedBox().x14(),
-              const Expanded(
+              Expanded(
                   child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text("Start"),
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false) &&
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).checkBoxState
+                        ? const Text("Sart")
+                        : Container(),
                   ),
-                  TimeDropDown()
+                  BlocProvider.of<SetAvailabilityBloc>(
+                    context,
+                  ).checkBoxState
+                      ? const TimeDropDown()
+                      : const Center(child: Text("Busy ")),
+                  ...List.generate(
+                      BlocProvider.of<SetAvailabilityBloc>(
+                        context,
+                      ).listLength,
+                      (index) => const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: TimeDropDown(),
+                          ))
                 ],
               )),
               const SizedBox().x14(),
               Expanded(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: 8.0),
-                    child: Text("End"),
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false) &&
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).checkBoxState
+                        ? const Text("End")
+                        : Container(),
                   ),
-                  TimeDropDown(),
+                  BlocProvider.of<SetAvailabilityBloc>(
+                    context,
+                  ).checkBoxState
+                      ? const TimeDropDown()
+                      : const Center(child: Text("Busy")),
+                  // ... extraTimeFieldList.map((e) => const TimeDropDown()),
                   ...List.generate(
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).listLength,
-                      (index) => TimeDropDown())
+                      (index) => const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: TimeDropDown(),
+                          ))
                 ],
               )),
               const SizedBox().x14(),
-              Padding(
-                padding: const EdgeInsets.only(top: 24),
-                child: InkWell(
+              Column(
+                children: [
+                  actionIcons(context, index: null),
+                  ...List.generate(
+                      BlocProvider.of<SetAvailabilityBloc>(
+                        context,
+                      ).listLength, (index) {
+                    return actionIcons(context,
+                        index: index,
+                        listLength: BlocProvider.of<SetAvailabilityBloc>(
+                          context,
+                        ).listLength);
+                  })
+                ],
+              ),
+            ],
+          );
+        }));
+  }
+
+  Widget actionIcons(context, {required int? index, int? listLength}) {
+    return ((index ?? -1) >= 0 ||
+            BlocProvider.of<SetAvailabilityBloc>(
+                  context,
+                ).checkBoxState ==
+                false)
+        ? Container()
+        : Padding(
+            padding: EdgeInsets.only(top: (isFirstElement ?? false) ? 40 : 20),
+            child: Row(
+              children: [
+                InkWell(
                     onTap: () {
                       debugPrint("Added a new filed");
+
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).add(AddExtraTimeFieldEvent());
                     },
                     child: const FaIcon(FontAwesomeIcons.solidSquarePlus)),
-              ),
-              const SizedBox().x14(),
-              const Padding(
-                padding: EdgeInsets.only(top: 24),
-                child: FaIcon(FontAwesomeIcons.trash),
-              ),
-            ],
+                const SizedBox().x14(),
+                InkWell(
+                    onTap: () {
+                      debugPrint("Removed a new filled");
+
+                      BlocProvider.of<SetAvailabilityBloc>(
+                        context,
+                      ).add(RemoveExtraTimeFieldEvent());
+                    },
+                    child: BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).listLength ==
+                            0
+                        ? Container()
+                        : const FaIcon(
+                            FontAwesomeIcons.trash,
+                          )),
+              ],
+            ),
           );
-        }));
   }
 }

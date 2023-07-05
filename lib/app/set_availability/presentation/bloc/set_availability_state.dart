@@ -24,3 +24,19 @@ class ExtraTimeFieldUpdatedState extends SetAvailabilityStates {
   @override
   List<Object> get props => [listLength];
 }
+
+class CheckBoxInitialState extends SetAvailabilityStates {
+  final bool state = true;
+
+  @override
+  List<Object> get props => [state];
+}
+
+class CheckBoxUpdatedState extends SetAvailabilityStates {
+  final bool state;
+
+  CheckBoxUpdatedState(this.state);
+
+  @override
+  List<Object> get props => [state];
+}
