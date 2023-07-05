@@ -108,7 +108,7 @@ class SetAvailabilityView extends StatelessWidget {
                   width: 600,
                   gradient: true,
                   onPressed: () {
-                    context.goNamed(AppRoutes.createEvent);
+                    context.goNamed(AppRoutes.completionFeedBack);
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.boltLightning,

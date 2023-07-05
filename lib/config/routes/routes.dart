@@ -1,3 +1,4 @@
+import 'package:calentre/app/completion/completion_feedback.dart';
 import 'package:calentre/app/create_events/presentation/create_event.dart';
 import 'package:calentre/app/home/presentation/calentre_home.dart';
 import 'package:calentre/app/set_availability/presentation/set_availability_view.dart';
@@ -9,6 +10,7 @@ class AppRoutes {
   static String calentreHome = 'calentreHome';
   static String createEvent = 'createEvent';
   static String setAvailabilityView = 'setAvailability';
+  static String completionFeedBack = 'completionFeedBack';
 }
 
 final routerConfig = GoRouter(
@@ -32,6 +34,11 @@ final routerConfig = GoRouter(
       name: AppRoutes.setAvailabilityView,
       path: '/set-availability',
       builder: (context, state) => SetAvailabilityView(),
+    ),
+    GoRoute(
+      name: AppRoutes.completionFeedBack,
+      path: '/completion-feedback',
+      builder: (context, state) => CompletionFeedBackView(),
     ),
   ],
 );

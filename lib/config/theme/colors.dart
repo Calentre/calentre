@@ -34,6 +34,7 @@ class Foundation {
   Color white = const Color(0xffFFFFFF);
   Color link = const Color(0xff4E95FF);
   Color error = const Color(0xffAB0000);
+  Color success = const Color(0xff00D923);
 }
 
 class Gradient {
