@@ -3,6 +3,7 @@ import 'package:calentre/app/set_availability/presentation/bloc/time_drop_down_b
 import 'package:calentre/app/set_availability/presentation/widgets/scheduler.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/navbar.dart';
@@ -99,6 +100,19 @@ class SetAvailabilityView extends StatelessWidget {
                             ],
                           ))
                     ],
+                  ),
+                ),
+                const SizedBox().y20(),
+                AppButton(
+                  title: "Finish",
+                  width: 600,
+                  gradient: true,
+                  onPressed: () {
+                    context.goNamed(AppRoutes.createEvent);
+                  },
+                  icon: const FaIcon(
+                    FontAwesomeIcons.boltLightning,
+                    color: Colors.amber,
                   ),
                 )
               ],

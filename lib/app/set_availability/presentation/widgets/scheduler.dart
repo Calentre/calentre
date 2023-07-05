@@ -62,7 +62,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             context,
                           ).checkBoxState,
                           onChanged: (bool? value) {
-                            print("The value is $value");
+                            debugPrint("The value is $value");
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
                             ).add(CheckBoxEvent());
@@ -84,7 +84,10 @@ class AvailabilityScheduler extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
-                    child: (isFirstElement ?? false)
+                    child: (isFirstElement ?? false) &&
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).checkBoxState
                         ? const Text("Sart")
                         : Container(),
                   ),
@@ -92,7 +95,7 @@ class AvailabilityScheduler extends StatelessWidget {
                     context,
                   ).checkBoxState
                       ? const TimeDropDown()
-                      : Center(child: Text("Busy ")),
+                      : const Center(child: Text("Busy ")),
                   ...List.generate(
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
@@ -108,11 +111,14 @@ class AvailabilityScheduler extends StatelessWidget {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
+                // mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
-                    child: (isFirstElement ?? false)
+                    child: (isFirstElement ?? false) &&
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).checkBoxState
                         ? const Text("End")
                         : Container(),
                   ),
@@ -120,7 +126,7 @@ class AvailabilityScheduler extends StatelessWidget {
                     context,
                   ).checkBoxState
                       ? const TimeDropDown()
-                      : Center(child: Text("Busy")),
+                      : const Center(child: Text("Busy")),
                   // ... extraTimeFieldList.map((e) => const TimeDropDown()),
                   ...List.generate(
                       BlocProvider.of<SetAvailabilityBloc>(
