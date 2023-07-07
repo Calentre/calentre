@@ -1,3 +1,4 @@
+import 'package:calentre/config/constraints/max_width_container.dart';
 import 'package:flutter/material.dart';
 import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/extensions/spacing.dart';
@@ -11,84 +12,131 @@ class ConfirmPaymentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BorderCard(
-      verticalPadding: 12,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Row(
+    return Padding(
+      padding: const EdgeInsets.only(top: 28.0),
+      child: WebContainer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              constraints: const BoxConstraints(
-                minWidth: 96,
-                maxWidth: 118,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const CircleAvatar(
-                    child: Text("TF"),
-                  ),
-                  Container(
-                      height: 70,
-                      width: 1,
-                      decoration: BoxDecoration(
-                        color: AppColors.grey.s700,
-                      )),
-                ],
-              ),
-            ),
-            const SizedBox().x10(),
-            Expanded(
-              child: SizedBox(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "The Coach Training Live session ",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(fontSize: 20),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text("No Description"),
-                        Row(
-                          children: [
-                            AppButton(
-                              title: "Confirm Payment",
-                              size: ButtonSize.small,
-                              gradient: true,
-                              icon: const FaIcon(
-                                FontAwesomeIcons.circleCheck,
-                                size: 16,
-                              ),
-                              onPressed: () {},
-                            ),
-                            const SizedBox().x4(),
-                            AppButton(
-                              title: "Not Received",
-                              size: ButtonSize.small,
-                              color: AppColors.foundation.error,
-                              // icon: const Icon(
-                              //   Icons.cancel_rounded,
-                              //   size: 16,
-                              // ),
-                              onPressed: () {},
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    const Text("Copy Link"),
-                  ],
+            const SizedBox().y20(),
+            Row(
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.circleDot,
+                  color: AppColors.foundation.success,
+                  size: 18,
                 ),
-              ),
-            )
+                const SizedBox().x10(),
+                Text("Please confirm payment(s) from below",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(fontSize: 16)),
+              ],
+            ),
+            const SizedBox().y20(),
+            _confirmPaymentCard(context),
           ],
         ),
       ),
     );
   }
+}
+
+Widget _confirmPaymentCard(context) {
+  return BorderCard(
+    verticalPadding: 12,
+    color: AppColors.accent.blue,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        children: [
+          Container(
+            constraints: const BoxConstraints(
+              minWidth: 96,
+              maxWidth: 118,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const CircleAvatar(
+                  child: Text("TF"),
+                ),
+                Container(
+                    height: 70,
+                    width: 1,
+                    decoration: BoxDecoration(
+                      color: AppColors.grey.s700,
+                    )),
+              ],
+            ),
+          ),
+          const SizedBox().x10(),
+          Expanded(
+            child: SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Fedlis Nguyen has paid you ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontSize: 20)),
+                        TextSpan(
+                            text: '\$5.00 ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.normal)),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("No Description"),
+                      Row(
+                        children: [
+                          AppButton(
+                            title: "Confirm Payment",
+                            size: ButtonSize.small,
+                            gradient: true,
+                            icon: const FaIcon(
+                              FontAwesomeIcons.circleCheck,
+                              size: 16,
+                            ),
+                            onPressed: () {},
+                          ),
+                          const SizedBox().x4(),
+                          AppButton(
+                            title: "Not Received",
+                            size: ButtonSize.small,
+                            textColor: Colors.white,
+                            color: AppColors.foundation.error,
+                            // icon: const Icon(
+                            //   Icons.cancel_rounded,
+                            //   size: 16,
+                            // ),
+                            onPressed: () {},
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  const Text("Copy Link"),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+  ;
 }

@@ -5,16 +5,16 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({
-    super.key,
-    required this.title,
-    this.icon,
-    required this.onPressed,
-    this.gradient,
-    this.width,
-    this.size,
-    this.color,
-  });
+  const AppButton(
+      {super.key,
+      required this.title,
+      this.icon,
+      required this.onPressed,
+      this.gradient,
+      this.width,
+      this.size,
+      this.color,
+      this.textColor});
 
   final String title;
   final Widget? icon;
@@ -22,6 +22,7 @@ class AppButton extends StatelessWidget {
   final bool? gradient;
   final ButtonSize? size;
   final Color? color;
+  final Color? textColor;
   final void Function() onPressed;
 
   @override
@@ -39,7 +40,7 @@ class AppButton extends StatelessWidget {
             : null,
       ),
       child: ElevatedButton(
-        style: buttonStyle(context),
+        style: buttonStyle(context, foregroundColor: textColor),
         onPressed: onPressed,
         child: SizedBox(
           height: size == ButtonSize.small ? 25 : 50,
@@ -61,9 +62,7 @@ class AppButton extends StatelessWidget {
                     title,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        color: color != null
-                            ? AppColors.grey.s950
-                            : AppColors.foundation.white),
+                        color: textColor ?? AppColors.foundation.white),
                   ),
                 ),
               ],
