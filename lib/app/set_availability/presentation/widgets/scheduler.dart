@@ -76,68 +76,89 @@ class AvailabilityScheduler extends StatelessWidget {
                 ],
               ),
               const SizedBox().x14(),
-              Expanded(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: (isFirstElement ?? false) &&
+              BlocProvider.of<SetAvailabilityBloc>(
+                context,
+              ).checkBoxState
+                  ? Expanded(
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: (isFirstElement ?? false) &&
+                                  BlocProvider.of<SetAvailabilityBloc>(
+                                    context,
+                                  ).checkBoxState
+                              ? const Text("Sart")
+                              : Container(),
+                        ),
+                        BlocProvider.of<SetAvailabilityBloc>(
+                          context,
+                        ).checkBoxState
+                            ? const TimeDropDown()
+                            : const Center(child: Text("Busy ")),
+                        ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
-                            ).checkBoxState
-                        ? const Text("Sart")
-                        : Container(),
-                  ),
-                  BlocProvider.of<SetAvailabilityBloc>(
-                    context,
-                  ).checkBoxState
-                      ? const TimeDropDown()
-                      : const Center(child: Text("Busy ")),
-                  ...List.generate(
-                      BlocProvider.of<SetAvailabilityBloc>(
-                        context,
-                      ).listLength,
-                      (index) => const Padding(
-                            padding: EdgeInsets.only(top: 8.0),
-                            child: TimeDropDown(),
-                          ))
-                ],
-              )),
+                            ).listLength,
+                            (index) => const Padding(
+                                  padding: EdgeInsets.only(top: 8.0),
+                                  child: TimeDropDown(),
+                                ))
+                      ],
+                    ))
+                  : const SizedBox(
+                      // color: Colors.white,
+                      height: 44,
+                      width: 400,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Positioned(
+                            top: 20,
+                            child: Text("Very Busy for you."),
+                          )
+                        ],
+                      ),
+                    ),
               const SizedBox().x14(),
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                // mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: (isFirstElement ?? false) &&
+              BlocProvider.of<SetAvailabilityBloc>(
+                context,
+              ).checkBoxState
+                  ? Expanded(
+                      child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      // mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: (isFirstElement ?? false) &&
+                                  BlocProvider.of<SetAvailabilityBloc>(
+                                    context,
+                                  ).checkBoxState
+                              ? const Text("End")
+                              : Container(),
+                        ),
+                        BlocProvider.of<SetAvailabilityBloc>(
+                          context,
+                        ).checkBoxState
+                            ? const TimeDropDown()
+                            : const Center(child: Text("Busy")),
+                        // ... extraTimeFieldList.map((e) => const TimeDropDown()),
+                        ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
-                            ).checkBoxState
-                        ? const Text("End")
-                        : Container(),
-                  ),
-                  BlocProvider.of<SetAvailabilityBloc>(
-                    context,
-                  ).checkBoxState
-                      ? const TimeDropDown()
-                      : const Center(child: Text("Busy")),
-                  // ... extraTimeFieldList.map((e) => const TimeDropDown()),
-                  ...List.generate(
-                      BlocProvider.of<SetAvailabilityBloc>(
-                        context,
-                      ).listLength,
-                      (index) => const Padding(
-                            padding: EdgeInsets.only(top: 8.0),
-                            child: TimeDropDown(),
-                          ))
-                ],
-              )),
+                            ).listLength,
+                            (index) => const Padding(
+                                  padding: EdgeInsets.only(top: 8.0),
+                                  child: TimeDropDown(),
+                                ))
+                      ],
+                    ))
+                  : Container(),
               const SizedBox().x14(),
               Column(
                 children: [
