@@ -63,4 +63,5 @@ class Accent {
   }
 
   Color blue = const Color(0xff002357);
+  Color purpleMute = const Color(0xffE9D9FF);
 }

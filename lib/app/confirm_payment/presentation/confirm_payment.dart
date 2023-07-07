@@ -1,4 +1,5 @@
 import 'package:calentre/config/constraints/max_width_container.dart';
+import 'package:feature_notifier/feature_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/extensions/spacing.dart';
@@ -34,6 +35,18 @@ class ConfirmPaymentView extends StatelessWidget {
                         .copyWith(fontSize: 16)),
               ],
             ),
+            const SizedBox().y10(),
+            FeatureBarNotifier(
+              title:
+                  "We recommend waiting about 30mins before confirming payments.",
+              featureKey: 2,
+              onClose: () {},
+              onTapCard: () {},
+              titleColor: AppColors.grey.s950,
+              showIcon: false,
+              backgroundColor: AppColors.accent.purpleMute,
+              strokeWidth: 0,
+            ),
             const SizedBox().y20(),
             _confirmPaymentCard(context),
           ],
@@ -59,8 +72,23 @@ Widget _confirmPaymentCard(context) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const CircleAvatar(
-                  child: Text("TF"),
+                CircleAvatar(
+                  child: Container(
+                      height: 90,
+                      width: 90,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10000.0),
+                          color: AppColors.grey.s700
+                          // gradient: LinearGradient(
+                          //   colors: [
+                          //     AppColors.gradient.g011,
+                          //     AppColors.gradient.g032
+                          //   ],
+                          //   begin: Alignment.topLeft,
+                          //   end: Alignment.bottomRight,
+                          // ),
+                          ),
+                      child: Center(child: Text("TF"))),
                 ),
                 Container(
                     height: 70,
@@ -100,7 +128,8 @@ Widget _confirmPaymentCard(context) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("No Description"),
+                      const Text(
+                          "for -> Life Coaching Introduction and Meeting"),
                       Row(
                         children: [
                           AppButton(
@@ -129,7 +158,7 @@ Widget _confirmPaymentCard(context) {
                       )
                     ],
                   ),
-                  const Text("Copy Link"),
+                  const Text("fnguyen@gmail.com"),
                 ],
               ),
             ),

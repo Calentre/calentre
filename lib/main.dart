@@ -1,12 +1,15 @@
 import 'package:calentre/app/home/presentation/bloc/home_bloc.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/themes.dart';
+import 'package:feature_notifier/feature_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-void main() {
+void main() async {
+  await FeatureNotifier.init();
+  FeatureNotifier.persistAll();
   usePathUrlStrategy();
   runApp(const MyApp());
 }
