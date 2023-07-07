@@ -37,7 +37,8 @@ tabBarViewSelector(state) {
         AppTabBar(
           currentIndex: 0,
         ),
-        EventsView(),
+        // EventsView(),
+        PaymentsView()
       ],
     );
   } else if (state is UpdateState) {

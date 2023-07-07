@@ -4,8 +4,18 @@ import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PaymentCard extends StatelessWidget {
+enum SampleItem { itemOne, itemTwo, itemThree }
+
+class PaymentCard extends StatefulWidget {
   const PaymentCard({super.key});
+
+  @override
+  State<PaymentCard> createState() => _PaymentCardState();
+}
+
+class _PaymentCardState extends State<PaymentCard> {
+  bool switchValue = false;
+  SampleItem? selectedMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +42,61 @@ class PaymentCard extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.circle,
-                    color: AppColors.foundation.error,
+                  SizedBox(
+                    height: 25,
+                    child: FittedBox(
+                      child: Switch(
+                        // This bool value toggles the switch.
+                        value: switchValue,
+                        // activeColor: Colors.blue,
+                        trackOutlineColor: MaterialStateColor.resolveWith(
+                            (c) => Colors.transparent),
+                        inactiveTrackColor: AppColors.grey.s700,
+                        activeTrackColor:
+                            AppColors.foundation.success.withOpacity(.3),
+                        thumbColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return AppColors.foundation.success;
+                          } else {
+                            return AppColors.grey.s300;
+                          }
+                        }),
+
+                        onChanged: (bool value) {
+                          // This is called when the user toggles the switch.
+                          setState(() {
+                            switchValue = !switchValue;
+                            print("Changed $value");
+                          });
+                        },
+                      ),
+                    ),
                   ),
-                  Switch(
-                    // This bool value toggles the switch.
-                    value: false,
-                    activeColor: Colors.red,
-                    onChanged: (bool value) {
-                      // This is called when the user toggles the switch.
+                  PopupMenuButton<SampleItem>(
+                    initialValue: selectedMenu,
+                    // Callback that sets the selected popup menu item.
+                    onSelected: (SampleItem item) {
+                      setState(() {
+                        selectedMenu = item;
+                      });
                     },
+                    itemBuilder: (BuildContext context) =>
+                        <PopupMenuEntry<SampleItem>>[
+                      const PopupMenuItem<SampleItem>(
+                        value: SampleItem.itemOne,
+                        child: Text('Item 1'),
+                      ),
+                      const PopupMenuItem<SampleItem>(
+                        value: SampleItem.itemTwo,
+                        child: Text('Item 2'),
+                      ),
+                      const PopupMenuItem<SampleItem>(
+                        value: SampleItem.itemThree,
+                        child: Text('Item 3'),
+                      ),
+                    ],
                   ),
-                  const FaIcon(FontAwesomeIcons.trash)
                 ],
               ),
             ],

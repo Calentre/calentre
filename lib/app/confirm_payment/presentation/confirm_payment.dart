@@ -115,7 +115,7 @@ Widget _confirmPaymentCard(context) {
                                 .bodyMedium!
                                 .copyWith(fontSize: 20)),
                         TextSpan(
-                            text: '\$5.00 ',
+                            text: '\$5.00',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -129,7 +129,7 @@ Widget _confirmPaymentCard(context) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                          "for -> Life Coaching Introduction and Meeting"),
+                          "event -> Life Coaching Introduction and Meeting"),
                       Row(
                         children: [
                           AppButton(
@@ -158,7 +158,8 @@ Widget _confirmPaymentCard(context) {
                       )
                     ],
                   ),
-                  const Text("fnguyen@gmail.com"),
+                  const Text("email -> fnguyen@gmail.com"),
+                  const Text("payment method -> CashApp"),
                 ],
               ),
             ),
