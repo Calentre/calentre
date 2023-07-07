@@ -118,7 +118,7 @@ class AvailabilityScheduler extends StatelessWidget {
                         children: [
                           Positioned(
                             top: 20,
-                            child: Text("Very Busy for you."),
+                            child: Text("Busy day for you"),
                           )
                         ],
                       ),
