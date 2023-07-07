@@ -167,5 +167,4 @@ Widget _confirmPaymentCard(context) {
       ),
     ),
   );
-  ;
 }
