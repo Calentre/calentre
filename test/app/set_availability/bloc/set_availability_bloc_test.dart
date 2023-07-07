@@ -17,12 +17,29 @@ void main() {
     });
 
     blocTest(
-      "// on click FormDropDown should return FormDropDownUpdatedState(value: Apple )",
+      "// AddExtraTimeFieldEvent() should return ExtraTimeFieldUpdatedState(1)",
       build: () => setAvailabilityBloc(),
       act: (setAvailabilityBloc) {
         setAvailabilityBloc.add(AddExtraTimeFieldEvent());
       },
       expect: () => [ExtraTimeFieldUpdatedState(1)],
+    );
+    blocTest(
+      "// RemoveExtraTimeFieldEvent() should return ExtraTimeFieldUpdatedState(0)",
+      build: () => setAvailabilityBloc(),
+      act: (setAvailabilityBloc) {
+        setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
+      },
+      //returns an empty list because no state is emmitted when listLength < 0
+      expect: () => [],
+    );
+    blocTest(
+      "// CheckBoxEvent() should return CheckBoxUpdatedState(false)",
+      build: () => setAvailabilityBloc(),
+      act: (setAvailabilityBloc) {
+        setAvailabilityBloc.add(CheckBoxEvent());
+      },
+      expect: () => [CheckBoxUpdatedState(false)],
     );
   });
 }
