@@ -1,3 +1,4 @@
+import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
@@ -15,6 +16,7 @@ class PaymentsEmptyState extends StatelessWidget {
       margin: const EdgeInsets.only(top: 24),
       child: Center(
         child: BorderCard(
+          width: WebConstraints.maxWidth,
           child: Column(
             children: [
               iconFramer(imageTitle: "payments-placeholder.svg", size: 300),

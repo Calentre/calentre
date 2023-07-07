@@ -4,7 +4,7 @@ import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-enum SampleItem { itemOne, itemTwo, itemThree }
+enum MenuItems { details, delete }
 
 class PaymentCard extends StatefulWidget {
   const PaymentCard({super.key});
@@ -15,13 +15,13 @@ class PaymentCard extends StatefulWidget {
 
 class _PaymentCardState extends State<PaymentCard> {
   bool switchValue = false;
-  SampleItem? selectedMenu;
+  MenuItems? selectedMenu;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return BorderCard(
-        verticalPadding: 24,
+        verticalPadding: 12,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Row(
@@ -30,10 +30,20 @@ class _PaymentCardState extends State<PaymentCard> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const FaIcon(FontAwesomeIcons.paypal),
+                  Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10000.0),
+                          color: AppColors.foundation.white),
+                      child: Center(
+                          child: const FaIcon(
+                        FontAwesomeIcons.paypal,
+                        color: Colors.pink,
+                      ))),
                   const SizedBox().x10(),
                   Text(
-                    "\$5",
+                    "PayPal",
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox().x10(),
@@ -42,6 +52,14 @@ class _PaymentCardState extends State<PaymentCard> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  switchValue
+                      ? Text(
+                          "Active",
+                          style: TextStyle(color: AppColors.foundation.success),
+                        )
+                      : Text("Inactive",
+                          style: TextStyle(color: AppColors.grey.s300)),
+                  const SizedBox().x10(),
                   SizedBox(
                     height: 25,
                     child: FittedBox(
@@ -67,33 +85,32 @@ class _PaymentCardState extends State<PaymentCard> {
                           // This is called when the user toggles the switch.
                           setState(() {
                             switchValue = !switchValue;
-                            print("Changed $value");
                           });
                         },
                       ),
                     ),
                   ),
-                  PopupMenuButton<SampleItem>(
+                  PopupMenuButton<MenuItems>(
                     initialValue: selectedMenu,
                     // Callback that sets the selected popup menu item.
-                    onSelected: (SampleItem item) {
+                    onSelected: (MenuItems item) {
                       setState(() {
                         selectedMenu = item;
                       });
                     },
                     itemBuilder: (BuildContext context) =>
-                        <PopupMenuEntry<SampleItem>>[
-                      const PopupMenuItem<SampleItem>(
-                        value: SampleItem.itemOne,
-                        child: Text('Item 1'),
+                        <PopupMenuEntry<MenuItems>>[
+                      PopupMenuItem<MenuItems>(
+                        value: MenuItems.details,
+                        child: Text(
+                          'View',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
-                      const PopupMenuItem<SampleItem>(
-                        value: SampleItem.itemTwo,
-                        child: Text('Item 2'),
-                      ),
-                      const PopupMenuItem<SampleItem>(
-                        value: SampleItem.itemThree,
-                        child: Text('Item 3'),
+                      PopupMenuItem<MenuItems>(
+                        value: MenuItems.delete,
+                        child: Text('Remove Payment, ',
+                            style: Theme.of(context).textTheme.bodyMedium),
                       ),
                     ],
                   ),
