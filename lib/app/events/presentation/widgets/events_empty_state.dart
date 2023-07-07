@@ -13,6 +13,7 @@ Widget eventsEmptyState(BuildContext context) {
     margin: const EdgeInsets.only(top: 24),
     child: Center(
       child: BorderCard(
+        width: 1024,
         child: Column(
           children: [
             iconFramer(imageTitle: "events-placeholder.svg", size: 300),
