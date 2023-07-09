@@ -1,7 +1,7 @@
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-ButtonStyle buttonStyle(BuildContext context) {
+ButtonStyle buttonStyle(BuildContext context, {Color? foregroundColor}) {
   return ButtonStyle(
       textStyle: MaterialStateProperty.resolveWith<TextStyle>(
         (states) => Theme.of(context).textTheme.bodySmall!,

@@ -59,7 +59,7 @@ class AppTabBar extends StatelessWidget {
               Expanded(
                 child: AppButton(
                   gradient: currentIndex == 2 ? true : false,
-                  title: "Payments",
+                  title: "Payment Methods",
                   onPressed: () {
                     context.read<HomeViewBloc>().add(PaymentViewEvent());
                   },

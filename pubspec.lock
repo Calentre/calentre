@@ -137,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  feature_notifier:
+    dependency: "direct main"
+    description:
+      name: feature_notifier
+      sha256: "247a9699b2f1e47223ecc75b9999ac21806c8a6c7fc4826576187df9ee7b2d9f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   ffi:
     dependency: transitive
     description:
@@ -208,6 +216,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  get:
+    dependency: transitive
+    description:
+      name: get
+      sha256: "2ba20a47c8f1f233bed775ba2dd0d3ac97b4cf32fc17731b3dfc672b06b0e92a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.5"
+  get_storage:
+    dependency: transitive
+    description:
+      name: get_storage
+      sha256: "39db1fffe779d0c22b3a744376e86febe4ade43bf65e06eab5af707dc84185a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   glob:
     dependency: transitive
     description:

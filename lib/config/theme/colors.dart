@@ -4,6 +4,7 @@ class AppColors {
   static Grey grey = Grey.instance;
   static Foundation foundation = Foundation.instance;
   static Gradient gradient = Gradient.instance;
+  static Accent accent = Accent.instance;
 }
 
 //All colors must be created as a singleton.
@@ -51,4 +52,16 @@ class Gradient {
   Color g022 = const Color(0xffF8419D);
   Color g031 = const Color(0xffA675E9);
   Color g032 = const Color(0xff0AAEF8);
+}
+
+class Accent {
+  Accent._();
+  static Accent? _instance;
+  static Accent get instance {
+    _instance ??= Accent._();
+    return _instance!;
+  }
+
+  Color blue = const Color(0xff002357);
+  Color purpleMute = const Color(0xffE9D9FF);
 }

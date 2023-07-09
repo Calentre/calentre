@@ -29,6 +29,7 @@ class EventsList extends StatelessWidget {
                   AppButton(
                     title: "+ New Event",
                     size: ButtonSize.small,
+                    textColor: AppColors.grey.s950,
                     color: AppColors.foundation.white,
                     onPressed: () {
                       context.goNamed(AppRoutes.createEvent);
