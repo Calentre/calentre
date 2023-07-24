@@ -1,3 +1,4 @@
+import 'package:calentre/app/payments/presentation/widgets/add_payment_modal.dart';
 import 'package:calentre/app/payments/presentation/widgets/payment_card.dart';
 import 'package:calentre/config/constraints/max_width_container.dart';
 import 'package:calentre/config/enums/button_size.dart';
@@ -31,8 +32,8 @@ class PaymentList extends StatelessWidget {
                     size: ButtonSize.small,
                     textColor: AppColors.grey.s950,
                     color: AppColors.foundation.white,
-                    onPressed: () {
-                      context.goNamed(AppRoutes.createEvent);
+                    onPressed: () async {
+                      await addPaymentModal(context);
                     },
                   )
                 ],
