@@ -1,46 +1,10 @@
-import 'package:calentre/app/payments/presentation/widgets/payment_details_fields.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-Future<String?> addPaymentModal(BuildContext context) {
-  Container paymentType({String? paymentType}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      child: Material(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors.grey.s850,
-        child: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-            addPaymentDetailsModal(context);
-          },
-          borderRadius: BorderRadius.circular(10),
-          child: BorderCard(
-              width: double.maxFinite,
-              verticalPadding: 10,
-              horizontalPadding: 12,
-              color: AppColors.grey.s850.withOpacity(0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const FaIcon(FontAwesomeIcons.building),
-                      const SizedBox().x10(),
-                      Text(paymentType ?? "Brank Transfer")
-                    ],
-                  ),
-                  const FaIcon(FontAwesomeIcons.circleArrowRight),
-                ],
-              )),
-        ),
-      ),
-    );
-  }
-
+Future<String?> addPaymentDetailsModal(BuildContext context) {
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
@@ -54,7 +18,7 @@ Future<String?> addPaymentModal(BuildContext context) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text("Add a New Payment"),
+              const Text("Add Payment Details"),
               Container(
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.symmetric(vertical: 12),
@@ -70,9 +34,7 @@ Future<String?> addPaymentModal(BuildContext context) {
                       .copyWith(color: AppColors.grey.s950),
                 ),
               ),
-              paymentType(),
-              paymentType(),
-              paymentType(paymentType: "Others"),
+              Text("Form Fields")
             ],
           )),
     ),
