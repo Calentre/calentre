@@ -1,6 +1,8 @@
+import 'package:calentre/config/enums/button_size.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
+import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -36,24 +38,14 @@ Future<String?> addPaymentModal(BuildContext context) {
               ),
               paymentType(),
               paymentType(),
-              paymentType(),
+              paymentType(paymentType: "Others"),
             ],
           )),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.pop(context, 'Cancel'),
-          child: const Text('Cancel'),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context, 'OK'),
-          child: const Text('OK'),
-        ),
-      ],
     ),
   );
 }
 
-Container paymentType() {
+Container paymentType({String? paymentType}) {
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 4),
     child: Material(
@@ -74,7 +66,7 @@ Container paymentType() {
                   children: [
                     const FaIcon(FontAwesomeIcons.building),
                     const SizedBox().x10(),
-                    const Text("Brank Transfer")
+                    Text(paymentType ?? "Brank Transfer")
                   ],
                 ),
                 const FaIcon(FontAwesomeIcons.circleArrowRight),

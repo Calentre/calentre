@@ -55,7 +55,7 @@ class AppButton extends StatelessWidget {
                 SizedBox(
                   child: icon,
                 ),
-                const SizedBox().x10(),
+                icon != null ? const SizedBox().x10() : const SizedBox(),
                 FittedBox(
                   fit: BoxFit.none,
                   child: Text(
