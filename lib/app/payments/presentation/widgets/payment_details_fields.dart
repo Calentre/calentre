@@ -1,6 +1,6 @@
+import 'package:calentre/app/create_events/presentation/widget/event_type_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,7 +18,16 @@ Future<String?> addPaymentDetailsModal(BuildContext context) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text("Add Payment Details"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const FaIcon(FontAwesomeIcons.circleChevronLeft),
+                  const Text("Add Payment Details"),
+                  Container(
+                    width: 24,
+                  )
+                ],
+              ),
               Container(
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.symmetric(vertical: 12),
@@ -34,7 +43,44 @@ Future<String?> addPaymentDetailsModal(BuildContext context) {
                       .copyWith(color: AppColors.grey.s950),
                 ),
               ),
-              Text("Form Fields")
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Select Currency",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.w100),
+                  ),
+                  const SizedBox().y10(),
+                  // const EventTypeDropDown()
+                ],
+              ),
+              Column(
+                // mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox().y20(),
+                  const SizedBox().y10(),
+                  Text(
+                    "Account Number",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox().y10(),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: "0123456789",
+                      filled: true,
+                    ),
+                    cursorColor: AppColors.foundation.white,
+                  ),
+                ],
+              )
             ],
           )),
     ),
