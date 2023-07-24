@@ -141,10 +141,10 @@ packages:
     dependency: "direct main"
     description:
       name: feature_notifier
-      sha256: "247a9699b2f1e47223ecc75b9999ac21806c8a6c7fc4826576187df9ee7b2d9f"
+      sha256: bc0947a9bf837dd600e728feb5f2d67dd528fe18c9b53696c69475694a878b60
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.6"
   ffi:
     dependency: transitive
     description:

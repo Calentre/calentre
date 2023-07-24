@@ -39,13 +39,14 @@ class ConfirmPaymentView extends StatelessWidget {
             FeatureBarNotifier(
               title:
                   "We recommend waiting about 30mins before confirming payments.",
-              featureKey: 2,
+              featureKey: 1,
               onClose: () {},
               onTapCard: () {},
               titleColor: AppColors.grey.s950,
-              showIcon: false,
+              // showIcon: false,
               backgroundColor: AppColors.accent.purpleMute,
               strokeWidth: 0,
+              strokeColor: Colors.transparent,
             ),
             const SizedBox().y20(),
             _confirmPaymentCard(context),
