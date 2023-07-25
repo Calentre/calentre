@@ -4,6 +4,8 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:overlay_dialog/overlay_dialog.dart';
 
 Future<String?> addPaymentModal(BuildContext context) {
   Container paymentType({String? paymentType}) {
@@ -13,7 +15,7 @@ Future<String?> addPaymentModal(BuildContext context) {
         borderRadius: BorderRadius.circular(10),
         color: AppColors.grey.s850,
         child: InkWell(
-          onTap: () {
+          onTap: () async {
             Navigator.pop(context);
             addPaymentDetailsModal(context);
           },
@@ -77,4 +79,19 @@ Future<String?> addPaymentModal(BuildContext context) {
           )),
     ),
   );
+}
+
+class AddPatmentModal extends StatelessWidget {
+  const AddPatmentModal({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DialogWidget.alert(title: "title", content: "content", actions: [
+      DialogAction(
+          title: "Fwd",
+          handler: () {
+            // context.go(location)
+          })
+    ]);
+  }
 }

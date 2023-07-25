@@ -1,4 +1,5 @@
-import 'package:calentre/app/create_events/presentation/widget/event_type_drop_down.dart';
+import 'package:calentre/app/payments/presentation/widgets/add_payment_modal.dart';
+import 'package:calentre/app/payments/presentation/widgets/currency_type_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,13 @@ Future<String?> addPaymentDetailsModal(BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const FaIcon(FontAwesomeIcons.circleChevronLeft),
+                  InkWell(
+                      onTap: () async {
+                        addPaymentModal(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: FaIcon(FontAwesomeIcons.circleChevronLeft)),
                   const Text("Add Payment Details"),
                   Container(
                     width: 24,
@@ -55,7 +62,7 @@ Future<String?> addPaymentDetailsModal(BuildContext context) {
                         .copyWith(fontWeight: FontWeight.w100),
                   ),
                   const SizedBox().y10(),
-                  // const EventTypeDropDown()
+                  const CurrencyTypeDropDown()
                 ],
               ),
               Column(
