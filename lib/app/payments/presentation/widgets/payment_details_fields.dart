@@ -1,9 +1,12 @@
 import 'package:calentre/app/payments/presentation/widgets/add_payment_modal.dart';
 import 'package:calentre/app/payments/presentation/widgets/currency_type_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:overlay_dialog/overlay_dialog.dart';
 
 Future<String?> addPaymentDetailsModal(BuildContext context) {
   return showDialog<String>(
@@ -92,4 +95,19 @@ Future<String?> addPaymentDetailsModal(BuildContext context) {
           )),
     ),
   );
+}
+
+class AddPaymentDetailsModal extends StatelessWidget {
+  const AddPaymentDetailsModal({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DialogWidget.alert(title: "title", content: "content", actions: [
+      DialogAction(
+          title: "back",
+          handler: () {
+            context.goNamed(AppRoutes.addPaymentModal);
+          })
+    ]);
+  }
 }

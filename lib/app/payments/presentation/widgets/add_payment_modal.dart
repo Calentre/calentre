@@ -1,5 +1,6 @@
 import 'package:calentre/app/payments/presentation/widgets/payment_details_fields.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
@@ -81,8 +82,8 @@ Future<String?> addPaymentModal(BuildContext context) {
   );
 }
 
-class AddPatmentModal extends StatelessWidget {
-  const AddPatmentModal({super.key});
+class AddPaymentModal extends StatelessWidget {
+  const AddPaymentModal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class AddPatmentModal extends StatelessWidget {
       DialogAction(
           title: "Fwd",
           handler: () {
-            // context.go(location)
+            context.goNamed(AppRoutes.addPaymentDetailsModal);
           })
     ]);
   }
