@@ -17,7 +17,6 @@ addPaymentModal(BuildContext context) {
         color: AppColors.grey.s850,
         child: InkWell(
           onTap: () async {
-            Navigator.pop(context);
             addPaymentDetailsModal(context);
           },
           borderRadius: BorderRadius.circular(10),
@@ -46,29 +45,38 @@ addPaymentModal(BuildContext context) {
 
   return DialogHelper().show(
     context,
-    DialogWidget.alert(
+    DialogWidget.custom(
       style: DialogStyle.material,
-      title: "Alert Dialog Example",
-      content:
-          "This is an example of overlay dialog with three buttons. Do you like it?",
-      actions: [
-        DialogAction(
-          title: "Later",
-          handler: () => DialogHelper().hide(context),
-        ),
-        DialogAction(
-          title: "No",
-          handler: () => DialogHelper().hide(context),
-        ),
-        DialogAction(
-          title: "Yes",
-          handler: () {
-            // DialogHelper().hide(context);
-            // Navigator.pop(context);
-            addPaymentDetailsModal(context);
-          },
-        ),
-      ],
+      child: Material(
+        child: BorderCard(
+            horizontalPadding: 12,
+            verticalPadding: 24,
+            width: 400,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Add a New Payment"),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: AppColors.accent.purpleMute,
+                  ),
+                  child: Text(
+                    "We only support direct transfers for all payment methods at the moment.",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall!
+                        .copyWith(color: AppColors.grey.s950),
+                  ),
+                ),
+                paymentType(),
+                paymentType(),
+                paymentType(paymentType: "Others"),
+              ],
+            )),
+      ),
     ),
   );
 
