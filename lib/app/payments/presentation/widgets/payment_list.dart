@@ -34,6 +34,7 @@ class PaymentList extends StatelessWidget {
                     color: AppColors.foundation.white,
                     onPressed: () async {
                       await addPaymentModal(context);
+                      // context.goNamed(AppRoutes.addPaymentModal);
                     },
                   )
                 ],

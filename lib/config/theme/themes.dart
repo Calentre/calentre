@@ -11,6 +11,8 @@ class AppTheme {
       textTheme: textTheme(),
       colorScheme: colorScheme(),
       buttonTheme: const ButtonThemeData(minWidth: 1000),
+      dialogTheme: const DialogTheme(
+          backgroundColor: Colors.blue, surfaceTintColor: Colors.pink),
       inputDecorationTheme: InputDecorationTheme(
         focusColor: AppColors.grey.s700,
         fillColor: AppColors.grey.s900,
