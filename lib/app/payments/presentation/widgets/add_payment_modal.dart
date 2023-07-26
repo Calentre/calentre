@@ -1,4 +1,3 @@
-import 'package:calentre/app/payments/presentation/widgets/payment_details_fields.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -17,7 +16,8 @@ addPaymentModal(BuildContext context) {
         color: AppColors.grey.s850,
         child: InkWell(
           onTap: () async {
-            addPaymentDetailsModal(context);
+            context.pop();
+            context.pushNamed(AppRoutes.addPaymentDetailsModal);
           },
           borderRadius: BorderRadius.circular(10),
           child: BorderCard(
@@ -43,79 +43,42 @@ addPaymentModal(BuildContext context) {
     );
   }
 
-  return DialogHelper().show(
-    context,
-    DialogWidget.custom(
-      style: DialogStyle.material,
-      child: Material(
-        child: BorderCard(
-            horizontalPadding: 12,
-            verticalPadding: 24,
-            width: 400,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text("Add a New Payment"),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: AppColors.accent.purpleMute,
-                  ),
-                  child: Text(
-                    "We only support direct transfers for all payment methods at the moment.",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall!
-                        .copyWith(color: AppColors.grey.s950),
-                  ),
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      backgroundColor: AppColors.grey.s900,
+      shape: RoundedRectangleBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          side: BorderSide(color: AppColors.grey.s700, width: 1)),
+      content: Container(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+          width: 400,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text("Add a New Payment"),
+              Container(
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: AppColors.accent.purpleMute,
                 ),
-                paymentType(),
-                paymentType(),
-                paymentType(paymentType: "Others"),
-              ],
-            )),
-      ),
+                child: Text(
+                  "We only support direct transfers for all payment methods at the moment.",
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelSmall!
+                      .copyWith(color: AppColors.grey.s950),
+                ),
+              ),
+              paymentType(),
+              paymentType(),
+              paymentType(paymentType: "Others"),
+            ],
+          )),
     ),
   );
-
-  // return showDialog<String>(
-  //   context: context,
-  //   builder: (BuildContext context) => AlertDialog(
-  //     backgroundColor: AppColors.grey.s900,
-  //     shape: RoundedRectangleBorder(
-  //         borderRadius: const BorderRadius.all(Radius.circular(10)),
-  //         side: BorderSide(color: AppColors.grey.s700, width: 1)),
-  //     content: Container(
-  //         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-  //         width: 400,
-  //         child: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             const Text("Add a New Payment"),
-  //             Container(
-  //               padding: const EdgeInsets.all(10),
-  //               margin: const EdgeInsets.symmetric(vertical: 12),
-  //               decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(10.0),
-  //                 color: AppColors.accent.purpleMute,
-  //               ),
-  //               child: Text(
-  //                 "We only support direct transfers for all payment methods at the moment.",
-  //                 style: Theme.of(context)
-  //                     .textTheme
-  //                     .labelSmall!
-  //                     .copyWith(color: AppColors.grey.s950),
-  //               ),
-  //             ),
-  //             paymentType(),
-  //             paymentType(),
-  //             paymentType(paymentType: "Others"),
-  //           ],
-  //         )),
-  //   ),
-  // );
 }
 
 class AddPaymentModal extends StatelessWidget {
