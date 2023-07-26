@@ -36,8 +36,8 @@ class _PaymentCardState extends State<PaymentCard> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10000.0),
                           color: AppColors.foundation.white),
-                      child: Center(
-                          child: const FaIcon(
+                      child: const Center(
+                          child: FaIcon(
                         FontAwesomeIcons.paypal,
                         color: Colors.pink,
                       ))),

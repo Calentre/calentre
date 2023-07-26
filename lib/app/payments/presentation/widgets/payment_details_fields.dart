@@ -33,7 +33,7 @@ class AddPaymentDetailsModal extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 40),
+                margin: const EdgeInsets.only(bottom: 40),
                 child: Text(
                   "Start Charging for your time!",
                   style: Theme.of(context)
@@ -56,8 +56,8 @@ class AddPaymentDetailsModal extends StatelessWidget {
                               onTap: () {
                                 context.pop();
                               },
-                              child:
-                                  FaIcon(FontAwesomeIcons.circleChevronLeft)),
+                              child: const FaIcon(
+                                  FontAwesomeIcons.circleChevronLeft)),
                           const Text("Add Payment Details"),
                           Container(
                             width: 24,
@@ -91,7 +91,7 @@ class AddPaymentDetailsModal extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w100),
                           ),
                           const SizedBox().y10(),
-                          Material(child: const CurrencyTypeDropDown())
+                          const Material(child: CurrencyTypeDropDown())
                         ],
                       ),
                       Column(

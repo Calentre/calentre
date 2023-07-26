@@ -89,7 +89,7 @@ Widget _confirmPaymentCard(context) {
                           //   end: Alignment.bottomRight,
                           // ),
                           ),
-                      child: Center(child: Text("TF"))),
+                      child: const Center(child: Text("TF"))),
                 ),
                 Container(
                     height: 70,
