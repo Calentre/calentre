@@ -1,7 +1,6 @@
-import 'package:calentre/app/payments/presentation/widgets/add_payment_modal.dart';
+import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/app/payments/presentation/widgets/currency_type_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
-import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
@@ -14,83 +13,115 @@ class AddPaymentDetailsModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: BorderCard(
-            horizontalPadding: 12,
-            verticalPadding: 24,
-            width: 400,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          context.pop();
-                        },
-                        child: FaIcon(FontAwesomeIcons.circleChevronLeft)),
-                    const Text("Add Payment Details"),
-                    Container(
-                      width: 24,
-                    )
-                  ],
+      body: AnimateGradient(
+        primaryBegin: Alignment.topLeft,
+        primaryEnd: Alignment.bottomLeft,
+        secondaryBegin: Alignment.bottomLeft,
+        secondaryEnd: Alignment.topRight,
+        primaryColors: [
+          AppColors.grey.s950,
+          AppColors.gradient.g031,
+          AppColors.grey.s950,
+        ],
+        secondaryColors: [
+          AppColors.grey.s950,
+          AppColors.gradient.g022,
+          AppColors.gradient.g012,
+        ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 40),
+                child: Text(
+                  "Start Charging for your time!",
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(fontWeight: FontWeight.w900, fontSize: 95),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: AppColors.accent.purpleMute,
-                  ),
-                  child: Text(
-                    "We only support direct transfers for all payment methods at the moment.",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall!
-                        .copyWith(color: AppColors.grey.s950),
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Select Currency",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge!
-                          .copyWith(fontWeight: FontWeight.w100),
-                    ),
-                    const SizedBox().y10(),
-                    Material(child: const CurrencyTypeDropDown())
-                  ],
-                ),
-                Column(
-                  // mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox().y20(),
-                    const SizedBox().y10(),
-                    Text(
-                      "Account Number",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge!
-                          .copyWith(fontWeight: FontWeight.normal),
-                    ),
-                    const SizedBox().y10(),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "0123456789",
-                        filled: true,
+              ),
+              BorderCard(
+                  horizontalPadding: 12,
+                  verticalPadding: 24,
+                  width: 400,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                context.pop();
+                              },
+                              child:
+                                  FaIcon(FontAwesomeIcons.circleChevronLeft)),
+                          const Text("Add Payment Details"),
+                          Container(
+                            width: 24,
+                          )
+                        ],
                       ),
-                      cursorColor: AppColors.foundation.white,
-                    ),
-                  ],
-                )
-              ],
-            )),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: AppColors.accent.purpleMute,
+                        ),
+                        child: Text(
+                          "We only support direct transfers for all payment methods at the moment.",
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall!
+                              .copyWith(color: AppColors.grey.s950),
+                        ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Select Currency",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge!
+                                .copyWith(fontWeight: FontWeight.w100),
+                          ),
+                          const SizedBox().y10(),
+                          Material(child: const CurrencyTypeDropDown())
+                        ],
+                      ),
+                      Column(
+                        // mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox().y20(),
+                          const SizedBox().y10(),
+                          Text(
+                            "Account Number",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge!
+                                .copyWith(fontWeight: FontWeight.normal),
+                          ),
+                          const SizedBox().y10(),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: "0123456789",
+                              filled: true,
+                            ),
+                            cursorColor: AppColors.foundation.white,
+                          ),
+                        ],
+                      )
+                    ],
+                  )),
+            ],
+          ),
+        ),
       ),
     );
   }

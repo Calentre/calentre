@@ -5,7 +5,6 @@ import 'package:calentre/shared/border_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:overlay_dialog/overlay_dialog.dart';
 
 addPaymentModal(BuildContext context) {
   Container paymentType({String? paymentType}) {
@@ -79,23 +78,4 @@ addPaymentModal(BuildContext context) {
           )),
     ),
   );
-}
-
-class AddPaymentModal extends StatelessWidget {
-  const AddPaymentModal({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return DialogWidget.alert(
-        title: "title",
-        content: "content",
-        style: DialogStyle.material,
-        actions: [
-          DialogAction(
-              title: "Fwd",
-              handler: () {
-                context.goNamed(AppRoutes.addPaymentDetailsModal);
-              })
-        ]);
-  }
 }
