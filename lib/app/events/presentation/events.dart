@@ -8,10 +8,10 @@ class EventsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         ConfirmPaymentView(),
-        const EventsList(),
+        EventsList(),
       ],
     );
     // return eventsEmptyState(context);

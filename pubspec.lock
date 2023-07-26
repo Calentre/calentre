@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
+  animate_gradient:
+    dependency: "direct main"
+    description:
+      name: animate_gradient
+      sha256: ef204fb3b98fcef4339bbf23070c2be71f046f95f217776b2b0a013654ff726d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2+1"
   args:
     dependency: transitive
     description:
@@ -141,10 +149,10 @@ packages:
     dependency: "direct main"
     description:
       name: feature_notifier
-      sha256: "247a9699b2f1e47223ecc75b9999ac21806c8a6c7fc4826576187df9ee7b2d9f"
+      sha256: bc0947a9bf837dd600e728feb5f2d67dd528fe18c9b53696c69475694a878b60
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.6"
   ffi:
     dependency: transitive
     description:

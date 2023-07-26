@@ -3,15 +3,18 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class BorderCard extends StatelessWidget {
-  const BorderCard(
-      {super.key,
-      required this.child,
-      this.verticalPadding,
-      this.width,
-      this.color});
+  const BorderCard({
+    super.key,
+    required this.child,
+    this.verticalPadding,
+    this.horizontalPadding,
+    this.width,
+    this.color,
+  });
 
   final Widget child;
   final double? verticalPadding;
+  final double? horizontalPadding;
   final double? width;
   final Color? color;
 
@@ -19,8 +22,10 @@ class BorderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: width,
-        padding: EdgeInsets.only(
-            top: verticalPadding ?? 48, bottom: verticalPadding ?? 48),
+        padding: EdgeInsets.symmetric(
+          vertical: verticalPadding ?? 48,
+          horizontal: horizontalPadding ?? 48,
+        ),
         constraints: BoxConstraints(
           maxWidth: WebConstraints.maxWidth,
         ),

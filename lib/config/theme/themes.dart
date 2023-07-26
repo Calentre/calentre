@@ -11,6 +11,12 @@ class AppTheme {
       textTheme: textTheme(),
       colorScheme: colorScheme(),
       buttonTheme: const ButtonThemeData(minWidth: 1000),
+      dialogTheme: DialogTheme(
+        backgroundColor: AppColors.grey.s900,
+        shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            side: BorderSide(color: AppColors.grey.s700, width: 1)),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         focusColor: AppColors.grey.s700,
         fillColor: AppColors.grey.s900,
