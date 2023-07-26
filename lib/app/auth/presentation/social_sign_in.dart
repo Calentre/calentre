@@ -4,6 +4,7 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -49,8 +50,9 @@ class SocialSignIn extends StatelessWidget {
                       icon: iconFramer(
                         imageTitle: 'google.png',
                       ),
-                      onPressed: () {
-                        context.goNamed(AppRoutes.calentreHome);
+                      onPressed: () async {
+                        // context.goNamed(AppRoutes.calentreHome);
+                        await signInWithGoogle();
                       },
                     ),
                     const SizedBox().y10(),
@@ -76,4 +78,18 @@ class SocialSignIn extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<UserCredential> signInWithGoogle() async {
+  // Create a new provider
+  GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+  googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+
+  // Or use signInWithRedirect
+  // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 }
