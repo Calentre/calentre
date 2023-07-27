@@ -1,4 +1,4 @@
-import 'package:calentre/app/create_events/presentation/bloc/platform_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/platform_drop_down_bloc.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';

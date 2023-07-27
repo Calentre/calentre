@@ -1,8 +1,8 @@
-import 'package:calentre/app/create_events/presentation/bloc/duration_drop_down_bloc.dart';
-import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
-import 'package:calentre/app/create_events/presentation/bloc/multibooking_drop_down_bloc.dart';
-import 'package:calentre/app/create_events/presentation/bloc/platform_drop_down_bloc.dart';
-import 'package:calentre/app/create_events/presentation/widget/form_fields.dart';
+import 'package:calentre/app/events/presentation/bloc/duration_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/event_type_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/multibooking_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/platform_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/widgets/form_fields.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';

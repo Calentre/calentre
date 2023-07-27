@@ -1,4 +1,4 @@
-import 'package:calentre/app/create_events/presentation/bloc/multibooking_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/multibooking_drop_down_bloc.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';

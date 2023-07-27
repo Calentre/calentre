@@ -1,5 +1,5 @@
 import 'package:calentre/app/completion/completion_feedback.dart';
-import 'package:calentre/app/create_events/presentation/create_event.dart';
+import 'package:calentre/app/events/presentation/pages/create_event.dart';
 import 'package:calentre/app/home/presentation/calentre_home.dart';
 import 'package:calentre/app/payments/presentation/widgets/payment_details_fields.dart';
 import 'package:calentre/app/set_availability/presentation/set_availability_view.dart';

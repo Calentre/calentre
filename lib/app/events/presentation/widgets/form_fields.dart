@@ -1,8 +1,7 @@
-import 'package:calentre/app/create_events/presentation/bloc/event_type_drop_down_bloc.dart';
-import 'package:calentre/app/create_events/presentation/widget/duration_drop_down.dart';
-import 'package:calentre/app/create_events/presentation/widget/event_type_drop_down.dart';
-import 'package:calentre/app/create_events/presentation/widget/multi_booking_drop_down.dart';
-import 'package:calentre/app/create_events/presentation/widget/platform_drop_down.dart';
+import 'package:calentre/app/events/presentation/bloc/event_type_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/widgets/duration_drop_down.dart';
+import 'package:calentre/app/events/presentation/widgets/event_type_drop_down.dart';
+import 'package:calentre/app/events/presentation/widgets/multi_booking_drop_down.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
@@ -11,6 +10,8 @@ import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import 'platform_drop_down.dart';
 
 class CreateEventFormFields extends StatefulWidget {
   const CreateEventFormFields({super.key});
