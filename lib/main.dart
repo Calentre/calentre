@@ -1,4 +1,4 @@
-import 'package:calentre/app/home/presentation/bloc/home_bloc.dart';
+import 'package:calentre/features/home/presentation/bloc/home_bloc.dart';
 import 'package:calentre/config/firebase_options.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/themes.dart';

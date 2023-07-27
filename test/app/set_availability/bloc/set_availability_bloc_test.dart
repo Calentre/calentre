@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_event.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_state.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
