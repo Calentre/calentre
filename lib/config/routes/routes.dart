@@ -1,8 +1,8 @@
-import 'package:calentre/app/completion/completion_feedback.dart';
+import 'package:calentre/app/events/presentation/pages/completion_feedback.dart';
 import 'package:calentre/app/events/presentation/pages/create_event.dart';
 import 'package:calentre/app/home/presentation/calentre_home.dart';
 import 'package:calentre/app/payments/presentation/widgets/payment_details_fields.dart';
-import 'package:calentre/app/set_availability/presentation/set_availability_view.dart';
+import 'package:calentre/app/events/presentation/pages/set_availability_view.dart';
 import 'package:go_router/go_router.dart';
 import '../../app/auth/presentation/social_sign_in.dart';
 

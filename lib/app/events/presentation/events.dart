@@ -1,5 +1,5 @@
 // import 'package:calentre/app/events/presentation/widgets/events_empty_state.dart';
-import 'package:calentre/app/confirm_payment/presentation/confirm_payment.dart';
+import 'package:calentre/app/events/presentation/widgets/confirm_payment.dart';
 import 'package:calentre/app/events/presentation/widgets/events_list.dart';
 import 'package:flutter/material.dart';
 

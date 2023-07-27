@@ -1,6 +1,6 @@
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/time_drop_down_bloc.dart';
-import 'package:calentre/app/set_availability/presentation/widgets/scheduler.dart';
+import 'package:calentre/app/events/presentation/bloc/set_availability_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/time_drop_down_bloc.dart';
+import 'package:calentre/app/events/presentation/widgets/scheduler.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';

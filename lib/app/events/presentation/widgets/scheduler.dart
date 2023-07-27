@@ -1,8 +1,8 @@
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_event.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_state.dart';
-import 'package:calentre/app/set_availability/presentation/set_availability_view.dart';
-import 'package:calentre/app/set_availability/presentation/widgets/time_drop_down.dart';
+import 'package:calentre/app/events/presentation/bloc/set_availability_bloc.dart';
+import 'package:calentre/app/events/presentation/bloc/set_availability_event.dart';
+import 'package:calentre/app/events/presentation/bloc/set_availability_state.dart';
+import 'package:calentre/app/events/presentation/widgets/time_drop_down.dart';
+import 'package:calentre/app/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

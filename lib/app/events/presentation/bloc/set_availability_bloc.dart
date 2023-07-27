@@ -1,5 +1,5 @@
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_event.dart';
-import 'package:calentre/app/set_availability/presentation/bloc/set_availability_state.dart';
+import 'package:calentre/app/events/presentation/bloc/set_availability_event.dart';
+import 'package:calentre/app/events/presentation/bloc/set_availability_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SetAvailabilityBloc
