@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-abstract class DataState<DataType> {
-  final DataType? data;
+abstract class DataState<T> {
+  final T? data;
   final DioException? exception;
 
   const DataState({this.data, this.exception});
