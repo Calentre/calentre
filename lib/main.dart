@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: firebaseOptions());
   await Supabase.initialize(
-    url: RemoteURLs.supabaseUrl,
+    url: RemoteURLs().supabaseUrl,
     anonKey: Secrets.supabseSecret,
   );
   await FeatureNotifier.init();
