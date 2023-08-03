@@ -5,13 +5,17 @@ import 'package:flutter/foundation.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
-@freezed
-class User with _$User {
-  const factory User({
-    required String firstName,
-    required String lastName,
-    required String email,
-  }) = _User;
+//Build command
+//flutter pub run build_runner build --delete-conflicting-outputs
 
-  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
+@freezed
+class CalentreUser with _$CalentreUser {
+  const factory CalentreUser({
+    required String userId,
+    required String name,
+    required String email,
+  }) = _CalentreUser;
+
+  factory CalentreUser.fromJson(Map<String, Object?> json) =>
+      _$CalentreUserFromJson(json);
 }

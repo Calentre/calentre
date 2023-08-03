@@ -14,33 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+CalentreUser _$CalentreUserFromJson(Map<String, dynamic> json) {
+  return _CalentreUser.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+mixin _$CalentreUser {
+  String get userId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $CalentreUserCopyWith<CalentreUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $CalentreUserCopyWith<$Res> {
+  factory $CalentreUserCopyWith(
+          CalentreUser value, $Res Function(CalentreUser) then) =
+      _$CalentreUserCopyWithImpl<$Res, CalentreUser>;
   @useResult
-  $Res call({String firstName, String lastName, String email});
+  $Res call({String userId, String name, String email});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$CalentreUserCopyWithImpl<$Res, $Val extends CalentreUser>
+    implements $CalentreUserCopyWith<$Res> {
+  _$CalentreUserCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -50,18 +52,18 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? userId = null,
+    Object? name = null,
     Object? email = null,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -72,35 +74,39 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$_CalentreUserCopyWith<$Res>
+    implements $CalentreUserCopyWith<$Res> {
+  factory _$$_CalentreUserCopyWith(
+          _$_CalentreUser value, $Res Function(_$_CalentreUser) then) =
+      __$$_CalentreUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String firstName, String lastName, String email});
+  $Res call({String userId, String name, String email});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$_CalentreUserCopyWithImpl<$Res>
+    extends _$CalentreUserCopyWithImpl<$Res, _$_CalentreUser>
+    implements _$$_CalentreUserCopyWith<$Res> {
+  __$$_CalentreUserCopyWithImpl(
+      _$_CalentreUser _value, $Res Function(_$_CalentreUser) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? userId = null,
+    Object? name = null,
     Object? email = null,
   }) {
-    return _then(_$_User(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+    return _then(_$_CalentreUser(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -112,31 +118,32 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User with DiagnosticableTreeMixin implements _User {
-  const _$_User(
-      {required this.firstName, required this.lastName, required this.email});
+class _$_CalentreUser with DiagnosticableTreeMixin implements _CalentreUser {
+  const _$_CalentreUser(
+      {required this.userId, required this.name, required this.email});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_CalentreUser.fromJson(Map<String, dynamic> json) =>
+      _$$_CalentreUserFromJson(json);
 
   @override
-  final String firstName;
+  final String userId;
   @override
-  final String lastName;
+  final String name;
   @override
   final String email;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(firstName: $firstName, lastName: $lastName, email: $email)';
+    return 'CalentreUser(userId: $userId, name: $name, email: $email)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('firstName', firstName))
-      ..add(DiagnosticsProperty('lastName', lastName))
+      ..add(DiagnosticsProperty('type', 'CalentreUser'))
+      ..add(DiagnosticsProperty('userId', userId))
+      ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('email', email));
   }
 
@@ -144,47 +151,47 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            other is _$_CalentreUser &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, email);
+  int get hashCode => Object.hash(runtimeType, userId, name, email);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$_CalentreUserCopyWith<_$_CalentreUser> get copyWith =>
+      __$$_CalentreUserCopyWithImpl<_$_CalentreUser>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$_CalentreUserToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
-      {required final String firstName,
-      required final String lastName,
-      required final String email}) = _$_User;
+abstract class _CalentreUser implements CalentreUser {
+  const factory _CalentreUser(
+      {required final String userId,
+      required final String name,
+      required final String email}) = _$_CalentreUser;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _CalentreUser.fromJson(Map<String, dynamic> json) =
+      _$_CalentreUser.fromJson;
 
   @override
-  String get firstName;
+  String get userId;
   @override
-  String get lastName;
+  String get name;
   @override
   String get email;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$_CalentreUserCopyWith<_$_CalentreUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
