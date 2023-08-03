@@ -11,8 +11,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<DataState<User>> signInWithGoogle() {
-    //get user
-    //if user exists, we return user data
+    //Get useremail
+
     //if user !exist, we signup user w/ POST data
     //return user Data
     throw UnimplementedError();
