@@ -26,13 +26,6 @@ class AuthService {
     return _calentreUser;
   }
 
-  Future<void> signInWithEmail() async {
-// if(_calentreUser != null) {
-//       final AuthResponse res = await supabase.auth.si(
-//           email: _calentreUser!.email,);
-// }
-  }
-
 //supabase signin with email
 
 //Update user
