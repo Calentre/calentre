@@ -1,3 +1,8 @@
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/logo.png?raw=true" height="600" > 
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/home_events.png?raw=true" height="600" > 
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/create_event.png?raw=true" height="600" > 
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/booking.png?raw=true" height="600" > 
+
 # Calentre 📅💰
 
 Welcome to Calentre, the open-source alternative to Calendly! 🌟 Manage your appointments, get paid, and enjoy the scheduling experience.
