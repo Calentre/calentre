@@ -69,8 +69,8 @@ class SocialSignIn extends StatelessWidget {
                           imageTitle: 'google.png',
                         ),
                         onPressed: () async {
-                          // context.goNamed(AppRoutes.calentreHome);
-                          await signInWithGoogle(context);
+                          context.goNamed(AppRoutes.calentreHome);
+                          // await signInWithGoogle(context);
                         },
                       ),
                       const SizedBox().y10(),
@@ -112,8 +112,9 @@ Future signInWithGoogle(context) async {
   // Or use signInWithRedirect
   // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 
-  await Supabase.instance.client.auth.signInWithOAuth(
+  final res = await Supabase.instance.client.auth.signInWithOAuth(
     Provider.google,
     context: context,
   );
+  print("The google signin result is $res");
 }
