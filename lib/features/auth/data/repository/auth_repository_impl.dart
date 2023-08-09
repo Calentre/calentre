@@ -1,6 +1,6 @@
 import 'package:calentre/core/resources.dart';
+import 'package:calentre/features/auth/data/models/user_model.dart';
 import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   // AuthRepositoryImpl(this.);
@@ -10,7 +10,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<DataState<User>> signInWithGoogle() {
+  Future<DataState<CalentreUser>> signInWithGoogle() {
     //Get useremail
 
     //if user !exist, we signup user w/ POST data
