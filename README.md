@@ -1,7 +1,5 @@
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/logo.png?raw=true" height="600" > 
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/home_events.png?raw=true" height="600" > 
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/create_event.png?raw=true" height="600" > 
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/booking.png?raw=true" height="600" > 
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/logo.png?raw=true"  > 
+
 
 # Calentre 📅💰
 
@@ -20,7 +18,13 @@ Welcome to Calentre, the open-source alternative to Calendly! 🌟 Manage your a
 
 ## Description 📝
 
-Calentre is your go-to scheduling solution and an opemsource alternative to Calendly, offering a delightful way to book meetings and collect payments! 🚀 Whether you're a consultant, freelancer, or professional, we've got you covered.
+Calentre is your go-to scheduling solution, offering a delightful way to book meetings and collect payments! 🚀 Whether you're a consultant, freelancer, or professional, we've got you covered.
+
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/home_events.png?raw=true" > 
+
+----
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/booking.png?raw=true" > 
+
 
 ## Features ✨
 
@@ -29,6 +33,8 @@ Calentre is your go-to scheduling solution and an opemsource alternative to Cale
 - **Customization:** Tailor the scheduling process to match your style.
 - **Notifications:** Stay in the loop with automated email updates.
 - **User-Friendly Interface:** Smooth and friendly for all users.
+  
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/create_event.png?raw=true" >
 
 ## Technology Stack 💻🔮
 
