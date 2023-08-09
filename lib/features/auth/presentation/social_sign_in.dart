@@ -124,9 +124,12 @@ Future signInWithGoogle(context) async {
   // );
 
   print("The google signin result is ${res}");
+  print("The current user is ${Supabase.instance.client.auth.currentUser}");
 }
 
 Future signOut() async {
-  final res = await Supabase.instance.client.auth.signOut();
+  print("The current user is ${Supabase.instance.client.auth.currentUser}");
+
+  // final res = await Supabase.instance.client.auth.signOut();
   print("This user signed out ");
 }
