@@ -1,3 +1,5 @@
 class RemoteURLs {
-  static String supabaseUrl = "https://pwvyfxvyfbosajpvytpt.supabase.co";
+  String supabaseUrl = "https://pwvyfxvyfbosajpvytpt.supabase.co";
+  String googleContactScope =
+      "https://www.googleapis.com/auth/contacts.readonly";
 }

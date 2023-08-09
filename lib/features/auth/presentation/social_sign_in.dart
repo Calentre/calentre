@@ -8,6 +8,7 @@ import 'package:calentre/utils/icon_framer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
   const SocialSignIn({super.key});
@@ -69,7 +70,7 @@ class SocialSignIn extends StatelessWidget {
                         ),
                         onPressed: () async {
                           context.goNamed(AppRoutes.calentreHome);
-                          // await signInWithGoogle();
+                          // await signInWithGoogle(context);
                         },
                       ),
                       const SizedBox().y10(),
@@ -98,16 +99,22 @@ class SocialSignIn extends StatelessWidget {
   }
 }
 
-Future<UserCredential> signInWithGoogle() async {
-  // Create a new provider
-  GoogleAuthProvider googleProvider = GoogleAuthProvider();
+Future signInWithGoogle(context) async {
+  // // Create a new provider
+  // GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-  googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+  // googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  // googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
 
-  // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+  // // Once signed in, return the UserCredential
+  // return await FirebaseAuth.instance.signInWithPopup(googleProvider);
 
   // Or use signInWithRedirect
   // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
+
+  final res = await Supabase.instance.client.auth.signInWithOAuth(
+    Provider.google,
+    context: context,
+  );
+  print("The google signin result is $res");
 }

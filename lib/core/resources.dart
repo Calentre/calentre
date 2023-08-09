@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+//Data states for remote data
 abstract class DataState<T> {
   final T? data;
   final DioException? exception;
