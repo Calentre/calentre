@@ -1,10 +1,12 @@
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
@@ -66,8 +68,8 @@ class SocialSignIn extends StatelessWidget {
                           imageTitle: 'google.png',
                         ),
                         onPressed: () async {
-                          // context.goNamed(AppRoutes.calentreHome);
-                          await signInWithGoogle(context);
+                          context.goNamed(AppRoutes.calentreHome);
+                          // await signInWithGoogle(context);
                         },
                       ),
                       const SizedBox().y10(),
