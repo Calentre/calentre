@@ -5,7 +5,6 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -77,7 +76,9 @@ class SocialSignIn extends StatelessWidget {
                       AppButton(
                         title: "Other Options are coming soon",
                         icon: iconFramer(imageTitle: 'slack.png'),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await signOut();
+                        },
                       ),
                     ],
                   ),
@@ -100,21 +101,37 @@ class SocialSignIn extends StatelessWidget {
 }
 
 Future signInWithGoogle(context) async {
-  // // Create a new provider
+  // Create a new provider
   // GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
   // googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   // googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
 
   // // Once signed in, return the UserCredential
-  // return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+  // final res = await FirebaseAuth.instance.signInWithPopup(googleProvider);
 
+  // return res;
   // Or use signInWithRedirect
   // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
 
   final res = await Supabase.instance.client.auth.signInWithOAuth(
-    Provider.google,
-    context: context,
-  );
-  print("The google signin result is $res");
+      Provider.google,
+      context: context,
+      authScreenLaunchMode: LaunchMode.externalNonBrowserApplication,
+      redirectTo: "https://pwvyfxvyfbosajpvytpt.supabase.co/auth/v1/callback");
+
+  // final res = await Supabase.instance.client.auth.signUp(
+  //   email: "testing2@gmail.com",
+  //   password: '',
+  // );
+
+  print("The google signin result is ${res}");
+  print("The current user is ${Supabase.instance.client.auth.currentUser}");
+}
+
+Future signOut() async {
+  print("The current user is ${Supabase.instance.client.auth.currentUser}");
+
+  // final res = await Supabase.instance.client.auth.signOut();
+  print("This user signed out ");
 }

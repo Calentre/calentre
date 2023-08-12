@@ -11,6 +11,7 @@ _$_CalentreUser _$$_CalentreUserFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String,
       name: json['name'] as String,
       email: json['email'] as String,
+      avatarUrl: json['avatarUrl'] as String?,
     );
 
 Map<String, dynamic> _$$_CalentreUserToJson(_$_CalentreUser instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_CalentreUserToJson(_$_CalentreUser instance) =>
       'userId': instance.userId,
       'name': instance.name,
       'email': instance.email,
+      'avatarUrl': instance.avatarUrl,
     };

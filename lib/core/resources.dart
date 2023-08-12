@@ -1,17 +1,18 @@
-import 'package:dio/dio.dart';
-
 //Data states for remote data
-abstract class DataState<T> {
+abstract class DataState<T, E> {
   final T? data;
-  final DioException? exception;
+  final E? exception;
 
-  const DataState({this.data, this.exception});
+  const DataState({
+    this.data,
+    this.exception,
+  });
 }
 
-class DataSuccess<T> extends DataState {
+class DataSuccess<T, E> extends DataState<T, E> {
   DataSuccess(T data) : super(data: data);
 }
 
-class DataFailure extends DataState {
-  DataFailure(DioException? exception) : super(exception: exception);
+class DataFailure<T, E> extends DataState<T, E> {
+  DataFailure(E? exception) : super(exception: exception);
 }

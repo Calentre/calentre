@@ -1,10 +1,10 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
 import 'package:calentre/config/constants/constants.dart';
 import 'package:calentre/core/DTOs/user_dto.dart';
 import 'package:calentre/features/auth/data/models/user_model.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
@@ -17,32 +17,23 @@ class AuthService {
   final supabase = Supabase.instance.client;
 
   Future<CalentreUser?> signInWithGoogle() async {
-    // Create a new provider
-    GoogleAuthProvider googleProvider = GoogleAuthProvider();
+    final res = await supabase.auth.signInWithOAuth(
+      Provider.google,
+    );
 
-    googleProvider.addScope(_remoteURLs.googleContactScope);
-    googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+    final supabaseCurrentUser = supabase.auth.currentUser;
 
-    // Once signed in, return the UserCredential
-    final credential =
-        await FirebaseAuth.instance.signInWithPopup(googleProvider);
-
-    if (credential.user != null) {
+    if (supabaseCurrentUser != null && res) {
       _calentreUser = CalentreUser(
-          userId: credential.user!.uid,
-          name: credential.user!.displayName ?? "",
-          email: credential.user!.uid);
-      return _calentreUser!;
+          userId: supabaseCurrentUser.id,
+          name: supabaseCurrentUser.userMetadata!["full_name"],
+          email: supabaseCurrentUser.email ?? "",
+          avatarUrl: supabaseCurrentUser.userMetadata!["avatar_url"]);
     }
 
-    return _calentreUser;
-  }
+    //map response to Calentre User
 
-  Future<void> signInWithEmail() async {
-// if(_calentreUser != null) {
-//       final AuthResponse res = await supabase.auth.si(
-//           email: _calentreUser!.email,);
-// }
+    return _calentreUser;
   }
 
 //supabase signin with email

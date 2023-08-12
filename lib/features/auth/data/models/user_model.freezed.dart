@@ -23,6 +23,7 @@ mixin _$CalentreUser {
   String get userId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String? get avatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $CalentreUserCopyWith<$Res> {
           CalentreUser value, $Res Function(CalentreUser) then) =
       _$CalentreUserCopyWithImpl<$Res, CalentreUser>;
   @useResult
-  $Res call({String userId, String name, String email});
+  $Res call({String userId, String name, String email, String? avatarUrl});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$CalentreUserCopyWithImpl<$Res, $Val extends CalentreUser>
     Object? userId = null,
     Object? name = null,
     Object? email = null,
+    Object? avatarUrl = freezed,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -69,6 +71,10 @@ class _$CalentreUserCopyWithImpl<$Res, $Val extends CalentreUser>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      avatarUrl: freezed == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$_CalentreUserCopyWith<$Res>
       __$$_CalentreUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String name, String email});
+  $Res call({String userId, String name, String email, String? avatarUrl});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$_CalentreUserCopyWithImpl<$Res>
     Object? userId = null,
     Object? name = null,
     Object? email = null,
+    Object? avatarUrl = freezed,
   }) {
     return _then(_$_CalentreUser(
       userId: null == userId
@@ -112,6 +119,10 @@ class __$$_CalentreUserCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      avatarUrl: freezed == avatarUrl
+          ? _value.avatarUrl
+          : avatarUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -120,7 +131,10 @@ class __$$_CalentreUserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CalentreUser with DiagnosticableTreeMixin implements _CalentreUser {
   const _$_CalentreUser(
-      {required this.userId, required this.name, required this.email});
+      {required this.userId,
+      required this.name,
+      required this.email,
+      this.avatarUrl});
 
   factory _$_CalentreUser.fromJson(Map<String, dynamic> json) =>
       _$$_CalentreUserFromJson(json);
@@ -131,10 +145,12 @@ class _$_CalentreUser with DiagnosticableTreeMixin implements _CalentreUser {
   final String name;
   @override
   final String email;
+  @override
+  final String? avatarUrl;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CalentreUser(userId: $userId, name: $name, email: $email)';
+    return 'CalentreUser(userId: $userId, name: $name, email: $email, avatarUrl: $avatarUrl)';
   }
 
   @override
@@ -144,7 +160,8 @@ class _$_CalentreUser with DiagnosticableTreeMixin implements _CalentreUser {
       ..add(DiagnosticsProperty('type', 'CalentreUser'))
       ..add(DiagnosticsProperty('userId', userId))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('email', email));
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('avatarUrl', avatarUrl));
   }
 
   @override
@@ -154,12 +171,14 @@ class _$_CalentreUser with DiagnosticableTreeMixin implements _CalentreUser {
             other is _$_CalentreUser &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.avatarUrl, avatarUrl) ||
+                other.avatarUrl == avatarUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, name, email);
+  int get hashCode => Object.hash(runtimeType, userId, name, email, avatarUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -179,7 +198,8 @@ abstract class _CalentreUser implements CalentreUser {
   const factory _CalentreUser(
       {required final String userId,
       required final String name,
-      required final String email}) = _$_CalentreUser;
+      required final String email,
+      final String? avatarUrl}) = _$_CalentreUser;
 
   factory _CalentreUser.fromJson(Map<String, dynamic> json) =
       _$_CalentreUser.fromJson;
@@ -190,6 +210,8 @@ abstract class _CalentreUser implements CalentreUser {
   String get name;
   @override
   String get email;
+  @override
+  String? get avatarUrl;
   @override
   @JsonKey(ignore: true)
   _$$_CalentreUserCopyWith<_$_CalentreUser> get copyWith =>

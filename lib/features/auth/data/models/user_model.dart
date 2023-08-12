@@ -14,6 +14,7 @@ class CalentreUser with _$CalentreUser {
     required String userId,
     required String name,
     required String email,
+    String? avatarUrl,
   }) = _CalentreUser;
 
   factory CalentreUser.fromJson(Map<String, Object?> json) =>
