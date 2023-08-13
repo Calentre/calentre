@@ -1,11 +1,19 @@
+import 'dart:js_util';
+
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
+import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
+import 'package:calentre/features/auth/presentation/bloc/auth_state.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,89 +22,100 @@ class SocialSignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimateGradient(
-        duration: const Duration(seconds: 5),
-        primaryBegin: Alignment.topLeft,
-        primaryEnd: Alignment.bottomLeft,
-        secondaryBegin: Alignment.bottomLeft,
-        secondaryEnd: Alignment.topRight,
-        primaryColors: [
-          AppColors.grey.s950,
-          AppColors.gradient.g031.withOpacity(.2),
-          AppColors.grey.s950,
-        ],
-        secondaryColors: [
-          AppColors.grey.s950,
-          AppColors.gradient.g022.withOpacity(.2),
-          AppColors.grey.s950,
-        ],
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BorderCard(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+    return BlocProvider<AuthBloc>(
+        create: (_) => AuthBloc(sl.get<SignInWithGoogleUseCase>()),
+        child: BlocBuilder<AuthBloc, AuthUserState>(
+          builder: (context, state) {
+            return Scaffold(
+              body: AnimateGradient(
+                duration: const Duration(seconds: 5),
+                primaryBegin: Alignment.topLeft,
+                primaryEnd: Alignment.bottomLeft,
+                secondaryBegin: Alignment.bottomLeft,
+                secondaryEnd: Alignment.topRight,
+                primaryColors: [
+                  AppColors.grey.s950,
+                  AppColors.gradient.g031.withOpacity(.2),
+                  AppColors.grey.s950,
+                ],
+                secondaryColors: [
+                  AppColors.grey.s950,
+                  AppColors.gradient.g022.withOpacity(.2),
+                  AppColors.grey.s950,
+                ],
+                child: Center(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          iconFramer(imageTitle: 'logo.svg'),
-                          const SizedBox().x10(),
-                          Text(
-                            "Calentre",
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(fontWeight: FontWeight.w900),
+                      BorderCard(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  iconFramer(imageTitle: 'logo.svg'),
+                                  const SizedBox().x10(),
+                                  Text(
+                                    "Calentre",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(fontWeight: FontWeight.w900),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox().y20(),
+                              Text(
+                                "Continue to Login/Signup",
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              const SizedBox().y20(),
+                              const SizedBox().y20(),
+                              AppButton(
+                                title: state is UserSignInInitialState
+                                    ? "Login with Google"
+                                    : "Loading",
+                                // title: "Sign IN",
+                                icon: iconFramer(
+                                  imageTitle: 'google.png',
+                                ),
+                                onPressed: () async {
+                                  context
+                                      .read<AuthBloc>()
+                                      .add(SignInWithGoogleEvent());
+                                  // context.goNamed(AppRoutes.calentreHome);
+                                },
+                              ),
+                              const SizedBox().y10(),
+                              AppButton(
+                                title: "Other Options are coming soon",
+                                icon: iconFramer(imageTitle: 'slack.png'),
+                                onPressed: () async {
+                                  await signOut();
+                                },
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
+                      const SizedBox().y20(),
                       const SizedBox().y20(),
                       Text(
-                        "Continue to Login/Signup",
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      const SizedBox().y20(),
-                      const SizedBox().y20(),
-                      AppButton(
-                        title: "Login with Google",
-                        icon: iconFramer(
-                          imageTitle: 'google.png',
-                        ),
-                        onPressed: () async {
-                          // await signInWithGoogle(context);
-                          // context.goNamed(AppRoutes.calentreHome);
-                        },
-                      ),
-                      const SizedBox().y10(),
-                      AppButton(
-                        title: "Other Options are coming soon",
-                        icon: iconFramer(imageTitle: 'slack.png'),
-                        onPressed: () async {
-                          await signOut();
-                        },
-                      ),
+                        "By signing up, you agree to our Privacy Policy and Terms of Use.",
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              color: AppColors.grey.s500,
+                            ),
+                      )
                     ],
                   ),
                 ),
               ),
-              const SizedBox().y20(),
-              const SizedBox().y20(),
-              Text(
-                "By signing up, you agree to our Privacy Policy and Terms of Use.",
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      color: AppColors.grey.s500,
-                    ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            );
+          },
+        ));
   }
 }
 

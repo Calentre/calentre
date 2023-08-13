@@ -20,10 +20,10 @@ void main() async {
     url: RemoteURLs().supabaseUrl,
     anonKey: Secrets.supabseSecret,
   );
+  await initializeDependencies();
   await FeatureNotifier.init();
   FeatureNotifier.persistAll();
   usePathUrlStrategy();
-  await initializeDependencies();
   runApp(const MyApp());
 }
 

@@ -4,16 +4,17 @@ import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AuthBloc extends Bloc<AuthEvents, AuthState> {
+class AuthBloc extends Bloc<AuthEvents, AuthUserState> {
   bool? isSignedIn;
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
 
-  AuthBloc(this._signInWithGoogleUseCase) : super(const UserSignInLoading()) {
+  AuthBloc(this._signInWithGoogleUseCase)
+      : super(const UserSignInInitialState()) {
     on<SignInWithGoogleEvent>(onSignInWithGoogle);
   }
 
   void onSignInWithGoogle(
-      SignInWithGoogleEvent event, Emitter<AuthState> emit) async {
+      SignInWithGoogleEvent event, Emitter<AuthUserState> emit) async {
     //call the sign in API
     final dataState = await _signInWithGoogleUseCase();
 
