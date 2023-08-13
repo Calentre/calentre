@@ -20,6 +20,7 @@ class AuthService {
     final res = await supabase.auth.signInWithOAuth(
       Provider.google,
     );
+    // final res = true;
 
     final supabaseCurrentUser = supabase.auth.currentUser;
 

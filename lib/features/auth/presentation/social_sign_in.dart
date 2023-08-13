@@ -82,6 +82,16 @@ class SocialSignIn extends StatelessWidget {
                                 icon: iconFramer(
                                   imageTitle: 'google.png',
                                 ),
+                                child: state is UserSignInInitialState
+                                    ? null
+                                    : Align(
+                                        child: SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              color: AppColors.foundation.white,
+                                              strokeWidth: 1,
+                                            ))),
                                 onPressed: () async {
                                   context
                                       .read<AuthBloc>()
