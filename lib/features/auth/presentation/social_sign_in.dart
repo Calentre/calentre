@@ -68,7 +68,7 @@ class SocialSignIn extends StatelessWidget {
                           imageTitle: 'google.png',
                         ),
                         onPressed: () async {
-                          await signInWithGoogle(context);
+                          // await signInWithGoogle(context);
                           // context.goNamed(AppRoutes.calentreHome);
                         },
                       ),
