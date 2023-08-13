@@ -5,16 +5,18 @@ import 'package:calentre/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton(
-      {super.key,
-      required this.title,
-      this.icon,
-      required this.onPressed,
-      this.gradient,
-      this.width,
-      this.size,
-      this.color,
-      this.textColor});
+  const AppButton({
+    super.key,
+    required this.title,
+    this.icon,
+    required this.onPressed,
+    this.gradient,
+    this.width,
+    this.size,
+    this.color,
+    this.textColor,
+    this.child,
+  });
 
   final String title;
   final Widget? icon;
@@ -23,6 +25,7 @@ class AppButton extends StatelessWidget {
   final ButtonSize? size;
   final Color? color;
   final Color? textColor;
+  final Widget? child;
   final void Function() onPressed;
 
   @override
@@ -45,29 +48,30 @@ class AppButton extends StatelessWidget {
         child: SizedBox(
           height: size == ButtonSize.small ? 25 : 50,
           width: width,
-          child: Align(
-            alignment: Alignment.center,
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              // mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  child: icon,
+          child: child ??
+              Align(
+                alignment: Alignment.center,
+                child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  // mainAxisSize: MainAxisSize.min,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      child: icon,
+                    ),
+                    icon != null ? const SizedBox().x10() : const SizedBox(),
+                    FittedBox(
+                      fit: BoxFit.none,
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: textColor ?? AppColors.foundation.white),
+                      ),
+                    ),
+                  ],
                 ),
-                icon != null ? const SizedBox().x10() : const SizedBox(),
-                FittedBox(
-                  fit: BoxFit.none,
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: textColor ?? AppColors.foundation.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
+              ),
         ),
       ),
     );
