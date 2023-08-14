@@ -31,12 +31,6 @@ class AuthBloc extends Bloc<AuthEvents, AuthUserState> {
       sl.get<UserDTO>().userId = dataState.data!.userId;
 
       debugPrint("The user email is ${sl.get<UserDTO>().email}");
-      // ANSI escape codes for changing text color
-      String redColorCode = '\x1B[31m'; // Red
-      String greenColorCode = '\x1B[32m'; // Green
-      String resetColorCode = '\x1B[0m'; // Reset to default color
-      print('$redColorCode This text is red.$resetColorCode');
-      print('$greenColorCode This text is red.$resetColorCode');
     }
 
     if (dataState is DataFailure) {

@@ -13,6 +13,7 @@ import 'package:calentre/injection_container.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
+import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -106,6 +107,7 @@ class SocialSignIn extends StatelessWidget {
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
                                   // await signOut();
+                                  CL.log("Sign out");
                                   print(
                                       "The current user session is ${Supabase.instance.client.auth.currentUser}");
                                 },
