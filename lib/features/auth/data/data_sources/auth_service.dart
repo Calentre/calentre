@@ -14,15 +14,20 @@ class AuthService {
   final UserDTO _userDTO;
   final RemoteURLs _remoteURLs;
   CalentreUser? _calentreUser;
-  final supabase = Supabase.instance.client;
+  final SupabaseClient supabase = Supabase.instance.client;
 
   Future<CalentreUser?> signInWithGoogle() async {
+    // final supabaseCurrentUser = supabase.auth.currentUser;
+
     final res = await supabase.auth.signInWithOAuth(
       Provider.google,
     );
     // final res = true;
 
-    final supabaseCurrentUser = supabase.auth.currentUser;
+    var supabaseCurrentUser = supabase.auth.currentUser;
+
+    print("The login response was $res");
+    print("This is the current user $supabaseCurrentUser");
 
     if (supabaseCurrentUser != null && res) {
       _calentreUser = CalentreUser(

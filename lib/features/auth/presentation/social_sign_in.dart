@@ -4,6 +4,7 @@ import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/core/resources.dart';
 import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
@@ -23,7 +24,7 @@ class SocialSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
-        create: (_) => AuthBloc(sl.get<SignInWithGoogleUseCase>()),
+        create: (_) => AuthBloc(sl<SignInWithGoogleUseCase>()),
         child: BlocBuilder<AuthBloc, AuthUserState>(
           builder: (context, state) {
             return Scaffold(
@@ -75,14 +76,13 @@ class SocialSignIn extends StatelessWidget {
                               const SizedBox().y20(),
                               const SizedBox().y20(),
                               AppButton(
-                                title: state is UserSignInInitialState
-                                    ? "Login with Google"
-                                    : "Loading",
+                                title: "Login with Google",
                                 // title: "Sign IN",
                                 icon: iconFramer(
                                   imageTitle: 'google.png',
                                 ),
-                                child: state is UserSignInInitialState
+                                child: (state is UserSignInInitialState ||
+                                        state is UserSignInLoading)
                                     ? null
                                     : Align(
                                         child: SizedBox(
@@ -96,6 +96,7 @@ class SocialSignIn extends StatelessWidget {
                                   context
                                       .read<AuthBloc>()
                                       .add(SignInWithGoogleEvent());
+                                  // sl<AuthBloc>().add(SignInWithGoogleEvent());
                                   // context.goNamed(AppRoutes.calentreHome);
                                 },
                               ),
@@ -104,7 +105,9 @@ class SocialSignIn extends StatelessWidget {
                                 title: "Other Options are coming soon",
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
-                                  await signOut();
+                                  // await signOut();
+                                  print(
+                                      "The current user session is ${Supabase.instance.client.auth.currentUser}");
                                 },
                               ),
                             ],

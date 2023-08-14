@@ -18,6 +18,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<AuthService>(AuthService(sl(), sl(), sl()));
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl()));
   sl.registerSingleton<SignInWithGoogleUseCase>(SignInWithGoogleUseCase(sl()));
-
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
 }
