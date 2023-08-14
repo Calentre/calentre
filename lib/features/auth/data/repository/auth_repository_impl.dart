@@ -15,11 +15,16 @@ class AuthRepositoryImpl implements AuthRepository {
     DataState<CalentreUser, Exception>? response;
 
     try {
-      if (supabase.auth.currentUser == null) {
-        final signInResponse = await _authService.signInWithGoogle();
+      final signInResponse = await _authService.signInWithGoogle();
 
-        if (signInResponse != null) {
-          response = DataSuccess(signInResponse);
+      if (supabase.auth.currentUser == null) {
+        if (signInResponse) {
+          response = DataSuccess(CalentreUser(
+              userId: supabase.auth.currentUser!.id,
+              name: supabase.auth.currentUser!.userMetadata!["full_name"],
+              email: supabase.auth.currentUser!.email ?? "",
+              avatarUrl:
+                  supabase.auth.currentUser!.userMetadata!["avatar_url"]));
         } else {
           response = DataFailure(
             const AuthException("Invalid server Response", statusCode: '500'),

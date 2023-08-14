@@ -23,6 +23,7 @@ class SocialSignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //if signedIn, push HomeEvent screen
     return BlocProvider<AuthBloc>(
         create: (_) => AuthBloc(sl<SignInWithGoogleUseCase>()),
         child: BlocBuilder<AuthBloc, AuthUserState>(
@@ -81,8 +82,7 @@ class SocialSignIn extends StatelessWidget {
                                 icon: iconFramer(
                                   imageTitle: 'google.png',
                                 ),
-                                child: (state is UserSignInInitialState ||
-                                        state is UserSignInLoading)
+                                child: state is! UserSignInLoading
                                     ? null
                                     : Align(
                                         child: SizedBox(

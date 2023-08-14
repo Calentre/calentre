@@ -16,30 +16,13 @@ class AuthService {
   CalentreUser? _calentreUser;
   final SupabaseClient supabase = Supabase.instance.client;
 
-  Future<CalentreUser?> signInWithGoogle() async {
-    // final supabaseCurrentUser = supabase.auth.currentUser;
-
+  Future<bool> signInWithGoogle() async {
     final res = await supabase.auth.signInWithOAuth(
       Provider.google,
     );
     // final res = true;
 
-    var supabaseCurrentUser = supabase.auth.currentUser;
-
-    print("The login response was $res");
-    print("This is the current user $supabaseCurrentUser");
-
-    if (supabaseCurrentUser != null && res) {
-      _calentreUser = CalentreUser(
-          userId: supabaseCurrentUser.id,
-          name: supabaseCurrentUser.userMetadata!["full_name"],
-          email: supabaseCurrentUser.email ?? "",
-          avatarUrl: supabaseCurrentUser.userMetadata!["avatar_url"]);
-    }
-
-    //map response to Calentre User
-
-    return _calentreUser;
+    return res;
   }
 
 //supabase signin with email
