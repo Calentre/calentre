@@ -47,7 +47,7 @@ Calentre's magic is built using:
 ## Architecture 🏛️
 
 Calentre embraces the Clean Architecture principles, keeping things neat and organized. 🧹 Enjoy a clean and maintainable codebase!
-For details, see our [Architecture Guide](docs/architecutre.md)
+For details, see our [Architecture Guide](docs/architecture.md)
 
 ## Getting Started 🚀
 
