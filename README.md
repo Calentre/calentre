@@ -71,7 +71,7 @@ Using Calentre is a breeze:
 4. Clients book appointments and pay seamlessly.
 5. Get notifications and revel in your organized life.
 
-For more, check the [User Guide](docs/user-guide.md).
+For more, check the [User Guide](doc/user-guide.md).
 
 ## Contributing 🤝
 
