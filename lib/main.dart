@@ -15,7 +15,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: firebaseOptions());
+  // await Firebase.initializeApp(options: firebaseOptions());
   await Supabase.initialize(
     url: RemoteURLs().supabaseUrl,
     anonKey: Secrets.supabseSecret,

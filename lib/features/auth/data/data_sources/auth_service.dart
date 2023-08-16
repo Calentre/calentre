@@ -1,5 +1,4 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
 
 import 'package:calentre/config/constants/constants.dart';
 import 'package:calentre/core/DTOs/user_dto.dart';
@@ -20,7 +19,7 @@ class AuthService {
     final res = await supabase.auth.signInWithOAuth(
       Provider.google,
     );
-    // final res = true;
+    // final res = await true;
 
     return res;
   }
