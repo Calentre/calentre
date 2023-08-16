@@ -1,12 +1,10 @@
 import 'package:calentre/config/constants/constants.dart';
 import 'package:calentre/features/home/presentation/bloc/home_bloc.dart';
-import 'package:calentre/config/firebase_options.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/themes.dart';
 import 'package:calentre/injection_container.dart';
 import 'package:calentre/secrets.dart';
 import 'package:feature_notifier/feature_notifier.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages

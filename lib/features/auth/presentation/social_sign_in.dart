@@ -2,9 +2,7 @@
 
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/config/extensions/spacing.dart';
-import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/core/resources.dart';
 import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
@@ -16,7 +14,6 @@ import 'package:calentre/utils/icon_framer.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
