@@ -17,117 +17,135 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
-  const SocialSignIn({super.key});
+  SocialSignIn({super.key});
+  final SupabaseClient supabase = Supabase.instance.client;
 
   @override
   Widget build(BuildContext context) {
     //if signedIn, push HomeEvent screen
     return BlocProvider<AuthBloc>(
-        create: (_) => AuthBloc(sl<SignInWithGoogleUseCase>()),
-        child: BlocBuilder<AuthBloc, AuthUserState>(
-          builder: (context, state) {
-            return Scaffold(
-              body: AnimateGradient(
-                duration: const Duration(seconds: 5),
-                primaryBegin: Alignment.topLeft,
-                primaryEnd: Alignment.bottomLeft,
-                secondaryBegin: Alignment.bottomLeft,
-                secondaryEnd: Alignment.topRight,
-                primaryColors: [
-                  AppColors.grey.s950,
-                  AppColors.gradient.g031.withOpacity(.2),
-                  AppColors.grey.s950,
-                ],
-                secondaryColors: [
-                  AppColors.grey.s950,
-                  AppColors.gradient.g022.withOpacity(.2),
-                  AppColors.grey.s950,
-                ],
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      BorderCard(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+        create: (context) => AuthBloc(sl<SignInWithGoogleUseCase>()),
+        child: BlocListener(
+            bloc: AuthBloc(sl<SignInWithGoogleUseCase>()),
+            listener: (context, state) {
+              supabase.auth.onAuthStateChange.listen((data) {
+                final AuthChangeEvent event = data.event;
+                if (event == AuthChangeEvent.signedIn) {
+                  CL.log("Signin successul");
+                }
+              });
+            },
+            child: BlocBuilder<AuthBloc, AuthUserState>(
+              builder: (context, state) {
+                return Scaffold(
+                  body: AnimateGradient(
+                    duration: const Duration(seconds: 5),
+                    primaryBegin: Alignment.topLeft,
+                    primaryEnd: Alignment.bottomLeft,
+                    secondaryBegin: Alignment.bottomLeft,
+                    secondaryEnd: Alignment.topRight,
+                    primaryColors: [
+                      AppColors.grey.s950,
+                      AppColors.gradient.g031.withOpacity(.2),
+                      AppColors.grey.s950,
+                    ],
+                    secondaryColors: [
+                      AppColors.grey.s950,
+                      AppColors.gradient.g022.withOpacity(.2),
+                      AppColors.grey.s950,
+                    ],
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          BorderCard(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  iconFramer(imageTitle: 'logo.svg'),
-                                  const SizedBox().x10(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      iconFramer(imageTitle: 'logo.svg'),
+                                      const SizedBox().x10(),
+                                      Text(
+                                        "Calentre",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displaySmall!
+                                            .copyWith(
+                                                fontWeight: FontWeight.w900),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox().y20(),
                                   Text(
-                                    "Calentre",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .displaySmall!
-                                        .copyWith(fontWeight: FontWeight.w900),
+                                    "Continue to Login/Signup",
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                  const SizedBox().y20(),
+                                  const SizedBox().y20(),
+                                  AppButton(
+                                    title: "Login with Google",
+                                    // title: "Sign IN",
+                                    icon: iconFramer(
+                                      imageTitle: 'google.png',
+                                    ),
+                                    child: state is! UserSignInLoading
+                                        ? null
+                                        : Align(
+                                            child: SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: AppColors
+                                                      .foundation.white,
+                                                  strokeWidth: 1,
+                                                ))),
+                                    onPressed: () async {
+                                      context
+                                          .read<AuthBloc>()
+                                          .add(SignInWithGoogleEvent());
+                                      // sl<AuthBloc>().add(SignInWithGoogleEvent());
+                                      // context.goNamed(AppRoutes.calentreHome);
+                                    },
+                                  ),
+                                  const SizedBox().y10(),
+                                  AppButton(
+                                    title: "Other Options are coming soon",
+                                    icon: iconFramer(imageTitle: 'slack.png'),
+                                    onPressed: () async {
+                                      await signOut();
+                                      CL.log("Sign out");
+                                      CL.logSuccess(
+                                          "The current user session is ${Supabase.instance.client.auth.currentUser}");
+                                    },
                                   ),
                                 ],
                               ),
-                              const SizedBox().y20(),
-                              Text(
-                                "Continue to Login/Signup",
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                              const SizedBox().y20(),
-                              const SizedBox().y20(),
-                              AppButton(
-                                title: "Login with Google",
-                                // title: "Sign IN",
-                                icon: iconFramer(
-                                  imageTitle: 'google.png',
-                                ),
-                                child: state is! UserSignInLoading
-                                    ? null
-                                    : Align(
-                                        child: SizedBox(
-                                            height: 20,
-                                            width: 20,
-                                            child: CircularProgressIndicator(
-                                              color: AppColors.foundation.white,
-                                              strokeWidth: 1,
-                                            ))),
-                                onPressed: () async {
-                                  context
-                                      .read<AuthBloc>()
-                                      .add(SignInWithGoogleEvent());
-                                  // sl<AuthBloc>().add(SignInWithGoogleEvent());
-                                  // context.goNamed(AppRoutes.calentreHome);
-                                },
-                              ),
-                              const SizedBox().y10(),
-                              AppButton(
-                                title: "Other Options are coming soon",
-                                icon: iconFramer(imageTitle: 'slack.png'),
-                                onPressed: () async {
-                                  // await signOut();
-                                  CL.log("Sign out");
-                                  print(
-                                      "The current user session is ${Supabase.instance.client.auth.currentUser}");
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox().y20(),
-                      const SizedBox().y20(),
-                      Text(
-                        "By signing up, you agree to our Privacy Policy and Terms of Use.",
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                              color: AppColors.grey.s500,
                             ),
-                      )
-                    ],
+                          ),
+                          const SizedBox().y20(),
+                          const SizedBox().y20(),
+                          Text(
+                            "By signing up, you agree to our Privacy Policy and Terms of Use.",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  color: AppColors.grey.s500,
+                                ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            );
-          },
-        ));
+                );
+              },
+            )));
   }
 }
 
@@ -161,8 +179,5 @@ Future signInWithGoogle(context) async {
 }
 
 Future signOut() async {
-  print("The current user is ${Supabase.instance.client.auth.currentUser}");
-
-  // final res = await Supabase.instance.client.auth.signOut();
-  print("This user signed out ");
+  final res = await Supabase.instance.client.auth.signOut();
 }

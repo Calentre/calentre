@@ -20,7 +20,7 @@ final routerConfig = GoRouter(
     GoRoute(
       name: AppRoutes.socialSignIn,
       path: '/',
-      builder: (context, state) => const SocialSignIn(),
+      builder: (context, state) => SocialSignIn(),
     ),
     GoRoute(
       name: AppRoutes.calentreHome,

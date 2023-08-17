@@ -468,10 +468,10 @@ packages:
     dependency: transitive
     description:
       name: gotrue
-      sha256: c816f23e73cc8bd92f60d7d2332e4962f8b614e9a66d6a800a3c1231021d12ba
+      sha256: "6ba95e38c06af30d4a365112b433567df70f83d5853923274cb894ea9702c5fa"
       url: "https://pub.dev"
     source: hosted
-    version: "1.11.1"
+    version: "1.11.2"
   graphs:
     dependency: transitive
     description:
@@ -740,10 +740,10 @@ packages:
     dependency: transitive
     description:
       name: postgrest
-      sha256: "6a0f28f33af4582a9874ce15520531280d39831f356f9740839ec142fc8deeff"
+      sha256: d6cc0f60c7dc761f84d1c6d11d9e02b3ad90399bd84639a28c1c024adbaa9bde
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   process:
     dependency: transitive
     description:
@@ -780,10 +780,10 @@ packages:
     dependency: transitive
     description:
       name: realtime_client
-      sha256: "5428b673dc373b6b834f52dda5a9a92e18eeafaa5171565540b87c8fe0d100cb"
+      sha256: "69187110a1930e8db2b121cad25a247283f384f078d213ab87072814be12b1a4"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.0"
   retry:
     dependency: transitive
     description:
@@ -1001,18 +1001,18 @@ packages:
     dependency: transitive
     description:
       name: supabase
-      sha256: "48c0e8e05f1c6da10b9f220804bf88ec7ded82901e3abb3e2d94e7db8a4ba1cd"
+      sha256: "2f274a29c28e0b0fe7642196c099efeba50a83a570aac6b86577389585a7da82"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.8"
+    version: "1.11.0"
   supabase_flutter:
     dependency: "direct main"
     description:
       name: supabase_flutter
-      sha256: "47de0565e1c2bb5ce51b85bd61847222069bdf8963755838d20029206d30012c"
+      sha256: "9dbd6f66fb95a1a5b37f0f4c79d8de8c34181e4012833289273d08d6ab61faa3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.10"
+    version: "1.10.13"
   term_glyph:
     dependency: transitive
     description:

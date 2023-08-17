@@ -16,10 +16,9 @@ class AuthService {
   final SupabaseClient supabase = Supabase.instance.client;
 
   Future<bool> signInWithGoogle() async {
-    final res = await supabase.auth.signInWithOAuth(
-      Provider.google,
-    );
-    // final res = await true;
+    // final res = await supabase.auth.signInWithOAuth(Provider.google,
+    //     authScreenLaunchMode: LaunchMode.externalApplication);
+    final res = true;
 
     return res;
   }

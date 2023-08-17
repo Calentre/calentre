@@ -5,48 +5,61 @@ import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+///This class is responsible for
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._authService);
   final SupabaseClient supabase = Supabase.instance.client;
-
   final AuthService _authService;
+  User? supabaseCurrentUser;
 
   @override
   Future<DataState<CalentreUser, Exception>> signInWithGoogle() async {
     DataState<CalentreUser, Exception>? response;
-    final currentUser = supabase.auth.currentUser;
 
-    CL.log("Current user is $currentUser");
     try {
-      final signInResponse = await _authService.signInWithGoogle();
+      bool isSuccessful = await _authService.signInWithGoogle();
 
-      if (currentUser == null) {
-        if (signInResponse) {
-          response = DataSuccess(CalentreUser(
-              userId: currentUser!.id,
-              name: currentUser!.userMetadata!["full_name"],
-              email: currentUser!.email ?? "",
-              avatarUrl:
-                  supabase.auth.currentUser!.userMetadata!["avatar_url"]));
+      if (isSuccessful) {
+        //listen to authstate changes to process successful signin
+        final sub1 = supabase.auth.onAuthStateChange.listen((data) {
+          final AuthChangeEvent event = data.event;
+          if (event == AuthChangeEvent.signedIn) {
+            supabaseCurrentUser = supabase.auth.currentUser;
+            CL.log(
+                "Current user after AuthstateChange is: $supabaseCurrentUser");
+            // CL.log("Current session after AuthstateChange is: ${data.session}");
+            CL.log("Current session is ${supabase.auth.currentSession}");
+          }
+          if (event == AuthChangeEvent.signedOut) {
+            supabaseCurrentUser = supabase.auth.currentUser;
+            CL.log("Current user after signout is is: $supabaseCurrentUser");
+          }
+        });
+
+        // sub1.cancel();
+        CL.log("Current session is ${supabase.auth.currentSession}");
+
+        supabaseCurrentUser = supabase.auth.currentUser;
+        CL.log("Current user after in in: $supabaseCurrentUser");
+
+        if (supabaseCurrentUser != null) {
+          final calentreUser = CalentreUser(
+              userId: supabaseCurrentUser!.id,
+              name: supabaseCurrentUser!.userMetadata!["full_name"],
+              email: supabaseCurrentUser!.email!);
+          return DataSuccess(calentreUser);
         } else {
-          response = DataFailure(
-            const AuthException("Invalid server Response", statusCode: '500'),
-          );
+          return DataFailure(const AuthException("Invalid server Response",
+              statusCode: '500'));
         }
       } else {
-        response = DataSuccess(CalentreUser(
-            userId: currentUser.id,
-            name: currentUser.userMetadata!["full_name"],
-            email: currentUser.email ?? "",
-            avatarUrl: currentUser.userMetadata!["avatar_url"]));
+        return DataFailure(
+            const AuthException("Fatal response", statusCode: '500'));
       }
     } on Exception catch (e) {
       response = DataFailure(e);
     }
-    // If response is still null at this point, return a default failure response
-    // response ??= DataFailure(
-    //   const AuthException("Invalid server Response", statusCode: '500'),
-    // );
+
     return response;
   }
 

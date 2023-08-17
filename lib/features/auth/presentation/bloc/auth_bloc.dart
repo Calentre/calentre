@@ -25,25 +25,26 @@ class AuthBloc extends Bloc<AuthEvents, AuthUserState> {
     final dataState = await _signInWithGoogleUseCase();
 
     if (dataState is DataSuccess && dataState.data != null) {
-      final authSubscription = supabase.auth.onAuthStateChange.listen((data) {
-        // emit(UserSignInDone(dataState.data!));
+      // emit(UserSignInDone(dataState.data!));
 
+      final authSubscription = supabase.auth.onAuthStateChange.listen((data) {
         final AuthChangeEvent event = data.event;
         if (event == AuthChangeEvent.signedIn) {
           sl.get<UserDTO>().email = dataState.data!.email;
           sl.get<UserDTO>().fullName = dataState.data!.name;
           sl.get<UserDTO>().userId = dataState.data!.userId;
+          CL.log("In sub}");
         }
       });
-      // authSubscription.cancel();
-      emit(UserSignInDone(dataState.data!));
+      CL.log("Outside sub }");
 
-      CL.log("The user email is ${sl.get<UserDTO>().email}");
+      emit(UserSignInDone(dataState.data!));
     }
 
     if (dataState is DataFailure) {
       emit(UserSignInError(dataState.exception!));
-      CL.logError("There was an error signing in with Google");
+      CL.logError(
+          "There was an error signing in with Google ${dataState.exception}");
     }
   }
 }
