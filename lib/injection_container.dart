@@ -7,16 +7,24 @@ import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'features/auth/data/models/user_model.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
-  // Dio
+  // Singletons
   sl.registerSingleton<Dio>(Dio());
   sl.registerSingleton<UserDTO>(UserDTO(email: ''));
   sl.registerSingleton<RemoteURLs>(RemoteURLs());
-  sl.registerSingleton<AuthService>(AuthService(sl(), sl(), sl()));
+  sl.registerSingleton<AuthService>(AuthService(sl()));
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl()));
   sl.registerSingleton<SignInWithGoogleUseCase>(SignInWithGoogleUseCase(sl()));
+  sl.registerSingleton<SupabaseClient>(Supabase.instance.client);
+  sl.registerSingleton<CalentreUser>(
+      const CalentreUser(userId: '', name: '', email: ''));
+
+  //Factories
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
 }
