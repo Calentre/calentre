@@ -1,17 +1,16 @@
 // ignore: avoid_web_libraries_in_flutter
 
-import 'package:calentre/config/constants/constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
-  AuthService(this._remoteURLs);
+  AuthService(this.supabase);
 
-  final RemoteURLs _remoteURLs;
-  final SupabaseClient supabase = Supabase.instance.client;
+  final SupabaseClient supabase;
 
   Future<bool> signInWithGoogle() async {
-    final res = await supabase.auth.signInWithOAuth(Provider.google,
-        authScreenLaunchMode: LaunchMode.externalApplication);
+    final res = await supabase.auth.signInWithOAuth(
+      Provider.google,
+    );
     // final res = true;
 
     return res;

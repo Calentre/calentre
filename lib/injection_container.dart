@@ -18,10 +18,12 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<Dio>(Dio());
   sl.registerSingleton<UserDTO>(UserDTO(email: ''));
   sl.registerSingleton<RemoteURLs>(RemoteURLs());
-  sl.registerSingleton<AuthService>(AuthService(sl()));
+  sl.registerSingleton<SupabaseClient>(Supabase.instance.client);
+  sl.registerSingleton<AuthService>(AuthService(
+    sl(),
+  ));
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl(sl()));
   sl.registerSingleton<SignInWithGoogleUseCase>(SignInWithGoogleUseCase(sl()));
-  sl.registerSingleton<SupabaseClient>(Supabase.instance.client);
   sl.registerSingleton<CalentreUser>(
       const CalentreUser(userId: '', name: '', email: ''));
   // sl.registerSingleton<AuthBloc>(AuthBloc(sl()));
