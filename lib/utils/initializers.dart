@@ -11,6 +11,7 @@ void subscribeToAuthStateChange(AuthBloc authBloc) {
     if (event == AuthChangeEvent.signedIn ||
         event == AuthChangeEvent.tokenRefreshed) {
       authBloc.isSignedIn = true;
+      CL.log("AuthStateChange is signedIn");
     } else if (event == AuthChangeEvent.signedOut ||
         event == AuthChangeEvent.userDeleted) {
       authBloc.isSignedIn = false;

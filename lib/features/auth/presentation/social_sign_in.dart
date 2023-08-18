@@ -3,7 +3,6 @@
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_state.dart';
@@ -11,15 +10,12 @@ import 'package:calentre/injection_container.dart';
 import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
-import 'package:calentre/utils/initializers.dart';
-import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
-  SocialSignIn({super.key}) {}
+  SocialSignIn({super.key});
   final SupabaseClient supabase = Supabase.instance.client;
   final bloc = sl.get<AuthBloc>();
 
@@ -28,18 +24,7 @@ class SocialSignIn extends StatelessWidget {
     //if signedIn, push HomeEvent screen
     return BlocProvider<AuthBloc>(
         create: (context) => bloc,
-        child: BlocListener<AuthBloc, AuthUserState>(
-            // bloc: bloc,
-            listener: (context, state) {
-          if ((state.isSignedIn ?? false) == true) {
-            context.go("/home");
-            CL.log("${state.isSignedIn}");
-            CL.logError("NEVER SIGNED IN");
-          } else {
-            CL.logError("SIGNED IN");
-            CL.log("${state.isSignedIn}");
-          }
-        }, child: BlocBuilder<AuthBloc, AuthUserState>(
+        child: BlocBuilder<AuthBloc, AuthUserState>(
           builder: (context, state) {
             return Scaffold(
               body: AnimateGradient(
@@ -109,10 +94,6 @@ class SocialSignIn extends StatelessWidget {
                                   context
                                       .read<AuthBloc>()
                                       .add(SignInWithGoogleEvent());
-
-                                  // sl<AuthBloc>()
-                                  //     .add(SignInWithGoogleEvent());
-                                  // context.goNamed(AppRoutes.calentreHome);
                                 },
                               ),
                               const SizedBox().y10(),
@@ -120,10 +101,7 @@ class SocialSignIn extends StatelessWidget {
                                 title: "Other Options are coming soon",
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
-                                  await signOut();
-                                  // CL.log("Sign out");
-                                  CL.logSuccess(
-                                      "The current user session is ${Supabase.instance.client.auth.currentUser}");
+                                  // await signOut();
                                 },
                               ),
                             ],
@@ -144,39 +122,11 @@ class SocialSignIn extends StatelessWidget {
               ),
             );
           },
-        )));
+        ));
   }
 }
 
-Future signInWithGoogle(context) async {
-  // Create a new provider
-  // GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-  // googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  // googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
-
-  // // Once signed in, return the UserCredential
-  // final res = await FirebaseAuth.instance.signInWithPopup(googleProvider);
-
-  // return res;
-  // Or use signInWithRedirect
-  // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
-
-  final res = await Supabase.instance.client.auth.signInWithOAuth(
-      Provider.google,
-      context: context,
-      authScreenLaunchMode: LaunchMode.externalNonBrowserApplication,
-      redirectTo: "https://pwvyfxvyfbosajpvytpt.supabase.co/auth/v1/callback");
-
-  // final res = await Supabase.instance.client.auth.signUp(
-  //   email: "testing2@gmail.com",
-  //   password: '',
-  // );
-
-  print("The google signin result is ${res}");
-  print("The current user is ${Supabase.instance.client.auth.currentUser}");
-}
-
-Future signOut() async {
-  await Supabase.instance.client.auth.signOut();
-}
+// Future signOut() async {
+//   await Supabase.instance.client.auth.signOut();
+// }
