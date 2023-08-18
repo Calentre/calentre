@@ -5,6 +5,7 @@ import 'package:calentre/features/auth/data/repository/auth_repository_impl.dart
 import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
 import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:calentre/utils/initializers.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -26,9 +27,10 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SignInWithGoogleUseCase>(SignInWithGoogleUseCase(sl()));
   sl.registerSingleton<CalentreUser>(
       const CalentreUser(userId: '', name: '', email: ''));
-  // sl.registerSingleton<AuthBloc>(AuthBloc(sl()));
 
-  //Factories
-  // sl.registerLazySingleton<AuthBloc>(() => AuthBloc(sl()));
+  //Factory
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
+
+  //Non DI
+  subscribeToAuthStateChange(sl<AuthBloc>());
 }

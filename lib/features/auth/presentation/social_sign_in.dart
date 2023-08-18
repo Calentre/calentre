@@ -19,15 +19,12 @@ import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
-  SocialSignIn({super.key}) {
-    // subscribeToAuthStateChange(sl<AuthBloc>());
-  }
+  SocialSignIn({super.key}) {}
   final SupabaseClient supabase = Supabase.instance.client;
   final bloc = sl.get<AuthBloc>();
 
   @override
   Widget build(BuildContext context) {
-    subscribeToAuthStateChange(sl<AuthBloc>());
     //if signedIn, push HomeEvent screen
     return BlocProvider<AuthBloc>(
         create: (context) => bloc,
@@ -123,7 +120,7 @@ class SocialSignIn extends StatelessWidget {
                                 title: "Other Options are coming soon",
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
-                                  // await signOut();
+                                  await signOut();
                                   // CL.log("Sign out");
                                   CL.logSuccess(
                                       "The current user session is ${Supabase.instance.client.auth.currentUser}");

@@ -13,16 +13,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(options: firebaseOptions());
   await Supabase.initialize(
     url: RemoteURLs().supabaseUrl,
     anonKey: Secrets.supabseSecret,
   );
   await initializeDependencies();
-  // await FeatureNotifier.init();
-  // FeatureNotifier.persistAll();
+  await FeatureNotifier.init();
+  FeatureNotifier.persistAll();
   usePathUrlStrategy();
-  // print(await Supabase.instance.client.auth.admin.listUsers());
   runApp(const MyApp());
 }
 
