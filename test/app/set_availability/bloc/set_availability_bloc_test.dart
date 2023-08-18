@@ -25,14 +25,24 @@ void main() {
       expect: () => [ExtraTimeFieldUpdatedState(1)],
     );
     blocTest(
-      "// RemoveExtraTimeFieldEvent() should return ExtraTimeFieldUpdatedState(0)",
+      "// RemoveExtraTimeFieldEvent() should not return any state",
       build: () => setAvailabilityBloc(),
       act: (setAvailabilityBloc) {
-        setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
         setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
       },
       //returns an empty list because no state is emmitted when listLength < 0
       expect: () => [],
+    );
+
+    blocTest(
+      "// RemoveExtraTimeFieldEvent() should return ExtraTimeFieldUpdatedState(1)",
+      build: () => setAvailabilityBloc(),
+      act: (setAvailabilityBloc) {
+        setAvailabilityBloc.listLength = 2;
+        setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
+      },
+      //returns an empty list because no state is emmitted when listLength < 0
+      expect: () => [ExtraTimeFieldUpdatedState(1)],
     );
     blocTest(
       "// CheckBoxEvent() should return CheckBoxUpdatedState(false)",
@@ -41,6 +51,15 @@ void main() {
         setAvailabilityBloc.add(CheckBoxEvent());
       },
       expect: () => [CheckBoxUpdatedState(false)],
+    );
+    blocTest(
+      "// CheckBoxEvent() should return CheckBoxUpdatedState(true)",
+      build: () => setAvailabilityBloc(),
+      act: (setAvailabilityBloc) {
+        setAvailabilityBloc.checkBoxState = false;
+        setAvailabilityBloc.add(CheckBoxEvent());
+      },
+      expect: () => [CheckBoxUpdatedState(true)],
     );
   });
 }
