@@ -29,6 +29,7 @@ void main() {
       build: () => setAvailabilityBloc(),
       act: (setAvailabilityBloc) {
         setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
+        setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
       },
       //returns an empty list because no state is emmitted when listLength < 0
       expect: () => [],
