@@ -178,5 +178,5 @@ Future signInWithGoogle(context) async {
 }
 
 Future signOut() async {
-  final res = await Supabase.instance.client.auth.signOut();
+  await Supabase.instance.client.auth.signOut();
 }

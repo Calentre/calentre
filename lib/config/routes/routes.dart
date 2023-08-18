@@ -30,27 +30,47 @@ final routerConfig = GoRouter(
     GoRoute(
       name: AppRoutes.calentreHome,
       path: '/home',
-      builder: (context, state) => const CalentreHome(),
+      builder: (context, state) {
+        return sl<SupabaseClient>().auth.currentSession == null
+            ? SocialSignIn()
+            : const CalentreHome();
+      },
     ),
     GoRoute(
       name: AppRoutes.createEvent,
       path: '/create-event',
-      builder: (context, state) => const CreateEventView(),
+      builder: (context, state) {
+        return sl<SupabaseClient>().auth.currentSession == null
+            ? SocialSignIn()
+            : const CreateEventView();
+      },
     ),
     GoRoute(
       name: AppRoutes.setAvailabilityView,
       path: '/set-availability',
-      builder: (context, state) => SetAvailabilityView(),
+      builder: (context, state) {
+        return sl<SupabaseClient>().auth.currentSession == null
+            ? SocialSignIn()
+            : SetAvailabilityView();
+      },
     ),
     GoRoute(
       name: AppRoutes.completionFeedBack,
       path: '/completion-feedback',
-      builder: (context, state) => const CompletionFeedBackView(),
+      builder: (context, state) {
+        return sl<SupabaseClient>().auth.currentSession == null
+            ? SocialSignIn()
+            : const CompletionFeedBackView();
+      },
     ),
     GoRoute(
       name: AppRoutes.addPaymentDetailsModal,
       path: '/add-payment-details',
-      builder: (context, state) => const AddPaymentDetailsModal(),
+      builder: (context, state) {
+        return sl<SupabaseClient>().auth.currentSession == null
+            ? SocialSignIn()
+            : const AddPaymentDetailsModal();
+      },
     ),
   ],
 );

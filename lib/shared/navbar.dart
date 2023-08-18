@@ -1,8 +1,12 @@
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:calentre/utils/icon_framer.dart';
+import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -34,8 +38,13 @@ class NavBar extends StatelessWidget {
                   ),
                   const SizedBox().x10(),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
                       debugPrint("Linked visited");
+                      // sl<SupabaseClient>().auth.signOut();
+                      // context.goNamed("/");
+                      CL.log("Sign out successful");
+                      CL.logSuccess(
+                          "The current user session is ${sl<SupabaseClient>().auth.currentSession}");
                     },
                     child: Text(
                       "Calentre.com/tonkevic",
