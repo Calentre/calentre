@@ -1,4 +1,5 @@
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/injection_container.dart';
 import 'package:calentre/utils/icon_framer.dart';
@@ -40,8 +41,12 @@ class NavBar extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       debugPrint("Linked visited");
-                      // sl<SupabaseClient>().auth.signOut();
-                      // context.goNamed("/");
+                      await sl<SupabaseClient>().auth.signOut();
+                      if (context.mounted) {
+                        context.goNamed(AppRoutes.calentreHome);
+                        context.goNamed(AppRoutes.socialSignIn);
+                      }
+
                       CL.log("Sign out successful");
                       CL.logSuccess(
                           "The current user session is ${sl<SupabaseClient>().auth.currentSession}");

@@ -40,6 +40,7 @@ class SocialSignIn extends StatelessWidget {
             CL.logError("NEVER SIGNED IN");
           } else {
             CL.logError("SIGNED IN");
+            CL.log("${state.isSignedIn}");
           }
         }, child: BlocBuilder<AuthBloc, AuthUserState>(
           builder: (context, state) {
