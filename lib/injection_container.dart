@@ -24,7 +24,9 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SupabaseClient>(Supabase.instance.client);
   sl.registerSingleton<CalentreUser>(
       const CalentreUser(userId: '', name: '', email: ''));
+  // sl.registerSingleton<AuthBloc>(AuthBloc(sl()));
 
   //Factories
+  // sl.registerLazySingleton<AuthBloc>(() => AuthBloc(sl()));
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
 }

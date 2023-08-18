@@ -19,9 +19,10 @@ void main() async {
     anonKey: Secrets.supabseSecret,
   );
   await initializeDependencies();
-  await FeatureNotifier.init();
-  FeatureNotifier.persistAll();
+  // await FeatureNotifier.init();
+  // FeatureNotifier.persistAll();
   usePathUrlStrategy();
+  // print(await Supabase.instance.client.auth.admin.listUsers());
   runApp(const MyApp());
 }
 

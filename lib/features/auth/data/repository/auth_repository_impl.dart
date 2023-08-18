@@ -25,14 +25,14 @@ class AuthRepositoryImpl implements AuthRepository {
           final AuthChangeEvent event = data.event;
           if (event == AuthChangeEvent.signedIn) {
             supabaseCurrentUser = supabase.auth.currentUser;
-            CL.log(
-                "Current user after AuthstateChange is: $supabaseCurrentUser");
+            // CL.log(
+            //     "Current user after AuthstateChange is: $supabaseCurrentUser");
             // CL.log("Current session after AuthstateChange is: ${data.session}");
-            CL.log("Current session is ${supabase.auth.currentSession}");
+            // CL.log("Current session is ${supabase.auth.currentSession}");
           }
           if (event == AuthChangeEvent.signedOut) {
             supabaseCurrentUser = supabase.auth.currentUser;
-            CL.log("Current user after signout is is: $supabaseCurrentUser");
+            // CL.log("Current user after signout is is: $supabaseCurrentUser");
           }
         });
 

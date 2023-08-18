@@ -4,7 +4,9 @@ import 'package:calentre/features/home/presentation/calentre_home.dart';
 import 'package:calentre/features/payments/presentation/widgets/payment_details_fields.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../features/auth/presentation/social_sign_in.dart';
+import 'package:calentre/injection_container.dart';
 
 class AppRoutes {
   static String socialSignIn = 'socialSignIn';
@@ -18,10 +20,13 @@ class AppRoutes {
 final routerConfig = GoRouter(
   routes: [
     GoRoute(
-      name: AppRoutes.socialSignIn,
-      path: '/',
-      builder: (context, state) => SocialSignIn(),
-    ),
+        name: AppRoutes.socialSignIn,
+        path: '/',
+        builder: (context, state) {
+          return sl<SupabaseClient>().auth.currentSession == null
+              ? SocialSignIn()
+              : const CalentreHome();
+        }),
     GoRoute(
       name: AppRoutes.calentreHome,
       path: '/home',
