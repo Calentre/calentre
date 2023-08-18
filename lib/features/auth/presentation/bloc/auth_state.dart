@@ -1,14 +1,13 @@
-import 'package:calentre/features/auth/data/models/user_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthUserState extends Equatable {
-  final CalentreUser? user;
   final Exception? exception;
+  final bool? isSignedIn;
 
-  const AuthUserState({this.user, this.exception});
+  const AuthUserState({this.exception, this.isSignedIn});
 
   @override
-  List<Object> get props => [user!, exception!];
+  List<Object> get props => [exception!];
 }
 
 class UserSignInInitialState extends AuthUserState {
@@ -20,9 +19,11 @@ class UserSignInLoading extends AuthUserState {
 }
 
 class UserSignInDone extends AuthUserState {
-  const UserSignInDone(CalentreUser user) : super(user: user);
+  const UserSignInDone(bool? user, bool isSignedIn)
+      : super(isSignedIn: isSignedIn);
 }
 
 class UserSignInError extends AuthUserState {
-  const UserSignInError(Exception exception) : super(exception: exception);
+  const UserSignInError(Exception exception, bool isSignedIn)
+      : super(exception: exception, isSignedIn: isSignedIn);
 }

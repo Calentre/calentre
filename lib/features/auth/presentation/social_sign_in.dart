@@ -1,10 +1,8 @@
-import 'dart:js_util';
+// import 'dart:js_util';
 
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:calentre/config/extensions/spacing.dart';
-import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_state.dart';
@@ -14,16 +12,18 @@ import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
-  const SocialSignIn({super.key});
+  SocialSignIn({super.key});
+  final SupabaseClient supabase = Supabase.instance.client;
+  final bloc = sl.get<AuthBloc>();
 
   @override
   Widget build(BuildContext context) {
+    //if signedIn, push HomeEvent screen
     return BlocProvider<AuthBloc>(
-        create: (_) => AuthBloc(sl.get<SignInWithGoogleUseCase>()),
+        create: (context) => bloc,
         child: BlocBuilder<AuthBloc, AuthUserState>(
           builder: (context, state) {
             return Scaffold(
@@ -75,28 +75,25 @@ class SocialSignIn extends StatelessWidget {
                               const SizedBox().y20(),
                               const SizedBox().y20(),
                               AppButton(
-                                title: state is UserSignInInitialState
-                                    ? "Login with Google"
-                                    : "Loading",
+                                title: "Login with Google",
                                 // title: "Sign IN",
                                 icon: iconFramer(
                                   imageTitle: 'google.png',
                                 ),
-                                child: state is UserSignInInitialState
-                                    ? null
-                                    : Align(
+                                child: state is UserSignInLoading
+                                    ? Align(
                                         child: SizedBox(
                                             height: 20,
                                             width: 20,
                                             child: CircularProgressIndicator(
                                               color: AppColors.foundation.white,
                                               strokeWidth: 1,
-                                            ))),
+                                            )))
+                                    : null,
                                 onPressed: () async {
                                   context
                                       .read<AuthBloc>()
                                       .add(SignInWithGoogleEvent());
-                                  // context.goNamed(AppRoutes.calentreHome);
                                 },
                               ),
                               const SizedBox().y10(),
@@ -104,7 +101,7 @@ class SocialSignIn extends StatelessWidget {
                                 title: "Other Options are coming soon",
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
-                                  await signOut();
+                                  // await signOut();
                                 },
                               ),
                             ],
@@ -129,38 +126,7 @@ class SocialSignIn extends StatelessWidget {
   }
 }
 
-Future signInWithGoogle(context) async {
-  // Create a new provider
-  // GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-  // googleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  // googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
-
-  // // Once signed in, return the UserCredential
-  // final res = await FirebaseAuth.instance.signInWithPopup(googleProvider);
-
-  // return res;
-  // Or use signInWithRedirect
-  // return await FirebaseAuth.instance.signInWithRedirect(googleProvider);
-
-  final res = await Supabase.instance.client.auth.signInWithOAuth(
-      Provider.google,
-      context: context,
-      authScreenLaunchMode: LaunchMode.externalNonBrowserApplication,
-      redirectTo: "https://pwvyfxvyfbosajpvytpt.supabase.co/auth/v1/callback");
-
-  // final res = await Supabase.instance.client.auth.signUp(
-  //   email: "testing2@gmail.com",
-  //   password: '',
-  // );
-
-  print("The google signin result is ${res}");
-  print("The current user is ${Supabase.instance.client.auth.currentUser}");
-}
-
-Future signOut() async {
-  print("The current user is ${Supabase.instance.client.auth.currentUser}");
-
-  // final res = await Supabase.instance.client.auth.signOut();
-  print("This user signed out ");
-}
+// Future signOut() async {
+//   await Supabase.instance.client.auth.signOut();
+// }
