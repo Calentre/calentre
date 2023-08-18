@@ -15,6 +15,7 @@ import 'package:calentre/utils/initializers.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
@@ -34,6 +35,7 @@ class SocialSignIn extends StatelessWidget {
             // bloc: bloc,
             listener: (context, state) {
           if ((state.isSignedIn ?? false) == true) {
+            context.go("/home");
             CL.log("${state.isSignedIn}");
             CL.logError("NEVER SIGNED IN");
           } else {
