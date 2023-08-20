@@ -6,7 +6,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 ///This class is responsible for
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._authService);
-  final SupabaseClient supabase = Supabase.instance.client;
   final AuthService _authService;
   User? supabaseCurrentUser;
 
