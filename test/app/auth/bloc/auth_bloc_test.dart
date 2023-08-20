@@ -45,7 +45,7 @@ void main() {
     );
 
     blocTest(
-      "// SignInWithGoogleEvent() should return UserSignInLoading() and UserSignInError()",
+      "// SignInWithGoogleEvent() should return UserSignInLoading() and UserSignInError().",
       setUp: () => authResponse = DataFailure(Exception()),
       build: () => authBloc(),
       act: (authBloc) {
