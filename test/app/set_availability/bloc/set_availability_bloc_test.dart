@@ -35,13 +35,23 @@ void main() {
     );
 
     blocTest(
+      "// RemoveExtraTimeFieldEvent() should not return any state",
+      build: () => setAvailabilityBloc(),
+      act: (setAvailabilityBloc) {
+        setAvailabilityBloc.listLength = -1;
+        setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
+      },
+      //returns an empty list because no state is emmitted when listLength < 0
+      expect: () => [],
+    );
+
+    blocTest(
       "// RemoveExtraTimeFieldEvent() should return ExtraTimeFieldUpdatedState(1)",
       build: () => setAvailabilityBloc(),
       act: (setAvailabilityBloc) {
         setAvailabilityBloc.listLength = 2;
         setAvailabilityBloc.add(RemoveExtraTimeFieldEvent());
       },
-      //returns an empty list because no state is emmitted when listLength < 0
       expect: () => [ExtraTimeFieldUpdatedState(1)],
     );
     blocTest(
