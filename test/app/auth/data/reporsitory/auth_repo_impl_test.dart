@@ -34,7 +34,7 @@ void main() {
 
       expect(
           response,
-          DataFailure(const AuthException(
+          DataFailure<bool, Exception>(const AuthException(
               "Unable to sign this user in : CODE 1",
               statusCode: '500')));
     });
