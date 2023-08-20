@@ -19,12 +19,6 @@ class SignInWithGoogleUseCaseMock extends Mock
   }
 }
 
-// class AuthRepositoryMock extends Mock implements AuthRepository {
-//   @override  Future<DataState<bool, Exception>> signInWithGoogle() async {
-//     return  authResponse!;
-//   }
-// }
-
 void main() {
   final sl = GetIt.instance;
 
@@ -43,12 +37,23 @@ void main() {
 
     blocTest(
       "// SignInWithGoogleEvent() should return UserSignInLoading()",
-      setUp: () => authResponse = DataFailure(Exception("It is what it is")),
+      setUp: () => authResponse = DataSuccess(true),
       build: () => authBloc(),
       act: (authBloc) {
         authBloc.add(SignInWithGoogleEvent());
       },
       expect: () => [const UserSignInLoading()],
+    );
+
+    blocTest(
+      "// SignInWithGoogleEvent() should return UserSignInLoading() and UserSignInError()",
+      setUp: () => authResponse = DataFailure(Exception()),
+      build: () => authBloc(),
+      act: (authBloc) {
+        authBloc.add(SignInWithGoogleEvent());
+      },
+      expect: () =>
+          [const UserSignInLoading(), UserSignInError(Exception(), false)],
     );
   });
 }
