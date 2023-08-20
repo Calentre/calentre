@@ -7,7 +7,7 @@ abstract class AuthUserState extends Equatable {
   const AuthUserState({this.exception, this.isSignedIn});
 
   @override
-  List<Object> get props => [exception!];
+  List<Object> get props => [];
 }
 
 class UserSignInInitialState extends AuthUserState {

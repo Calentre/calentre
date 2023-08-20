@@ -10,7 +10,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class AuthBloc extends Bloc<AuthEvents, AuthUserState> {
   bool? isSignedIn;
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
-  final SupabaseClient supabase = Supabase.instance.client;
 
   AuthBloc(this._signInWithGoogleUseCase)
       : super(const UserSignInInitialState()) {
