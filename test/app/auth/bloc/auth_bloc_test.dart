@@ -1,6 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:calentre/core/resources.dart';
-import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
 import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
