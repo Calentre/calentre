@@ -40,12 +40,14 @@ Calentre is your go-to scheduling solution, offering a delightful way to book me
 
 Calentre's magic is built using:
 
-- **Flutter:** Craft beautiful apps for mobile, web, and desktop with ease.
-- **Supabase:** The backstage hero for database and authentication needs.
+- **Flutter:** The admin scheduler is built with flutter. Primarily serving flutter web.
+- **Supabase:** All backend related functions are handled by supabase
+- **ReactJs + NextJs:** The front-facing client scheduler is built in react
 
 ## Architecture 🏛️
 
 Calentre embraces the Clean Architecture principles, keeping things neat and organized. 🧹 Enjoy a clean and maintainable codebase!
+For details, see our [Architecture Guide](doc/architecture.md)
 
 ## Getting Started 🚀
 
@@ -69,7 +71,7 @@ Using Calentre is a breeze:
 4. Clients book appointments and pay seamlessly.
 5. Get notifications and revel in your organized life.
 
-For more, check the [User Guide](docs/user-guide.md).
+For more, check the [User Guide](doc/user-guide.md).
 
 ## Contributing 🤝
 
