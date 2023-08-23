@@ -20,13 +20,13 @@ class AppTabBar extends StatelessWidget {
         Container(
           constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
           // width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 24),
+          padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 2),
 
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
+              Flexible(
                 child: AppButton(
                   gradient: currentIndex == 0 ? true : false,
                   title: "Events",
@@ -42,7 +42,7 @@ class AppTabBar extends StatelessWidget {
                 ),
               ),
               const SizedBox().x10(),
-              Expanded(
+              Flexible(
                 child: AppButton(
                   gradient: currentIndex == 1 ? true : false,
                   title: "History",
@@ -56,7 +56,7 @@ class AppTabBar extends StatelessWidget {
                 ),
               ),
               const SizedBox().x10(),
-              Expanded(
+              Flexible(
                 child: AppButton(
                   gradient: currentIndex == 2 ? true : false,
                   title: "Payment Methods",
