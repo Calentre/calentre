@@ -29,12 +29,10 @@ class EventCard extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          constraints: const BoxConstraints(
-                            minWidth: 96,
-                            maxWidth: 108,
-                          ),
-                          child: FittedBox(
-                            fit: BoxFit.cover,
+                            constraints: const BoxConstraints(
+                              minWidth: 96,
+                              maxWidth: 108,
+                            ),
                             child: Text(
                               "\$10",
                               // "Free",
@@ -42,10 +40,8 @@ class EventCard extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineSmall!
-                                  .copyWith(fontSize: 18),
-                            ),
-                          ),
-                        ),
+                                  .copyWith(fontSize: 20),
+                            )),
                         const SizedBox().y4(),
                         Text(
                           "30mins",
