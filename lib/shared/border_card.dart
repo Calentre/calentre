@@ -23,8 +23,8 @@ class BorderCard extends StatelessWidget {
     return Container(
         width: width,
         padding: EdgeInsets.symmetric(
-          vertical: verticalPadding ?? 48,
-          horizontal: horizontalPadding ?? 48,
+          vertical: verticalPadding ?? 10,
+          horizontal: horizontalPadding ?? 10,
         ),
         constraints: BoxConstraints(
           maxWidth: WebConstraints.maxWidth,

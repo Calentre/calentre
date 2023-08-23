@@ -33,14 +33,17 @@ class EventCard extends StatelessWidget {
                             minWidth: 96,
                             maxWidth: 108,
                           ),
-                          child: Text(
-                            "\$10",
-                            // "Free",
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(fontSize: 18),
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Text(
+                              "\$10",
+                              // "Free",
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall!
+                                  .copyWith(fontSize: 18),
+                            ),
                           ),
                         ),
                         const SizedBox().y4(),
