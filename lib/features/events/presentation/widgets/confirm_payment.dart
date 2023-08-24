@@ -133,7 +133,6 @@ Widget _confirmPaymentCard(context) {
                       children: [
                         const Text(
                             "event -> Life Coaching Introduction and Meeting"),
-                       
                         const SizedBox().x10(),
                         Flexible(
                           child: Row(
