@@ -61,7 +61,7 @@ class AppButton extends StatelessWidget {
                     ),
                     icon != null ? const SizedBox().x10() : const SizedBox(),
                     FittedBox(
-                      fit: BoxFit.none,
+                      fit: BoxFit.contain,
                       child: Text(
                         title,
                         style: TextStyle(

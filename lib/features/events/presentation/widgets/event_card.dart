@@ -14,11 +14,12 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return BorderCard(
-        verticalPadding: 12,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Flexible(
+      return FittedBox(
+        fit: BoxFit.cover,
+        child: BorderCard(
+          verticalPadding: 12,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
                 Container(

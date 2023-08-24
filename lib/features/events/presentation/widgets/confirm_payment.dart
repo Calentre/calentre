@@ -58,88 +58,86 @@ class ConfirmPaymentView extends StatelessWidget {
 }
 
 Widget _confirmPaymentCard(context) {
-  return BorderCard(
-    verticalPadding: 12,
-    color: AppColors.accent.blue,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Row(
-        children: [
-          Container(
-            constraints: const BoxConstraints(
-              minWidth: 96,
-              maxWidth: 118,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                CircleAvatar(
-                  child: Container(
-                      height: 90,
-                      width: 90,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10000.0),
-                          color: AppColors.grey.s700
-                          // gradient: LinearGradient(
-                          //   colors: [
-                          //     AppColors.gradient.g011,
-                          //     AppColors.gradient.g032
-                          //   ],
-                          //   begin: Alignment.topLeft,
-                          //   end: Alignment.bottomRight,
-                          // ),
-                          ),
-                      child: const Center(child: Text("TF"))),
-                ),
-                Container(
-                    height: 70,
-                    width: 1,
-                    decoration: BoxDecoration(
-                      color: AppColors.grey.s700,
-                    )),
-              ],
-            ),
-          ),
-          const SizedBox().x10(),
-          Flexible(
-            child: SizedBox(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+  return FittedBox(
+    fit: BoxFit.cover,
+    child: BorderCard(
+      verticalPadding: 12,
+      color: AppColors.accent.blue,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          children: [
+            Container(
+              constraints: const BoxConstraints(
+                minWidth: 96,
+                maxWidth: 118,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'Fedlis Nguyen has paid you ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(fontSize: 20)),
-                        TextSpan(
-                            text: '\$5.00',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.normal)),
-                      ],
-                    ),
+                  CircleAvatar(
+                    child: Container(
+                        height: 90,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10000.0),
+                            color: AppColors.grey.s700
+                            // gradient: LinearGradient(
+                            //   colors: [
+                            //     AppColors.gradient.g011,
+                            //     AppColors.gradient.g032
+                            //   ],
+                            //   begin: Alignment.topLeft,
+                            //   end: Alignment.bottomRight,
+                            // ),
+                            ),
+                        child: const Center(child: Text("TF"))),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                     const  FittedBox(
-                        fit: BoxFit.cover,
-                        child: Text(
-                            "event -> Life Coaching Introduction and Meeting"),
+                  Container(
+                      height: 70,
+                      width: 1,
+                      decoration: BoxDecoration(
+                        color: AppColors.grey.s700,
+                      )),
+                ],
+              ),
+            ),
+            const SizedBox().x10(),
+            Flexible(
+              child: SizedBox(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Fedlis Nguyen has paid you ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontSize: 20)),
+                          TextSpan(
+                              text: '\$5.00',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.normal)),
+                        ],
                       ),
-                      Flexible(
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: FittedBox(
-                                fit: BoxFit.contain,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                            "event -> Life Coaching Introduction and Meeting"),
+                        const SizedBox().x10(),
+                        Flexible(
+                          child: Row(
+                            children: [
+                              Flexible(
                                 child: AppButton(
                                   title: "Confirm Payment",
                                   size: ButtonSize.small,
@@ -151,11 +149,8 @@ Widget _confirmPaymentCard(context) {
                                   onPressed: () {},
                                 ),
                               ),
-                            ),
-                            const SizedBox().x4(),
-                            Flexible(
-                              child: FittedBox(
-                                fit: BoxFit.contain,
+                              const SizedBox().x4(),
+                              Flexible(
                                 child: AppButton(
                                   title: "Not Received",
                                   size: ButtonSize.small,
@@ -167,20 +162,20 @@ Widget _confirmPaymentCard(context) {
                                   // ),
                                   onPressed: () {},
                                 ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  const Text("email -> fnguyen@gmail.com"),
-                  const Text("payment method -> CashApp"),
-                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const Text("email -> fnguyen@gmail.com"),
+                    const Text("payment method -> CashApp"),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     ),
   );
