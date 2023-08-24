@@ -24,7 +24,7 @@ final routerConfig = GoRouter(
         path: '/',
         builder: (context, state) {
           return sl<SupabaseClient>().auth.currentSession == null
-              ? CalentreHome()
+              ? SocialSignIn()
               : const CalentreHome();
         }),
     GoRoute(
