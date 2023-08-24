@@ -37,6 +37,7 @@ Here's a quick emoji key to understand the contribution process:
 **PR Title:** Brief description of your changes
 **PR Description:**
 
+- **Why:** Explain the problem before your change.
 - **What:** Explain what your changes do.
 - **Screenshot:** Add a screenshot if related to UI design
 
