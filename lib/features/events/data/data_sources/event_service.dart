@@ -12,7 +12,6 @@ class EventService implements EventMixin {
   @override
   Future<dynamic> createEvent(dynamic param) async {
     final res = await supabase.from('events').insert({
-      'user_id': 554,
       'event_name': "Very first Test event",
       'event_description':
           "This is a simple event that shows that our supabase upsert works",
