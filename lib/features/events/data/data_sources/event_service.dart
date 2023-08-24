@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:calentre/features/events/data/data_sources/event_mixin.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -9,24 +11,23 @@ class EventService implements EventMixin {
 
   @override
   Future<dynamic> createEvent(dynamic param) async {
-    final res = await supabase.from('Events').insert({
-      'event_id': 'The Shire',
+    final res = await supabase.from('events').insert({
       'user_id': 554,
       'event_name': "Very first Test event",
       'event_description':
           "This is a simple event that shows that our supabase upsert works",
       'video_call_type': "google_meet",
-      'duration': "25_mins",
+      'duration': "25",
       'event_link': "https://dontknowhow.com/meeting_url",
       'event_type': "free_event",
       'amount': "0",
       'is_multiple': "no",
       'availability': {
         'monday': [
-          {"start:12AM", "end:1AM"},
-          {"start:12AM", "end:1AM"},
-          {"start:12AM", "end:1AM"},
-          {"start:12AM", "end:1AM"},
+          {"start": "12AM", "end": "1AM"},
+          {"start": "12AM", "end": "1AM"},
+          {"start": "12AM", "end": "1AM"},
+          {"start": "12AM", "end": "1AM"},
         ]
       }
     });
