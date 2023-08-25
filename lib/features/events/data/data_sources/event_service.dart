@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:calentre/features/events/data/data_sources/event_mixin.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -10,7 +8,7 @@ class EventService implements EventMixin {
   final SupabaseClient supabase;
 
   @override
-  Future<dynamic> createEvent(dynamic param) async {
+  Future<dynamic> createEvent(Map<String, dynamic> param) async {
     final res = await supabase.from('events').insert({
       'event_name': "Very first Test event",
       'event_description':

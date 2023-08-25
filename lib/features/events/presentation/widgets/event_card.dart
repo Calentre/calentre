@@ -7,6 +7,7 @@ import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:web_toast/web_toast.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
@@ -103,8 +104,12 @@ class EventCard extends StatelessWidget {
                                   size: 16,
                                 ),
                                 onPressed: () async {
-                                  await EventService(Supabase.instance.client)
-                                      .createEvent("param");
+                                  // await EventService(Supabase.instance.client)
+                                  //     .createEvent({});
+                                  Toast.success(
+                                      title: 'Info',
+                                      text: 'Your changes has been saved!',
+                                      duration: const Duration(seconds: 3));
                                 },
                               )
                             ],

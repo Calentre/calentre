@@ -1,6 +1,6 @@
 mixin EventMixin {
   Future<dynamic> getEvent();
-  Future<dynamic> createEvent(dynamic param);
+  Future<dynamic> createEvent(Map<String, dynamic> param);
   Future<dynamic> deleteEvent();
   Future<dynamic> updateEvent();
 }
