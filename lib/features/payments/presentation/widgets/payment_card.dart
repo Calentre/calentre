@@ -23,14 +23,14 @@ class _PaymentCardState extends State<PaymentCard> {
       return BorderCard(
         verticalPadding: 12,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             children: [
+
+            children: [ 
               Flexible(
                 flex: 2,
                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
                         height: 50,
@@ -44,30 +44,37 @@ class _PaymentCardState extends State<PaymentCard> {
                           color: Colors.pink,
                         ))),
                     const SizedBox().x10(),
-                    Text(
-                      "PayPal",
-                      style: Theme.of(context).textTheme.headlineSmall,
+                    FittedBox(
+                      fit: BoxFit.cover,
+                      child: Text(
+                        "PayPal",
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
                     ),
                     const SizedBox().x10(),
                   ],
                 ),
               ),
               Flexible(
-                flex: 2,
+                flex: 1,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     switchValue
-                        ? Text(
-                            "Active",
-                            style:
-                                TextStyle(color: AppColors.foundation.success),
+                        ? FittedBox(
+                            child: Text(
+                              "Active",
+                              style: TextStyle(
+                                  color: AppColors.foundation.success),
+                            ),
                           )
-                        : Text("Inactive",
-                            style: TextStyle(color: AppColors.grey.s300)),
-                    const SizedBox().x10(),
+                        : FittedBox(
+                            child: Text("Inactive",
+                                style: TextStyle(color: AppColors.grey.s300)),
+                          ),
+                    const SizedBox().x4(),
                     SizedBox(
-                      height: 25,
+                      height: MediaQuery.of(context).size.height * .025,
                       child: FittedBox(
                         child: Switch(
                           // This bool value toggles the switch.
@@ -126,6 +133,7 @@ class _PaymentCardState extends State<PaymentCard> {
                   ],
                 ),
               ),
+          
             ],
           ),
         ),

@@ -101,7 +101,7 @@ Widget _confirmPaymentCard(context) {
             ),
           ),
           const SizedBox().x10(),
-          Expanded(
+          Flexible(
             child: SizedBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,33 +129,48 @@ Widget _confirmPaymentCard(context) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                          "event -> Life Coaching Introduction and Meeting"),
-                      Row(
-                        children: [
-                          AppButton(
-                            title: "Confirm Payment",
-                            size: ButtonSize.small,
-                            gradient: true,
-                            icon: const FaIcon(
-                              FontAwesomeIcons.circleCheck,
-                              size: 16,
+                     const  FittedBox(
+                        fit: BoxFit.cover,
+                        child: Text(
+                            "event -> Life Coaching Introduction and Meeting"),
+                      ),
+                      Flexible(
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: AppButton(
+                                  title: "Confirm Payment",
+                                  size: ButtonSize.small,
+                                  gradient: true,
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.circleCheck,
+                                    size: 16,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ),
                             ),
-                            onPressed: () {},
-                          ),
-                          const SizedBox().x4(),
-                          AppButton(
-                            title: "Not Received",
-                            size: ButtonSize.small,
-                            textColor: Colors.white,
-                            color: AppColors.foundation.error,
-                            // icon: const Icon(
-                            //   Icons.cancel_rounded,
-                            //   size: 16,
-                            // ),
-                            onPressed: () {},
-                          )
-                        ],
+                            const SizedBox().x4(),
+                            Flexible(
+                              child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: AppButton(
+                                  title: "Not Received",
+                                  size: ButtonSize.small,
+                                  textColor: Colors.white,
+                                  color: AppColors.foundation.error,
+                                  // icon: const Icon(
+                                  //   Icons.cancel_rounded,
+                                  //   size: 16,
+                                  // ),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
