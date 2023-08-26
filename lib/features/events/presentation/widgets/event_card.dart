@@ -5,6 +5,7 @@ import 'package:calentre/shared/border_card.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:web_toast/web_toast.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key});
@@ -29,20 +30,19 @@ class EventCard extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          constraints: const BoxConstraints(
-                            minWidth: 96,
-                            maxWidth: 108,
-                          ),
-                          child: Text(
-                            "\$10",
-                            // "Free",
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(fontSize: 18),
-                          ),
-                        ),
+                            constraints: const BoxConstraints(
+                              minWidth: 96,
+                              maxWidth: 108,
+                            ),
+                            child: Text(
+                              "\$10",
+                              // "Free",
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineSmall!
+                                  .copyWith(fontSize: 20),
+                            )),
                         const SizedBox().y4(),
                         Text(
                           "30mins",
@@ -101,7 +101,14 @@ class EventCard extends StatelessWidget {
                                   Icons.more_vert_rounded,
                                   size: 16,
                                 ),
-                                onPressed: () {},
+                                onPressed: () async {
+                                  // await EventService(Supabase.instance.client)
+                                  //     .createEvent({});
+                                  Toast.success(
+                                      title: 'Info',
+                                      text: 'Your changes has been saved!',
+                                      duration: const Duration(seconds: 3));
+                                },
                               )
                             ],
                           )

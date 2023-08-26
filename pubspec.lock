@@ -1205,6 +1205,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
+  web_toast:
+    dependency: "direct main"
+    description:
+      name: web_toast
+      sha256: fbadee9a9f76679ec94504fe7f2ec818a645f689f88bd578fc1144bf30e97c63
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4-nullsafety"
   webkit_inspection_protocol:
     dependency: transitive
     description:

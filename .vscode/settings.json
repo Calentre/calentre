@@ -1,4 +1,5 @@
 {
+  // "dart.flutterSdkPath": "/Users/intellisys/Desktop/flutter",
   "dart.flutterSdkPath": ".fvm/flutter_sdk",
   // Remove .fvm files from search
   "search.exclude": {

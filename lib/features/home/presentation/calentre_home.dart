@@ -14,18 +14,20 @@ class CalentreHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          BlocBuilder<HomeViewBloc, HomeViewStates>(builder: (context, state) {
-        return SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const NavBar(),
-              tabBarViewSelector(state),
-            ],
-          ),
-        );
-      }),
+      body: SafeArea(
+        child: BlocBuilder<HomeViewBloc, HomeViewStates>(
+            builder: (context, state) {
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const NavBar(),
+                tabBarViewSelector(state),
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 }
@@ -38,7 +40,7 @@ tabBarViewSelector(state) {
           currentIndex: 0,
         ),
         // EventsView(),
-        PaymentsView()
+        EventsView()
       ],
     );
   } else if (state is UpdateState) {
