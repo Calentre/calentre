@@ -1,3 +1,4 @@
+import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event_type_drop_down_bloc.dart';
 import 'package:calentre/features/events/presentation/widgets/duration_drop_down.dart';
 import 'package:calentre/features/events/presentation/widgets/event_type_drop_down.dart';
@@ -5,6 +6,7 @@ import 'package:calentre/features/events/presentation/widgets/multi_booking_drop
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/colors.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:calentre/shared/button.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,16 @@ class CreateEventFormFields extends StatefulWidget {
 }
 
 class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
+  //Create CreateEventClass
+  CalentreEvent calentreEvent = sl.get<CalentreEvent>();
+
+  //TextControllers
+  final eventNameController = TextEditingController();
+  final descriptionController = TextEditingController();
+  final meetingLinkController = TextEditingController();
+  final amountController = TextEditingController();
+
+  final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,6 +53,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   ),
                   const SizedBox().y10(),
                   TextFormField(
+                    controller: eventNameController,
                     decoration: const InputDecoration(
                       hintText: "Enter Event Name",
                       filled: true,
@@ -63,6 +76,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   ),
                   const SizedBox().y10(),
                   TextFormField(
+                    controller: descriptionController,
                     maxLines: 5,
                     decoration: const InputDecoration(
                       hintText: "What's your event about?",
@@ -132,6 +146,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                   ),
                   const SizedBox().y10(),
                   TextFormField(
+                    controller: meetingLinkController,
                     initialValue: "https://calentre.com/LilYatchy",
                     readOnly: true,
                     decoration: const InputDecoration(
@@ -183,6 +198,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                       ),
                       const SizedBox().y10(),
                       TextFormField(
+                        controller: amountController,
                         initialValue: "\$5",
                         decoration: const InputDecoration(
                           filled: true,
