@@ -6,7 +6,7 @@ class CalentreEventState extends Equatable {
   List<Object?> get props => [];
 }
 
-class CalentreEventStateInitialState extends CalentreEventState {
+class CalentreEventInitialState extends CalentreEventState {
   final CalentreEvent calentreEvent = const CalentreEvent();
   @override
   List<Object?> get props => [calentreEvent];

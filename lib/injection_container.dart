@@ -6,10 +6,10 @@ import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
 import 'package:calentre/features/auth/domain/usescases/sign_in_with_google.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/events/data/data_sources/event_service.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/data/repository/event_repository_impl.dart';
 import 'package:calentre/features/events/domain/reporsitory/event_repository.dart';
 import 'package:calentre/features/events/domain/usecases/event_usecase.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/utils/initializers.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -37,16 +37,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<EventService>(EventService(sl()));
   sl.registerSingleton<EventRepository>(EventRepositoryImpl(sl()));
   sl.registerSingleton<CreateEventUsesCase>(CreateEventUsesCase(sl()));
-  sl.registerLazySingleton<CalentreEvent>(() => const CalentreEvent(
-      eventName: "",
-      eventDescription: "",
-      videoCallType: "",
-      duration: "",
-      eventLink: "",
-      eventType: "",
-      amount: "",
-      isMultiple: "",
-      availability: []));
+  sl.registerLazySingleton<CalentreEventBloc>(() => CalentreEventBloc());
 
   //Factory
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
