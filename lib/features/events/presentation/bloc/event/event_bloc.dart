@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? eventName;
   String? eventDescription;
-  String? videoCallTyp;
+  String? platform;
   String? duration;
   String? eventLink;
   String? eventType;
