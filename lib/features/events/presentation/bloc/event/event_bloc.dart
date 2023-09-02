@@ -12,7 +12,7 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? eventType;
   String? amount;
   String? isMultiple;
-  List? availability;
+  List<Day>? days;
 
   CalentreEventBloc() : super(CalentreEventInitialState()) {
     on<ProceedToSetAvailabilityEvent>(onClickDropDownItem);
