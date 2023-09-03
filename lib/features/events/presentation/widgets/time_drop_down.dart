@@ -1,3 +1,6 @@
+import 'package:calentre/config/enums/time_slots.dart';
+import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down_bloc.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
@@ -7,7 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TimeDropDown extends StatefulWidget {
-  const TimeDropDown({super.key});
+  const TimeDropDown(
+      {super.key, required this.day, required this.timeSlotBoundary});
+  final String day;
+  final TimeSlotBoundary timeSlotBoundary;
 
   @override
   State<TimeDropDown> createState() => _TimeDropDownState();
@@ -79,17 +85,92 @@ class _TimeDropDownState extends State<TimeDropDown> {
                   : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
           list: list,
           onChanged: (String? value) {
+            final calentreEventBloc =
+                BlocProvider.of<CalentreEventBloc>(context);
             // setState(() {
             //   currentValue = value!;
             // });
             BlocProvider.of<TimeDropDownBloc>(
               context,
-              // listen: false,
             ).dropDownValue = value!;
             BlocProvider.of<TimeDropDownBloc>(context)
                 .add(SelectDropDownValueEvent());
 
-            CL.logSuccess("new time slot added");
+            switch (widget.day) {
+              case "Mon":
+                calentreEventBloc.days.monday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+              case "Tue":
+                calentreEventBloc.days.tuesday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+              case "Wed":
+                calentreEventBloc.days.wednesday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+              case "Thur":
+                calentreEventBloc.days.thursday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+              case "Sat":
+                calentreEventBloc.days.saturday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+              case "Sun":
+                calentreEventBloc.days.sunday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+              case "Fri":
+                calentreEventBloc.days.friday!.add(CalTimeSlot(
+                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? value
+                      : null,
+                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
+                      ? value
+                      : null,
+                ));
+                break;
+            }
+
+            CL.logSuccess(
+                "${widget.day} : Start ${widget.timeSlotBoundary == TimeSlotBoundary.start ? value : null}, End : ${widget.timeSlotBoundary == TimeSlotBoundary.end ? value : null}");
           },
           items: list.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

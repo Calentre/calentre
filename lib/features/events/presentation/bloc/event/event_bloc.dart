@@ -12,7 +12,15 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? eventType;
   String? amount;
   String? isMultiple;
-  Days? days;
+  CalDays days = CalDays(
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: [],
+    sunday: [],
+  );
 
   CalentreEventBloc() : super(CalentreEventInitialState()) {
     on<ProceedToSetAvailabilityEvent>(onClickDropDownItem);
@@ -23,4 +31,34 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     //infuse all the class variables into CalentreEvent to create an update state
     emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
   }
+}
+
+class CalDays {
+  List<CalTimeSlot>? monday;
+  List<CalTimeSlot>? tuesday;
+  List<CalTimeSlot>? wednesday;
+  List<CalTimeSlot>? thursday;
+  List<CalTimeSlot>? friday;
+  List<CalTimeSlot>? saturday;
+  List<CalTimeSlot>? sunday;
+
+  CalDays({
+    this.monday,
+    this.tuesday,
+    this.wednesday,
+    this.thursday,
+    this.friday,
+    this.saturday,
+    this.sunday,
+  });
+}
+
+class CalTimeSlot {
+  String? start;
+  String? end;
+
+  CalTimeSlot({
+    this.start,
+    this.end,
+  });
 }

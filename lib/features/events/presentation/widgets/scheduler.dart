@@ -1,3 +1,4 @@
+import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
@@ -97,15 +98,19 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? const TimeDropDown()
+                            ? TimeDropDown(
+                                day: day,
+                                timeSlotBoundary: TimeSlotBoundary.start)
                             : const Center(child: Text("Busy ")),
                         ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
                             ).listLength,
-                            (index) => const Padding(
-                                  padding: EdgeInsets.only(top: 8.0),
-                                  child: TimeDropDown(),
+                            (index) => Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: TimeDropDown(
+                                      day: day,
+                                      timeSlotBoundary: TimeSlotBoundary.start),
                                 ))
                       ],
                     ))
@@ -145,16 +150,21 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? const TimeDropDown()
+                            ? TimeDropDown(
+                                day: day,
+                                timeSlotBoundary: TimeSlotBoundary.end,
+                              )
                             : const Center(child: Text("Busy")),
                         // ... extraTimeFieldList.map((e) => const TimeDropDown()),
                         ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
                             ).listLength,
-                            (index) => const Padding(
-                                  padding: EdgeInsets.only(top: 8.0),
-                                  child: TimeDropDown(),
+                            (index) => Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: TimeDropDown(
+                                      day: day,
+                                      timeSlotBoundary: TimeSlotBoundary.end),
                                 ))
                       ],
                     ))
