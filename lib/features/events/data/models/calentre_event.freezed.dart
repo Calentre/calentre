@@ -28,7 +28,7 @@ mixin _$CalentreEvent {
   String? get eventType => throw _privateConstructorUsedError;
   String? get amount => throw _privateConstructorUsedError;
   String? get isMultiple => throw _privateConstructorUsedError;
-  List<Day>? get days => throw _privateConstructorUsedError;
+  Days? get days => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +51,9 @@ abstract class $CalentreEventCopyWith<$Res> {
       String? eventType,
       String? amount,
       String? isMultiple,
-      List<Day>? days});
+      Days? days});
+
+  $DaysCopyWith<$Res>? get days;
 }
 
 /// @nodoc
@@ -113,8 +115,20 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
       days: freezed == days
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
-              as List<Day>?,
+              as Days?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DaysCopyWith<$Res>? get days {
+    if (_value.days == null) {
+      return null;
+    }
+
+    return $DaysCopyWith<$Res>(_value.days!, (value) {
+      return _then(_value.copyWith(days: value) as $Val);
+    });
   }
 }
 
@@ -135,7 +149,10 @@ abstract class _$$_CalentreEventCopyWith<$Res>
       String? eventType,
       String? amount,
       String? isMultiple,
-      List<Day>? days});
+      Days? days});
+
+  @override
+  $DaysCopyWith<$Res>? get days;
 }
 
 /// @nodoc
@@ -193,9 +210,9 @@ class __$$_CalentreEventCopyWithImpl<$Res>
           : isMultiple // ignore: cast_nullable_to_non_nullable
               as String?,
       days: freezed == days
-          ? _value._days
+          ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
-              as List<Day>?,
+              as Days?,
     ));
   }
 }
@@ -212,8 +229,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
       this.eventType,
       this.amount,
       this.isMultiple,
-      final List<Day>? days})
-      : _days = days;
+      this.days});
 
   factory _$_CalentreEvent.fromJson(Map<String, dynamic> json) =>
       _$$_CalentreEventFromJson(json);
@@ -234,15 +250,8 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   final String? amount;
   @override
   final String? isMultiple;
-  final List<Day>? _days;
   @override
-  List<Day>? get days {
-    final value = _days;
-    if (value == null) return null;
-    if (_days is EqualUnmodifiableListView) return _days;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final Days? days;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -285,22 +294,13 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.isMultiple, isMultiple) ||
                 other.isMultiple == isMultiple) &&
-            const DeepCollectionEquality().equals(other._days, _days));
+            (identical(other.days, days) || other.days == days));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      eventName,
-      eventDescription,
-      videoCallType,
-      duration,
-      eventLink,
-      eventType,
-      amount,
-      isMultiple,
-      const DeepCollectionEquality().hash(_days));
+  int get hashCode => Object.hash(runtimeType, eventName, eventDescription,
+      videoCallType, duration, eventLink, eventType, amount, isMultiple, days);
 
   @JsonKey(ignore: true)
   @override
@@ -326,7 +326,7 @@ abstract class _CalentreEvent implements CalentreEvent {
       final String? eventType,
       final String? amount,
       final String? isMultiple,
-      final List<Day>? days}) = _$_CalentreEvent;
+      final Days? days}) = _$_CalentreEvent;
 
   factory _CalentreEvent.fromJson(Map<String, dynamic> json) =
       _$_CalentreEvent.fromJson;
@@ -348,19 +348,19 @@ abstract class _CalentreEvent implements CalentreEvent {
   @override
   String? get isMultiple;
   @override
-  List<Day>? get days;
+  Days? get days;
   @override
   @JsonKey(ignore: true)
   _$$_CalentreEventCopyWith<_$_CalentreEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Day _$DayFromJson(Map<String, dynamic> json) {
-  return _Day.fromJson(json);
+Days _$DaysFromJson(Map<String, dynamic> json) {
+  return _Days.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Day {
+mixin _$Days {
   List<TimeSlot>? get monday => throw _privateConstructorUsedError;
   List<TimeSlot>? get tuesday => throw _privateConstructorUsedError;
   List<TimeSlot>? get wednesday => throw _privateConstructorUsedError;
@@ -371,13 +371,13 @@ mixin _$Day {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DayCopyWith<Day> get copyWith => throw _privateConstructorUsedError;
+  $DaysCopyWith<Days> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DayCopyWith<$Res> {
-  factory $DayCopyWith(Day value, $Res Function(Day) then) =
-      _$DayCopyWithImpl<$Res, Day>;
+abstract class $DaysCopyWith<$Res> {
+  factory $DaysCopyWith(Days value, $Res Function(Days) then) =
+      _$DaysCopyWithImpl<$Res, Days>;
   @useResult
   $Res call(
       {List<TimeSlot>? monday,
@@ -390,8 +390,9 @@ abstract class $DayCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
-  _$DayCopyWithImpl(this._value, this._then);
+class _$DaysCopyWithImpl<$Res, $Val extends Days>
+    implements $DaysCopyWith<$Res> {
+  _$DaysCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -443,9 +444,9 @@ class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_DayCopyWith<$Res> implements $DayCopyWith<$Res> {
-  factory _$$_DayCopyWith(_$_Day value, $Res Function(_$_Day) then) =
-      __$$_DayCopyWithImpl<$Res>;
+abstract class _$$_DaysCopyWith<$Res> implements $DaysCopyWith<$Res> {
+  factory _$$_DaysCopyWith(_$_Days value, $Res Function(_$_Days) then) =
+      __$$_DaysCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -459,9 +460,9 @@ abstract class _$$_DayCopyWith<$Res> implements $DayCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$_Day>
-    implements _$$_DayCopyWith<$Res> {
-  __$$_DayCopyWithImpl(_$_Day _value, $Res Function(_$_Day) _then)
+class __$$_DaysCopyWithImpl<$Res> extends _$DaysCopyWithImpl<$Res, _$_Days>
+    implements _$$_DaysCopyWith<$Res> {
+  __$$_DaysCopyWithImpl(_$_Days _value, $Res Function(_$_Days) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -475,7 +476,7 @@ class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$_Day>
     Object? saturday = freezed,
     Object? sunday = freezed,
   }) {
-    return _then(_$_Day(
+    return _then(_$_Days(
       monday: freezed == monday
           ? _value._monday
           : monday // ignore: cast_nullable_to_non_nullable
@@ -510,8 +511,8 @@ class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$_Day>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Day with DiagnosticableTreeMixin implements _Day {
-  const _$_Day(
+class _$_Days with DiagnosticableTreeMixin implements _Days {
+  const _$_Days(
       {final List<TimeSlot>? monday,
       final List<TimeSlot>? tuesday,
       final List<TimeSlot>? wednesday,
@@ -527,7 +528,7 @@ class _$_Day with DiagnosticableTreeMixin implements _Day {
         _saturday = saturday,
         _sunday = sunday;
 
-  factory _$_Day.fromJson(Map<String, dynamic> json) => _$$_DayFromJson(json);
+  factory _$_Days.fromJson(Map<String, dynamic> json) => _$$_DaysFromJson(json);
 
   final List<TimeSlot>? _monday;
   @override
@@ -601,14 +602,14 @@ class _$_Day with DiagnosticableTreeMixin implements _Day {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Day(monday: $monday, tuesday: $tuesday, wednesday: $wednesday, thursday: $thursday, friday: $friday, saturday: $saturday, sunday: $sunday)';
+    return 'Days(monday: $monday, tuesday: $tuesday, wednesday: $wednesday, thursday: $thursday, friday: $friday, saturday: $saturday, sunday: $sunday)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Day'))
+      ..add(DiagnosticsProperty('type', 'Days'))
       ..add(DiagnosticsProperty('monday', monday))
       ..add(DiagnosticsProperty('tuesday', tuesday))
       ..add(DiagnosticsProperty('wednesday', wednesday))
@@ -622,7 +623,7 @@ class _$_Day with DiagnosticableTreeMixin implements _Day {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Day &&
+            other is _$_Days &&
             const DeepCollectionEquality().equals(other._monday, _monday) &&
             const DeepCollectionEquality().equals(other._tuesday, _tuesday) &&
             const DeepCollectionEquality()
@@ -648,28 +649,28 @@ class _$_Day with DiagnosticableTreeMixin implements _Day {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DayCopyWith<_$_Day> get copyWith =>
-      __$$_DayCopyWithImpl<_$_Day>(this, _$identity);
+  _$$_DaysCopyWith<_$_Days> get copyWith =>
+      __$$_DaysCopyWithImpl<_$_Days>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DayToJson(
+    return _$$_DaysToJson(
       this,
     );
   }
 }
 
-abstract class _Day implements Day {
-  const factory _Day(
+abstract class _Days implements Days {
+  const factory _Days(
       {final List<TimeSlot>? monday,
       final List<TimeSlot>? tuesday,
       final List<TimeSlot>? wednesday,
       final List<TimeSlot>? thursday,
       final List<TimeSlot>? friday,
       final List<TimeSlot>? saturday,
-      final List<TimeSlot>? sunday}) = _$_Day;
+      final List<TimeSlot>? sunday}) = _$_Days;
 
-  factory _Day.fromJson(Map<String, dynamic> json) = _$_Day.fromJson;
+  factory _Days.fromJson(Map<String, dynamic> json) = _$_Days.fromJson;
 
   @override
   List<TimeSlot>? get monday;
@@ -687,7 +688,7 @@ abstract class _Day implements Day {
   List<TimeSlot>? get sunday;
   @override
   @JsonKey(ignore: true)
-  _$$_DayCopyWith<_$_Day> get copyWith => throw _privateConstructorUsedError;
+  _$$_DaysCopyWith<_$_Days> get copyWith => throw _privateConstructorUsedError;
 }
 
 TimeSlot _$TimeSlotFromJson(Map<String, dynamic> json) {

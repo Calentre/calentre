@@ -16,9 +16,9 @@ _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
       eventType: json['eventType'] as String?,
       amount: json['amount'] as String?,
       isMultiple: json['isMultiple'] as String?,
-      days: (json['days'] as List<dynamic>?)
-          ?.map((e) => Day.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      days: json['days'] == null
+          ? null
+          : Days.fromJson(json['days'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
@@ -34,7 +34,7 @@ Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
       'days': instance.days,
     };
 
-_$_Day _$$_DayFromJson(Map<String, dynamic> json) => _$_Day(
+_$_Days _$$_DaysFromJson(Map<String, dynamic> json) => _$_Days(
       monday: (json['monday'] as List<dynamic>?)
           ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -58,7 +58,7 @@ _$_Day _$$_DayFromJson(Map<String, dynamic> json) => _$_Day(
           .toList(),
     );
 
-Map<String, dynamic> _$$_DayToJson(_$_Day instance) => <String, dynamic>{
+Map<String, dynamic> _$$_DaysToJson(_$_Days instance) => <String, dynamic>{
       'monday': instance.monday,
       'tuesday': instance.tuesday,
       'wednesday': instance.wednesday,
