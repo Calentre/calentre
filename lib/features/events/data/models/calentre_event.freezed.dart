@@ -20,15 +20,15 @@ CalentreEvent _$CalentreEventFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CalentreEvent {
-  String get eventName => throw _privateConstructorUsedError;
-  String get eventDescription => throw _privateConstructorUsedError;
-  String get videoCallType => throw _privateConstructorUsedError;
-  String get duration => throw _privateConstructorUsedError;
-  String get eventLink => throw _privateConstructorUsedError;
-  String get eventType => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
-  String get isMultiple => throw _privateConstructorUsedError;
-  List<Availability> get availability => throw _privateConstructorUsedError;
+  String? get eventName => throw _privateConstructorUsedError;
+  String? get eventDescription => throw _privateConstructorUsedError;
+  String? get videoCallType => throw _privateConstructorUsedError;
+  String? get duration => throw _privateConstructorUsedError;
+  String? get eventLink => throw _privateConstructorUsedError;
+  String? get eventType => throw _privateConstructorUsedError;
+  String? get amount => throw _privateConstructorUsedError;
+  String? get isMultiple => throw _privateConstructorUsedError;
+  List<Availability>? get availability => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,15 +43,15 @@ abstract class $CalentreEventCopyWith<$Res> {
       _$CalentreEventCopyWithImpl<$Res, CalentreEvent>;
   @useResult
   $Res call(
-      {String eventName,
-      String eventDescription,
-      String videoCallType,
-      String duration,
-      String eventLink,
-      String eventType,
-      String amount,
-      String isMultiple,
-      List<Availability> availability});
+      {String? eventName,
+      String? eventDescription,
+      String? videoCallType,
+      String? duration,
+      String? eventLink,
+      String? eventType,
+      String? amount,
+      String? isMultiple,
+      List<Availability>? availability});
 }
 
 /// @nodoc
@@ -67,53 +67,53 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventName = null,
-    Object? eventDescription = null,
-    Object? videoCallType = null,
-    Object? duration = null,
-    Object? eventLink = null,
-    Object? eventType = null,
-    Object? amount = null,
-    Object? isMultiple = null,
-    Object? availability = null,
+    Object? eventName = freezed,
+    Object? eventDescription = freezed,
+    Object? videoCallType = freezed,
+    Object? duration = freezed,
+    Object? eventLink = freezed,
+    Object? eventType = freezed,
+    Object? amount = freezed,
+    Object? isMultiple = freezed,
+    Object? availability = freezed,
   }) {
     return _then(_value.copyWith(
-      eventName: null == eventName
+      eventName: freezed == eventName
           ? _value.eventName
           : eventName // ignore: cast_nullable_to_non_nullable
-              as String,
-      eventDescription: null == eventDescription
+              as String?,
+      eventDescription: freezed == eventDescription
           ? _value.eventDescription
           : eventDescription // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoCallType: null == videoCallType
+              as String?,
+      videoCallType: freezed == videoCallType
           ? _value.videoCallType
           : videoCallType // ignore: cast_nullable_to_non_nullable
-              as String,
-      duration: null == duration
+              as String?,
+      duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
-      eventLink: null == eventLink
+              as String?,
+      eventLink: freezed == eventLink
           ? _value.eventLink
           : eventLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      eventType: null == eventType
+              as String?,
+      eventType: freezed == eventType
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
+              as String?,
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      isMultiple: null == isMultiple
+              as String?,
+      isMultiple: freezed == isMultiple
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
-              as String,
-      availability: null == availability
+              as String?,
+      availability: freezed == availability
           ? _value.availability
           : availability // ignore: cast_nullable_to_non_nullable
-              as List<Availability>,
+              as List<Availability>?,
     ) as $Val);
   }
 }
@@ -127,15 +127,15 @@ abstract class _$$_CalentreEventCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String eventName,
-      String eventDescription,
-      String videoCallType,
-      String duration,
-      String eventLink,
-      String eventType,
-      String amount,
-      String isMultiple,
-      List<Availability> availability});
+      {String? eventName,
+      String? eventDescription,
+      String? videoCallType,
+      String? duration,
+      String? eventLink,
+      String? eventType,
+      String? amount,
+      String? isMultiple,
+      List<Availability>? availability});
 }
 
 /// @nodoc
@@ -149,53 +149,53 @@ class __$$_CalentreEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventName = null,
-    Object? eventDescription = null,
-    Object? videoCallType = null,
-    Object? duration = null,
-    Object? eventLink = null,
-    Object? eventType = null,
-    Object? amount = null,
-    Object? isMultiple = null,
-    Object? availability = null,
+    Object? eventName = freezed,
+    Object? eventDescription = freezed,
+    Object? videoCallType = freezed,
+    Object? duration = freezed,
+    Object? eventLink = freezed,
+    Object? eventType = freezed,
+    Object? amount = freezed,
+    Object? isMultiple = freezed,
+    Object? availability = freezed,
   }) {
     return _then(_$_CalentreEvent(
-      eventName: null == eventName
+      eventName: freezed == eventName
           ? _value.eventName
           : eventName // ignore: cast_nullable_to_non_nullable
-              as String,
-      eventDescription: null == eventDescription
+              as String?,
+      eventDescription: freezed == eventDescription
           ? _value.eventDescription
           : eventDescription // ignore: cast_nullable_to_non_nullable
-              as String,
-      videoCallType: null == videoCallType
+              as String?,
+      videoCallType: freezed == videoCallType
           ? _value.videoCallType
           : videoCallType // ignore: cast_nullable_to_non_nullable
-              as String,
-      duration: null == duration
+              as String?,
+      duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String,
-      eventLink: null == eventLink
+              as String?,
+      eventLink: freezed == eventLink
           ? _value.eventLink
           : eventLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      eventType: null == eventType
+              as String?,
+      eventType: freezed == eventType
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
+              as String?,
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
-      isMultiple: null == isMultiple
+              as String?,
+      isMultiple: freezed == isMultiple
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
-              as String,
-      availability: null == availability
+              as String?,
+      availability: freezed == availability
           ? _value._availability
           : availability // ignore: cast_nullable_to_non_nullable
-              as List<Availability>,
+              as List<Availability>?,
     ));
   }
 }
@@ -204,42 +204,44 @@ class __$$_CalentreEventCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   const _$_CalentreEvent(
-      {required this.eventName,
-      required this.eventDescription,
-      required this.videoCallType,
-      required this.duration,
-      required this.eventLink,
-      required this.eventType,
-      required this.amount,
-      required this.isMultiple,
-      required final List<Availability> availability})
+      {this.eventName,
+      this.eventDescription,
+      this.videoCallType,
+      this.duration,
+      this.eventLink,
+      this.eventType,
+      this.amount,
+      this.isMultiple,
+      final List<Availability>? availability})
       : _availability = availability;
 
   factory _$_CalentreEvent.fromJson(Map<String, dynamic> json) =>
       _$$_CalentreEventFromJson(json);
 
   @override
-  final String eventName;
+  final String? eventName;
   @override
-  final String eventDescription;
+  final String? eventDescription;
   @override
-  final String videoCallType;
+  final String? videoCallType;
   @override
-  final String duration;
+  final String? duration;
   @override
-  final String eventLink;
+  final String? eventLink;
   @override
-  final String eventType;
+  final String? eventType;
   @override
-  final String amount;
+  final String? amount;
   @override
-  final String isMultiple;
-  final List<Availability> _availability;
+  final String? isMultiple;
+  final List<Availability>? _availability;
   @override
-  List<Availability> get availability {
+  List<Availability>? get availability {
+    final value = _availability;
+    if (value == null) return null;
     if (_availability is EqualUnmodifiableListView) return _availability;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_availability);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -317,37 +319,37 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
 
 abstract class _CalentreEvent implements CalentreEvent {
   const factory _CalentreEvent(
-      {required final String eventName,
-      required final String eventDescription,
-      required final String videoCallType,
-      required final String duration,
-      required final String eventLink,
-      required final String eventType,
-      required final String amount,
-      required final String isMultiple,
-      required final List<Availability> availability}) = _$_CalentreEvent;
+      {final String? eventName,
+      final String? eventDescription,
+      final String? videoCallType,
+      final String? duration,
+      final String? eventLink,
+      final String? eventType,
+      final String? amount,
+      final String? isMultiple,
+      final List<Availability>? availability}) = _$_CalentreEvent;
 
   factory _CalentreEvent.fromJson(Map<String, dynamic> json) =
       _$_CalentreEvent.fromJson;
 
   @override
-  String get eventName;
+  String? get eventName;
   @override
-  String get eventDescription;
+  String? get eventDescription;
   @override
-  String get videoCallType;
+  String? get videoCallType;
   @override
-  String get duration;
+  String? get duration;
   @override
-  String get eventLink;
+  String? get eventLink;
   @override
-  String get eventType;
+  String? get eventType;
   @override
-  String get amount;
+  String? get amount;
   @override
-  String get isMultiple;
+  String? get isMultiple;
   @override
-  List<Availability> get availability;
+  List<Availability>? get availability;
   @override
   @JsonKey(ignore: true)
   _$$_CalentreEventCopyWith<_$_CalentreEvent> get copyWith =>
@@ -360,13 +362,13 @@ Availability _$AvailabilityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Availability {
-  List<Day> get monday => throw _privateConstructorUsedError;
-  List<Day> get tuesday => throw _privateConstructorUsedError;
-  List<Day> get wednesday => throw _privateConstructorUsedError;
-  List<Day> get thursday => throw _privateConstructorUsedError;
-  List<Day> get friday => throw _privateConstructorUsedError;
-  List<Day> get saturday => throw _privateConstructorUsedError;
-  List<Day> get sunday => throw _privateConstructorUsedError;
+  List<Day>? get monday => throw _privateConstructorUsedError;
+  List<Day>? get tuesday => throw _privateConstructorUsedError;
+  List<Day>? get wednesday => throw _privateConstructorUsedError;
+  List<Day>? get thursday => throw _privateConstructorUsedError;
+  List<Day>? get friday => throw _privateConstructorUsedError;
+  List<Day>? get saturday => throw _privateConstructorUsedError;
+  List<Day>? get sunday => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -381,13 +383,13 @@ abstract class $AvailabilityCopyWith<$Res> {
       _$AvailabilityCopyWithImpl<$Res, Availability>;
   @useResult
   $Res call(
-      {List<Day> monday,
-      List<Day> tuesday,
-      List<Day> wednesday,
-      List<Day> thursday,
-      List<Day> friday,
-      List<Day> saturday,
-      List<Day> sunday});
+      {List<Day>? monday,
+      List<Day>? tuesday,
+      List<Day>? wednesday,
+      List<Day>? thursday,
+      List<Day>? friday,
+      List<Day>? saturday,
+      List<Day>? sunday});
 }
 
 /// @nodoc
@@ -403,43 +405,43 @@ class _$AvailabilityCopyWithImpl<$Res, $Val extends Availability>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? monday = null,
-    Object? tuesday = null,
-    Object? wednesday = null,
-    Object? thursday = null,
-    Object? friday = null,
-    Object? saturday = null,
-    Object? sunday = null,
+    Object? monday = freezed,
+    Object? tuesday = freezed,
+    Object? wednesday = freezed,
+    Object? thursday = freezed,
+    Object? friday = freezed,
+    Object? saturday = freezed,
+    Object? sunday = freezed,
   }) {
     return _then(_value.copyWith(
-      monday: null == monday
+      monday: freezed == monday
           ? _value.monday
           : monday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      tuesday: null == tuesday
+              as List<Day>?,
+      tuesday: freezed == tuesday
           ? _value.tuesday
           : tuesday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      wednesday: null == wednesday
+              as List<Day>?,
+      wednesday: freezed == wednesday
           ? _value.wednesday
           : wednesday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      thursday: null == thursday
+              as List<Day>?,
+      thursday: freezed == thursday
           ? _value.thursday
           : thursday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      friday: null == friday
+              as List<Day>?,
+      friday: freezed == friday
           ? _value.friday
           : friday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      saturday: null == saturday
+              as List<Day>?,
+      saturday: freezed == saturday
           ? _value.saturday
           : saturday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      sunday: null == sunday
+              as List<Day>?,
+      sunday: freezed == sunday
           ? _value.sunday
           : sunday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
+              as List<Day>?,
     ) as $Val);
   }
 }
@@ -453,13 +455,13 @@ abstract class _$$_AvailabilityCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Day> monday,
-      List<Day> tuesday,
-      List<Day> wednesday,
-      List<Day> thursday,
-      List<Day> friday,
-      List<Day> saturday,
-      List<Day> sunday});
+      {List<Day>? monday,
+      List<Day>? tuesday,
+      List<Day>? wednesday,
+      List<Day>? thursday,
+      List<Day>? friday,
+      List<Day>? saturday,
+      List<Day>? sunday});
 }
 
 /// @nodoc
@@ -473,43 +475,43 @@ class __$$_AvailabilityCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? monday = null,
-    Object? tuesday = null,
-    Object? wednesday = null,
-    Object? thursday = null,
-    Object? friday = null,
-    Object? saturday = null,
-    Object? sunday = null,
+    Object? monday = freezed,
+    Object? tuesday = freezed,
+    Object? wednesday = freezed,
+    Object? thursday = freezed,
+    Object? friday = freezed,
+    Object? saturday = freezed,
+    Object? sunday = freezed,
   }) {
     return _then(_$_Availability(
-      monday: null == monday
+      monday: freezed == monday
           ? _value._monday
           : monday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      tuesday: null == tuesday
+              as List<Day>?,
+      tuesday: freezed == tuesday
           ? _value._tuesday
           : tuesday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      wednesday: null == wednesday
+              as List<Day>?,
+      wednesday: freezed == wednesday
           ? _value._wednesday
           : wednesday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      thursday: null == thursday
+              as List<Day>?,
+      thursday: freezed == thursday
           ? _value._thursday
           : thursday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      friday: null == friday
+              as List<Day>?,
+      friday: freezed == friday
           ? _value._friday
           : friday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      saturday: null == saturday
+              as List<Day>?,
+      saturday: freezed == saturday
           ? _value._saturday
           : saturday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
-      sunday: null == sunday
+              as List<Day>?,
+      sunday: freezed == sunday
           ? _value._sunday
           : sunday // ignore: cast_nullable_to_non_nullable
-              as List<Day>,
+              as List<Day>?,
     ));
   }
 }
@@ -518,13 +520,13 @@ class __$$_AvailabilityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Availability with DiagnosticableTreeMixin implements _Availability {
   const _$_Availability(
-      {required final List<Day> monday,
-      required final List<Day> tuesday,
-      required final List<Day> wednesday,
-      required final List<Day> thursday,
-      required final List<Day> friday,
-      required final List<Day> saturday,
-      required final List<Day> sunday})
+      {final List<Day>? monday,
+      final List<Day>? tuesday,
+      final List<Day>? wednesday,
+      final List<Day>? thursday,
+      final List<Day>? friday,
+      final List<Day>? saturday,
+      final List<Day>? sunday})
       : _monday = monday,
         _tuesday = tuesday,
         _wednesday = wednesday,
@@ -536,60 +538,74 @@ class _$_Availability with DiagnosticableTreeMixin implements _Availability {
   factory _$_Availability.fromJson(Map<String, dynamic> json) =>
       _$$_AvailabilityFromJson(json);
 
-  final List<Day> _monday;
+  final List<Day>? _monday;
   @override
-  List<Day> get monday {
+  List<Day>? get monday {
+    final value = _monday;
+    if (value == null) return null;
     if (_monday is EqualUnmodifiableListView) return _monday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_monday);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Day> _tuesday;
+  final List<Day>? _tuesday;
   @override
-  List<Day> get tuesday {
+  List<Day>? get tuesday {
+    final value = _tuesday;
+    if (value == null) return null;
     if (_tuesday is EqualUnmodifiableListView) return _tuesday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tuesday);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Day> _wednesday;
+  final List<Day>? _wednesday;
   @override
-  List<Day> get wednesday {
+  List<Day>? get wednesday {
+    final value = _wednesday;
+    if (value == null) return null;
     if (_wednesday is EqualUnmodifiableListView) return _wednesday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_wednesday);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Day> _thursday;
+  final List<Day>? _thursday;
   @override
-  List<Day> get thursday {
+  List<Day>? get thursday {
+    final value = _thursday;
+    if (value == null) return null;
     if (_thursday is EqualUnmodifiableListView) return _thursday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_thursday);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Day> _friday;
+  final List<Day>? _friday;
   @override
-  List<Day> get friday {
+  List<Day>? get friday {
+    final value = _friday;
+    if (value == null) return null;
     if (_friday is EqualUnmodifiableListView) return _friday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_friday);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Day> _saturday;
+  final List<Day>? _saturday;
   @override
-  List<Day> get saturday {
+  List<Day>? get saturday {
+    final value = _saturday;
+    if (value == null) return null;
     if (_saturday is EqualUnmodifiableListView) return _saturday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_saturday);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Day> _sunday;
+  final List<Day>? _sunday;
   @override
-  List<Day> get sunday {
+  List<Day>? get sunday {
+    final value = _sunday;
+    if (value == null) return null;
     if (_sunday is EqualUnmodifiableListView) return _sunday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_sunday);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -654,31 +670,31 @@ class _$_Availability with DiagnosticableTreeMixin implements _Availability {
 
 abstract class _Availability implements Availability {
   const factory _Availability(
-      {required final List<Day> monday,
-      required final List<Day> tuesday,
-      required final List<Day> wednesday,
-      required final List<Day> thursday,
-      required final List<Day> friday,
-      required final List<Day> saturday,
-      required final List<Day> sunday}) = _$_Availability;
+      {final List<Day>? monday,
+      final List<Day>? tuesday,
+      final List<Day>? wednesday,
+      final List<Day>? thursday,
+      final List<Day>? friday,
+      final List<Day>? saturday,
+      final List<Day>? sunday}) = _$_Availability;
 
   factory _Availability.fromJson(Map<String, dynamic> json) =
       _$_Availability.fromJson;
 
   @override
-  List<Day> get monday;
+  List<Day>? get monday;
   @override
-  List<Day> get tuesday;
+  List<Day>? get tuesday;
   @override
-  List<Day> get wednesday;
+  List<Day>? get wednesday;
   @override
-  List<Day> get thursday;
+  List<Day>? get thursday;
   @override
-  List<Day> get friday;
+  List<Day>? get friday;
   @override
-  List<Day> get saturday;
+  List<Day>? get saturday;
   @override
-  List<Day> get sunday;
+  List<Day>? get sunday;
   @override
   @JsonKey(ignore: true)
   _$$_AvailabilityCopyWith<_$_Availability> get copyWith =>
@@ -691,8 +707,8 @@ Day _$DayFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Day {
-  String get start => throw _privateConstructorUsedError;
-  String get end => throw _privateConstructorUsedError;
+  String? get start => throw _privateConstructorUsedError;
+  String? get end => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -704,7 +720,7 @@ abstract class $DayCopyWith<$Res> {
   factory $DayCopyWith(Day value, $Res Function(Day) then) =
       _$DayCopyWithImpl<$Res, Day>;
   @useResult
-  $Res call({String start, String end});
+  $Res call({String? start, String? end});
 }
 
 /// @nodoc
@@ -719,18 +735,18 @@ class _$DayCopyWithImpl<$Res, $Val extends Day> implements $DayCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = null,
-    Object? end = null,
+    Object? start = freezed,
+    Object? end = freezed,
   }) {
     return _then(_value.copyWith(
-      start: null == start
+      start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
-              as String,
-      end: null == end
+              as String?,
+      end: freezed == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -741,7 +757,7 @@ abstract class _$$_DayCopyWith<$Res> implements $DayCopyWith<$Res> {
       __$$_DayCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String start, String end});
+  $Res call({String? start, String? end});
 }
 
 /// @nodoc
@@ -753,18 +769,18 @@ class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$_Day>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = null,
-    Object? end = null,
+    Object? start = freezed,
+    Object? end = freezed,
   }) {
     return _then(_$_Day(
-      start: null == start
+      start: freezed == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
-              as String,
-      end: null == end
+              as String?,
+      end: freezed == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -772,14 +788,14 @@ class __$$_DayCopyWithImpl<$Res> extends _$DayCopyWithImpl<$Res, _$_Day>
 /// @nodoc
 @JsonSerializable()
 class _$_Day with DiagnosticableTreeMixin implements _Day {
-  const _$_Day({required this.start, required this.end});
+  const _$_Day({this.start, this.end});
 
   factory _$_Day.fromJson(Map<String, dynamic> json) => _$$_DayFromJson(json);
 
   @override
-  final String start;
+  final String? start;
   @override
-  final String end;
+  final String? end;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -823,15 +839,14 @@ class _$_Day with DiagnosticableTreeMixin implements _Day {
 }
 
 abstract class _Day implements Day {
-  const factory _Day({required final String start, required final String end}) =
-      _$_Day;
+  const factory _Day({final String? start, final String? end}) = _$_Day;
 
   factory _Day.fromJson(Map<String, dynamic> json) = _$_Day.fromJson;
 
   @override
-  String get start;
+  String? get start;
   @override
-  String get end;
+  String? get end;
   @override
   @JsonKey(ignore: true)
   _$$_DayCopyWith<_$_Day> get copyWith => throw _privateConstructorUsedError;

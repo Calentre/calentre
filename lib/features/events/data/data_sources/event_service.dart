@@ -30,6 +30,7 @@ class EventService implements EventMixin {
     });
 
     CL.logSuccess('Event created $res');
+    return true;
   }
 
   @override

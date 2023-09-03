@@ -11,15 +11,15 @@ part 'calentre_event.g.dart';
 @freezed
 class CalentreEvent with _$CalentreEvent {
   const factory CalentreEvent({
-    required String eventName,
-    required String eventDescription,
-    required String videoCallType,
-    required String duration,
-    required String eventLink,
-    required String eventType,
-    required String amount,
-    required String isMultiple,
-    required List<Availability> availability,
+    String? eventName,
+    String? eventDescription,
+    String? videoCallType,
+    String? duration,
+    String? eventLink,
+    String? eventType,
+    String? amount,
+    String? isMultiple,
+    List<Availability>? availability,
   }) = _CalentreEvent;
 
   factory CalentreEvent.fromJson(Map<String, dynamic> json) =>
@@ -29,13 +29,13 @@ class CalentreEvent with _$CalentreEvent {
 @freezed
 class Availability with _$Availability {
   const factory Availability({
-    required List<Day> monday,
-    required List<Day> tuesday,
-    required List<Day> wednesday,
-    required List<Day> thursday,
-    required List<Day> friday,
-    required List<Day> saturday,
-    required List<Day> sunday,
+    List<Day>? monday,
+    List<Day>? tuesday,
+    List<Day>? wednesday,
+    List<Day>? thursday,
+    List<Day>? friday,
+    List<Day>? saturday,
+    List<Day>? sunday,
   }) = _Availability;
 
   factory Availability.fromJson(Map<String, dynamic> json) =>
@@ -45,8 +45,8 @@ class Availability with _$Availability {
 @freezed
 class Day with _$Day {
   const factory Day({
-    required String start,
-    required String end,
+    String? start,
+    String? end,
   }) = _Day;
 
   factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);

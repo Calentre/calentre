@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:calentre/core/resources.dart';
 import 'package:calentre/features/auth/data/data_sources/auth_service.dart';
 import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
@@ -26,10 +28,13 @@ class AuthRepositoryImpl implements AuthRepository {
       }
     } on Exception catch (e) {
       if (e is AuthException) {
-        response = DataFailure(const AuthException(
-            "Unable to sign this user in : CODE 2",
-            statusCode: '500'));
+        response = DataFailure(Exception(
+          "Unable to sign this user in : CODE 2",
+        ));
         return response;
+      } else if (e is SocketException) {
+        response =
+            DataFailure(Exception("Something was wrong with your internet"));
       }
       response = DataFailure(e);
     }
