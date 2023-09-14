@@ -1,5 +1,4 @@
 import 'package:calentre/config/enums/time_slots.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down_bloc.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
@@ -98,14 +97,15 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
             switch (widget.day) {
               case "Mon":
-                calentreEventBloc.days.monday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday!.add(CalTimeSlot(
+                    start: value,
+                  ));
+                } else {
+                  calentreEventBloc.days.monday!.add(CalTimeSlot(
+                    end: value,
+                  ));
+                }
                 break;
               case "Tue":
                 calentreEventBloc.days.tuesday!.add(CalTimeSlot(
@@ -170,7 +170,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
             }
 
             CL.logSuccess(
-                "${widget.day} : Start ${widget.timeSlotBoundary == TimeSlotBoundary.start ? value : null}, End : ${widget.timeSlotBoundary == TimeSlotBoundary.end ? value : null}");
+                "${widget.day} : Start - ${calentreEventBloc.days.monday![0].start}, End - ${calentreEventBloc.days.monday![0].end}");
           },
           items: list.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

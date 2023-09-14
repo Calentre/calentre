@@ -34,7 +34,6 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   final eventNameController = TextEditingController();
   final descriptionController = TextEditingController();
   final meetingLinkController = TextEditingController();
-  final amountController = TextEditingController();
 
   final myController = TextEditingController();
   @override
@@ -202,7 +201,6 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                       ),
                       const SizedBox().y10(),
                       TextFormField(
-                        controller: amountController,
                         initialValue: "\$5",
                         decoration: const InputDecoration(
                           filled: true,
@@ -262,7 +260,6 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
               calentreEventBloc.isMultiple =
                   multipleBookingDropDownBloc.dropDownValue;
               calentreEventBloc.eventLink = meetingLinkController.text;
-              calentreEventBloc.amount = amountController.text;
 
               context.pushNamed(AppRoutes.setAvailabilityView);
 

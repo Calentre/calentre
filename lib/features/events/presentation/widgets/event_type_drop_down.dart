@@ -2,6 +2,7 @@ import 'package:calentre/features/events/presentation/bloc/event_type_drop_down_
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
+import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +15,7 @@ class EventTypeDropDown extends StatefulWidget {
 
 class _EventTypeDropDownState extends State<EventTypeDropDown> {
   String currentValue = "";
+
   @override
   Widget build(BuildContext context) {
     List<String> list = <String>["Free", "Paid"];
@@ -34,6 +36,7 @@ class _EventTypeDropDownState extends State<EventTypeDropDown> {
             context,
             // listen: false,
           ).dropDownValue = value!;
+          CL.log("The value is: $value");
           BlocProvider.of<EventTypeDropDownBloc>(context)
               .add(SelectDropDownValueEvent());
         },
