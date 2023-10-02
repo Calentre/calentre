@@ -13,13 +13,13 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? amount;
   String? isMultiple;
   CalDays days = CalDays(
-    monday: [],
-    tuesday: [],
-    wednesday: [],
-    thursday: [],
-    friday: [],
-    saturday: [],
-    sunday: [],
+    monday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    tuesday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    wednesday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    thursday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    friday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    saturday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    sunday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
   );
 
   CalentreEventBloc() : super(CalentreEventInitialState()) {

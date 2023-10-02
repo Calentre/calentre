@@ -97,17 +97,32 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
             switch (widget.day) {
               case "Mon":
+                var currentIndex = 0;
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday!.add(CalTimeSlot(
-                    start: value,
-                  ));
-                } else {
-                  calentreEventBloc.days.monday!.add(CalTimeSlot(
-                    end: value,
-                  ));
+                  CL.log("${calentreEventBloc.days.monday}");
+                  if (currentIndex <= calentreEventBloc.days.monday!.length) {
+                    calentreEventBloc.days.monday![currentIndex].start = value;
+                  } else {
+                    calentreEventBloc.days.monday!.insert(
+                        currentIndex,
+                        CalTimeSlot(
+                          start: value,
+                        ));
+                  }
+                } else if (widget.timeSlotBoundary == TimeSlotBoundary.end) {
+                  if (currentIndex <= calentreEventBloc.days.monday!.length) {
+                    calentreEventBloc.days.monday![currentIndex].end = value;
+                  } else {
+                    calentreEventBloc.days.monday!.insert(
+                        currentIndex,
+                        CalTimeSlot(
+                          end: value,
+                        ));
+                  }
                 }
                 break;
               case "Tue":
+                var currentIndex = 1;
                 calentreEventBloc.days.tuesday!.add(CalTimeSlot(
                   start: widget.timeSlotBoundary == TimeSlotBoundary.start
                       ? value
@@ -170,7 +185,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
             }
 
             CL.logSuccess(
-                "${widget.day} : Start - ${calentreEventBloc.days.monday![0].start}, End - ${calentreEventBloc.days.monday![0].end}");
+                "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![0].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![0].end}");
           },
           items: list.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
