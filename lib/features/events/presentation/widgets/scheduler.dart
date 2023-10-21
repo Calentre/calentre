@@ -99,8 +99,8 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? const TimeDropDown(
-                                day: {"day": "Mon", "index": 0},
+                            ? TimeDropDown(
+                                day: {"day": day, "index": 0},
                                 timeSlotBoundary: TimeSlotBoundary.start)
                             : const Center(child: Text("Busy ")),
                         ...List.generate(
@@ -151,8 +151,8 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? const TimeDropDown(
-                                day: {"day": "Mon", "index": 0},
+                            ? TimeDropDown(
+                                day: {"day": day, "index": 0},
                                 timeSlotBoundary: TimeSlotBoundary.end,
                               )
                             : const Center(child: Text("Busy")),
@@ -173,13 +173,14 @@ class AvailabilityScheduler extends StatelessWidget {
               const SizedBox().x14(),
               Column(
                 children: [
-                  actionIcons(context, index: null),
+                  actionIcons(context, index: null, day: day),
                   ...List.generate(
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).listLength, (index) {
                     return actionIcons(context,
                         index: index,
+                        day: day,
                         listLength: BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).listLength);
@@ -191,7 +192,8 @@ class AvailabilityScheduler extends StatelessWidget {
         }));
   }
 
-  Widget actionIcons(context, {required int? index, int? listLength}) {
+  Widget actionIcons(context,
+      {required int? index, int? listLength, required String day}) {
     return ((index ?? -1) >= 0 ||
             BlocProvider.of<SetAvailabilityBloc>(
                   context,
@@ -206,15 +208,63 @@ class AvailabilityScheduler extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       debugPrint("Added a new filed");
-
-                      //Add an initial TimeSlot for the new field
+                      //Signal the bloc for an event
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).add(AddExtraTimeFieldEvent());
-                      BlocProvider.of<CalentreEventBloc>(context)
-                          .days
-                          .monday!
-                          .add(CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                      //Add an initial TimeSlot for the new field
+                      switch (day) {
+                        case "Mon":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .monday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        case "Tue":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .tuesday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        case "Wed":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .wednesday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        case "Thur":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .thursday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        case "Fri":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .friday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        case "Sat":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .saturday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        case "Sun":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .sunday!
+                              .add(
+                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                          break;
+                        default:
+                      }
                     },
                     child: const FaIcon(FontAwesomeIcons.solidSquarePlus)),
                 const SizedBox().x14(),
@@ -229,10 +279,51 @@ class AvailabilityScheduler extends StatelessWidget {
                       ).add(RemoveExtraTimeFieldEvent());
 
                       //You should come back to add a caseSwitch here to know day to act on.
-                      BlocProvider.of<CalentreEventBloc>(context)
-                          .days
-                          .monday!
-                          .removeLast();
+                      switch (day) {
+                        case "Mon":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .monday!
+                              .removeLast();
+                          break;
+                        case "Tue":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .tuesday!
+                              .removeLast();
+                          break;
+                        case "Wed":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .wednesday!
+                              .removeLast();
+                          break;
+                        case "Thur":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .thursday!
+                              .removeLast();
+                          break;
+                        case "Fri":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .friday!
+                              .removeLast();
+                          break;
+                        case "Sat":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .saturday!
+                              .removeLast();
+                          break;
+                        case "Sun":
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .sunday!
+                              .removeLast();
+                          break;
+                        default:
+                      }
                     },
                     child: BlocProvider.of<SetAvailabilityBloc>(
                               context,

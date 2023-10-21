@@ -106,37 +106,59 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 }
 
                 //Print all Time slot in Monday
-                CL.logSuccess("${calentreEventBloc.days.monday![0].start}");
-                CL.logSuccess("${calentreEventBloc.days.monday![0].end}");
+                CL.logSuccess(
+                    "${widget.day} ${calentreEventBloc.days.monday![0].start}");
+                CL.logSuccess(
+                    "${widget.day} ${calentreEventBloc.days.monday![0].end}");
 
                 break;
               case "Tue":
                 var currentIndex = widget.day["index"];
 
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
+                  calentreEventBloc.days.tuesday![currentIndex].start = value;
                 } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
+                  calentreEventBloc.days.tuesday![currentIndex].end = value;
                 }
 
+                //Print all Time slot in Tuesday
+                CL.logSuccess(
+                    "${widget.day} ${calentreEventBloc.days.tuesday![0].start}");
+                CL.logSuccess(
+                    "${widget.day} ${calentreEventBloc.days.tuesday![0].end}");
+                CL.logSuccess(
+                    "${widget.day} ${calentreEventBloc.days.tuesday![1].start}");
+                CL.logSuccess(
+                    "${widget.day} ${calentreEventBloc.days.tuesday![1].end}");
                 break;
               case "Wed":
                 var currentIndex = widget.day["index"];
 
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
+                  calentreEventBloc.days.wednesday![currentIndex].start = value;
                 } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
+                  calentreEventBloc.days.wednesday![currentIndex].end = value;
                 }
 
                 break;
+
               case "Thur":
                 var currentIndex = widget.day["index"];
 
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
+                  calentreEventBloc.days.thursday![currentIndex].start = value;
                 } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
+                  calentreEventBloc.days.thursday![currentIndex].end = value;
+                }
+                break;
+
+              case "Fri":
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.friday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.friday![currentIndex].end = value;
                 }
 
                 break;
@@ -144,9 +166,9 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 var currentIndex = widget.day["index"];
 
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
+                  calentreEventBloc.days.saturday![currentIndex].start = value;
                 } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
+                  calentreEventBloc.days.saturday![currentIndex].end = value;
                 }
 
                 break;
@@ -154,19 +176,9 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 var currentIndex = widget.day["index"];
 
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
+                  calentreEventBloc.days.sunday![currentIndex].start = value;
                 } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
-                }
-
-                break;
-              case "Fri":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
+                  calentreEventBloc.days.sunday![currentIndex].end = value;
                 }
 
                 break;
