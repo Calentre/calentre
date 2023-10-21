@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class TimeDropDown extends StatefulWidget {
   const TimeDropDown(
       {super.key, required this.day, required this.timeSlotBoundary});
-  final String day;
+  final Map<String, dynamic> day;
   final TimeSlotBoundary timeSlotBoundary;
 
   @override
@@ -95,13 +95,25 @@ class _TimeDropDownState extends State<TimeDropDown> {
             BlocProvider.of<TimeDropDownBloc>(context)
                 .add(SelectDropDownValueEvent());
 
-            switch (widget.day) {
+            switch (widget.day["day"]) {
               case "Mon":
-                var currentIndex = 0;
+                var currentIndex = widget.day["index"];
+                CL.log("Not sure ${currentIndex}");
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  CL.log("${calentreEventBloc.days.monday}");
+                  CL.log(
+                      "List length ${calentreEventBloc.days.monday!.length}");
                   if (currentIndex <= calentreEventBloc.days.monday!.length) {
-                    calentreEventBloc.days.monday![currentIndex].start = value;
+                    if (currentIndex != 0) {
+                      calentreEventBloc.days.monday![currentIndex - 1].start =
+                          value;
+                      CL.logSuccess(
+                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].end}");
+                    } else {
+                      calentreEventBloc.days.monday![currentIndex].start =
+                          value;
+                      CL.logSuccess(
+                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].end}");
+                    }
                   } else {
                     calentreEventBloc.days.monday!.insert(
                         currentIndex,
@@ -111,7 +123,16 @@ class _TimeDropDownState extends State<TimeDropDown> {
                   }
                 } else if (widget.timeSlotBoundary == TimeSlotBoundary.end) {
                   if (currentIndex <= calentreEventBloc.days.monday!.length) {
-                    calentreEventBloc.days.monday![currentIndex].end = value;
+                    if (currentIndex != 0) {
+                      calentreEventBloc.days.monday![currentIndex - 1].end =
+                          value;
+                      CL.logSuccess(
+                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].end}");
+                    } else {
+                      calentreEventBloc.days.monday![currentIndex].end = value;
+                      CL.logSuccess(
+                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].end}");
+                    }
                   } else {
                     calentreEventBloc.days.monday!.insert(
                         currentIndex,
@@ -120,6 +141,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
                         ));
                   }
                 }
+
                 break;
               case "Tue":
                 var currentIndex = 1;
@@ -183,9 +205,6 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 ));
                 break;
             }
-
-            CL.logSuccess(
-                "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![0].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![0].end}");
           },
           items: list.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

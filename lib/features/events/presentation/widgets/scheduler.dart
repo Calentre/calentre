@@ -98,8 +98,8 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? TimeDropDown(
-                                day: day,
+                            ? const TimeDropDown(
+                                day: {"day": "Mon", "index": 0},
                                 timeSlotBoundary: TimeSlotBoundary.start)
                             : const Center(child: Text("Busy ")),
                         ...List.generate(
@@ -109,7 +109,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: TimeDropDown(
-                                      day: day,
+                                      day: {"day": "Mon", "index": index + 1},
                                       timeSlotBoundary: TimeSlotBoundary.start),
                                 ))
                       ],
@@ -150,8 +150,8 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? TimeDropDown(
-                                day: day,
+                            ? const TimeDropDown(
+                                day: {"day": "Mon", "index": 0},
                                 timeSlotBoundary: TimeSlotBoundary.end,
                               )
                             : const Center(child: Text("Busy")),
@@ -163,7 +163,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: TimeDropDown(
-                                      day: day,
+                                      day: {"day": "Mon", "index": index + 1},
                                       timeSlotBoundary: TimeSlotBoundary.end),
                                 ))
                       ],
