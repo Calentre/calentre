@@ -98,111 +98,77 @@ class _TimeDropDownState extends State<TimeDropDown> {
             switch (widget.day["day"]) {
               case "Mon":
                 var currentIndex = widget.day["index"];
-                CL.log("Not sure ${currentIndex}");
+
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  CL.log(
-                      "List length ${calentreEventBloc.days.monday!.length}");
-                  if (currentIndex <= calentreEventBloc.days.monday!.length) {
-                    if (currentIndex != 0) {
-                      calentreEventBloc.days.monday![currentIndex - 1].start =
-                          value;
-                      CL.logSuccess(
-                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].end}");
-                    } else {
-                      calentreEventBloc.days.monday![currentIndex].start =
-                          value;
-                      CL.logSuccess(
-                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].end}");
-                    }
-                  } else {
-                    calentreEventBloc.days.monday!.insert(
-                        currentIndex,
-                        CalTimeSlot(
-                          start: value,
-                        ));
-                  }
-                } else if (widget.timeSlotBoundary == TimeSlotBoundary.end) {
-                  if (currentIndex <= calentreEventBloc.days.monday!.length) {
-                    if (currentIndex != 0) {
-                      calentreEventBloc.days.monday![currentIndex - 1].end =
-                          value;
-                      CL.logSuccess(
-                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex - 1].end}");
-                    } else {
-                      calentreEventBloc.days.monday![currentIndex].end = value;
-                      CL.logSuccess(
-                          "${widget.day} : Start - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].start}, End - ${BlocProvider.of<CalentreEventBloc>(context).days.monday![currentIndex].end}");
-                    }
-                  } else {
-                    calentreEventBloc.days.monday!.insert(
-                        currentIndex,
-                        CalTimeSlot(
-                          end: value,
-                        ));
-                  }
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
                 }
+
+                //Print all Time slot in Monday
+                CL.logSuccess("${calentreEventBloc.days.monday![0].start}");
+                CL.logSuccess("${calentreEventBloc.days.monday![0].end}");
 
                 break;
               case "Tue":
-                var currentIndex = 1;
-                calentreEventBloc.days.tuesday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
+                }
+
                 break;
               case "Wed":
-                calentreEventBloc.days.wednesday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
+                }
+
                 break;
               case "Thur":
-                calentreEventBloc.days.thursday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
+                }
+
                 break;
               case "Sat":
-                calentreEventBloc.days.saturday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
+                }
+
                 break;
               case "Sun":
-                calentreEventBloc.days.sunday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
+                }
+
                 break;
               case "Fri":
-                calentreEventBloc.days.friday!.add(CalTimeSlot(
-                  start: widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? value
-                      : null,
-                  end: widget.timeSlotBoundary == TimeSlotBoundary.end
-                      ? value
-                      : null,
-                ));
+                var currentIndex = widget.day["index"];
+
+                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                  calentreEventBloc.days.monday![currentIndex].start = value;
+                } else {
+                  calentreEventBloc.days.monday![currentIndex].end = value;
+                }
+
                 break;
             }
           },

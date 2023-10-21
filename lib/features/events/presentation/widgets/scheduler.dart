@@ -1,4 +1,5 @@
 import 'package:calentre/config/enums/time_slots.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
@@ -109,7 +110,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: TimeDropDown(
-                                      day: {"day": "Mon", "index": index + 1},
+                                      day: {"day": day, "index": index + 1},
                                       timeSlotBoundary: TimeSlotBoundary.start),
                                 ))
                       ],
@@ -163,7 +164,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: TimeDropDown(
-                                      day: {"day": "Mon", "index": index + 1},
+                                      day: {"day": day, "index": index + 1},
                                       timeSlotBoundary: TimeSlotBoundary.end),
                                 ))
                       ],
@@ -201,16 +202,24 @@ class AvailabilityScheduler extends StatelessWidget {
             padding: EdgeInsets.only(top: (isFirstElement ?? false) ? 40 : 20),
             child: Row(
               children: [
+                //ADD NEW TIME FIELD
                 InkWell(
                     onTap: () {
                       debugPrint("Added a new filed");
 
+                      //Add an initial TimeSlot for the new field
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).add(AddExtraTimeFieldEvent());
+                      BlocProvider.of<CalentreEventBloc>(context)
+                          .days
+                          .monday!
+                          .add(CalTimeSlot(start: "12 AM", end: "11:50 PM"));
                     },
                     child: const FaIcon(FontAwesomeIcons.solidSquarePlus)),
                 const SizedBox().x14(),
+
+                //REMOVE LAST TIME FIELD
                 InkWell(
                     onTap: () {
                       debugPrint("Removed a new filled");
@@ -218,6 +227,12 @@ class AvailabilityScheduler extends StatelessWidget {
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).add(RemoveExtraTimeFieldEvent());
+
+                      //You should come back to add a caseSwitch here to know day to act on.
+                      BlocProvider.of<CalentreEventBloc>(context)
+                          .days
+                          .monday!
+                          .removeLast();
                     },
                     child: BlocProvider.of<SetAvailabilityBloc>(
                               context,
