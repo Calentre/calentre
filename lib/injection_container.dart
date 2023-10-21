@@ -1,5 +1,4 @@
 import 'package:calentre/config/constants/constants.dart';
-import 'package:calentre/core/DTOs/user_dto.dart';
 import 'package:calentre/features/auth/data/data_sources/auth_service.dart';
 import 'package:calentre/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:calentre/features/auth/domain/repository/auth_respository.dart';
@@ -22,7 +21,6 @@ final sl = GetIt.instance;
 Future<void> initializeDependencies() async {
   //Auth Singletons
   sl.registerSingleton<Dio>(Dio());
-  sl.registerSingleton<UserDTO>(UserDTO(email: ''));
   sl.registerSingleton<RemoteURLs>(RemoteURLs());
   sl.registerSingleton<SupabaseClient>(Supabase.instance.client);
   sl.registerSingleton<AuthService>(AuthService(
