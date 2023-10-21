@@ -252,7 +252,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
               calentreEventBloc.platform =
                   platformDropDownBloc.dropDownValue == ""
                       ? "Google Meet"
-                      : "mm";
+                      : platformDropDownBloc.dropDownValue;
               calentreEventBloc.duration =
                   durationDropDownBloc.dropDownValue == "" ? "5 min" : "";
               calentreEventBloc.eventType =
