@@ -126,10 +126,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
                     "${widget.day} ${calentreEventBloc.days.tuesday![0].start}");
                 CL.logSuccess(
                     "${widget.day} ${calentreEventBloc.days.tuesday![0].end}");
-                CL.logSuccess(
-                    "${widget.day} ${calentreEventBloc.days.tuesday![1].start}");
-                CL.logSuccess(
-                    "${widget.day} ${calentreEventBloc.days.tuesday![1].end}");
+
                 break;
               case "Wed":
                 var currentIndex = widget.day["index"];
