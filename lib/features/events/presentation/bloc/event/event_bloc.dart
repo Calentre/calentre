@@ -1,3 +1,4 @@
+import 'package:calentre/config/constants/time.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
@@ -13,13 +14,12 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? amount;
   String? isMultiple;
   CalDays days = CalDays(
-    monday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
-    tuesday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
-    wednesday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
-    thursday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
-    friday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
-    saturday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
-    sunday: [CalTimeSlot(start: "12:00 AM", end: "11:50 PM")],
+    monday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
+    tuesday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
+    wednesday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
+    thursday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
+    friday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
+    sunday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
   );
 
   CalentreEventBloc() : super(CalentreEventInitialState()) {
@@ -31,6 +31,8 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     //infuse all the class variables into CalentreEvent to create an update state
     emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
   }
+
+  //Calculate
 }
 
 class CalDays {
