@@ -61,7 +61,43 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
   }
 
-  void modifyTimeList() {}
+  void modifyTimeList(String day, num index, String selectedTime) {
+    switch (day) {
+      case "Mon":
+        //get the index for the element in the TimeList
+        final timeIndex = mondayTimeList.timeList.indexOf(selectedTime);
+        final reducedTimeList = mondayTimeList.timeList.sublist(timeIndex);
+        mondayTimeList.timeList = reducedTimeList;
+
+        //get the index of the TimeSlot in CalTimeSlot
+
+        //on select start time of the TimeSlot index
+        //reduce the mondayTimelist
+        //onSelect end Time
+        //reduce the mondayTimeList
+        break;
+      case "Tue":
+        tuesdayTimeList.timeList;
+        break;
+      case "Wed":
+        wednesdayTimeList.timeList;
+        break;
+      case "Thur":
+        thursdayTimeList.timeList;
+        break;
+      case "Fri":
+        fridayTimeList.timeList;
+        break;
+      case "Sat":
+        saturdayTimeList.timeList;
+        break;
+      case "Sun":
+        sundayTimeList.timeList;
+        break;
+      default:
+        TimeList().timeList;
+    }
+  }
 }
 
 class CalDays {

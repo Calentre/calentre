@@ -44,6 +44,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
             BlocProvider.of<TimeDropDownBloc>(
               context,
             ).dropDownValue = value!;
+            calentreEventBloc.modifyTimeList(
+                widget.day["day"], widget.day["index"], value);
             BlocProvider.of<TimeDropDownBloc>(context)
                 .add(SelectDropDownValueEvent());
 
