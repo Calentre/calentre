@@ -1,4 +1,4 @@
-import 'package:calentre/config/constants/time.dart';
+import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
@@ -14,12 +14,41 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? amount;
   String? isMultiple;
   CalDays days = CalDays(
-    monday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
-    tuesday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
-    wednesday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
-    thursday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
-    friday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
-    sunday: [CalTimeSlot(start: timeList.first, end: timeList.last)],
+    monday: [
+      CalTimeSlot(
+          start: mondayTimeList.timeList.first,
+          end: mondayTimeList.timeList.last)
+    ],
+    tuesday: [
+      CalTimeSlot(
+          start: tuesdayTimeList.timeList.first,
+          end: tuesdayTimeList.timeList.last)
+    ],
+    wednesday: [
+      CalTimeSlot(
+          start: wednesdayTimeList.timeList.first,
+          end: wednesdayTimeList.timeList.last)
+    ],
+    thursday: [
+      CalTimeSlot(
+          start: thursdayTimeList.timeList.first,
+          end: thursdayTimeList.timeList.last)
+    ],
+    friday: [
+      CalTimeSlot(
+          start: fridayTimeList.timeList.first,
+          end: fridayTimeList.timeList.last)
+    ],
+    saturday: [
+      CalTimeSlot(
+          start: saturdayTimeList.timeList.first,
+          end: saturdayTimeList.timeList.last)
+    ],
+    sunday: [
+      CalTimeSlot(
+          start: sundayTimeList.timeList.first,
+          end: sundayTimeList.timeList.last)
+    ],
   );
 
   CalentreEventBloc() : super(CalentreEventInitialState()) {
@@ -32,7 +61,7 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
   }
 
-  //Calculate
+  void modifyTimeList() {}
 }
 
 class CalDays {

@@ -30,9 +30,11 @@ class _TimeDropDownState extends State<TimeDropDown> {
         return FormDropDown(
           currentValue:
               BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
-                  ? timeList.first
+                  ? (widget.timeSlotBoundary == TimeSlotBoundary.start
+                      ? switchTimeList(widget.day["day"]).first
+                      : switchTimeList(widget.day["day"]).last)
                   : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
-          list: timeList,
+          list: switchTimeList(widget.day["day"]),
           onChanged: (String? value) {
             final calentreEventBloc =
                 BlocProvider.of<CalentreEventBloc>(context);
@@ -135,7 +137,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
           },
-          items: timeList.map<DropdownMenuItem<String>>((String value) {
+          items: switchTimeList(widget.day["day"])
+              .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Row(
@@ -148,5 +151,27 @@ class _TimeDropDownState extends State<TimeDropDown> {
         );
       }),
     );
+  }
+}
+
+//This returns a list of time based on the current day of the list rendering
+List<String> switchTimeList(String day) {
+  switch (day) {
+    case "Mon":
+      return mondayTimeList.timeList;
+    case "Tue":
+      return tuesdayTimeList.timeList;
+    case "Wed":
+      return wednesdayTimeList.timeList;
+    case "Thur":
+      return thursdayTimeList.timeList;
+    case "Fri":
+      return fridayTimeList.timeList;
+    case "Sat":
+      return saturdayTimeList.timeList;
+    case "Sun":
+      return sundayTimeList.timeList;
+    default:
+      return TimeList().timeList;
   }
 }
