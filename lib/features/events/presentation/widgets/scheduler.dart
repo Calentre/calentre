@@ -271,68 +271,74 @@ class AvailabilityScheduler extends StatelessWidget {
 
                 //REMOVE LAST TIME FIELD
                 InkWell(
-                    onTap: () {
-                      debugPrint("Removed a new filled");
-
-                      BlocProvider.of<SetAvailabilityBloc>(
-                        context,
-                      ).add(RemoveExtraTimeFieldEvent());
-
-                      //You should come back to add a caseSwitch here to know day to act on.
-                      switch (day) {
-                        case "Mon":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .monday!
-                              .removeLast();
-                          break;
-                        case "Tue":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .tuesday!
-                              .removeLast();
-                          break;
-                        case "Wed":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .wednesday!
-                              .removeLast();
-                          break;
-                        case "Thur":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .thursday!
-                              .removeLast();
-                          break;
-                        case "Fri":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .friday!
-                              .removeLast();
-                          break;
-                        case "Sat":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .saturday!
-                              .removeLast();
-                          break;
-                        case "Sun":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .sunday!
-                              .removeLast();
-                          break;
-                        default:
-                      }
-                    },
-                    child: BlocProvider.of<SetAvailabilityBloc>(
+                    onTap: BlocProvider.of<SetAvailabilityBloc>(
                               context,
                             ).listLength ==
                             0
-                        ? Container()
-                        : const FaIcon(
-                            FontAwesomeIcons.trash,
-                          )),
+                        ? null
+                        : () {
+                            debugPrint("Removed a new filled");
+
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).add(RemoveExtraTimeFieldEvent());
+
+                            //You should come back to add a caseSwitch here to know day to act on.
+                            switch (day) {
+                              case "Mon":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .monday!
+                                    .removeLast();
+                                break;
+                              case "Tue":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .tuesday!
+                                    .removeLast();
+                                break;
+                              case "Wed":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .wednesday!
+                                    .removeLast();
+                                break;
+                              case "Thur":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .thursday!
+                                    .removeLast();
+                                break;
+                              case "Fri":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .friday!
+                                    .removeLast();
+                                break;
+                              case "Sat":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .saturday!
+                                    .removeLast();
+                                break;
+                              case "Sun":
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .days
+                                    .sunday!
+                                    .removeLast();
+                                break;
+                              default:
+                            }
+                          },
+                    child: FaIcon(
+                      FontAwesomeIcons.trash,
+                      color: BlocProvider.of<SetAvailabilityBloc>(
+                                context,
+                              ).listLength ==
+                              0
+                          ? Colors.white.withOpacity(.2)
+                          : Colors.white,
+                    )),
               ],
             ),
           );
