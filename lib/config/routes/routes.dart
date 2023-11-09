@@ -1,8 +1,10 @@
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/pages/completion_feedback.dart';
 import 'package:calentre/features/events/presentation/pages/create_event.dart';
 import 'package:calentre/features/home/presentation/calentre_home.dart';
 import 'package:calentre/features/payments/presentation/widgets/payment_details_fields.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../features/auth/presentation/social_sign_in.dart';
@@ -42,7 +44,10 @@ final routerConfig = GoRouter(
       builder: (context, state) {
         return sl<SupabaseClient>().auth.currentSession == null
             ? SocialSignIn()
-            : const CreateEventView();
+            : BlocProvider.value(
+                value: sl.get<CalentreEventBloc>(),
+                child: const CreateEventView(),
+              );
       },
     ),
     GoRoute(
@@ -51,7 +56,10 @@ final routerConfig = GoRouter(
       builder: (context, state) {
         return sl<SupabaseClient>().auth.currentSession == null
             ? SocialSignIn()
-            : SetAvailabilityView();
+            : BlocProvider.value(
+                value: sl.get<CalentreEventBloc>(),
+                child: SetAvailabilityView(),
+              );
       },
     ),
     GoRoute(

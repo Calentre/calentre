@@ -11,15 +11,15 @@ part 'calentre_event.g.dart';
 @freezed
 class CalentreEvent with _$CalentreEvent {
   const factory CalentreEvent({
-    required String eventName,
-    required String eventDescription,
-    required String videoCallType,
-    required String duration,
-    required String eventLink,
-    required String eventType,
-    required String amount,
-    required String isMultiple,
-    required List<Availability> availability,
+    String? eventName,
+    String? eventDescription,
+    String? videoCallType,
+    String? duration,
+    String? eventLink,
+    String? eventType,
+    String? amount,
+    String? isMultiple,
+    Days? days,
   }) = _CalentreEvent;
 
   factory CalentreEvent.fromJson(Map<String, dynamic> json) =>
@@ -27,27 +27,27 @@ class CalentreEvent with _$CalentreEvent {
 }
 
 @freezed
-class Availability with _$Availability {
-  const factory Availability({
-    required List<Day> monday,
-    required List<Day> tuesday,
-    required List<Day> wednesday,
-    required List<Day> thursday,
-    required List<Day> friday,
-    required List<Day> saturday,
-    required List<Day> sunday,
-  }) = _Availability;
+class Days with _$Days {
+  const factory Days({
+    List<TimeSlot>? monday,
+    List<TimeSlot>? tuesday,
+    List<TimeSlot>? wednesday,
+    List<TimeSlot>? thursday,
+    List<TimeSlot>? friday,
+    List<TimeSlot>? saturday,
+    List<TimeSlot>? sunday,
+  }) = _Days;
 
-  factory Availability.fromJson(Map<String, dynamic> json) =>
-      _$AvailabilityFromJson(json);
+  factory Days.fromJson(Map<String, dynamic> json) => _$DaysFromJson(json);
 }
 
 @freezed
-class Day with _$Day {
-  const factory Day({
-    required String start,
-    required String end,
-  }) = _Day;
+class TimeSlot with _$TimeSlot {
+  const factory TimeSlot({
+    String? start,
+    String? end,
+  }) = _TimeSlot;
 
-  factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
+  factory TimeSlot.fromJson(Map<String, dynamic> json) =>
+      _$TimeSlotFromJson(json);
 }

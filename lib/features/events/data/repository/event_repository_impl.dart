@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:calentre/core/resources.dart';
 import 'package:calentre/features/events/data/data_sources/event_service.dart';
 import 'package:calentre/features/events/domain/reporsitory/event_repository.dart';
@@ -12,6 +14,8 @@ class EventRepositoryImpl implements EventRepository {
     try {
       final res = await _eventService.createEvent(param);
       return DataSuccess(res);
+    } on SocketException {
+      return DataFailure(Exception("Something is wrong with your internet"));
     } catch (e) {
       return DataFailure(Exception(e));
     }
