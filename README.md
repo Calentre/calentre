@@ -1,5 +1,4 @@
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/logo.png?raw=true"  > 
-
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/logo.png?raw=true"  >
 
 # Calentre 📅💰
 
@@ -20,11 +19,11 @@ Welcome to Calentre, the open-source alternative to Calendly! 🌟 Manage your a
 
 Calentre is your go-to scheduling solution, offering a delightful way to book meetings and collect payments! 🚀 Whether you're a consultant, freelancer, or professional, we've got you covered.
 
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/home_events.png?raw=true" > 
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/home_events.png?raw=true" >
 
-----
-<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/booking.png?raw=true" > 
+---
 
+<img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/booking.png?raw=true" >
 
 ## Features ✨
 
@@ -33,7 +32,7 @@ Calentre is your go-to scheduling solution, offering a delightful way to book me
 - **Customization:** Tailor the scheduling process to match your style.
 - **Notifications:** Stay in the loop with automated email updates.
 - **User-Friendly Interface:** Smooth and friendly for all users.
-  
+
 <img src = "https://github.com/fiizzy/calentre/blob/main/doc/images/create_event.png?raw=true" >
 
 ## Technology Stack 💻🔮
@@ -53,7 +52,7 @@ For details, see our [Architecture Guide](doc/architecture.md)
 
 Ready to dive in? Let's go:
 
-1. Clone the repository: `git clone https://github.com/fiizzy/calentre.git`
+1. Clone the repository: `git clone https://github.com/calentre/calentre.git`
 2. Move to the project: `cd calentre`
 3. Grab dependencies: `flutter pub get`
 4. Set up your Supabase instance and update app configuration.
