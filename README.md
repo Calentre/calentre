@@ -58,7 +58,7 @@ Ready to dive in? Let's go:
 4. Set up your Supabase instance and update app configuration.
 5. Start the app: `flutter run`
 
-For details, see our [Getting Started Guide](docs/getting-started.md).
+For details, see our [Getting Started Guide](doc/getting_started.md).
 
 ## Usage 🛠️
 
