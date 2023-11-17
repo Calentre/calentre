@@ -28,7 +28,7 @@ class CreateEventFormFields extends StatefulWidget {
 
 class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   //Create CreateEventClass
-  CalentreEventBloc calentreEventBloc = sl.get<CalentreEventBloc>();
+  // CalentreEventBloc calentreEventBloc = sl.get<CalentreEventBloc>();
 
   //TextControllers
   final eventNameController = TextEditingController();

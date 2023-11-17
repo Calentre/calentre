@@ -35,7 +35,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<EventService>(EventService(sl()));
   sl.registerSingleton<EventRepository>(EventRepositoryImpl(sl()));
   sl.registerSingleton<CreateEventUsesCase>(CreateEventUsesCase(sl()));
-  sl.registerLazySingleton<CalentreEventBloc>(() => CalentreEventBloc());
+  sl.registerSingleton<CalentreEventBloc>(CalentreEventBloc());
 
   //Factory
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));

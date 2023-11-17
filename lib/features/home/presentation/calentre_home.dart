@@ -54,8 +54,8 @@ tabBarViewSelector(state) {
           currentIndex: 0,
         ),
         // EventsView(),
-        BlocProvider<CalentreEventBloc>.value(
-          value: sl.get<CalentreEventBloc>(),
+        BlocProvider<CalentreEventBloc>(
+          create: (context) => sl.get<CalentreEventBloc>(),
           child: const EventsView(),
         )
       ],
@@ -68,8 +68,8 @@ tabBarViewSelector(state) {
             const AppTabBar(
               currentIndex: 0,
             ),
-            BlocProvider<CalentreEventBloc>.value(
-              value: sl.get<CalentreEventBloc>(),
+            BlocProvider<CalentreEventBloc>(
+              create: (context) => sl.get<CalentreEventBloc>(),
               child: const EventsView(),
             ),
           ],
