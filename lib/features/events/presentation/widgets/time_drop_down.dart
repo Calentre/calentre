@@ -14,15 +14,27 @@ class TimeDropDown extends StatefulWidget {
       {super.key, required this.day, required this.timeSlotBoundary});
   final Map<String, dynamic> day;
   final TimeSlotBoundary timeSlotBoundary;
-
+  @override
   @override
   State<TimeDropDown> createState() => _TimeDropDownState();
 }
 
 class _TimeDropDownState extends State<TimeDropDown> {
+  List<String> timeSlot = [];
+
+  @override
+  void initState() {
+    super.initState();
+    timeSlot = BlocProvider.of<CalentreEventBloc>(context).modifyTimeList(
+        day: widget.day["day"],
+        index: widget.day["index"],
+        timeSlotBoundary: widget.timeSlotBoundary);
+  }
+
   String currentValue = "";
   @override
   Widget build(BuildContext context) {
+    print("Time Bloc was rebuilt");
     return BlocProvider<TimeDropDownBloc>(
       create: (context) => TimeDropDownBloc(),
       child: BlocBuilder<TimeDropDownBloc, FormDropDownState>(
@@ -31,11 +43,21 @@ class _TimeDropDownState extends State<TimeDropDown> {
           currentValue:
               BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
                   ? (widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? switchTimeList(widget.day["day"]).first
-                      : switchTimeList(widget.day["day"]).last)
+                      ? TimeList().timeList.first
+                      : timeSlot.first)
                   : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
-          list: switchTimeList(widget.day["day"]),
+          items: timeSlot.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Row(
+                children: [
+                  Text(value),
+                ],
+              ),
+            );
+          }).toList(),
           onChanged: (String? value) {
+            setState(() {});
             final calentreEventBloc =
                 BlocProvider.of<CalentreEventBloc>(context);
             // setState(() {
@@ -44,10 +66,15 @@ class _TimeDropDownState extends State<TimeDropDown> {
             BlocProvider.of<TimeDropDownBloc>(
               context,
             ).dropDownValue = value!;
-            calentreEventBloc.modifyTimeList(
-                widget.day["day"], widget.day["index"], value);
-            BlocProvider.of<TimeDropDownBloc>(context)
-                .add(SelectDropDownValueEvent());
+
+            // calentreEventBloc.modifyTimeList(
+            //     day: widget.day["day"],
+            //     index: widget.day["index"],
+            //     timeSlotBoundary: widget.timeSlotBoundary);
+            BlocProvider.of<CalentreEventBloc>(context).modifyTimeList(
+                day: widget.day["day"],
+                index: widget.day["index"],
+                timeSlotBoundary: widget.timeSlotBoundary);
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -57,6 +84,10 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
                   calentreEventBloc.days.monday![currentIndex].start = value;
+                  if (widget.day["index"] == 0) {
+                    calentreEventBloc.days.monday![currentIndex].end = value;
+                    setState(() {});
+                  }
                 } else {
                   calentreEventBloc.days.monday![currentIndex].end = value;
                 }
@@ -101,7 +132,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
                   calentreEventBloc.days.thursday![currentIndex].start = value;
                 } else {
-                  calentreEventBloc.days.thursday![currentIndex].end = value;
+                  calentreEventBloc.days.thursday![currentIndex].start = value;
                 }
                 break;
 
@@ -136,20 +167,12 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
                 break;
             }
+
+            BlocProvider.of<TimeDropDownBloc>(context)
+                .add(SelectDropDownValueEvent());
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
           },
-          items: switchTimeList(widget.day["day"])
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Row(
-                children: [
-                  Text(value),
-                ],
-              ),
-            );
-          }).toList(),
         );
       }),
     );
@@ -157,23 +180,23 @@ class _TimeDropDownState extends State<TimeDropDown> {
 }
 
 //This returns a list of time based on the current day of the list rendering
-List<String> switchTimeList(String day) {
-  switch (day) {
-    case "Mon":
-      return mondayTimeList.timeList;
-    case "Tue":
-      return tuesdayTimeList.timeList;
-    case "Wed":
-      return wednesdayTimeList.timeList;
-    case "Thur":
-      return thursdayTimeList.timeList;
-    case "Fri":
-      return fridayTimeList.timeList;
-    case "Sat":
-      return saturdayTimeList.timeList;
-    case "Sun":
-      return sundayTimeList.timeList;
-    default:
-      return TimeList().timeList;
-  }
-}
+// List<String> switchTimeList(String day) {
+//   switch (day) {
+//     case "Mon":
+//       return mondayTimeList.timeList;
+//     case "Tue":
+//       return tuesdayTimeList.timeList;
+//     case "Wed":
+//       return wednesdayTimeList.timeList;
+//     case "Thur":
+//       return thursdayTimeList.timeList;
+//     case "Fri":
+//       return fridayTimeList.timeList;
+//     case "Sat":
+//       return saturdayTimeList.timeList;
+//     case "Sun":
+//       return sundayTimeList.timeList;
+//     default:
+//       return TimeList().timeList;
+//   }
+// }

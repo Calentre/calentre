@@ -6,12 +6,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class FormDropDown extends StatefulWidget {
   FormDropDown(
       {super.key,
-      required this.list,
+      this.list,
       required this.onChanged,
       required this.items,
       required this.currentValue});
 
-  final List<String> list;
+  final List<String>? list;
   final void Function(String?)? onChanged;
   final List<DropdownMenuItem<String>> items;
   String currentValue;

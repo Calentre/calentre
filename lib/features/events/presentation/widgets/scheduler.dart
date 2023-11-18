@@ -219,7 +219,7 @@ class AvailabilityScheduler extends StatelessWidget {
                               .days
                               .monday!
                               .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
+                                  CalTimeSlot(start: "12 AM", end: "12:30 AM"));
                           break;
                         case "Tue":
                           BlocProvider.of<CalentreEventBloc>(context)
