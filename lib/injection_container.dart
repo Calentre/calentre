@@ -9,7 +9,7 @@ import 'package:calentre/features/events/data/repository/event_repository_impl.d
 import 'package:calentre/features/events/domain/reporsitory/event_repository.dart';
 import 'package:calentre/features/events/domain/usecases/event_usecase.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
 import 'package:calentre/utils/initializers.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';

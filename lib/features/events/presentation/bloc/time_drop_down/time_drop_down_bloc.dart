@@ -1,7 +1,5 @@
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_event.dart';
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_state.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_bloc.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TimeDropDownBloc extends Bloc<TimeDropDownEvent, TimeDropDownState> {

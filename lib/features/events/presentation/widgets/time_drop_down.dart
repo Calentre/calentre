@@ -1,14 +1,9 @@
-import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_event.dart';
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_state.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
 import 'package:calentre/injection_container.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
