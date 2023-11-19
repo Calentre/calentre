@@ -1,7 +1,12 @@
 import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down_event.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down_state.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
 import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
@@ -34,16 +39,19 @@ class _TimeDropDownState extends State<TimeDropDown> {
   String currentValue = "";
   @override
   Widget build(BuildContext context) {
-    print("Time Bloc was rebuilt");
     return BlocProvider<TimeDropDownBloc>(
-      create: (context) => TimeDropDownBloc(),
-      child: BlocBuilder<TimeDropDownBloc, FormDropDownState>(
+      create: (context) => sl.get<TimeDropDownBloc>(),
+      child: BlocBuilder<TimeDropDownBloc, TimeDropDownState>(
           builder: (context, state) {
         return FormDropDown(
           currentValue:
               BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
                   ? (widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? TimeList().timeList.first
+                      ? BlocProvider.of<CalentreEventBloc>(context)
+                          .days
+                          .monday!
+                          .first
+                          .start!
                       : timeSlot.first)
                   : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
           items: timeSlot.map<DropdownMenuItem<String>>((String value) {
@@ -57,7 +65,6 @@ class _TimeDropDownState extends State<TimeDropDown> {
             );
           }).toList(),
           onChanged: (String? value) {
-            setState(() {});
             final calentreEventBloc =
                 BlocProvider.of<CalentreEventBloc>(context);
             // setState(() {
@@ -81,12 +88,13 @@ class _TimeDropDownState extends State<TimeDropDown> {
             switch (widget.day["day"]) {
               case "Mon":
                 var currentIndex = widget.day["index"];
-
+                BlocProvider.of<TimeDropDownBloc>(context)
+                    .add(RebuildTimeDropDownEvent());
                 if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
                   calentreEventBloc.days.monday![currentIndex].start = value;
+
                   if (widget.day["index"] == 0) {
                     calentreEventBloc.days.monday![currentIndex].end = value;
-                    setState(() {});
                   }
                 } else {
                   calentreEventBloc.days.monday![currentIndex].end = value;
@@ -169,7 +177,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
             }
 
             BlocProvider.of<TimeDropDownBloc>(context)
-                .add(SelectDropDownValueEvent());
+                .add(SelectTimeDropDownValueEvent());
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
           },

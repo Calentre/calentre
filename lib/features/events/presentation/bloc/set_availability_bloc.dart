@@ -6,11 +6,15 @@ class SetAvailabilityBloc
     extends Bloc<SetAvailabilityEvents, SetAvailabilityStates> {
   int listLength = 0;
   bool checkBoxState = true;
+  //This state is only used to rebuild and does nothing significant
+  //TODO:refactor code to acheive a better result
+  bool rebuild = true;
 
   SetAvailabilityBloc() : super(ExtraTimeFieldInitialState()) {
     on<AddExtraTimeFieldEvent>(onClickAddExtraTimeField);
     on<RemoveExtraTimeFieldEvent>(onClickRemoveExtraTimeField);
     on<CheckBoxEvent>(onClickCheckBox);
+    on<RebuildSetAvailabilityScreenEvent>(onTriggerRebuild);
   }
 
   void onClickAddExtraTimeField(
@@ -31,5 +35,10 @@ class SetAvailabilityBloc
       CheckBoxEvent event, Emitter<SetAvailabilityStates> emit) {
     checkBoxState = !checkBoxState;
     emit(CheckBoxUpdatedState(checkBoxState));
+  }
+
+  void onTriggerRebuild(
+      SetAvailabilityEvents event, Emitter<SetAvailabilityStates> emit) {
+    emit(RebuildSetAvailabilityScreenState());
   }
 }

@@ -35,6 +35,7 @@ class AvailabilityScheduler extends StatelessWidget {
         create: (context) => SetAvailabilityBloc(),
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
             builder: (context, state) {
+          print("The rebuild is triggered");
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
