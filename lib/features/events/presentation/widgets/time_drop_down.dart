@@ -1,5 +1,8 @@
+import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
@@ -20,162 +23,188 @@ class TimeDropDown extends StatefulWidget {
 }
 
 class _TimeDropDownState extends State<TimeDropDown> {
-  List<String> timeSlot = [];
+  // List<String> timeSlot = [];
 
   @override
   void initState() {
     super.initState();
-    timeSlot = BlocProvider.of<CalentreEventBloc>(context).modifyTimeList(
-        day: widget.day["day"],
-        index: widget.day["index"],
-        timeSlotBoundary: widget.timeSlotBoundary);
+    //   timeSlot = BlocProvider.of<CalentreEventBloc>(context).modifyTimeList(
+    //       day: widget.day["day"],
+    //       index: widget.day["index"],
+    //       timeSlotBoundary: widget.timeSlotBoundary);
   }
 
   String currentValue = "";
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TimeDropDownBloc>(
-      create: (context) => sl.get<TimeDropDownBloc>(),
+      create: (context) => TimeDropDownBloc(),
       child: BlocBuilder<TimeDropDownBloc, TimeDropDownState>(
           builder: (context, state) {
-        return FormDropDown(
-          currentValue:
-              BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
-                  ? (widget.timeSlotBoundary == TimeSlotBoundary.start
-                      ? BlocProvider.of<CalentreEventBloc>(context)
-                          .days
-                          .monday!
-                          .first
-                          .start!
-                      : timeSlot.first)
-                  : BlocProvider.of<TimeDropDownBloc>(context).dropDownValue,
-          items: timeSlot.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Row(
-                children: [
-                  Text(value),
-                ],
-              ),
-            );
-          }).toList(),
-          onChanged: (String? value) {
-            final calentreEventBloc =
-                BlocProvider.of<CalentreEventBloc>(context);
-            // setState(() {
-            //   currentValue = value!;
-            // });
-            BlocProvider.of<TimeDropDownBloc>(
-              context,
-            ).dropDownValue = value!;
+        return Column(
+          children: [
+            FormDropDown(
+              currentValue:
+                  BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
+                      ? (widget.timeSlotBoundary == TimeSlotBoundary.start
+                          ? BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .monday!
+                              .first
+                              .start!
+                          : BlocProvider.of<CalentreEventBloc>(context)
+                              .days
+                              .monday![0]
+                              .end!)
+                      : BlocProvider.of<TimeDropDownBloc>(context)
+                          .dropDownValue,
+              items: TimeList()
+                  .timeList
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Row(
+                    children: [
+                      Text(value),
+                    ],
+                  ),
+                );
+              }).toList(),
+              onChanged: (String? value) {
+                final calentreEventBloc =
+                    BlocProvider.of<CalentreEventBloc>(context);
 
-            // calentreEventBloc.modifyTimeList(
-            //     day: widget.day["day"],
-            //     index: widget.day["index"],
-            //     timeSlotBoundary: widget.timeSlotBoundary);
-            BlocProvider.of<CalentreEventBloc>(context).modifyTimeList(
-                day: widget.day["day"],
-                index: widget.day["index"],
-                timeSlotBoundary: widget.timeSlotBoundary);
+                BlocProvider.of<TimeDropDownBloc>(
+                  context,
+                ).dropDownValue = value!;
+
+                // calentreEventBloc.modifyTimeList(
+                //     day: widget.day["day"],
+                //     index: widget.day["index"],
+                //     timeSlotBoundary: widget.timeSlotBoundary);
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
-            switch (widget.day["day"]) {
-              case "Mon":
-                var currentIndex = widget.day["index"];
+                switch (widget.day["day"]) {
+                  case "Mon":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.monday![currentIndex].start =
+                          value;
+
+                      // if (widget.day["index"] == 0) {
+                      //   calentreEventBloc.days.monday![currentIndex].end =
+                      //       value;
+                      // }
+                    } else {
+                      calentreEventBloc.days.monday![currentIndex].end = value;
+                    }
+
+                    //Print all Time slot in Monday
+                    CL.logSuccess(
+                        "${widget.day} ${calentreEventBloc.days.monday![0].start}");
+                    CL.logSuccess(
+                        "${widget.day} ${calentreEventBloc.days.monday![0].end}");
+
+                    break;
+                  case "Tue":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.tuesday![currentIndex].start =
+                          value;
+                    } else {
+                      calentreEventBloc.days.tuesday![currentIndex].end = value;
+                    }
+
+                    //Print all Time slot in Tuesday
+                    CL.logSuccess(
+                        "${widget.day} ${calentreEventBloc.days.tuesday![0].start}");
+                    CL.logSuccess(
+                        "${widget.day} ${calentreEventBloc.days.tuesday![0].end}");
+
+                    break;
+                  case "Wed":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.wednesday![currentIndex].start =
+                          value;
+                    } else {
+                      calentreEventBloc.days.wednesday![currentIndex].end =
+                          value;
+                    }
+
+                    break;
+
+                  case "Thur":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.thursday![currentIndex].start =
+                          value;
+                    } else {
+                      calentreEventBloc.days.thursday![currentIndex].start =
+                          value;
+                    }
+                    break;
+
+                  case "Fri":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.friday![currentIndex].start =
+                          value;
+                    } else {
+                      calentreEventBloc.days.friday![currentIndex].end = value;
+                    }
+
+                    break;
+                  case "Sat":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.saturday![currentIndex].start =
+                          value;
+                    } else {
+                      calentreEventBloc.days.saturday![currentIndex].end =
+                          value;
+                    }
+
+                    break;
+                  case "Sun":
+                    var currentIndex = widget.day["index"];
+
+                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
+                      calentreEventBloc.days.sunday![currentIndex].start =
+                          value;
+                    } else {
+                      calentreEventBloc.days.sunday![currentIndex].end = value;
+                    }
+
+                    break;
+                }
+                BlocProvider.of<TimeDropDownBloc>(context).validateTimeDropDown(
+                  day: widget.day["day"],
+                  index: widget.day["index"],
+                );
+                // BlocProvider.of<SetAvailabilityBloc>(context)
+                //     .add(RebuildSetAvailabilityScreenEvent());
                 BlocProvider.of<TimeDropDownBloc>(context)
-                    .add(RebuildTimeDropDownEvent());
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.monday![currentIndex].start = value;
+                    .add(SelectTimeDropDownValueEvent());
 
-                  if (widget.day["index"] == 0) {
-                    calentreEventBloc.days.monday![currentIndex].end = value;
-                  }
-                } else {
-                  calentreEventBloc.days.monday![currentIndex].end = value;
-                }
-
-                //Print all Time slot in Monday
-                CL.logSuccess(
-                    "${widget.day} ${calentreEventBloc.days.monday![0].start}");
-                CL.logSuccess(
-                    "${widget.day} ${calentreEventBloc.days.monday![0].end}");
-
-                break;
-              case "Tue":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.tuesday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.tuesday![currentIndex].end = value;
-                }
-
-                //Print all Time slot in Tuesday
-                CL.logSuccess(
-                    "${widget.day} ${calentreEventBloc.days.tuesday![0].start}");
-                CL.logSuccess(
-                    "${widget.day} ${calentreEventBloc.days.tuesday![0].end}");
-
-                break;
-              case "Wed":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.wednesday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.wednesday![currentIndex].end = value;
-                }
-
-                break;
-
-              case "Thur":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.thursday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.thursday![currentIndex].start = value;
-                }
-                break;
-
-              case "Fri":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.friday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.friday![currentIndex].end = value;
-                }
-
-                break;
-              case "Sat":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.saturday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.saturday![currentIndex].end = value;
-                }
-
-                break;
-              case "Sun":
-                var currentIndex = widget.day["index"];
-
-                if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                  calentreEventBloc.days.sunday![currentIndex].start = value;
-                } else {
-                  calentreEventBloc.days.sunday![currentIndex].end = value;
-                }
-
-                break;
-            }
-
-            BlocProvider.of<TimeDropDownBloc>(context)
-                .add(SelectTimeDropDownValueEvent());
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
-          },
+              },
+            ),
+            BlocProvider.of<TimeDropDownBloc>(context).isTimeError
+                ? const Text(
+                    "Start time can not be lesser than or equal to end time",
+                    style: TextStyle(color: Colors.red),
+                  )
+                : Container()
+          ],
         );
       }),
     );
