@@ -3,8 +3,6 @@ import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
-import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
@@ -50,6 +48,8 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
         //if start time is greater than end time, return error
         String startTime = days.monday![index].start!;
         String endTime = days.monday![index].end!;
+        print("The start time is $startTime");
+        print("The end time is $endTime");
 
         int startTimeHour = getHourAndMeridiem(startTime)[0] == 12
             ? 0
@@ -60,18 +60,13 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
         int endTimeHour = getHourAndMeridiem(endTime)[0] == 12
             ? 0
             : getHourAndMeridiem(endTime)[0];
-        ;
+
         int endTimeMinute = getHourAndMeridiem(endTime)[1];
         String endTimeMeridiem = getHourAndMeridiem(endTime)[2];
 
         if (startTimeMeridiem == "AM" && endTimeMeridiem == "PM") {
           //success
           isTimeError = false;
-
-          print("An error" +
-              "$endTimeHour" +
-              "$endTimeMinute" +
-              "$endTimeMeridiem");
         } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "AM") {
           isTimeError = true;
         } else if (startTimeMeridiem == "AM" && endTimeMeridiem == "AM") {
@@ -101,24 +96,6 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
         }
 
         print("The time is error is $isTimeError");
-
-        //check the greater of the meridiem
-        //check the greater of the numbers
-
-        //4:05 PM - 2:50 PM
-        //if start meridiem is AM and end is PM
-        //success
-        //if start is AM and end is AM
-        //check if end time > than start
-        //success
-        //else failure
-        //else if start is PM and end is AM
-        //return error
-        //else if PM and PM
-        //check if end time > than startTime
-        //success
-        //else
-        //error
 
         break;
       // case "Tue":

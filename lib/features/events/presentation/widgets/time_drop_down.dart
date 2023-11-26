@@ -23,17 +23,6 @@ class TimeDropDown extends StatefulWidget {
 }
 
 class _TimeDropDownState extends State<TimeDropDown> {
-  // List<String> timeSlot = [];
-
-  @override
-  void initState() {
-    super.initState();
-    //   timeSlot = BlocProvider.of<CalentreEventBloc>(context).modifyTimeList(
-    //       day: widget.day["day"],
-    //       index: widget.day["index"],
-    //       timeSlotBoundary: widget.timeSlotBoundary);
-  }
-
   String currentValue = "";
   @override
   Widget build(BuildContext context) {
@@ -79,27 +68,14 @@ class _TimeDropDownState extends State<TimeDropDown> {
                   context,
                 ).dropDownValue = value!;
 
-                // calentreEventBloc.modifyTimeList(
-                //     day: widget.day["day"],
-                //     index: widget.day["index"],
-                //     timeSlotBoundary: widget.timeSlotBoundary);
-
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
                 switch (widget.day["day"]) {
                   case "Mon":
                     var currentIndex = widget.day["index"];
                     calentreEventBloc.currentIndex = currentIndex;
                     calentreEventBloc.currentDay = "Mon";
-
                     if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
                       calentreEventBloc.days.monday![currentIndex].start =
                           value;
-
-                      // if (widget.day["index"] == 0) {
-                      //   calentreEventBloc.days.monday![currentIndex].end =
-                      //       value;
-                      // }
                     } else {
                       calentreEventBloc.days.monday![currentIndex].end = value;
                     }
@@ -196,47 +172,13 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());
 
-                // BlocProvider.of<SetAvailabilityBloc>(context)
-                //     .add(RebuildSetAvailabilityScreenEvent());
-                sl
-                    .get<SetAvailabilityBloc>()
+                BlocProvider.of<SetAvailabilityBloc>(context)
                     .add(RebuildSetAvailabilityScreenEvent());
-
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
               },
             ),
-            // (BlocProvider.of<TimeDropDownBloc>(context).isTimeError
-            //     ? const Text(
-            //         "Start time can not be lesser than or equal to end time",
-            //         style: TextStyle(color: Colors.red),
-            //       )
-            //     : Container())
           ],
         );
       }),
     );
   }
 }
-
-//This returns a list of time based on the current day of the list rendering
-// List<String> switchTimeList(String day) {
-//   switch (day) {
-//     case "Mon":
-//       return mondayTimeList.timeList;
-//     case "Tue":
-//       return tuesdayTimeList.timeList;
-//     case "Wed":
-//       return wednesdayTimeList.timeList;
-//     case "Thur":
-//       return thursdayTimeList.timeList;
-//     case "Fri":
-//       return fridayTimeList.timeList;
-//     case "Sat":
-//       return saturdayTimeList.timeList;
-//     case "Sun":
-//       return sundayTimeList.timeList;
-//     default:
-//       return TimeList().timeList;
-//   }
-// }

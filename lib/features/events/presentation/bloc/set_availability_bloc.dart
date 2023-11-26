@@ -8,6 +8,7 @@ class SetAvailabilityBloc
     extends Bloc<SetAvailabilityEvents, SetAvailabilityStates> {
   int listLength = 0;
   bool checkBoxState = true;
+  List isTimeErrorList = [];
 
   SetAvailabilityBloc() : super(ExtraTimeFieldInitialState()) {
     on<AddExtraTimeFieldEvent>(onClickAddExtraTimeField);
