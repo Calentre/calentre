@@ -42,4 +42,11 @@ class CheckBoxUpdatedState extends SetAvailabilityStates {
 }
 
 //This state is only needed to be emitted in order to trigger a rebuid of the setAvailabilityScreen
-class RebuildSetAvailabilityScreenState extends SetAvailabilityStates {}
+class RebuildSetAvailabilityScreenState extends SetAvailabilityStates {
+  final bool state;
+
+  RebuildSetAvailabilityScreenState(this.state);
+
+  @override
+  List<Object> get props => [state];
+}

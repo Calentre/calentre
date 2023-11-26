@@ -1,14 +1,13 @@
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SetAvailabilityBloc
     extends Bloc<SetAvailabilityEvents, SetAvailabilityStates> {
   int listLength = 0;
   bool checkBoxState = true;
-  //This state is only used to rebuild and does nothing significant
-  //TODO:refactor code to acheive a better result
-  bool rebuild = true;
 
   SetAvailabilityBloc() : super(ExtraTimeFieldInitialState()) {
     on<AddExtraTimeFieldEvent>(onClickAddExtraTimeField);
@@ -39,6 +38,7 @@ class SetAvailabilityBloc
 
   void onTriggerRebuild(
       SetAvailabilityEvents event, Emitter<SetAvailabilityStates> emit) {
-    emit(RebuildSetAvailabilityScreenState());
+    bool isTimeError = sl.get<CalentreEventBloc>().isTimeError;
+    emit(RebuildSetAvailabilityScreenState(isTimeError));
   }
 }

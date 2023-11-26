@@ -54,7 +54,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
                               .start!
                           : BlocProvider.of<CalentreEventBloc>(context)
                               .days
-                              .monday![0]
+                              .monday!
+                              .first
                               .end!)
                       : BlocProvider.of<TimeDropDownBloc>(context)
                           .dropDownValue,
@@ -88,6 +89,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 switch (widget.day["day"]) {
                   case "Mon":
                     var currentIndex = widget.day["index"];
+                    calentreEventBloc.currentIndex = currentIndex;
+                    calentreEventBloc.currentDay = "Mon";
 
                     if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
                       calentreEventBloc.days.monday![currentIndex].start =
@@ -185,25 +188,30 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
                     break;
                 }
-                BlocProvider.of<TimeDropDownBloc>(context).validateTimeDropDown(
+                BlocProvider.of<CalentreEventBloc>(context)
+                    .validateTimeDropDown(
                   day: widget.day["day"],
                   index: widget.day["index"],
                 );
-                // BlocProvider.of<SetAvailabilityBloc>(context)
-                //     .add(RebuildSetAvailabilityScreenEvent());
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());
+
+                // BlocProvider.of<SetAvailabilityBloc>(context)
+                //     .add(RebuildSetAvailabilityScreenEvent());
+                sl
+                    .get<SetAvailabilityBloc>()
+                    .add(RebuildSetAvailabilityScreenEvent());
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
               },
             ),
-            BlocProvider.of<TimeDropDownBloc>(context).isTimeError
-                ? const Text(
-                    "Start time can not be lesser than or equal to end time",
-                    style: TextStyle(color: Colors.red),
-                  )
-                : Container()
+            // (BlocProvider.of<TimeDropDownBloc>(context).isTimeError
+            //     ? const Text(
+            //         "Start time can not be lesser than or equal to end time",
+            //         style: TextStyle(color: Colors.red),
+            //       )
+            //     : Container())
           ],
         );
       }),

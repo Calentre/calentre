@@ -6,6 +6,7 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_stat
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,10 +33,9 @@ class AvailabilityScheduler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SetAvailabilityBloc>(
-        create: (context) => SetAvailabilityBloc(),
+        create: (context) => sl.get<SetAvailabilityBloc>(),
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
             builder: (context, state) {
-          print("The rebuild is triggered");
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,9 +100,33 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? TimeDropDown(
-                                day: {"day": day, "index": 0},
-                                timeSlotBoundary: TimeSlotBoundary.start)
+                            ? Column(
+                                children: [
+                                  TimeDropDown(
+                                      day: {"day": day, "index": 0},
+                                      timeSlotBoundary: TimeSlotBoundary.start),
+                                  state is RebuildSetAvailabilityScreenState
+                                      ? (BlocProvider.of<CalentreEventBloc>(
+                                                    context,
+                                                  ).currentIndex ==
+                                                  0 &&
+                                              (BlocProvider.of<
+                                                      CalentreEventBloc>(
+                                                    context,
+                                                  ).currentDay ==
+                                                  day)
+                                          ? (BlocProvider.of<CalentreEventBloc>(
+                                              context,
+                                            ).isTimeError
+                                              ? Text(
+                                                  "There was an error ${(BlocProvider.of<CalentreEventBloc>(
+                                                  context,
+                                                ).isTimeError)}")
+                                              : Container())
+                                          : Container())
+                                      : Container()
+                                ],
+                              )
                             : const Center(child: Text("Busy ")),
                         ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
@@ -110,9 +134,15 @@ class AvailabilityScheduler extends StatelessWidget {
                             ).listLength,
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
-                                  child: TimeDropDown(
-                                      day: {"day": day, "index": index + 1},
-                                      timeSlotBoundary: TimeSlotBoundary.start),
+                                  child: Column(
+                                    children: [
+                                      TimeDropDown(
+                                          day: {"day": day, "index": index + 1},
+                                          timeSlotBoundary:
+                                              TimeSlotBoundary.start),
+                                      Text("There was an error")
+                                    ],
+                                  ),
                                 ))
                       ],
                     ))

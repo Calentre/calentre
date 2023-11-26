@@ -3,6 +3,8 @@ import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
+import 'package:calentre/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
@@ -15,6 +17,11 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? amount;
   String? isMultiple;
   bool isTimeError = false;
+
+  //TODO: rename variable. The current timeIndex that currently clicked on the availability schedule. Used here because of the SingleTon reg. of the current bloc
+  int currentIndex = 0;
+  String? currentDay;
+
   CalDays days = CalDays(
     monday: [
       CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
@@ -60,6 +67,7 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
         if (startTimeMeridiem == "AM" && endTimeMeridiem == "PM") {
           //success
           isTimeError = false;
+
           print("An error" +
               "$endTimeHour" +
               "$endTimeMinute" +
@@ -91,6 +99,8 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
             }
           }
         }
+
+        print("The time is error is $isTimeError");
 
         //check the greater of the meridiem
         //check the greater of the numbers
