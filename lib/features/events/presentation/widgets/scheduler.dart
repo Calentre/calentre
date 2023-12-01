@@ -181,9 +181,18 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? TimeDropDown(
-                                day: {"day": day, "index": 0},
-                                timeSlotBoundary: TimeSlotBoundary.end,
+                            ? Column(
+                                children: [
+                                  TimeDropDown(
+                                      //adding 1 because the index starts at 0
+                                      day: {"day": day, "index": 0},
+                                      timeSlotBoundary: TimeSlotBoundary.end),
+                                  ((calentreEventBloc.currentDay == day)
+                                      ? (checkError(day, context, 0)
+                                          ? const Text(" ")
+                                          : Container())
+                                      : Container())
+                                ],
                               )
                             : const Center(child: Text("Busy")),
                         // ... extraTimeFieldList.map((e) => const TimeDropDown()),
@@ -193,9 +202,23 @@ class AvailabilityScheduler extends StatelessWidget {
                             ).listLength,
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
-                                  child: TimeDropDown(
-                                      day: {"day": day, "index": index + 1},
-                                      timeSlotBoundary: TimeSlotBoundary.end),
+                                  child: Column(
+                                    children: [
+                                      TimeDropDown(
+                                          //adding 1 because the index starts at 0
+                                          day: {
+                                            "day": day,
+                                            "index": index + 1
+                                          },
+                                          timeSlotBoundary:
+                                              TimeSlotBoundary.end),
+                                      ((calentreEventBloc.currentDay == day)
+                                          ? (checkError(day, context, index + 1)
+                                              ? const Text(" ")
+                                              : Container())
+                                          : Container())
+                                    ],
+                                  ),
                                 ))
                       ],
                     ))

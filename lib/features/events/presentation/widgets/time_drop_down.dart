@@ -30,6 +30,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
       create: (context) => TimeDropDownBloc(),
       child: BlocBuilder<TimeDropDownBloc, TimeDropDownState>(
           builder: (context, state) {
+        print("Time drop down was rebuilt");
         return Column(
           children: [
             FormDropDown(
