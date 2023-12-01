@@ -15,6 +15,29 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   String? amount;
   String? isMultiple;
   bool isTimeError = false;
+  List<Map<String, List<bool>>> errorList = [
+    {
+      "Mon": [false]
+    },
+    {
+      "Tue": [false]
+    },
+    {
+      "Wed": [false]
+    },
+    {
+      "Thur": [false]
+    },
+    {
+      "Fri": [false]
+    },
+    {
+      "Sat": [false]
+    },
+    {
+      "Sun": [false]
+    },
+  ];
 
   //TODO: rename variable. The current timeIndex that currently clicked on the availability schedule. Used here because of the SingleTon reg. of the current bloc
   int currentIndex = 0;
@@ -46,6 +69,7 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     switch (day) {
       case "Mon":
         //if start time is greater than end time, return error
+        currentDay = "Mon";
         String startTime = days.monday![index].start!;
         String endTime = days.monday![index].end!;
         print("The start time is $startTime");
@@ -67,35 +91,46 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
         if (startTimeMeridiem == "AM" && endTimeMeridiem == "PM") {
           //success
           isTimeError = false;
+          errorList[0]["Mon"]![index] = false;
         } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "AM") {
           isTimeError = true;
+          errorList[0]["Mon"]![index] = true;
         } else if (startTimeMeridiem == "AM" && endTimeMeridiem == "AM") {
           if (startTimeHour < endTimeHour) {
             isTimeError = false;
+            errorList[0]["Mon"]![index] = false;
           } else if (startTimeHour > endTimeHour) {
             isTimeError = true;
+            errorList[0]["Mon"]![index] = true;
           } else {
             if (startTimeMinute < endTimeMinute) {
               isTimeError = false;
+              errorList[0]["Mon"]![index] = false;
             } else {
               isTimeError = true;
+              errorList[0]["Mon"]![index] = true;
             }
           }
         } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "PM") {
           if (startTimeHour < endTimeHour) {
             isTimeError = false;
+            errorList[0]["Mon"]![index] = false;
           } else if (startTimeHour > endTimeHour) {
             isTimeError = true;
+            errorList[0]["Mon"]![index] = true;
           } else {
             if (startTimeMinute < endTimeMinute) {
               isTimeError = false;
+              errorList[0]["Mon"]![index] = false;
             } else {
               isTimeError = true;
+              errorList[0]["Mon"]![index] = true;
             }
           }
         }
 
         print("The time is error is $isTimeError");
+        print(errorList);
 
         break;
       // case "Tue":

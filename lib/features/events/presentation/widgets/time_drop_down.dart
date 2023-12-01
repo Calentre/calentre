@@ -36,16 +36,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
               currentValue:
                   BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
                       ? (widget.timeSlotBoundary == TimeSlotBoundary.start
-                          ? BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .monday!
-                              .first
-                              .start!
-                          : BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .monday!
-                              .first
-                              .end!)
+                          ? "12:00 AM"
+                          : "12:30 AM")
                       : BlocProvider.of<TimeDropDownBloc>(context)
                           .dropDownValue,
               items: TimeList()

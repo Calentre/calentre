@@ -40,6 +40,7 @@ class AvailabilityScheduler extends StatelessWidget {
         create: (context) => SetAvailabilityBloc(),
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
             builder: (context, state) {
+          print("Scheduler was rebuilt");
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,14 +110,11 @@ class AvailabilityScheduler extends StatelessWidget {
                                   TimeDropDown(
                                       day: {"day": day, "index": 0},
                                       timeSlotBoundary: TimeSlotBoundary.start),
-                                  (calentreEventBloc.currentIndex == 0 &&
-                                          (calentreEventBloc.currentDay == day)
-                                      ? (BlocProvider.of<CalentreEventBloc>(
-                                          context,
-                                        ).isTimeError
+                                  ((calentreEventBloc.currentDay == day)
+                                      ? (checkError(day, context, 0)
                                           ? const Text("There was an error ")
                                           : Container())
-                                      : Container())
+                                      : Container()),
                                 ],
                               )
                             : const Center(child: Text("Busy ")),
@@ -129,16 +127,15 @@ class AvailabilityScheduler extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       TimeDropDown(
-                                          day: {"day": day, "index": index + 1},
+                                          //adding 1 because the index starts at 0
+                                          day: {
+                                            "day": day,
+                                            "index": index + 1
+                                          },
                                           timeSlotBoundary:
                                               TimeSlotBoundary.start),
-                                      (calentreEventBloc.currentIndex ==
-                                                  index + 1 &&
-                                              (calentreEventBloc.currentDay ==
-                                                  day)
-                                          ? (BlocProvider.of<CalentreEventBloc>(
-                                              context,
-                                            ).isTimeError
+                                      ((calentreEventBloc.currentDay == day)
+                                          ? (checkError(day, context, index + 1)
                                               ? const Text(
                                                   "There was an error ")
                                               : Container())
@@ -249,10 +246,21 @@ class AvailabilityScheduler extends StatelessWidget {
                       switch (day) {
                         case "Mon":
                           BlocProvider.of<CalentreEventBloc>(context)
+                              .errorList[0]["Mon"]!
+                              .add(false);
+                          BlocProvider.of<CalentreEventBloc>(context)
                               .days
                               .monday!
                               .add(CalTimeSlot(
                                   start: "12:00 AM", end: "12:30 AM"));
+
+                          // BlocProvider.of<CalentreEventBloc>(context)
+                          //     .validateTimeDropDown(
+                          //   day: "Mon",
+                          //   index: index!,
+                          // );
+                          //add new error
+
                           break;
                         case "Tue":
                           BlocProvider.of<CalentreEventBloc>(context)
@@ -323,6 +331,11 @@ class AvailabilityScheduler extends StatelessWidget {
                                     .days
                                     .monday!
                                     .removeLast();
+
+                                //remove last error in error list
+                                BlocProvider.of<CalentreEventBloc>(context)
+                                    .errorList[0]["Mon"]!
+                                    .removeLast();
                                 break;
                               case "Tue":
                                 BlocProvider.of<CalentreEventBloc>(context)
@@ -375,5 +388,59 @@ class AvailabilityScheduler extends StatelessWidget {
               ],
             ),
           );
+  }
+}
+
+//index represent the extra timefield value.
+bool checkError(String day, BuildContext context, int index) {
+  switch (day) {
+    case "Mon":
+      return BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Mon"]![index];
+
+    // case "Tue":
+    //   BlocProvider.of<CalentreEventBloc>(context)
+    //       .days
+    //       .tuesday!
+    //       .add(CalTimeSlot(
+    //           start: "12:00 AM", end: "11:50 PM"));
+    //   break;
+    // case "Wed":
+    //   BlocProvider.of<CalentreEventBloc>(context)
+    //       .days
+    //       .wednesday!
+    //       .add(CalTimeSlot(
+    //           start: "12:00 AM", end: "11:50 PM"));
+    //   break;
+    // case "Thur":
+    //   BlocProvider.of<CalentreEventBloc>(context)
+    //       .days
+    //       .thursday!
+    //       .add(CalTimeSlot(
+    //           start: "12:00 AM", end: "11:50 PM"));
+    //   break;
+    // case "Fri":
+    //   BlocProvider.of<CalentreEventBloc>(context)
+    //       .days
+    //       .friday!
+    //       .add(CalTimeSlot(
+    //           start: "12:00 AM", end: "11:50 PM"));
+    //   break;
+    // case "Sat":
+    //   BlocProvider.of<CalentreEventBloc>(context)
+    //       .days
+    //       .saturday!
+    //       .add(CalTimeSlot(
+    //           start: "12:00 AM", end: "11:50 PM"));
+    //   break;
+    // case "Sun":
+    //   BlocProvider.of<CalentreEventBloc>(context)
+    //       .days
+    //       .sunday!
+    //       .add(CalTimeSlot(
+    //           start: "12:00 AM", end: "11:50 PM"));
+    //   break;
+    default:
+      return false;
   }
 }
