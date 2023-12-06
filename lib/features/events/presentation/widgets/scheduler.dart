@@ -6,7 +6,6 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_stat
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
-import 'package:calentre/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,6 +40,7 @@ class AvailabilityScheduler extends StatelessWidget {
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
             builder: (context, state) {
           print("Scheduler was rebuilt");
+
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -265,6 +265,7 @@ class AvailabilityScheduler extends StatelessWidget {
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).add(AddExtraTimeFieldEvent());
+
                       //Add an initial TimeSlot for the new field
                       switch (day) {
                         case "Mon":
@@ -277,11 +278,11 @@ class AvailabilityScheduler extends StatelessWidget {
                               .add(CalTimeSlot(
                                   start: "12:00 AM", end: "12:30 AM"));
 
-                          // BlocProvider.of<CalentreEventBloc>(context)
-                          //     .validateTimeDropDown(
-                          //   day: "Mon",
-                          //   index: index!,
-                          // );
+                          BlocProvider.of<CalentreEventBloc>(context)
+                              .validateTimeDropDown(
+                            day: "Mon",
+                            index: index!,
+                          );
                           //add new error
 
                           break;
@@ -418,8 +419,10 @@ class AvailabilityScheduler extends StatelessWidget {
 bool checkError(String day, BuildContext context, int index) {
   switch (day) {
     case "Mon":
-      return BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
           ["Mon"]![index];
+      print("checkError: $error");
+      return error;
 
     // case "Tue":
     //   BlocProvider.of<CalentreEventBloc>(context)

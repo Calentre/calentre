@@ -39,6 +39,9 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     },
   ];
 
+  //Helps the setAvailabilty bloc rebuild
+  int rebuildCounter = 0;
+
   //TODO: rename variable. The current timeIndex that currently clicked on the availability schedule. Used here because of the SingleTon reg. of the current bloc
   int currentIndex = 0;
   String? currentDay;
@@ -66,6 +69,8 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   }
 
   validateTimeDropDown({required String day, required int index}) {
+    //Trigger a rebuild
+    rebuildCounter++;
     switch (day) {
       case "Mon":
         //if start time is greater than end time, return error

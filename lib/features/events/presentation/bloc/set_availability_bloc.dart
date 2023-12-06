@@ -39,7 +39,11 @@ class SetAvailabilityBloc
 
   void onTriggerRebuild(
       SetAvailabilityEvents event, Emitter<SetAvailabilityStates> emit) {
-    bool isTimeError = sl.get<CalentreEventBloc>().isTimeError;
-    emit(RebuildSetAvailabilityScreenState(isTimeError));
+    int rebuildCounter = sl.get<CalentreEventBloc>().rebuildCounter;
+    // List<Map<String, List<bool>>> isTimeErrorList =
+    //     sl.get<CalentreEventBloc>().errorList;
+    // bool isTimeError = sl.get<CalentreEventBloc>().isTimeError;r
+    emit(RebuildSetAvailabilityScreenState(rebuildCounter));
+    // emit(RebuildSetAvailabilityScreenState(isTimeError));
   }
 }

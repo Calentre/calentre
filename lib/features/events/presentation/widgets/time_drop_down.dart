@@ -6,7 +6,6 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_even
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
-import 'package:calentre/injection_container.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +30,7 @@ class _TimeDropDownState extends State<TimeDropDown> {
       child: BlocBuilder<TimeDropDownBloc, TimeDropDownState>(
           builder: (context, state) {
         print("Time drop down was rebuilt");
+
         return Column(
           children: [
             FormDropDown(
@@ -72,6 +72,12 @@ class _TimeDropDownState extends State<TimeDropDown> {
                     } else {
                       calentreEventBloc.days.monday![currentIndex].end = value;
                     }
+
+                    BlocProvider.of<CalentreEventBloc>(context)
+                        .validateTimeDropDown(
+                      day: widget.day["day"],
+                      index: widget.day["index"],
+                    );
 
                     //Print all Time slot in Monday
                     CL.logSuccess(
@@ -157,13 +163,15 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
                     break;
                 }
-                BlocProvider.of<CalentreEventBloc>(context)
-                    .validateTimeDropDown(
-                  day: widget.day["day"],
-                  index: widget.day["index"],
-                );
+
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());
+
+                //      BlocProvider.of<CalentreEventBloc>(context)
+                //     .validateTimeDropDown(
+                //   day: widget.day["day"],
+                //   index: widget.day["index"],
+                // );
 
                 BlocProvider.of<SetAvailabilityBloc>(context)
                     .add(RebuildSetAvailabilityScreenEvent());
