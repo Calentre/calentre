@@ -6,6 +6,7 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_stat
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/utils/element_color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,18 +15,6 @@ class AvailabilityScheduler extends StatelessWidget {
   AvailabilityScheduler({super.key, this.isFirstElement, required this.day});
   final bool? isFirstElement;
   final String day;
-
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.blue;
-    }
-    return Colors.red;
-  }
 
   final List extraTimeFieldList = [];
 
@@ -39,8 +28,6 @@ class AvailabilityScheduler extends StatelessWidget {
         create: (context) => SetAvailabilityBloc(),
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
             builder: (context, state) {
-          print("Scheduler was rebuilt");
-
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,8 +51,8 @@ class AvailabilityScheduler extends StatelessWidget {
                       children: [
                         Checkbox(
                           checkColor: Colors.white,
-                          fillColor:
-                              MaterialStateProperty.resolveWith(getColor),
+                          fillColor: MaterialStateProperty.resolveWith(
+                              elementColorSelector),
                           value: BlocProvider.of<SetAvailabilityBloc>(
                             context,
                           ).checkBoxState,
@@ -184,7 +171,6 @@ class AvailabilityScheduler extends StatelessWidget {
                             ? Column(
                                 children: [
                                   TimeDropDown(
-                                      //adding 1 because the index starts at 0
                                       day: {"day": day, "index": 0},
                                       timeSlotBoundary: TimeSlotBoundary.end),
                                   ((calentreEventBloc.currentDay == day)
@@ -195,7 +181,6 @@ class AvailabilityScheduler extends StatelessWidget {
                                 ],
                               )
                             : const Center(child: Text("Busy")),
-                        // ... extraTimeFieldList.map((e) => const TimeDropDown()),
                         ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
