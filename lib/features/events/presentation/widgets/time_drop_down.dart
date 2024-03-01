@@ -6,8 +6,8 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_even
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
+import 'package:calentre/features/events/presentation/helpers/update_current_day_details.dart';
 import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
-import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,20 +17,16 @@ class TimeDropDown extends StatefulWidget {
   final Map<String, dynamic> day;
   final TimeSlotBoundary timeSlotBoundary;
   @override
-  @override
   State<TimeDropDown> createState() => _TimeDropDownState();
 }
 
 class _TimeDropDownState extends State<TimeDropDown> {
-  String currentValue = "";
   @override
   Widget build(BuildContext context) {
     return BlocProvider<TimeDropDownBloc>(
       create: (context) => TimeDropDownBloc(),
       child: BlocBuilder<TimeDropDownBloc, TimeDropDownState>(
           builder: (context, state) {
-        print("Time drop down was rebuilt");
-
         return Column(
           children: [
             FormDropDown(
@@ -61,117 +57,17 @@ class _TimeDropDownState extends State<TimeDropDown> {
                   context,
                 ).dropDownValue = value!;
 
-                switch (widget.day["day"]) {
-                  case "Mon":
-                    var currentIndex = widget.day["index"];
-                    calentreEventBloc.currentIndex = currentIndex;
-                    calentreEventBloc.currentDay = "Mon";
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.monday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.monday![currentIndex].end = value;
-                    }
-
-                    BlocProvider.of<CalentreEventBloc>(context)
-                        .validateTimeDropDown(
-                      day: widget.day["day"],
-                      index: widget.day["index"],
-                    );
-
-                    //Print all Time slot in Monday
-                    CL.logSuccess(
-                        "${widget.day} ${calentreEventBloc.days.monday![0].start}");
-                    CL.logSuccess(
-                        "${widget.day} ${calentreEventBloc.days.monday![0].end}");
-
-                    break;
-                  case "Tue":
-                    var currentIndex = widget.day["index"];
-
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.tuesday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.tuesday![currentIndex].end = value;
-                    }
-
-                    //Print all Time slot in Tuesday
-                    CL.logSuccess(
-                        "${widget.day} ${calentreEventBloc.days.tuesday![0].start}");
-                    CL.logSuccess(
-                        "${widget.day} ${calentreEventBloc.days.tuesday![0].end}");
-
-                    break;
-                  case "Wed":
-                    var currentIndex = widget.day["index"];
-
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.wednesday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.wednesday![currentIndex].end =
-                          value;
-                    }
-
-                    break;
-
-                  case "Thur":
-                    var currentIndex = widget.day["index"];
-
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.thursday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.thursday![currentIndex].start =
-                          value;
-                    }
-                    break;
-
-                  case "Fri":
-                    var currentIndex = widget.day["index"];
-
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.friday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.friday![currentIndex].end = value;
-                    }
-
-                    break;
-                  case "Sat":
-                    var currentIndex = widget.day["index"];
-
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.saturday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.saturday![currentIndex].end =
-                          value;
-                    }
-
-                    break;
-                  case "Sun":
-                    var currentIndex = widget.day["index"];
-
-                    if (widget.timeSlotBoundary == TimeSlotBoundary.start) {
-                      calentreEventBloc.days.sunday![currentIndex].start =
-                          value;
-                    } else {
-                      calentreEventBloc.days.sunday![currentIndex].end = value;
-                    }
-
-                    break;
-                }
+                //Update the bloc with the currently iterating object details
+                updateCurrentlyIteratingDayDetails(
+                    day: widget.day["day"],
+                    value: value,
+                    calentreEventBloc: calentreEventBloc,
+                    timeSlotBoundary: widget.timeSlotBoundary,
+                    index: widget.day["index"],
+                    context: context);
 
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());
-
-                //      BlocProvider.of<CalentreEventBloc>(context)
-                //     .validateTimeDropDown(
-                //   day: widget.day["day"],
-                //   index: widget.day["index"],
-                // );
 
                 BlocProvider.of<SetAvailabilityBloc>(context)
                     .add(RebuildSetAvailabilityScreenEvent());
@@ -183,3 +79,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
     );
   }
 }
+
+
+//Todo
+//create enum for the days of the week
+//move all time related values from String to Date Time
