@@ -3,6 +3,7 @@ import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
+import 'package:calentre/features/events/presentation/helpers/add_extra_time_field.dart';
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
@@ -15,7 +16,6 @@ class AvailabilityScheduler extends StatelessWidget {
   AvailabilityScheduler({super.key, this.isFirstElement, required this.day});
   final bool? isFirstElement;
   final String day;
-
   final List extraTimeFieldList = [];
 
   @override
@@ -252,69 +252,12 @@ class AvailabilityScheduler extends StatelessWidget {
                       ).add(AddExtraTimeFieldEvent());
 
                       //Add an initial TimeSlot for the new field
-                      switch (day) {
-                        case "Mon":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .errorList[0]["Mon"]!
-                              .add(false);
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .monday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "12:30 AM"));
-
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .validateTimeDropDown(
-                            day: "Mon",
-                            index: index!,
-                          );
-                          //add new error
-
-                          break;
-                        case "Tue":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .tuesday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "11:50 PM"));
-                          break;
-                        case "Wed":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .wednesday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "11:50 PM"));
-                          break;
-                        case "Thur":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .thursday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "11:50 PM"));
-                          break;
-                        case "Fri":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .friday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "11:50 PM"));
-                          break;
-                        case "Sat":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .saturday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "11:50 PM"));
-                          break;
-                        case "Sun":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .sunday!
-                              .add(CalTimeSlot(
-                                  start: "12:00 AM", end: "11:50 PM"));
-                          break;
-                        default:
-                      }
+                      addExtraTimeFieldHelper(
+                          day: day,
+                          calentreEventBloc:
+                              BlocProvider.of<CalentreEventBloc>(context),
+                          context: context,
+                          index: index ?? 1);
                     },
                     child: const FaIcon(FontAwesomeIcons.solidSquarePlus)),
                 const SizedBox().x14(),

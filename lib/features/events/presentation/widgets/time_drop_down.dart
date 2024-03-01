@@ -59,11 +59,11 @@ class _TimeDropDownState extends State<TimeDropDown> {
 
                 //Update the bloc with the currently iterating object details
                 updateCurrentlyIteratingDayDetails(
-                    day: widget.day["day"],
+                    day: widget.day["day"] as String,
                     value: value,
                     calentreEventBloc: calentreEventBloc,
                     timeSlotBoundary: widget.timeSlotBoundary,
-                    index: widget.day["index"],
+                    index: widget.day["index"] as int,
                     context: context);
 
                 BlocProvider.of<TimeDropDownBloc>(context)
