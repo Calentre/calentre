@@ -4,6 +4,7 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_bloc
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
 import 'package:calentre/features/events/presentation/helpers/add_extra_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/remove_extra_time_field.dart';
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
@@ -277,56 +278,11 @@ class AvailabilityScheduler extends StatelessWidget {
                             ).add(RemoveExtraTimeFieldEvent());
 
                             //You should come back to add a caseSwitch here to know day to act on.
-                            switch (day) {
-                              case "Mon":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .monday!
-                                    .removeLast();
-
-                                //remove last error in error list
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .errorList[0]["Mon"]!
-                                    .removeLast();
-                                break;
-                              case "Tue":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .tuesday!
-                                    .removeLast();
-                                break;
-                              case "Wed":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .wednesday!
-                                    .removeLast();
-                                break;
-                              case "Thur":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .thursday!
-                                    .removeLast();
-                                break;
-                              case "Fri":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .friday!
-                                    .removeLast();
-                                break;
-                              case "Sat":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .saturday!
-                                    .removeLast();
-                                break;
-                              case "Sun":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .sunday!
-                                    .removeLast();
-                                break;
-                              default:
-                            }
+                            removeExtraTimeFieldHelper(
+                                day: day,
+                                calentreEventBloc:
+                                    BlocProvider.of<CalentreEventBloc>(
+                                        context));
                           },
                     child: FaIcon(
                       FontAwesomeIcons.trash,
@@ -349,51 +305,32 @@ bool checkError(String day, BuildContext context, int index) {
     case "Mon":
       bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
           ["Mon"]![index];
-      print("checkError: $error");
+      return error;
+    case "Tue":
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Tue"]![index];
+      return error;
+    case "Wed":
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Wed"]![index];
+      return error;
+    case "Thur":
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Thur"]![index];
+      return error;
+    case "Fri":
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Fri"]![index];
+      return error;
+    case "Sat":
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Sat"]![index];
+      return error;
+    case "Sun":
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+          ["Sun"]![index];
       return error;
 
-    // case "Tue":
-    //   BlocProvider.of<CalentreEventBloc>(context)
-    //       .days
-    //       .tuesday!
-    //       .add(CalTimeSlot(
-    //           start: "12:00 AM", end: "11:50 PM"));
-    //   break;
-    // case "Wed":
-    //   BlocProvider.of<CalentreEventBloc>(context)
-    //       .days
-    //       .wednesday!
-    //       .add(CalTimeSlot(
-    //           start: "12:00 AM", end: "11:50 PM"));
-    //   break;
-    // case "Thur":
-    //   BlocProvider.of<CalentreEventBloc>(context)
-    //       .days
-    //       .thursday!
-    //       .add(CalTimeSlot(
-    //           start: "12:00 AM", end: "11:50 PM"));
-    //   break;
-    // case "Fri":
-    //   BlocProvider.of<CalentreEventBloc>(context)
-    //       .days
-    //       .friday!
-    //       .add(CalTimeSlot(
-    //           start: "12:00 AM", end: "11:50 PM"));
-    //   break;
-    // case "Sat":
-    //   BlocProvider.of<CalentreEventBloc>(context)
-    //       .days
-    //       .saturday!
-    //       .add(CalTimeSlot(
-    //           start: "12:00 AM", end: "11:50 PM"));
-    //   break;
-    // case "Sun":
-    //   BlocProvider.of<CalentreEventBloc>(context)
-    //       .days
-    //       .sunday!
-    //       .add(CalTimeSlot(
-    //           start: "12:00 AM", end: "11:50 PM"));
-    //   break;
     default:
       return false;
   }

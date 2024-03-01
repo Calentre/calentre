@@ -50,12 +50,24 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     monday: [
       CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
     ],
-    tuesday: [CalTimeSlot()],
-    wednesday: [CalTimeSlot()],
-    thursday: [CalTimeSlot()],
-    friday: [CalTimeSlot()],
-    saturday: [CalTimeSlot()],
-    sunday: [CalTimeSlot()],
+    tuesday: [
+      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
+    ],
+    wednesday: [
+      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
+    ],
+    thursday: [
+      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
+    ],
+    friday: [
+      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
+    ],
+    saturday: [
+      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
+    ],
+    sunday: [
+      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
+    ],
   );
 
   CalentreEventBloc() : super(CalentreEventInitialState()) {
@@ -66,99 +78,6 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
       ProceedToSetAvailabilityEvent event, Emitter<CalentreEventState> emit) {
     //infuse all the class variables into CalentreEvent to create an update state
     emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
-  }
-
-  validateTimeDropDown({required String day, required int index}) {
-    //Trigger a rebuild
-    rebuildCounter++;
-    switch (day) {
-      case "Mon":
-        //if start time is greater than end time, return error
-        currentDay = "Mon";
-        String startTime = days.monday![index].start!;
-        String endTime = days.monday![index].end!;
-        print("The start time is $startTime");
-        print("The end time is $endTime");
-
-        int startTimeHour = getHourAndMeridiem(startTime)[0] == 12
-            ? 0
-            : getHourAndMeridiem(startTime)[0];
-        int startTimeMinute = getHourAndMeridiem(startTime)[1];
-        String startTimeMeridiem = getHourAndMeridiem(startTime)[2];
-
-        int endTimeHour = getHourAndMeridiem(endTime)[0] == 12
-            ? 0
-            : getHourAndMeridiem(endTime)[0];
-
-        int endTimeMinute = getHourAndMeridiem(endTime)[1];
-        String endTimeMeridiem = getHourAndMeridiem(endTime)[2];
-
-        if (startTimeMeridiem == "AM" && endTimeMeridiem == "PM") {
-          //success
-          isTimeError = false;
-          errorList[0]["Mon"]![index] = false;
-        } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "AM") {
-          isTimeError = true;
-          errorList[0]["Mon"]![index] = true;
-        } else if (startTimeMeridiem == "AM" && endTimeMeridiem == "AM") {
-          if (startTimeHour < endTimeHour) {
-            isTimeError = false;
-            errorList[0]["Mon"]![index] = false;
-          } else if (startTimeHour > endTimeHour) {
-            isTimeError = true;
-            errorList[0]["Mon"]![index] = true;
-          } else {
-            if (startTimeMinute < endTimeMinute) {
-              isTimeError = false;
-              errorList[0]["Mon"]![index] = false;
-            } else {
-              isTimeError = true;
-              errorList[0]["Mon"]![index] = true;
-            }
-          }
-        } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "PM") {
-          if (startTimeHour < endTimeHour) {
-            isTimeError = false;
-            errorList[0]["Mon"]![index] = false;
-          } else if (startTimeHour > endTimeHour) {
-            isTimeError = true;
-            errorList[0]["Mon"]![index] = true;
-          } else {
-            if (startTimeMinute < endTimeMinute) {
-              isTimeError = false;
-              errorList[0]["Mon"]![index] = false;
-            } else {
-              isTimeError = true;
-              errorList[0]["Mon"]![index] = true;
-            }
-          }
-        }
-
-        print("The time is error is $isTimeError");
-        print(errorList);
-
-        break;
-      // case "Tue":
-      //   tuesdayTimeList.timeList;
-      //   break;
-      // case "Wed":
-      //   wednesdayTimeList.timeList;
-      //   break;
-      // case "Thur":
-      //   thursdayTimeList.timeList;
-      //   break;
-      // case "Fri":
-      //   fridayTimeList.timeList;
-      //   break;
-      // case "Sat":
-      //   saturdayTimeList.timeList;
-      //   break;
-      // case "Sun":
-      //   sundayTimeList.timeList;
-      //   break;
-      default:
-        return "Start Time must be before end time ";
-    }
   }
 
   List<String> modifyTimeList(

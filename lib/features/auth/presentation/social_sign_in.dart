@@ -12,6 +12,7 @@ import 'package:calentre/shared/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
@@ -101,6 +102,7 @@ class SocialSignIn extends StatelessWidget {
                                 title: "Other Options are coming soon",
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
+                                  GoRouter.of(context).go("/home");
                                   // await signOut();
                                 },
                               ),

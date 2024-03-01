@@ -1,5 +1,6 @@
 import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/features/events/presentation/helpers/validate_time_drop_down.dart';
 import 'package:flutter/material.dart';
 
 //case switch statement to update calentreEventBloc with the currently iterating day of the week
@@ -21,10 +22,8 @@ void updateCurrentlyIteratingDayDetails(
         calentreEventBloc.days.monday![currentIndex].end = value;
       }
 
-      calentreEventBloc.validateTimeDropDown(
-        day: day,
-        index: index,
-      );
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
     case "Tue":
