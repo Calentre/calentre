@@ -35,6 +35,8 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.tuesday![currentIndex].end = value;
       }
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
     case "Wed":
@@ -48,6 +50,8 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.wednesday![currentIndex].end = value;
       }
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
 
@@ -60,6 +64,8 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.thursday![currentIndex].start = value;
       }
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
       break;
 
     case "Fri":
@@ -71,6 +77,8 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.friday![currentIndex].end = value;
       }
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
     case "Sat":
@@ -83,6 +91,8 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.saturday![currentIndex].end = value;
       }
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
       break;
     case "Sun":
       var currentIndex = index;
@@ -91,6 +101,8 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.sunday![currentIndex].end = value;
       }
+      validateTimeDropDownHelper(
+          day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
   }

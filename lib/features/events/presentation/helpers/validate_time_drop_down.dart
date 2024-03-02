@@ -244,41 +244,62 @@ void _compareStartAndEndTime(
   if (startTimeMeridiem == "AM" && endTimeMeridiem == "PM") {
     //success
     calentreEventBloc.isTimeError = false;
-    calentreEventBloc.errorList[0][day]![index] = false;
+    calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = false;
   } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "AM") {
     calentreEventBloc.isTimeError = true;
-    calentreEventBloc.errorList[0][day]![index] = true;
+    calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = true;
   } else if (startTimeMeridiem == "AM" && endTimeMeridiem == "AM") {
     if (startTimeHour < endTimeHour) {
       calentreEventBloc.isTimeError = false;
-      calentreEventBloc.errorList[0][day]![index] = false;
+      calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = false;
     } else if (startTimeHour > endTimeHour) {
       calentreEventBloc.isTimeError = true;
-      calentreEventBloc.errorList[0][day]![index] = true;
+      calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = true;
     } else {
       if (startTimeMinute < endTimeMinute) {
         calentreEventBloc.isTimeError = false;
-        calentreEventBloc.errorList[0][day]![index] = false;
+        calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = false;
       } else {
         calentreEventBloc.isTimeError = true;
-        calentreEventBloc.errorList[0][day]![index] = true;
+        calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = true;
       }
     }
   } else if (startTimeMeridiem == "PM" && endTimeMeridiem == "PM") {
     if (startTimeHour < endTimeHour) {
       calentreEventBloc.isTimeError = false;
-      calentreEventBloc.errorList[0][day]![index] = false;
+      calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = false;
     } else if (startTimeHour > endTimeHour) {
       calentreEventBloc.isTimeError = true;
-      calentreEventBloc.errorList[0][day]![index] = true;
+      calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = true;
     } else {
       if (startTimeMinute < endTimeMinute) {
         calentreEventBloc.isTimeError = false;
-        calentreEventBloc.errorList[0][day]![index] = false;
+        calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = false;
       } else {
         calentreEventBloc.isTimeError = true;
-        calentreEventBloc.errorList[0][day]![index] = true;
+        calentreEventBloc.errorList[_getDayIndex(day)][day]![index] = true;
       }
     }
+  }
+}
+
+int _getDayIndex(String day) {
+  switch (day) {
+    case "Mon":
+      return 0;
+    case "Tue":
+      return 1;
+    case "Wed":
+      return 2;
+    case "Thur":
+      return 3;
+    case "Fri":
+      return 4;
+    case "Sat":
+      return 5;
+    case "Sun":
+      return 6;
+    default:
+      return 0;
   }
 }

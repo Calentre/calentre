@@ -22,9 +22,9 @@ void addExtraTimeFieldHelper(
 
       break;
     case "Tue":
-      calentreEventBloc.errorList[0]["Tue"]!.add(false);
+      calentreEventBloc.errorList[1]["Tue"]!.add(false);
       calentreEventBloc.days.tuesday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "11:50 PM"));
+          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
       validateTimeDropDownHelper(
         calentreEventBloc: calentreEventBloc,
         day: "Tue",
@@ -32,8 +32,9 @@ void addExtraTimeFieldHelper(
       );
       break;
     case "Wed":
+      calentreEventBloc.errorList[2]["Wed"]!.add(false);
       calentreEventBloc.days.wednesday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "11:50 PM"));
+          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
       validateTimeDropDownHelper(
         calentreEventBloc: calentreEventBloc,
         day: "Wed",
@@ -41,8 +42,9 @@ void addExtraTimeFieldHelper(
       );
       break;
     case "Thur":
+      calentreEventBloc.errorList[3]["Thur"]!.add(false);
       calentreEventBloc.days.thursday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "11:50 PM"));
+          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
       validateTimeDropDownHelper(
         calentreEventBloc: calentreEventBloc,
         day: "Thur",
@@ -50,8 +52,9 @@ void addExtraTimeFieldHelper(
       );
       break;
     case "Fri":
+      calentreEventBloc.errorList[4]["Fri"]!.add(false);
       calentreEventBloc.days.friday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "11:50 PM"));
+          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
       validateTimeDropDownHelper(
         calentreEventBloc: calentreEventBloc,
         day: "Fri",
@@ -59,8 +62,9 @@ void addExtraTimeFieldHelper(
       );
       break;
     case "Sat":
+      calentreEventBloc.errorList[5]["Sat"]!.add(false);
       calentreEventBloc.days.saturday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "11:50 PM"));
+          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
       validateTimeDropDownHelper(
         calentreEventBloc: calentreEventBloc,
         day: "Sat",
@@ -68,8 +72,9 @@ void addExtraTimeFieldHelper(
       );
       break;
     case "Sun":
+      calentreEventBloc.errorList[6]["Sun"]!.add(false);
       calentreEventBloc.days.sunday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "11:50 PM"));
+          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
       validateTimeDropDownHelper(
         calentreEventBloc: calentreEventBloc,
         day: "Sun",

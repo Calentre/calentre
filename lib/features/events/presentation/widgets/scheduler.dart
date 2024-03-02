@@ -307,27 +307,27 @@ bool checkError(String day, BuildContext context, int index) {
           ["Mon"]![index];
       return error;
     case "Tue":
-      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[1]
           ["Tue"]![index];
       return error;
     case "Wed":
-      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[2]
           ["Wed"]![index];
       return error;
     case "Thur":
-      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[3]
           ["Thur"]![index];
       return error;
     case "Fri":
-      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[4]
           ["Fri"]![index];
       return error;
     case "Sat":
-      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[5]
           ["Sat"]![index];
       return error;
     case "Sun":
-      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[0]
+      bool error = BlocProvider.of<CalentreEventBloc>(context).errorList[6]
           ["Sun"]![index];
       return error;
 

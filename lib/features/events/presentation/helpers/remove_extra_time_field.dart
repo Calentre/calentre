@@ -13,27 +13,27 @@ void removeExtraTimeFieldHelper({
       break;
     case "Tue":
       calentreEventBloc.days.tuesday!.removeLast();
-      calentreEventBloc.errorList[0]["Tue"]!.removeLast();
+      calentreEventBloc.errorList[1]["Tue"]!.removeLast();
       break;
     case "Wed":
       calentreEventBloc.days.wednesday!.removeLast();
-      calentreEventBloc.errorList[0]["Wed"]!.removeLast();
+      calentreEventBloc.errorList[2]["Wed"]!.removeLast();
       break;
     case "Thur":
       calentreEventBloc.days.thursday!.removeLast();
-      calentreEventBloc.errorList[0]["Thur"]!.removeLast();
+      calentreEventBloc.errorList[3]["Thur"]!.removeLast();
       break;
     case "Fri":
       calentreEventBloc.days.friday!.removeLast();
-      calentreEventBloc.errorList[0]["Fri"]!.removeLast();
+      calentreEventBloc.errorList[4]["Fri"]!.removeLast();
       break;
     case "Sat":
       calentreEventBloc.days.saturday!.removeLast();
-      calentreEventBloc.errorList[0]["Sat"]!.removeLast();
+      calentreEventBloc.errorList[5]["Sat"]!.removeLast();
       break;
     case "Sun":
       calentreEventBloc.days.sunday!.removeLast();
-      calentreEventBloc.errorList[0]["Sun"]!.removeLast();
+      calentreEventBloc.errorList[6]["Sun"]!.removeLast();
       break;
     default:
   }
