@@ -7,7 +7,7 @@ import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_d
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
 import 'package:calentre/features/events/presentation/helpers/update_current_day_details.dart';
-import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
+import 'package:calentre/shared/widgets/form_drop_down//form_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,8 +1,8 @@
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/shared/border_card.dart';
-import 'package:calentre/shared/button.dart';
+import 'package:calentre/shared/widgets/border_card.dart';
+import 'package:calentre/shared/widgets/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
