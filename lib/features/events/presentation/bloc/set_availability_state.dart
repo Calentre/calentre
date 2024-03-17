@@ -1,3 +1,4 @@
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:equatable/equatable.dart';
 
 class SetAvailabilityStates extends Equatable {
@@ -41,18 +42,28 @@ class CheckBoxUpdatedState extends SetAvailabilityStates {
   List<Object> get props => [state];
 }
 
-//This state is only needed to be emitted in order to trigger a rebuid of the setAvailabilityScreen
+class DayScheduleState extends SetAvailabilityStates {
+  final int index;
+  final WeekDays day;
+  final String startTime;
+  final String endTime;
+  DayScheduleState(
+      {required this.index,
+      required this.day,
+      required this.endTime,
+      required this.startTime});
+}
+
+class DayScheduleErrorState extends SetAvailabilityStates {
+  final String message;
+
+  DayScheduleErrorState({required this.message});
+}
+
 class RebuildSetAvailabilityScreenState extends SetAvailabilityStates {
-  // final List<Map<String, List<bool>>> state;
-  // final bool state;
   final int state;
 
   RebuildSetAvailabilityScreenState(this.state);
-
-  // RebuildSetAvailabilityScreenState copyWith(
-  //     {required List<Map<String, List<bool>>> newState}) {
-  //   return RebuildSetAvailabilityScreenState(newState);
-  // }
 
   @override
   List<Object> get props => [state];

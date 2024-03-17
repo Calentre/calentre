@@ -20,6 +20,7 @@ class SetAvailabilityBloc
   void onClickAddExtraTimeField(
       AddExtraTimeFieldEvent event, Emitter<SetAvailabilityStates> emit) {
     listLength++;
+    print("Extra time field was meant to be added");
     emit(ExtraTimeFieldUpdatedState(listLength));
   }
 

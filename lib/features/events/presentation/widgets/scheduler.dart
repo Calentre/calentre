@@ -25,210 +25,196 @@ class AvailabilityScheduler extends StatelessWidget {
     CalentreEventBloc calentreEventBloc = BlocProvider.of<CalentreEventBloc>(
       context,
     );
-    return BlocProvider<SetAvailabilityBloc>(
-        create: (context) => SetAvailabilityBloc(),
-        child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
-            builder: (context, state) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child:
+                  (isFirstElement ?? false) ? const Text("Day") : Container(),
+            ),
+            FormBorderCard(
+              verticalPadding: 8,
+              leftPadding: 12,
+              width: 100,
+              child: Row(
+                children: [
+                  Checkbox(
+                    checkColor: Colors.white,
+                    fillColor:
+                        MaterialStateProperty.resolveWith(elementColorSelector),
+                    value: BlocProvider.of<SetAvailabilityBloc>(
+                      context,
+                    ).checkBoxState,
+                    onChanged: (bool? value) {
+                      debugPrint("The value is $value");
+                      BlocProvider.of<SetAvailabilityBloc>(
+                        context,
+                      ).add(CheckBoxEvent());
+                    },
+                  ),
+                  Text(day),
+                  const SizedBox().x10(),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox().x14(),
+        BlocProvider.of<SetAvailabilityBloc>(
+          context,
+        ).checkBoxState
+            ? Expanded(
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
-                    child: (isFirstElement ?? false)
-                        ? const Text("Day")
+                    child: (isFirstElement ?? false) &&
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).checkBoxState
+                        ? const Text("Sart")
                         : Container(),
                   ),
-                  FormBorderCard(
-                    verticalPadding: 8,
-                    leftPadding: 12,
-                    width: 100,
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          checkColor: Colors.white,
-                          fillColor: MaterialStateProperty.resolveWith(
-                              elementColorSelector),
-                          value: BlocProvider.of<SetAvailabilityBloc>(
-                            context,
-                          ).checkBoxState,
-                          onChanged: (bool? value) {
-                            debugPrint("The value is $value");
-                            BlocProvider.of<SetAvailabilityBloc>(
-                              context,
-                            ).add(CheckBoxEvent());
-                          },
-                        ),
-                        Text(day),
-                        const SizedBox().x10(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox().x14(),
-              BlocProvider.of<SetAvailabilityBloc>(
-                context,
-              ).checkBoxState
-                  ? Expanded(
-                      child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: (isFirstElement ?? false) &&
-                                  BlocProvider.of<SetAvailabilityBloc>(
-                                    context,
-                                  ).checkBoxState
-                              ? const Text("Sart")
-                              : Container(),
-                        ),
-                        BlocProvider.of<SetAvailabilityBloc>(
-                          context,
-                        ).checkBoxState
-                            ? Column(
-                                children: [
-                                  TimeDropDown(
-                                      day: {"day": day, "index": 0},
-                                      timeSlotBoundary: TimeSlotBoundary.start),
-                                  ((calentreEventBloc.currentDay == day)
-                                      ? (checkError(day, context, 0)
-                                          ? const Text("There was an error ")
-                                          : Container())
-                                      : Container()),
-                                ],
-                              )
-                            : const Center(child: Text("Busy ")),
-                        ...List.generate(
-                            BlocProvider.of<SetAvailabilityBloc>(
-                              context,
-                            ).listLength,
-                            (index) => Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Column(
-                                    children: [
-                                      TimeDropDown(
-                                          //adding 1 because the index starts at 0
-                                          day: {
-                                            "day": day,
-                                            "index": index + 1
-                                          },
-                                          timeSlotBoundary:
-                                              TimeSlotBoundary.start),
-                                      ((calentreEventBloc.currentDay == day)
-                                          ? (checkError(day, context, index + 1)
-                                              ? const Text(
-                                                  "There was an error ")
-                                              : Container())
-                                          : Container())
-                                    ],
-                                  ),
-                                ))
-                      ],
-                    ))
-                  : const SizedBox(
-                      // color: Colors.white,
-                      height: 44,
-                      width: 400,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Positioned(
-                            top: 20,
-                            child: Text("Busy day for you"),
-                          )
-                        ],
-                      ),
-                    ),
-              const SizedBox().x14(),
-              BlocProvider.of<SetAvailabilityBloc>(
-                context,
-              ).checkBoxState
-                  ? Expanded(
-                      child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: (isFirstElement ?? false) &&
-                                  BlocProvider.of<SetAvailabilityBloc>(
-                                    context,
-                                  ).checkBoxState
-                              ? const Text("End")
-                              : Container(),
-                        ),
-                        BlocProvider.of<SetAvailabilityBloc>(
-                          context,
-                        ).checkBoxState
-                            ? Column(
-                                children: [
-                                  TimeDropDown(
-                                      day: {"day": day, "index": 0},
-                                      timeSlotBoundary: TimeSlotBoundary.end),
-                                  ((calentreEventBloc.currentDay == day)
-                                      ? (checkError(day, context, 0)
-                                          ? const Text(" ")
-                                          : Container())
-                                      : Container())
-                                ],
-                              )
-                            : const Center(child: Text("Busy")),
-                        ...List.generate(
-                            BlocProvider.of<SetAvailabilityBloc>(
-                              context,
-                            ).listLength,
-                            (index) => Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Column(
-                                    children: [
-                                      TimeDropDown(
-                                          //adding 1 because the index starts at 0
-                                          day: {
-                                            "day": day,
-                                            "index": index + 1
-                                          },
-                                          timeSlotBoundary:
-                                              TimeSlotBoundary.end),
-                                      ((calentreEventBloc.currentDay == day)
-                                          ? (checkError(day, context, index + 1)
-                                              ? const Text(" ")
-                                              : Container())
-                                          : Container())
-                                    ],
-                                  ),
-                                ))
-                      ],
-                    ))
-                  : Container(),
-              const SizedBox().x14(),
-              Column(
-                children: [
-                  actionIcons(context, index: null, day: day),
+                  BlocProvider.of<SetAvailabilityBloc>(
+                    context,
+                  ).checkBoxState
+                      ? Column(
+                          children: [
+                            TimeDropDown(
+                                day: {"day": day, "index": 0},
+                                timeSlotBoundary: TimeSlotBoundary.start),
+                            ((calentreEventBloc.currentDay == day)
+                                ? (checkError(day, context, 0)
+                                    ? const Text("There was an error ")
+                                    : Container())
+                                : Container()),
+                          ],
+                        )
+                      : const Center(child: Text("Busy ")),
                   ...List.generate(
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
-                      ).listLength, (index) {
-                    return actionIcons(context,
-                        index: index,
-                        day: day,
-                        listLength: BlocProvider.of<SetAvailabilityBloc>(
-                          context,
-                        ).listLength);
-                  })
+                      ).listLength,
+                      (index) => Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Column(
+                              children: [
+                                TimeDropDown(
+                                    //adding 1 because the index starts at 0
+                                    day: {"day": day, "index": index + 1},
+                                    timeSlotBoundary: TimeSlotBoundary.start),
+                                ((calentreEventBloc.currentDay == day)
+                                    ? (checkError(day, context, index + 1)
+                                        ? const Text("There was an error ")
+                                        : Container())
+                                    : Container())
+                              ],
+                            ),
+                          ))
                 ],
+              ))
+            : const SizedBox(
+                // color: Colors.white,
+                height: 44,
+                width: 400,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      top: 20,
+                      child: Text("Busy day for you"),
+                    )
+                  ],
+                ),
               ),
-            ],
-          );
-        }));
+        const SizedBox().x14(),
+        BlocProvider.of<SetAvailabilityBloc>(
+          context,
+        ).checkBoxState
+            ? Expanded(
+                child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: (isFirstElement ?? false) &&
+                            BlocProvider.of<SetAvailabilityBloc>(
+                              context,
+                            ).checkBoxState
+                        ? const Text("End")
+                        : Container(),
+                  ),
+                  BlocProvider.of<SetAvailabilityBloc>(
+                    context,
+                  ).checkBoxState
+                      ? Column(
+                          children: [
+                            TimeDropDown(
+                                day: {"day": day, "index": 0},
+                                timeSlotBoundary: TimeSlotBoundary.end),
+                            ((calentreEventBloc.currentDay == day)
+                                ? (checkError(day, context, 0)
+                                    ? const Text(" ")
+                                    : Container())
+                                : Container())
+                          ],
+                        )
+                      : const Center(child: Text("Busy")),
+                  ...List.generate(
+                      BlocProvider.of<SetAvailabilityBloc>(
+                        context,
+                      ).listLength,
+                      (index) => Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Column(
+                              children: [
+                                TimeDropDown(
+                                    //adding 1 because the index starts at 0
+                                    day: {"day": day, "index": index + 1},
+                                    timeSlotBoundary: TimeSlotBoundary.end),
+                                ((calentreEventBloc.currentDay == day)
+                                    ? (checkError(day, context, index + 1)
+                                        ? const Text(" ")
+                                        : Container())
+                                    : Container())
+                              ],
+                            ),
+                          ))
+                ],
+              ))
+            : Container(),
+        const SizedBox().x14(),
+        Column(
+          children: [
+            actionIcons(context, index: null, day: day),
+            ...List.generate(
+                BlocProvider.of<SetAvailabilityBloc>(
+                  context,
+                ).listLength, (index) {
+              return actionIcons(context,
+                  index: index,
+                  day: day,
+                  listLength: BlocProvider.of<SetAvailabilityBloc>(
+                    context,
+                  ).listLength);
+            })
+          ],
+        ),
+      ],
+    );
   }
 
   Widget actionIcons(context,
