@@ -69,14 +69,14 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
     ],
   );
 
-  CalentreEventBloc() : super(CalentreEventInitialState()) {
+  CalentreEventBloc() : super(CalentreEventState.initial()) {
     on<ProceedToSetAvailabilityEvent>(onClickDropDownItem);
   }
 
   void onClickDropDownItem(
       ProceedToSetAvailabilityEvent event, Emitter<CalentreEventState> emit) {
     //infuse all the class variables into CalentreEvent to create an update state
-    emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
+    emit(CalentreEventState.initial());
   }
 }
 

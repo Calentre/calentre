@@ -4,7 +4,7 @@ class CalentreEventEvent {}
 
 class ProceedToSetAvailabilityEvent extends CalentreEventEvent {}
 
-class UpdateEventDetails extends CalentreEventEvent {
+class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
   String? amount;
   String? duration;
   String? eventDescription;
@@ -15,7 +15,7 @@ class UpdateEventDetails extends CalentreEventEvent {
   String? videoCallType;
   Days? days;
 
-  UpdateEventDetails(
+  UpdateCalentreEventDetailsEvent(
       {this.amount,
       this.duration,
       this.eventDescription,

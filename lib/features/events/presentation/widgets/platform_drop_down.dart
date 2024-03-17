@@ -1,9 +1,9 @@
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/platform_drop_down_bloc.dart';
 import 'package:calentre/config/extensions/spacing.dart';
-import 'package:calentre/shared/widgets/form_drop_down//bloc/form_drop_down_event.dart';
-import 'package:calentre/shared/widgets/form_drop_down//bloc/form_drop_down_state.dart';
-import 'package:calentre/shared/widgets/form_drop_down//form_drop_down.dart';
+import 'package:calentre/shared/widgets/form_drop_down/bloc/form_drop_down_event.dart';
+import 'package:calentre/shared/widgets/form_drop_down/bloc/form_drop_down_state.dart';
+import 'package:calentre/shared/widgets/form_drop_down/form_drop_down.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';

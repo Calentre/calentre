@@ -6,7 +6,7 @@ class FormDropDownBloc extends Bloc<FormDropDownEvents, FormDropDownState> {
   String dropDownValue = "";
   FormDropDownBloc() : super(FormDropDownInitialState()) {
     on<SelectDropDownValueEvent>(onClickDropDownItem);
-    on<RebuildDropDownEvent>(onTriggerRebuild);
+    // on<RebuildDropDownEvent>(onTriggerRebuild);
   }
 
   void onClickDropDownItem(
