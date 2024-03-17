@@ -10,7 +10,7 @@ class CalentreEventState extends Equatable {
   final String eventName;
   final String eventType;
   final String isMultiple;
-  final String videoCallType;
+  final String platformType;
   final Days days;
 
   //constructor
@@ -18,7 +18,7 @@ class CalentreEventState extends Equatable {
       {required this.eventName,
       required this.eventType,
       required this.isMultiple,
-      required this.videoCallType,
+      required this.platformType,
       required this.days,
       required this.amount,
       required this.duration,
@@ -35,7 +35,7 @@ class CalentreEventState extends Equatable {
         eventName: "",
         eventType: "",
         isMultiple: "",
-        videoCallType: "",
+        platformType: "",
         days: Days(
           monday: [
             TimeSlot(
@@ -68,7 +68,7 @@ class CalentreEventState extends Equatable {
         ));
   }
 
-  //clone/copyWith method
+  ///Creates a new instance(state) of the [CalentreEventState]
   CalentreEventState clone(
       {String? amount,
       String? duration,
@@ -77,13 +77,13 @@ class CalentreEventState extends Equatable {
       String? eventName,
       String? eventType,
       String? isMultiple,
-      String? videoCallType,
+      String? platformType,
       Days? days}) {
     return CalentreEventState(
         eventName: eventName ?? this.amount,
         eventType: eventType ?? this.eventType,
         isMultiple: isMultiple ?? this.isMultiple,
-        videoCallType: videoCallType ?? this.videoCallType,
+        platformType: platformType ?? this.platformType,
         days: days ?? this.days,
         amount: amount ?? this.amount,
         duration: duration ?? this.duration,
@@ -100,7 +100,7 @@ class CalentreEventState extends Equatable {
         eventLink,
         eventName,
         isMultiple,
-        videoCallType,
+        platformType,
         days
       ];
 }

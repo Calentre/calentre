@@ -1,18 +1,9 @@
 import 'package:calentre/config/constants/time_list.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
-  String? eventName;
-  String? eventDescription;
-  String? platform;
-  String? duration;
-  String? eventLink;
-  String? eventType;
-  String? amount;
-  String? isMultiple;
   bool isTimeError = false;
   List<Map<String, List<bool>>> errorList = [
     {
@@ -70,13 +61,14 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   );
 
   CalentreEventBloc() : super(CalentreEventState.initial()) {
-    on<ProceedToSetAvailabilityEvent>(onClickDropDownItem);
+    on<UpdateCalentreEventDetailsEvent>(onUpdateFormFields);
   }
 
-  void onClickDropDownItem(
-      ProceedToSetAvailabilityEvent event, Emitter<CalentreEventState> emit) {
-    //infuse all the class variables into CalentreEvent to create an update state
-    emit(CalentreEventState.initial());
+  void onUpdateFormFields(
+      UpdateCalentreEventDetailsEvent event, Emitter<CalentreEventState> emit) {
+    // final eventName = event.eventName;
+    final amount = event.amount;
+    emit(state.clone(eventName: event.eventName, amount: amount));
   }
 }
 

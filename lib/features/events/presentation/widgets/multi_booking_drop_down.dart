@@ -28,9 +28,6 @@ class _MultiBookingDropDownState extends State<MultiBookingDropDown> {
             : BlocProvider.of<MultiBookingDropDownBloc>(context).dropDownValue,
         list: list,
         onChanged: (String? value) {
-          // setState(() {
-          //   currentValue = value!;
-          // });
           BlocProvider.of<MultiBookingDropDownBloc>(
             context,
             // listen: false,
@@ -40,6 +37,7 @@ class _MultiBookingDropDownState extends State<MultiBookingDropDown> {
         },
         items: list.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
+            enabled: false, //feature is currently unavailble
             value: value,
             child: Row(
               children: [

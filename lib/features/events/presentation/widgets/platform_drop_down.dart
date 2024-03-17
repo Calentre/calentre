@@ -40,8 +40,6 @@ class _PlatformDropDownState extends State<PlatformDropDown> {
 
           BlocProvider.of<PlatformDropDownBloc>(context)
               .add(SelectDropDownValueEvent());
-          CL.logSuccess(
-              "${BlocProvider.of<CalentreEventBloc>(context).eventName} was added to CalentreEventBloc state");
         },
         items: list.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(

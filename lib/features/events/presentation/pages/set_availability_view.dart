@@ -110,10 +110,6 @@ class SetAvailabilityView extends StatelessWidget {
                   gradient: true,
                   onPressed: () {
                     // context.goNamed(AppRoutes.completionFeedBack);
-                    final calentreEventBloc =
-                        BlocProvider.of<CalentreEventBloc>(context);
-                    CL.logSuccess(
-                        "${calentreEventBloc.eventName} was added to CalentreEventBloc state");
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.boltLightning,

@@ -12,7 +12,7 @@ class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
   String? eventName;
   String? eventType;
   String? isMultiple;
-  String? videoCallType;
+  String? platformType;
   Days? days;
 
   UpdateCalentreEventDetailsEvent(
@@ -23,6 +23,6 @@ class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
       this.eventName,
       this.eventType,
       this.isMultiple,
-      this.videoCallType,
+      this.platformType,
       this.days});
 }
