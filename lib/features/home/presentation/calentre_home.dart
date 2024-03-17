@@ -46,7 +46,7 @@ class _CalentreHomeState extends State<CalentreHome> {
   }
 }
 
-tabBarViewSelector(state) {
+tabBarViewSelector(HomeViewStates state) {
   if (state is InitialState) {
     return Column(
       children: [
