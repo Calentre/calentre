@@ -42,24 +42,6 @@ class CheckBoxUpdatedState extends SetAvailabilityStates {
   List<Object> get props => [state];
 }
 
-class DayScheduleState extends SetAvailabilityStates {
-  final int index;
-  final WeekDays day;
-  final String startTime;
-  final String endTime;
-  DayScheduleState(
-      {required this.index,
-      required this.day,
-      required this.endTime,
-      required this.startTime});
-}
-
-class DayScheduleErrorState extends SetAvailabilityStates {
-  final String message;
-
-  DayScheduleErrorState({required this.message});
-}
-
 class RebuildSetAvailabilityScreenState extends SetAvailabilityStates {
   final int state;
 

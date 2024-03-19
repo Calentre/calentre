@@ -1,3 +1,4 @@
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
@@ -17,7 +18,14 @@ import 'package:go_router/go_router.dart';
 class SetAvailabilityView extends StatelessWidget {
   SetAvailabilityView({super.key});
 
-  final List<String> days = ["Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+  final List<WeekDays> days = [
+    WeekDays.tuesday,
+    WeekDays.wednesday,
+    WeekDays.thursday,
+    WeekDays.friday,
+    WeekDays.saturday,
+    WeekDays.sunday,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +98,7 @@ class SetAvailabilityView extends StatelessWidget {
                           ),
                           const SizedBox().y20(),
                           AvailabilityScheduler(
-                              isFirstElement: true, day: "Mon"),
+                              isFirstElement: true, day: WeekDays.monday),
                           ...days.map((day) => Column(
                                 children: [
                                   Padding(

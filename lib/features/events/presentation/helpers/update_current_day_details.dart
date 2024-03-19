@@ -1,18 +1,19 @@
 import 'package:calentre/config/enums/time_slots.dart';
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/events/presentation/helpers/validate_time_drop_down.dart';
 import 'package:flutter/material.dart';
 
 //case switch statement to update calentreEventBloc with the currently iterating day of the week
 void updateCurrentlyIteratingDayDetails(
-    {required String day,
+    {required WeekDays day,
     required String value,
     required CalentreEventBloc calentreEventBloc,
     required TimeSlotBoundary timeSlotBoundary,
     required int index,
     required BuildContext context}) {
   switch (day) {
-    case "Mon":
+    case WeekDays.monday:
       final currentIndex = index;
       calentreEventBloc.currentIndex = currentIndex;
       calentreEventBloc.currentDay = "Mon";
@@ -22,11 +23,11 @@ void updateCurrentlyIteratingDayDetails(
         calentreEventBloc.days.monday![currentIndex].end = value;
       }
 
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
-    case "Tue":
+    case WeekDays.tuesday:
       final currentIndex = index;
       calentreEventBloc.currentIndex = currentIndex;
       calentreEventBloc.currentDay = "Tue";
@@ -35,11 +36,11 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.tuesday![currentIndex].end = value;
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
-    case "Wed":
+    case WeekDays.wednesday:
       final currentIndex = index;
 
       calentreEventBloc.currentIndex = currentIndex;
@@ -50,12 +51,12 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.wednesday![currentIndex].end = value;
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
 
-    case "Thur":
+    case WeekDays.thursday:
       final currentIndex = index;
       calentreEventBloc.currentIndex = currentIndex;
       calentreEventBloc.currentDay = "Thur";
@@ -64,11 +65,11 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.thursday![currentIndex].start = value;
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
       break;
 
-    case "Fri":
+    case WeekDays.friday:
       var currentIndex = index;
       calentreEventBloc.currentIndex = currentIndex;
       calentreEventBloc.currentDay = "Fri";
@@ -77,11 +78,11 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.friday![currentIndex].end = value;
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
-    case "Sat":
+    case WeekDays.saturday:
       var currentIndex = index;
       calentreEventBloc.currentIndex = currentIndex;
       calentreEventBloc.currentDay = "Sat";
@@ -91,18 +92,18 @@ void updateCurrentlyIteratingDayDetails(
       } else {
         calentreEventBloc.days.saturday![currentIndex].end = value;
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
       break;
-    case "Sun":
+    case WeekDays.sunday:
       var currentIndex = index;
       if (timeSlotBoundary == TimeSlotBoundary.start) {
         calentreEventBloc.days.sunday![currentIndex].start = value;
       } else {
         calentreEventBloc.days.sunday![currentIndex].end = value;
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      // validateTimeDropDownHelper(
+      //     day: day, index: index, calentreEventBloc: calentreEventBloc);
 
       break;
   }

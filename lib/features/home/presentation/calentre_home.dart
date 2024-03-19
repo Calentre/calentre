@@ -38,12 +38,12 @@ class _CalentreHomeState extends State<CalentreHome> {
     );
   }
 
-  @override
-  void dispose() {
-    //close the CalentreEventBloc here
-    sl.get<CalentreEventBloc>().close();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   //close the CalentreEventBloc here
+  //   sl.get<CalentreEventBloc>().close();
+  //   super.dispose();
+  // }
 }
 
 tabBarViewSelector(HomeViewStates state) {

@@ -1,8 +1,15 @@
 import 'package:calentre/config/constants/time_list.dart';
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:equatable/equatable.dart';
 
-class CalentreEventState extends Equatable {
+class CalentreEventBaseState extends Equatable {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
+class CalentreEventState extends CalentreEventBaseState {
   final String amount;
   final String duration;
   final String eventDescription;
@@ -14,7 +21,7 @@ class CalentreEventState extends Equatable {
   final Days days;
 
   //constructor
-  const CalentreEventState(
+  CalentreEventState(
       {required this.eventName,
       required this.eventType,
       required this.isMultiple,
@@ -103,4 +110,33 @@ class CalentreEventState extends Equatable {
         platformType,
         days
       ];
+}
+
+class UpdateDayScheduleState extends CalentreEventBaseState {
+  final int index;
+  final WeekDays day;
+  final String startTime;
+  final String endTime;
+  UpdateDayScheduleState(
+      {required this.index,
+      required this.day,
+      required this.endTime,
+      required this.startTime});
+
+  UpdateDayScheduleState clone(
+      {int? index, WeekDays? day, String? startTime, String? endTime}) {
+    return UpdateDayScheduleState(
+        index: index ?? this.index,
+        day: day ?? this.day,
+        endTime: endTime ?? this.endTime,
+        startTime: startTime ?? this.startTime);
+  }
+
+  @override
+  List<Object> get props => [index, day, startTime, endTime];
+}
+
+class DayScheduleErrorState extends CalentreEventBaseState {
+  final String message;
+  DayScheduleErrorState({required this.message});
 }

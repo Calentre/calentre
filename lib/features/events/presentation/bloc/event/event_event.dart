@@ -1,3 +1,4 @@
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 
 class CalentreEventEvent {}
@@ -25,4 +26,16 @@ class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
       this.isMultiple,
       this.platformType,
       this.days});
+}
+
+class UpdateDayScheduleEvent extends CalentreEventEvent {
+  final int index;
+  final WeekDays day;
+  final String startTime;
+  final String endTime;
+  UpdateDayScheduleEvent(
+      {required this.index,
+      required this.day,
+      required this.endTime,
+      required this.startTime});
 }

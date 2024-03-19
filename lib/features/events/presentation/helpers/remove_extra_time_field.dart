@@ -1,37 +1,38 @@
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 
 void removeExtraTimeFieldHelper({
-  required String day,
+  required WeekDays day,
   required CalentreEventBloc calentreEventBloc,
 }) {
   switch (day) {
-    case "Mon":
+    case WeekDays.monday:
       calentreEventBloc.days.monday!.removeLast();
 
       //remove last error in error list
       calentreEventBloc.errorList[0]["Mon"]!.removeLast();
       break;
-    case "Tue":
+    case WeekDays.tuesday:
       calentreEventBloc.days.tuesday!.removeLast();
       calentreEventBloc.errorList[1]["Tue"]!.removeLast();
       break;
-    case "Wed":
+    case WeekDays.wednesday:
       calentreEventBloc.days.wednesday!.removeLast();
       calentreEventBloc.errorList[2]["Wed"]!.removeLast();
       break;
-    case "Thur":
+    case WeekDays.thursday:
       calentreEventBloc.days.thursday!.removeLast();
       calentreEventBloc.errorList[3]["Thur"]!.removeLast();
       break;
-    case "Fri":
+    case WeekDays.friday:
       calentreEventBloc.days.friday!.removeLast();
       calentreEventBloc.errorList[4]["Fri"]!.removeLast();
       break;
-    case "Sat":
+    case WeekDays.saturday:
       calentreEventBloc.days.saturday!.removeLast();
       calentreEventBloc.errorList[5]["Sat"]!.removeLast();
       break;
-    case "Sun":
+    case WeekDays.sunday:
       calentreEventBloc.days.sunday!.removeLast();
       calentreEventBloc.errorList[6]["Sun"]!.removeLast();
       break;

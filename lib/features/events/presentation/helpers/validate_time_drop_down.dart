@@ -1,6 +1,7 @@
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/utils/get_time_from_meridiem.dart';
 
+//TODO:Remove this validate function
 validateTimeDropDownHelper(
     {required String day,
     required int index,
