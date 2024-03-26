@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
@@ -98,7 +100,6 @@ class CalentreEventState extends CalentreEventBaseState {
         eventLink: eventLink ?? this.eventLink);
   }
 
-//TODO:rename videoCallType to location
   @override
   List<Object?> get props => [
         amount,
@@ -115,28 +116,110 @@ class CalentreEventState extends CalentreEventBaseState {
 class UpdateDayScheduleState extends CalentreEventBaseState {
   final int index;
   final WeekDays day;
-  final String startTime;
-  final String endTime;
+  final List<Map<WeekDays, List<bool>>> errorList;
   UpdateDayScheduleState(
-      {required this.index,
-      required this.day,
-      required this.endTime,
-      required this.startTime});
+      {required this.index, required this.day, required this.errorList});
 
   UpdateDayScheduleState clone(
-      {int? index, WeekDays? day, String? startTime, String? endTime}) {
+      {int? index,
+      WeekDays? day,
+      String? startTime,
+      String? endTime,
+      List<Map<WeekDays, List<bool>>>? errorList}) {
     return UpdateDayScheduleState(
         index: index ?? this.index,
         day: day ?? this.day,
-        endTime: endTime ?? this.endTime,
-        startTime: startTime ?? this.startTime);
+        errorList: errorList ?? this.errorList);
   }
 
   @override
-  List<Object> get props => [index, day, startTime, endTime];
+  List<Object> get props => [
+        index,
+        day,
+      ];
 }
 
-class DayScheduleErrorState extends CalentreEventBaseState {
+class DayScheduleValidationState extends CalentreEventBaseState {
   final String message;
-  DayScheduleErrorState({required this.message});
+  final int index;
+  final WeekDays day;
+  final List<Map<WeekDays, List<bool>>>
+      errorList; //Stores the error value based on time-dropdown index
+
+  DayScheduleValidationState(
+      {required this.message,
+      required this.index,
+      required this.day,
+      required this.errorList});
+
+  static initial() {
+    return DayScheduleValidationState(
+        message: "",
+        index: 0,
+        day: WeekDays.monday,
+        errorList: [
+          {
+            WeekDays.monday: [false]
+          },
+          {
+            WeekDays.tuesday: [false]
+          },
+          {
+            WeekDays.wednesday: [false]
+          },
+          {
+            WeekDays.thursday: [false]
+          },
+          {
+            WeekDays.friday: [false]
+          },
+          {
+            WeekDays.saturday: [false]
+          },
+          {
+            WeekDays.sunday: [false]
+          },
+        ].toList());
+  }
+
+  DayScheduleValidationState clone(
+      {String? message,
+      int? index,
+      WeekDays? day,
+      List<Map<WeekDays, List<bool>>>? errorList}) {
+    return DayScheduleValidationState(
+        message: message ?? this.message,
+        index: index ?? this.index,
+        day: day ?? this.day,
+        errorList: errorList ?? this.errorList);
+  }
+
+  @override
+  List<Object> get props => [index, day, message, errorList];
 }
+
+
+
+// List<Map<String, List<bool>>> errorList = [
+  // {
+  //   "Mon": [false]
+  // },
+  // {
+  //   "Tue": [false]
+  // },
+  // {
+  //   "Wed": [false]
+  // },
+  // {
+  //   "Thur": [false]
+  // },
+  // {
+  //   "Fri": [false]
+  // },
+  // {
+  //   "Sat": [false]
+  // },
+  // {
+  //   "Sun": [false]
+  // },
+// ];

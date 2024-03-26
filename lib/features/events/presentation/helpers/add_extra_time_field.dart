@@ -1,86 +1,100 @@
+import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
-import 'package:calentre/features/events/presentation/helpers/validate_time_drop_down.dart';
-import 'package:flutter/material.dart';
+import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 
-void addExtraTimeFieldHelper(
-    {required WeekDays day,
-    required CalentreEventBloc calentreEventBloc,
-    required BuildContext context,
-    required int index}) {
-  //Add an initial TimeSlot for the new field
-  switch (day) {
+///Adds a new [TimeSlot] and
+void addNewTimeFieldHelper(
+    CalentreEventState calentreEventState,
+    DayScheduleValidationState dayScheduleValidationState,
+    AddNewTimeFieldEvent event) {
+  switch (event.day) {
     case WeekDays.monday:
-      calentreEventBloc.errorList[0]["Mon"]!.add(false);
-      calentreEventBloc.days.monday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
+      List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday!];
+      mondaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(monday: mondaySchedule));
 
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Mon",
-        index: index,
-      );
-
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[0][WeekDays.monday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     case WeekDays.tuesday:
-      calentreEventBloc.errorList[1]["Tue"]!.add(false);
-      calentreEventBloc.days.tuesday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Tue",
-        index: index,
-      );
+      List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday!];
+      tuesdaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(tuesday: tuesdaySchedule));
+
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[1][WeekDays.tuesday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     case WeekDays.wednesday:
-      calentreEventBloc.errorList[2]["Wed"]!.add(false);
-      calentreEventBloc.days.wednesday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Wed",
-        index: index,
-      );
+      List<TimeSlot> wednesdaySchedule = [
+        ...calentreEventState.days.wednesday!
+      ];
+      wednesdaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(wednesday: wednesdaySchedule));
+
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[2][WeekDays.wednesday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     case WeekDays.thursday:
-      calentreEventBloc.errorList[3]["Thur"]!.add(false);
-      calentreEventBloc.days.thursday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Thur",
-        index: index,
-      );
+      List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday!];
+      thursdaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(thursday: thursdaySchedule));
+
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[3][WeekDays.thursday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     case WeekDays.friday:
-      calentreEventBloc.errorList[4]["Fri"]!.add(false);
-      calentreEventBloc.days.friday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Fri",
-        index: index,
-      );
+      List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday!];
+      fridaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(friday: fridaySchedule));
+
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[4][WeekDays.friday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     case WeekDays.saturday:
-      calentreEventBloc.errorList[5]["Sat"]!.add(false);
-      calentreEventBloc.days.saturday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Sat",
-        index: index,
-      );
+      List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday!];
+      saturdaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(saturday: saturdaySchedule));
+
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[5][WeekDays.saturday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     case WeekDays.sunday:
-      calentreEventBloc.errorList[6]["Sun"]!.add(false);
-      calentreEventBloc.days.sunday!
-          .add(CalTimeSlot(start: "12:00 AM", end: "12:30 AM"));
-      validateTimeDropDownHelper(
-        calentreEventBloc: calentreEventBloc,
-        day: "Sun",
-        index: index,
-      );
+      List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday!];
+      sundaySchedule.add(TimeSlot(
+          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      calentreEventState.clone(days: Days(sunday: sundaySchedule));
+
+      List<Map<WeekDays, List<bool>>> errorList = [
+        ...dayScheduleValidationState.errorList
+      ];
+      errorList[6][WeekDays.sunday]!.add(false);
+      dayScheduleValidationState.clone(errorList: errorList);
       break;
     default:
   }

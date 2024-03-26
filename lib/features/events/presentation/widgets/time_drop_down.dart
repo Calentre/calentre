@@ -60,29 +60,30 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 ).dropDownValue = value!;
 
                 //Update the bloc with the currently iterating object details
-                updateCurrentlyIteratingDayDetails(
-                    day: widget.day["day"],
-                    value: value,
-                    calentreEventBloc: calentreEventBloc,
-                    timeSlotBoundary: widget.timeSlotBoundary,
-                    index: widget.day["index"] as int,
-                    context: context);
+                // updateCurrentlyIteratingDayDetails(
+                //     day: widget.day["day"],
+                //     value: value,
+                //     calentreEventBloc: calentreEventBloc,
+                //     timeSlotBoundary: widget.timeSlotBoundary,
+                //     index: widget.day["index"] as int,
+                //     context: context);
 
                 String startTime =
                     widget.timeSlotBoundary == TimeSlotBoundary.start
                         ? value
-                        : "";
+                        : "12:00 AM";
                 String endTime = widget.timeSlotBoundary == TimeSlotBoundary.end
                     ? value
-                    : "";
+                    : "12:30 AM";
 
                 BlocProvider.of<CalentreEventBloc>(
                   context,
                 ).add(UpdateDayScheduleEvent(
-                    index: widget.day["index"],
-                    day: widget.day["day"],
-                    endTime: endTime,
-                    startTime: startTime));
+                  index: widget.day["index"],
+                  day: widget.day["day"],
+                  endTime: endTime,
+                  startTime: startTime,
+                ));
 
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());

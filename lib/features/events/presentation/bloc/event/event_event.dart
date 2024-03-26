@@ -33,9 +33,29 @@ class UpdateDayScheduleEvent extends CalentreEventEvent {
   final WeekDays day;
   final String startTime;
   final String endTime;
-  UpdateDayScheduleEvent(
-      {required this.index,
-      required this.day,
-      required this.endTime,
-      required this.startTime});
+  UpdateDayScheduleEvent({
+    required this.index,
+    required this.day,
+    required this.endTime,
+    required this.startTime,
+  });
+}
+
+//rename to UpdateErrorList
+class UpdateDayScheduleValidationEvent extends CalentreEventEvent {
+  final List<Map<WeekDays, List<bool>>> errorList;
+
+  UpdateDayScheduleValidationEvent({required this.errorList});
+}
+
+class AddNewTimeFieldEvent extends CalentreEventEvent {
+  final WeekDays day;
+
+  AddNewTimeFieldEvent({required this.day});
+}
+
+class RemoveTimeFieldEvent extends CalentreEventEvent {
+  final WeekDays day;
+
+  RemoveTimeFieldEvent({required this.day});
 }
