@@ -3,7 +3,8 @@ import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
-import 'package:calentre/features/events/presentation/helpers/add_extra_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/add_new_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/remove_extra_time_field.dart';
 import 'package:calentre/features/events/presentation/helpers/validate_time_selection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,6 +21,7 @@ class CalentreEventBloc
     on<UpdateDayScheduleEvent>(onUpdateDaySchedule);
     on<UpdateDayScheduleValidationEvent>(onUpdateDayScheduleValidationState);
     on<AddNewTimeFieldEvent>(onAddNewTimeField);
+    on<RemoveTimeFieldEvent>(onRemoveTimeField);
   }
 
   void onUpdateFormFields(UpdateCalentreEventDetailsEvent event,
@@ -40,8 +42,14 @@ class CalentreEventBloc
       AddNewTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
     addNewTimeFieldHelper(
         _calentreEventState, _dayScheduleValidationState, event);
+  }
 
-    print("Error list is ${_dayScheduleValidationState.errorList}");
+  void onRemoveTimeField(
+      RemoveTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
+    removeNewTimeFieldHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    print("Remove time field ${_calentreEventState.days}");
+    print("Remove time field ${_dayScheduleValidationState.errorList}");
   }
 
   void onUpdateDaySchedule(
@@ -112,7 +120,9 @@ class CalentreEventBloc
           // _dayScheduleValidationState.errorList[0]
           //     [WeekDays.monday]![event.index] = false;
           emit(UpdateDayScheduleState(
-              index: event.index, day: event.day, errorList: _errorList));
+              index: event.index,
+              day: event.day,
+              errorList: _errorList)); //remove errorList
           emit(_dayScheduleValidationState.clone());
         }
 

@@ -4,7 +4,8 @@ import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 
-///Adds a new [TimeSlot] and
+///Adds a new [TimeSlot] and initializes the errorList with a [false]
+///value within the [DayScheduleValidationState] for every new field added.
 void addNewTimeFieldHelper(
     CalentreEventState calentreEventState,
     DayScheduleValidationState dayScheduleValidationState,
