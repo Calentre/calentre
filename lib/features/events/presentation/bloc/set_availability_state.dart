@@ -1,4 +1,3 @@
-import 'package:calentre/config/enums/weekdays.dart';
 import 'package:equatable/equatable.dart';
 
 class SetAvailabilityStates extends Equatable {

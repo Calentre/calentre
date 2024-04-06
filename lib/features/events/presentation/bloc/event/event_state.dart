@@ -48,7 +48,7 @@ class CalentreEventState extends CalentreEventBaseState {
         days: Days(
           monday: [
             TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[0])
+                start: TimeList().timeList.first, end: TimeList().timeList[1])
           ],
           tuesday: [
             TimeSlot(
@@ -111,21 +111,6 @@ class CalentreEventState extends CalentreEventBaseState {
         isMultiple,
         platformType,
         days
-      ];
-}
-
-//remove this state. Doesn't serve any purpose
-class UpdateDayScheduleState extends CalentreEventBaseState {
-  final int index;
-  final WeekDays day;
-  final List<Map<WeekDays, List<bool>>> errorList;
-  UpdateDayScheduleState(
-      {required this.index, required this.day, required this.errorList});
-
-  @override
-  List<Object> get props => [
-        index,
-        day,
       ];
 }
 

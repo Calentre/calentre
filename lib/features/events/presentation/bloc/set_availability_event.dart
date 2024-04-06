@@ -1,5 +1,3 @@
-import 'package:calentre/config/enums/weekdays.dart';
-
 class SetAvailabilityEvents {
   const SetAvailabilityEvents();
 }

@@ -31,8 +31,8 @@ class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
 class UpdateDayScheduleEvent extends CalentreEventEvent {
   final int index;
   final WeekDays day;
-  final String startTime;
-  final String endTime;
+  final String? startTime;
+  final String? endTime;
   UpdateDayScheduleEvent({
     required this.index,
     required this.day,

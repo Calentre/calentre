@@ -1,5 +1,5 @@
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
@@ -9,7 +9,6 @@ import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
 import 'package:calentre/shared/widgets/button.dart';
 import 'package:calentre/shared/widgets/navbar.dart';
-import 'package:calentre/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -40,7 +39,6 @@ class SetAvailabilityView extends StatelessWidget {
           return Scaffold(
             body: SingleChildScrollView(
               child: SizedBox(
-                // constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
                 child: Column(
                   children: [
                     const NavBar(),
@@ -123,7 +121,7 @@ class SetAvailabilityView extends StatelessWidget {
                       width: 600,
                       gradient: true,
                       onPressed: () {
-                        // context.goNamed(AppRoutes.completionFeedBack);
+                        context.goNamed(AppRoutes.completionFeedBack);
                       },
                       icon: const FaIcon(
                         FontAwesomeIcons.boltLightning,

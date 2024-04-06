@@ -1,17 +1,10 @@
-import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
-import 'package:calentre/features/events/presentation/helpers/validate_time_selection.dart';
-import 'package:calentre/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-///Handles all availability.
 ///Each day of the week uses a unique instance of the [SetAvailablityBloc]
 class SetAvailabilityBloc
     extends Bloc<SetAvailabilityEvents, SetAvailabilityStates> {
-  final _calentreEventBloc = sl.get<CalentreEventBloc>();
   int listLength = 0;
   bool checkBoxState = true;
 

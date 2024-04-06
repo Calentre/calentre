@@ -6,8 +6,6 @@ import 'package:calentre/features/events/presentation/bloc/event/event_state.dar
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
-import 'package:calentre/features/events/presentation/helpers/add_new_time_field.dart';
-import 'package:calentre/features/events/presentation/helpers/remove_extra_time_field.dart';
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
@@ -24,10 +22,6 @@ class AvailabilityScheduler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //ok to leave bloc here since it's a singleton.
-    CalentreEventBloc calentreEventBloc = BlocProvider.of<CalentreEventBloc>(
-      context,
-    );
     return BlocProvider<SetAvailabilityBloc>(
         create: (context) => SetAvailabilityBloc(),
         child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
@@ -280,14 +274,6 @@ class AvailabilityScheduler extends StatelessWidget {
                         context,
                       ).add(AddExtraTimeFieldEvent());
                       calentreEventBloc.add(AddNewTimeFieldEvent(day: day));
-
-                      //Add an initial TimeSlot for the new field
-                      // addExtraTimeFieldHelper(
-                      //     day: day,
-                      //     calentreEventBloc:
-                      //         BlocProvider.of<CalentreEventBloc>(context),
-                      //     context: context,
-                      //     index: index ?? 1);
                     },
                     child: const FaIcon(FontAwesomeIcons.solidSquarePlus)),
                 const SizedBox().x14(),
@@ -308,13 +294,6 @@ class AvailabilityScheduler extends StatelessWidget {
 
                             calentreEventBloc
                                 .add(RemoveTimeFieldEvent(day: day));
-
-                            //You should come back to add a caseSwitch here to know day to act on.
-                            // removeExtraTimeFieldHelper(
-                            //     day: day,
-                            //     calentreEventBloc:
-                            //         BlocProvider.of<CalentreEventBloc>(
-                            //             context));
                           },
                     child: FaIcon(
                       FontAwesomeIcons.trash,
@@ -331,7 +310,7 @@ class AvailabilityScheduler extends StatelessWidget {
   }
 }
 
-//index represent the extra timefield value.
+///[index] represent the extra timefield position.
 bool checkError(WeekDays day, DayScheduleValidationState state, int index,
     BuildContext context) {
   CalentreEventBloc calentreEventBloc = BlocProvider.of<CalentreEventBloc>(
