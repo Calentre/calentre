@@ -48,7 +48,7 @@ class CalentreEventState extends CalentreEventBaseState {
         days: Days(
           monday: [
             TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+                start: TimeList().timeList.first, end: TimeList().timeList[0])
           ],
           tuesday: [
             TimeSlot(
@@ -77,8 +77,8 @@ class CalentreEventState extends CalentreEventBaseState {
         ));
   }
 
-  ///Creates a new instance(state) of the [CalentreEventState]
-  CalentreEventState clone(
+  ///Returns a new instance(state) of the [CalentreEventState]
+  CalentreEventState clone(CalentreEventState state,
       {String? amount,
       String? duration,
       String? eventDescription,
@@ -88,16 +88,17 @@ class CalentreEventState extends CalentreEventBaseState {
       String? isMultiple,
       String? platformType,
       Days? days}) {
+    // print("when cloning, state is ${state.days}");
     return CalentreEventState(
-        eventName: eventName ?? this.amount,
-        eventType: eventType ?? this.eventType,
-        isMultiple: isMultiple ?? this.isMultiple,
-        platformType: platformType ?? this.platformType,
-        days: days ?? this.days,
-        amount: amount ?? this.amount,
-        duration: duration ?? this.duration,
-        eventDescription: eventDescription ?? this.eventDescription,
-        eventLink: eventLink ?? this.eventLink);
+        eventName: eventName ?? state.eventName,
+        eventType: eventType ?? state.eventType,
+        isMultiple: isMultiple ?? state.isMultiple,
+        platformType: platformType ?? state.platformType,
+        days: days ?? state.days,
+        amount: amount ?? state.amount,
+        duration: duration ?? state.duration,
+        eventDescription: eventDescription ?? state.eventDescription,
+        eventLink: eventLink ?? state.eventLink);
   }
 
   @override
@@ -113,24 +114,13 @@ class CalentreEventState extends CalentreEventBaseState {
       ];
 }
 
+//remove this state. Doesn't serve any purpose
 class UpdateDayScheduleState extends CalentreEventBaseState {
   final int index;
   final WeekDays day;
   final List<Map<WeekDays, List<bool>>> errorList;
   UpdateDayScheduleState(
       {required this.index, required this.day, required this.errorList});
-
-  UpdateDayScheduleState clone(
-      {int? index,
-      WeekDays? day,
-      String? startTime,
-      String? endTime,
-      List<Map<WeekDays, List<bool>>>? errorList}) {
-    return UpdateDayScheduleState(
-        index: index ?? this.index,
-        day: day ?? this.day,
-        errorList: errorList ?? this.errorList);
-  }
 
   @override
   List<Object> get props => [
@@ -152,7 +142,7 @@ class DayScheduleValidationState extends CalentreEventBaseState {
       required this.day,
       required this.errorList});
 
-  static initial() {
+  static DayScheduleValidationState initial() {
     return DayScheduleValidationState(
         message: "",
         index: 0,
@@ -179,19 +169,19 @@ class DayScheduleValidationState extends CalentreEventBaseState {
           {
             WeekDays.sunday: [false]
           },
-        ].toList());
+        ]);
   }
 
-  DayScheduleValidationState clone(
+  DayScheduleValidationState clone(DayScheduleValidationState state,
       {String? message,
       int? index,
       WeekDays? day,
       List<Map<WeekDays, List<bool>>>? errorList}) {
     return DayScheduleValidationState(
-        message: message ?? this.message,
-        index: index ?? this.index,
-        day: day ?? this.day,
-        errorList: errorList ?? this.errorList);
+        message: message ?? state.message,
+        index: index ?? state.index,
+        day: day ?? state.day,
+        errorList: errorList ?? state.errorList);
   }
 
   @override

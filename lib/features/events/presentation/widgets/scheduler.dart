@@ -6,7 +6,7 @@ import 'package:calentre/features/events/presentation/bloc/event/event_state.dar
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
-import 'package:calentre/features/events/presentation/helpers/add_extra_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/add_new_time_field.dart';
 import 'package:calentre/features/events/presentation/helpers/remove_extra_time_field.dart';
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';

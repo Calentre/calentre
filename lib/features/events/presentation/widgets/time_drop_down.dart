@@ -88,8 +88,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());
 
-                BlocProvider.of<SetAvailabilityBloc>(context)
-                    .add(RebuildSetAvailabilityScreenEvent());
+                // BlocProvider.of<SetAvailabilityBloc>(context)
+                //     .add(RebuildSetAvailabilityScreenEvent());
               },
             ),
           ],

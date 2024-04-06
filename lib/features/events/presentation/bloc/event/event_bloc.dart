@@ -8,11 +8,15 @@ import 'package:calentre/features/events/presentation/helpers/remove_extra_time_
 import 'package:calentre/features/events/presentation/helpers/validate_time_selection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CalentreEventBloc
-    extends Bloc<CalentreEventEvent, CalentreEventBaseState> {
+//For night
+// complete add re-assigning (abstract function to return a list containing [_calentreState, validation state])
+//complete remove re-assiging
+//complete else statement when hasError is false
+
+class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
   //initialize all states relating to the CalentreEvent Bloc
-  final CalentreEventState _calentreEventState = CalentreEventState.initial();
-  final DayScheduleValidationState _dayScheduleValidationState =
+  CalentreEventState _calentreEventState = CalentreEventState.initial();
+  DayScheduleValidationState _dayScheduleValidationState =
       DayScheduleValidationState.initial();
   //  final List<Map<WeekDays, List<bool>>> _errorList = [];
 
@@ -26,30 +30,37 @@ class CalentreEventBloc
 
   void onUpdateFormFields(UpdateCalentreEventDetailsEvent event,
       Emitter<CalentreEventBaseState> emit) {
-    emit(_calentreEventState.clone(
+    emit(_calentreEventState.clone(_calentreEventState,
         eventName: event.eventName, amount: event.amount));
   }
 
+  ///
   void onUpdateDayScheduleValidationState(
       UpdateDayScheduleValidationEvent event,
       Emitter<CalentreEventBaseState> emit) {
     emit(_dayScheduleValidationState.clone(
+      _dayScheduleValidationState,
       errorList: _dayScheduleValidationState.errorList,
     ));
   }
 
+  ///initializes each of the week with a default [TimeSlot]
   void onAddNewTimeField(
       AddNewTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
-    addNewTimeFieldHelper(
+    final states = addNewTimeFieldHelper(
         _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+
+    print("Outside case switch Monday ${_calentreEventState.days}");
+    print(
+        "Outside case switch Monday ${_dayScheduleValidationState.errorList}");
   }
 
   void onRemoveTimeField(
       RemoveTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
     removeNewTimeFieldHelper(
         _calentreEventState, _dayScheduleValidationState, event);
-    print("Remove time field ${_calentreEventState.days}");
-    print("Remove time field ${_dayScheduleValidationState.errorList}");
   }
 
   void onUpdateDaySchedule(
@@ -92,38 +103,45 @@ class CalentreEventBloc
     // if (hasError) {
     switch (event.day) {
       case WeekDays.monday:
-        List<Map<WeekDays, List<bool>>> _errorList = [
+        List<Map<WeekDays, List<bool>>> errorList = [
           ..._dayScheduleValidationState.errorList
         ];
 
         if (hasError) {
           //used to expand the errorlist to avoid rangError
 
-          _errorList[0][WeekDays.monday]?[event.index] = true;
-          // _dayScheduleValidationState.errorList[0][WeekDays.monday]!.add(false);
-          // _dayScheduleValidationState.errorList[0]
-          //     [WeekDays.monday]![event.index] = true;
+          errorList[0][WeekDays.monday]?[event.index] = true;
+
           print(
               "Emitted state shoudl be ${_dayScheduleValidationState.errorList}");
           emit(_dayScheduleValidationState.clone(
+            _dayScheduleValidationState,
             message: "Start Time must be less than End Time",
             index: event.index,
             day: event.day,
-            errorList: _errorList,
+            errorList: errorList,
           ));
         } else {
           //update the day schedule here and emit the neccessary states
+          List<TimeSlot> mondaySchedule = [..._calentreEventState.days.monday!];
+          print("Monday schedule is $mondaySchedule");
+          mondaySchedule.insert(event.index,
+              TimeSlot(start: event.startTime, end: event.endTime));
+          final updatedList = List<TimeSlot>.from(mondaySchedule);
+          emit(_calentreEventState.clone(state,
+              days: Days(monday: updatedList)));
+          print("before ${errorList}");
           //set the error list to false
-          _errorList[0][WeekDays.monday]?[event.index] = false;
-          print(
-              "Emitted state shoudl be ${_dayScheduleValidationState.errorList}");
+          errorList[0][WeekDays.monday]?[event.index] = false;
+          print("after ${_dayScheduleValidationState.errorList}");
+          print("Update schedule is ${_calentreEventState.days.monday}");
           // _dayScheduleValidationState.errorList[0]
           //     [WeekDays.monday]![event.index] = false;
-          emit(UpdateDayScheduleState(
-              index: event.index,
-              day: event.day,
-              errorList: _errorList)); //remove errorList
-          emit(_dayScheduleValidationState.clone());
+          // emit(UpdateDayScheduleState(
+          //     index: event.index,
+          //     day: event.day,
+          //     errorList: errorList)); //remove errorList
+          emit(_dayScheduleValidationState.clone(_dayScheduleValidationState));
         }
 
         break;
@@ -132,6 +150,7 @@ class CalentreEventBloc
         //     [WeekDays.tuesday]![event.index] = true;
 
         emit(_dayScheduleValidationState.clone(
+          _dayScheduleValidationState,
           message: "Start Time must be less than End Time",
           index: event.index,
           day: event.day,
