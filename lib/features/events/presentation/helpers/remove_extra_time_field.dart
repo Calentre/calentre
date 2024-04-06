@@ -5,99 +5,154 @@ import 'package:calentre/features/events/presentation/bloc/event/event_state.dar
 
 ///Removes a the last [TimeSlot] and last value of the errorList
 ///within the [DayScheduleValidationState].
-void removeNewTimeFieldHelper(
+List removeNewTimeFieldHelper(
     CalentreEventState calentreEventState,
     DayScheduleValidationState dayScheduleValidationState,
     RemoveTimeFieldEvent event) {
+  final days = calentreEventState.days;
+  List<TimeSlot> mondaySchedule = [...days.monday!];
+  List<TimeSlot> tuesdaySchedule = [...days.tuesday!];
+  List<TimeSlot> wednesdaySchedule = [...days.wednesday!];
+  List<TimeSlot> thursdaySchedule = [...days.thursday!];
+  List<TimeSlot> fridaySchedule = [...days.friday!];
+  List<TimeSlot> saturdaySchedule = [...days.saturday!];
+  List<TimeSlot> sundaySchedule = [...days.sunday!];
   final state = calentreEventState;
   switch (event.day) {
     case WeekDays.monday:
-      List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday!];
       mondaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(monday: mondaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
       errorList[0][WeekDays.monday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     case WeekDays.tuesday:
-      List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday!];
       tuesdaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(tuesday: tuesdaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
       errorList[1][WeekDays.tuesday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     case WeekDays.wednesday:
-      List<TimeSlot> wednesdaySchedule = [
-        ...calentreEventState.days.wednesday!
-      ];
       wednesdaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(wednesday: wednesdaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
       errorList[2][WeekDays.wednesday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     case WeekDays.thursday:
-      List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday!];
       thursdaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(thursday: thursdaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
-      errorList[3][WeekDays.thursday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      errorList[3][WeekDays.monday]!.removeLast();
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     case WeekDays.friday:
-      List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday!];
       fridaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(friday: fridaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
       errorList[4][WeekDays.friday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     case WeekDays.saturday:
-      List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday!];
       saturdaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(saturday: saturdaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
       errorList[5][WeekDays.saturday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     case WeekDays.sunday:
-      List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday!];
       sundaySchedule.removeLast();
-      calentreEventState.clone(state, days: Days(sunday: sundaySchedule));
+      calentreEventState = calentreEventState.clone(state,
+          days: Days(
+              monday: mondaySchedule,
+              tuesday: tuesdaySchedule,
+              wednesday: wednesdaySchedule,
+              thursday: thursdaySchedule,
+              friday: fridaySchedule,
+              saturday: saturdaySchedule,
+              sunday: sundaySchedule));
 
       List<Map<WeekDays, List<bool>>> errorList = [
         ...dayScheduleValidationState.errorList
       ];
       errorList[6][WeekDays.sunday]!.removeLast();
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
-      break;
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
+      return [calentreEventState, dayScheduleValidationState];
     default:
-      break;
+      return [calentreEventState, dayScheduleValidationState];
   }
 }

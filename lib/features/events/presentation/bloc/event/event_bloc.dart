@@ -59,8 +59,10 @@ class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
 
   void onRemoveTimeField(
       RemoveTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
-    removeNewTimeFieldHelper(
+    final states = removeNewTimeFieldHelper(
         _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
   }
 
   void onUpdateDaySchedule(

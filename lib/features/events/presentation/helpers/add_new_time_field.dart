@@ -67,7 +67,7 @@ List addNewTimeFieldHelper(
     case WeekDays.wednesday:
       wednesdaySchedule.add(TimeSlot(
           start: TimeList().timeList.first, end: TimeList().timeList[1]));
-      calentreEventState.clone(calentreEventState,
+      calentreEventState = calentreEventState.clone(calentreEventState,
           days: Days(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
@@ -81,14 +81,14 @@ List addNewTimeFieldHelper(
         ...dayScheduleValidationState.errorList
       ];
       errorList[2][WeekDays.wednesday]!.add(false);
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.thursday:
       thursdaySchedule.add(TimeSlot(
           start: TimeList().timeList.first, end: TimeList().timeList[1]));
-      calentreEventState.clone(calentreEventState,
+      calentreEventState = calentreEventState.clone(calentreEventState,
           days: Days(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
@@ -102,14 +102,14 @@ List addNewTimeFieldHelper(
         ...dayScheduleValidationState.errorList
       ];
       errorList[3][WeekDays.thursday]!.add(false);
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.friday:
       fridaySchedule.add(TimeSlot(
           start: TimeList().timeList.first, end: TimeList().timeList[1]));
-      calentreEventState.clone(calentreEventState,
+      calentreEventState = calentreEventState.clone(calentreEventState,
           days: Days(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
@@ -123,14 +123,14 @@ List addNewTimeFieldHelper(
         ...dayScheduleValidationState.errorList
       ];
       errorList[4][WeekDays.friday]!.add(false);
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.saturday:
       saturdaySchedule.add(TimeSlot(
           start: TimeList().timeList.first, end: TimeList().timeList[1]));
-      calentreEventState.clone(calentreEventState,
+      calentreEventState = calentreEventState.clone(calentreEventState,
           days: Days(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
@@ -144,14 +144,14 @@ List addNewTimeFieldHelper(
         ...dayScheduleValidationState.errorList
       ];
       errorList[5][WeekDays.saturday]!.add(false);
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.sunday:
       sundaySchedule.add(TimeSlot(
           start: TimeList().timeList.first, end: TimeList().timeList[1]));
-      calentreEventState.clone(calentreEventState,
+      calentreEventState = calentreEventState.clone(calentreEventState,
           days: Days(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
@@ -165,8 +165,8 @@ List addNewTimeFieldHelper(
         ...dayScheduleValidationState.errorList
       ];
       errorList[6][WeekDays.sunday]!.add(false);
-      dayScheduleValidationState.clone(dayScheduleValidationState,
-          errorList: errorList);
+      dayScheduleValidationState = dayScheduleValidationState
+          .clone(dayScheduleValidationState, errorList: errorList);
       return [calentreEventState, dayScheduleValidationState];
 
     default:
