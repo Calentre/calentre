@@ -31,6 +31,11 @@ List addNewTimeFieldHelper(
       saturday: saturdaySchedule,
       sunday: sundaySchedule);
 
+  //Create a new error list from from the current state
+  List<Map<WeekDays, List<bool>>> errorList = [
+    ...dayScheduleValidationState.errorList
+  ];
+
   switch (event.day) {
     case WeekDays.monday:
       mondaySchedule.add(TimeSlot(
@@ -38,9 +43,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[0][WeekDays.monday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);
@@ -52,9 +54,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[1][WeekDays.tuesday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);
@@ -66,9 +65,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[2][WeekDays.wednesday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);
@@ -80,9 +76,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[3][WeekDays.thursday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);
@@ -94,9 +87,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[4][WeekDays.friday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);
@@ -108,9 +98,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[5][WeekDays.saturday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);
@@ -122,9 +109,6 @@ List addNewTimeFieldHelper(
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
-      List<Map<WeekDays, List<bool>>> errorList = [
-        ...dayScheduleValidationState.errorList
-      ];
       errorList[6][WeekDays.sunday]!.add(false);
       dayScheduleValidationState = dayScheduleValidationState
           .clone(dayScheduleValidationState, errorList: errorList);

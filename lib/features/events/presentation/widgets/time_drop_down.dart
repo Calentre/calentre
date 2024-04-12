@@ -80,8 +80,3 @@ class _TimeDropDownState extends State<TimeDropDown> {
     );
   }
 }
-
-
-//Todo
-//create enum for the days of the week
-//move all time related values from String to Date Time
