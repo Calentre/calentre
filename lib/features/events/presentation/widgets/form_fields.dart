@@ -55,7 +55,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
         BlocListener<EventTypeDropDownBloc, FormDropDownState>(
           listener: (context, state) {
             if (state is FormDropDownUpdatedState) {
-              platformValue = state.value;
+              eventTypeValue = state.value;
             }
           },
         ),
@@ -202,7 +202,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                     builder: (context, state) {
                   debugPrint("Event type rebuild");
                   debugPrint('$state');
-                  var bloc = (BlocProvider.of<EventTypeDropDownBloc>(
+                  final bloc = (BlocProvider.of<EventTypeDropDownBloc>(
                     context,
                   ));
                   if (state is FormDropDownInitialState ||
