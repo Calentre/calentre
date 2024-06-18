@@ -6,7 +6,7 @@ import 'package:calentre/features/home/presentation/widgets/tab_bar.dart';
 import 'package:calentre/features/events/presentation/events.dart';
 import 'package:calentre/features/payments/presentation/payments.dart';
 import 'package:calentre/injection_container.dart';
-import 'package:calentre/shared/navbar.dart';
+import 'package:calentre/shared/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,16 +37,9 @@ class _CalentreHomeState extends State<CalentreHome> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    //close the CalentreEventBloc here
-    sl.get<CalentreEventBloc>().close();
-    super.dispose();
-  }
 }
 
-tabBarViewSelector(state) {
+tabBarViewSelector(HomeViewStates state) {
   if (state is InitialState) {
     return Column(
       children: [

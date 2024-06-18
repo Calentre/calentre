@@ -1,109 +1,199 @@
-import 'package:calentre/config/enums/time_slots.dart';
-import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
-import 'package:calentre/features/events/presentation/helpers/validate_time_drop_down.dart';
-import 'package:flutter/material.dart';
+import 'package:calentre/config/enums/weekdays.dart';
+import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
+import 'package:calentre/features/events/presentation/helpers/validate_time_selection.dart';
 
-//case switch statement to update calentreEventBloc with the currently iterating day of the week
-void updateCurrentlyIteratingDayDetails(
-    {required String day,
-    required String value,
-    required CalentreEventBloc calentreEventBloc,
-    required TimeSlotBoundary timeSlotBoundary,
-    required int index,
-    required BuildContext context}) {
-  switch (day) {
-    case "Mon":
-      final currentIndex = index;
-      calentreEventBloc.currentIndex = currentIndex;
-      calentreEventBloc.currentDay = "Mon";
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.monday![currentIndex].start = value;
+///Updates the state of `startTime` and `endTime` from the dropdown field on the scheduler, to the `CalentreEventBloc`.
+List updateCurrentDayDetailsHelper(
+    CalentreEventState calentreEventState,
+    DayScheduleValidationState dayScheduleValidationState,
+    UpdateDayScheduleEvent event) {
+  //Create a new list from the current day states
+  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday!];
+  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday!];
+  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday!];
+  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday!];
+  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday!];
+  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday!];
+  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday!];
+
+  //Create a new error list from from the current state
+  List<Map<WeekDays, List<bool>>> errorList = [
+    ...dayScheduleValidationState.errorList
+  ];
+
+  //Create a new object with the updated days schedule
+  final updatedDays = Days(
+      monday: mondaySchedule,
+      tuesday: tuesdaySchedule,
+      wednesday: wednesdaySchedule,
+      thursday: thursdaySchedule,
+      friday: fridaySchedule,
+      saturday: saturdaySchedule,
+      sunday: sundaySchedule);
+
+  //set startTime and EndTime from the drop down
+  final String startTime =
+      event.startTime ?? calentreEventState.days.monday![event.index].start!;
+  final String endTime =
+      event.endTime ?? calentreEventState.days.monday![event.index].end!;
+
+//Check if the current time selection has an error
+  final hasError = validateTimeSelection(
+      day: event.day,
+      startTime: startTime,
+      endTime: endTime,
+      index: event.index);
+
+  switch (event.day) {
+    case WeekDays.monday:
+      if (hasError) {
+        errorList[0][WeekDays.monday]![event.index] = true;
+
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
       } else {
-        calentreEventBloc.days.monday![currentIndex].end = value;
+        errorList[0][WeekDays.monday]![event.index] = false;
+
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
       }
+      mondaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
 
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+    case WeekDays.tuesday:
+      if (hasError) {
+        errorList[1][WeekDays.tuesday]![event.index] = true;
 
-      break;
-    case "Tue":
-      final currentIndex = index;
-      calentreEventBloc.currentIndex = currentIndex;
-      calentreEventBloc.currentDay = "Tue";
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.tuesday![currentIndex].start = value;
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
       } else {
-        calentreEventBloc.days.tuesday![currentIndex].end = value;
+        errorList[1][WeekDays.tuesday]![event.index] = false;
+
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      tuesdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
+    case WeekDays.wednesday:
+      if (hasError) {
+        errorList[2][WeekDays.wednesday]![event.index] = true;
 
-      break;
-    case "Wed":
-      final currentIndex = index;
-
-      calentreEventBloc.currentIndex = currentIndex;
-      calentreEventBloc.currentDay = "Wed";
-
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.wednesday![currentIndex].start = value;
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
       } else {
-        calentreEventBloc.days.wednesday![currentIndex].end = value;
+        errorList[2][WeekDays.wednesday]![event.index] = false;
+
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      wednesdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
+    case WeekDays.thursday:
+      if (hasError) {
+        errorList[3][WeekDays.thursday]![event.index] = true;
 
-      break;
-
-    case "Thur":
-      final currentIndex = index;
-      calentreEventBloc.currentIndex = currentIndex;
-      calentreEventBloc.currentDay = "Thur";
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.thursday![currentIndex].start = value;
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
       } else {
-        calentreEventBloc.days.thursday![currentIndex].start = value;
-      }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
-      break;
+        errorList[3][WeekDays.thursday]![event.index] = false;
 
-    case "Fri":
-      var currentIndex = index;
-      calentreEventBloc.currentIndex = currentIndex;
-      calentreEventBloc.currentDay = "Fri";
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.friday![currentIndex].start = value;
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
+      }
+      thursdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
+    case WeekDays.friday:
+      if (hasError) {
+        errorList[4][WeekDays.friday]![event.index] = true;
+
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
       } else {
-        calentreEventBloc.days.friday![currentIndex].end = value;
+        errorList[4][WeekDays.friday]![event.index] = false;
+
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
       }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+      fridaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
+    case WeekDays.saturday:
+      if (hasError) {
+        errorList[5][WeekDays.saturday]![event.index] = true;
 
-      break;
-    case "Sat":
-      var currentIndex = index;
-      calentreEventBloc.currentIndex = currentIndex;
-      calentreEventBloc.currentDay = "Sat";
-
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.saturday![currentIndex].start = value;
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
       } else {
-        calentreEventBloc.days.saturday![currentIndex].end = value;
-      }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
-      break;
-    case "Sun":
-      var currentIndex = index;
-      if (timeSlotBoundary == TimeSlotBoundary.start) {
-        calentreEventBloc.days.sunday![currentIndex].start = value;
-      } else {
-        calentreEventBloc.days.sunday![currentIndex].end = value;
-      }
-      validateTimeDropDownHelper(
-          day: day, index: index, calentreEventBloc: calentreEventBloc);
+        errorList[5][WeekDays.saturday]![event.index] = false;
 
-      break;
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
+      }
+      saturdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
+    case WeekDays.sunday:
+      if (hasError) {
+        errorList[6][WeekDays.sunday]![event.index] = true;
+
+        dayScheduleValidationState = dayScheduleValidationState.clone(
+          dayScheduleValidationState,
+          message: "Start Time must be less than End Time",
+          index: event.index,
+          day: event.day,
+          errorList: errorList,
+        );
+      } else {
+        errorList[6][WeekDays.sunday]![event.index] = false;
+
+        dayScheduleValidationState = dayScheduleValidationState
+            .clone(dayScheduleValidationState, errorList: errorList);
+      }
+      sundaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      calentreEventState =
+          calentreEventState.clone(calentreEventState, days: updatedDays);
+      return [calentreEventState, dayScheduleValidationState];
   }
 }

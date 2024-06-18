@@ -1,111 +1,69 @@
-import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
+import 'package:calentre/features/events/presentation/helpers/add_new_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/remove_extra_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/update_current_day_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
-  String? eventName;
-  String? eventDescription;
-  String? platform;
-  String? duration;
-  String? eventLink;
-  String? eventType;
-  String? amount;
-  String? isMultiple;
-  bool isTimeError = false;
-  List<Map<String, List<bool>>> errorList = [
-    {
-      "Mon": [false]
-    },
-    {
-      "Tue": [false]
-    },
-    {
-      "Wed": [false]
-    },
-    {
-      "Thur": [false]
-    },
-    {
-      "Fri": [false]
-    },
-    {
-      "Sat": [false]
-    },
-    {
-      "Sun": [false]
-    },
-  ];
+class CalentreEventBloc
+    extends Bloc<CalentreEventEvent, CalentreEventBaseState> {
+  //initialize all states relating to the CalentreEvent Bloc
+  CalentreEventState _calentreEventState = CalentreEventState.initial();
+  DayScheduleValidationState _dayScheduleValidationState =
+      DayScheduleValidationState.initial();
 
-  //Helps the setAvailabilty bloc rebuild
-  int rebuildCounter = 0;
-
-  //TODO: rename variable. The current timeIndex that currently clicked on the availability schedule. Used here because of the SingleTon reg. of the current bloc
-  int currentIndex = 0;
-  String? currentDay;
-
-  CalDays days = CalDays(
-    monday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-    tuesday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-    wednesday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-    thursday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-    friday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-    saturday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-    sunday: [
-      CalTimeSlot(start: TimeList().timeList.first, end: TimeList().timeList[1])
-    ],
-  );
-
-  CalentreEventBloc() : super(CalentreEventInitialState()) {
-    on<ProceedToSetAvailabilityEvent>(onClickDropDownItem);
+  CalentreEventBloc() : super(CalentreEventState.initial()) {
+    on<UpdateCalentreEventDetailsEvent>(onUpdateFormFields);
+    on<UpdateDayScheduleEvent>(onUpdateDaySchedule);
+    on<UpdateDayScheduleValidationEvent>(onUpdateDayScheduleValidationState);
+    on<AddNewTimeFieldEvent>(onAddNewTimeField);
+    on<RemoveTimeFieldEvent>(onRemoveTimeField);
   }
 
-  void onClickDropDownItem(
-      ProceedToSetAvailabilityEvent event, Emitter<CalentreEventState> emit) {
-    //infuse all the class variables into CalentreEvent to create an update state
-    emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
+  void onUpdateFormFields(UpdateCalentreEventDetailsEvent event,
+      Emitter<CalentreEventBaseState> emit) {
+    emit(_calentreEventState.clone(_calentreEventState,
+        eventName: event.eventName, amount: event.amount));
+  }
+
+  ///
+  void onUpdateDayScheduleValidationState(
+      UpdateDayScheduleValidationEvent event,
+      Emitter<CalentreEventBaseState> emit) {
+    emit(_dayScheduleValidationState.clone(
+      _dayScheduleValidationState,
+      errorList: _dayScheduleValidationState.errorList,
+    ));
+  }
+
+  ///initializes each of the week with a default [TimeSlot]
+  void onAddNewTimeField(
+      AddNewTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
+    final states = addNewTimeFieldHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+  }
+
+  void onRemoveTimeField(
+      RemoveTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
+    final states = removeNewTimeFieldHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+  }
+
+  void onUpdateDaySchedule(
+      UpdateDayScheduleEvent event, Emitter<CalentreEventBaseState> emit) {
+    final states = updateCurrentDayDetailsHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+    emit(_calentreEventState);
+    emit(_dayScheduleValidationState.clone(_dayScheduleValidationState));
   }
 }
 
-class CalDays {
-  List<CalTimeSlot>? monday;
-  List<CalTimeSlot>? tuesday;
-  List<CalTimeSlot>? wednesday;
-  List<CalTimeSlot>? thursday;
-  List<CalTimeSlot>? friday;
-  List<CalTimeSlot>? saturday;
-  List<CalTimeSlot>? sunday;
 
-  CalDays({
-    this.monday,
-    this.tuesday,
-    this.wednesday,
-    this.thursday,
-    this.friday,
-    this.saturday,
-    this.sunday,
-  });
-}
-
-class CalTimeSlot {
-  String? start = TimeList().timeList.first;
-  String? end = TimeList().timeList[1];
-
-  CalTimeSlot({
-    this.start,
-    this.end,
-  });
-}
+//Delete UpdatedDayScheduleState

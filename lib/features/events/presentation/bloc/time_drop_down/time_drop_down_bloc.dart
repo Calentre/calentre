@@ -17,7 +17,6 @@ class TimeDropDownBloc extends Bloc<TimeDropDownEvent, TimeDropDownState> {
 
   void onTriggerRebuild(
       RebuildTimeDropDownEvent event, Emitter<TimeDropDownState> emit) {
-    print("FormDropDownBloc rebuild triggered");
     emit(RebuildTimeDropDownState());
   }
 }

@@ -1,4 +1,6 @@
-class SetAvailabilityEvents {}
+class SetAvailabilityEvents {
+  const SetAvailabilityEvents();
+}
 
 class AddExtraTimeFieldEvent extends SetAvailabilityEvents {}
 

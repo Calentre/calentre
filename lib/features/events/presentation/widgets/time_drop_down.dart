@@ -1,13 +1,11 @@
 import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/time_slots.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_event.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_state.dart';
-import 'package:calentre/features/events/presentation/helpers/update_current_day_details.dart';
-import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
+import 'package:calentre/shared/widgets/form_drop_down/form_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,8 +31,8 @@ class _TimeDropDownState extends State<TimeDropDown> {
               currentValue:
                   BlocProvider.of<TimeDropDownBloc>(context).dropDownValue == ""
                       ? (widget.timeSlotBoundary == TimeSlotBoundary.start
-                          ? "12:00 AM"
-                          : "12:30 AM")
+                          ? TimeList().timeList[0]
+                          : TimeList().timeList[1])
                       : BlocProvider.of<TimeDropDownBloc>(context)
                           .dropDownValue,
               items: TimeList()
@@ -50,27 +48,30 @@ class _TimeDropDownState extends State<TimeDropDown> {
                 );
               }).toList(),
               onChanged: (String? value) {
-                final calentreEventBloc =
-                    BlocProvider.of<CalentreEventBloc>(context);
-
                 BlocProvider.of<TimeDropDownBloc>(
                   context,
                 ).dropDownValue = value!;
 
-                //Update the bloc with the currently iterating object details
-                updateCurrentlyIteratingDayDetails(
-                    day: widget.day["day"] as String,
-                    value: value,
-                    calentreEventBloc: calentreEventBloc,
-                    timeSlotBoundary: widget.timeSlotBoundary,
-                    index: widget.day["index"] as int,
-                    context: context);
+                String? startTime =
+                    widget.timeSlotBoundary == TimeSlotBoundary.start
+                        ? value
+                        : null;
+                String? endTime =
+                    widget.timeSlotBoundary == TimeSlotBoundary.end
+                        ? value
+                        : null;
+
+                BlocProvider.of<CalentreEventBloc>(
+                  context,
+                ).add(UpdateDayScheduleEvent(
+                  index: widget.day["index"],
+                  day: widget.day["day"],
+                  endTime: endTime,
+                  startTime: startTime,
+                ));
 
                 BlocProvider.of<TimeDropDownBloc>(context)
                     .add(SelectTimeDropDownValueEvent());
-
-                BlocProvider.of<SetAvailabilityBloc>(context)
-                    .add(RebuildSetAvailabilityScreenEvent());
               },
             ),
           ],
@@ -79,8 +80,3 @@ class _TimeDropDownState extends State<TimeDropDown> {
     );
   }
 }
-
-
-//Todo
-//create enum for the days of the week
-//move all time related values from String to Date Time

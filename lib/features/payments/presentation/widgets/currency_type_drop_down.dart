@@ -1,4 +1,4 @@
-import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
+import 'package:calentre/shared/widgets/form_drop_down/form_drop_down.dart';
 import 'package:flutter/material.dart';
 
 class CurrencyTypeDropDown extends StatefulWidget {
