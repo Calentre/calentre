@@ -3,7 +3,7 @@ import 'package:calentre/features/home/presentation/bloc/home_event.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/shared/button.dart';
+import 'package:calentre/shared/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,7 +20,7 @@ class AppTabBar extends StatelessWidget {
         Container(
           constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
           // width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 2),
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 2),
 
           child: Row(
             mainAxisSize: MainAxisSize.min,

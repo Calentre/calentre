@@ -1,7 +1,7 @@
 import 'package:calentre/features/events/presentation/bloc/multibooking_drop_down_bloc.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_event.dart';
-import 'package:calentre/shared/form_drop_down/bloc/form_drop_down_state.dart';
-import 'package:calentre/shared/form_drop_down/form_drop_down.dart';
+import 'package:calentre/shared/widgets/form_drop_down/bloc/form_drop_down_event.dart';
+import 'package:calentre/shared/widgets/form_drop_down/bloc/form_drop_down_state.dart';
+import 'package:calentre/shared/widgets/form_drop_down/form_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,9 +28,6 @@ class _MultiBookingDropDownState extends State<MultiBookingDropDown> {
             : BlocProvider.of<MultiBookingDropDownBloc>(context).dropDownValue,
         list: list,
         onChanged: (String? value) {
-          // setState(() {
-          //   currentValue = value!;
-          // });
           BlocProvider.of<MultiBookingDropDownBloc>(
             context,
             // listen: false,
@@ -40,6 +37,7 @@ class _MultiBookingDropDownState extends State<MultiBookingDropDown> {
         },
         items: list.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
+            enabled: false, //feature is currently unavailble
             value: value,
             child: Row(
               children: [

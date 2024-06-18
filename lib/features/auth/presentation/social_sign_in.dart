@@ -7,11 +7,12 @@ import 'package:calentre/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_events.dart';
 import 'package:calentre/features/auth/presentation/bloc/auth_state.dart';
 import 'package:calentre/injection_container.dart';
-import 'package:calentre/shared/border_card.dart';
-import 'package:calentre/shared/button.dart';
+import 'package:calentre/shared/widgets/border_card.dart';
+import 'package:calentre/shared/widgets/button.dart';
 import 'package:calentre/utils/icon_framer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SocialSignIn extends StatelessWidget {
@@ -101,6 +102,7 @@ class SocialSignIn extends StatelessWidget {
                                 title: "Other Options are coming soon",
                                 icon: iconFramer(imageTitle: 'slack.png'),
                                 onPressed: () async {
+                                  GoRouter.of(context).go("/home");
                                   // await signOut();
                                 },
                               ),

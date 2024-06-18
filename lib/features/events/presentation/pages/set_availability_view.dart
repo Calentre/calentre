@@ -1,13 +1,14 @@
-import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/config/enums/weekdays.dart';
+import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
-import 'package:calentre/features/events/presentation/bloc/time_drop_down_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
+import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
 import 'package:calentre/features/events/presentation/widgets/scheduler.dart';
 import 'package:calentre/config/constraints/constraints.dart';
 import 'package:calentre/config/extensions/spacing.dart';
 import 'package:calentre/config/theme/colors.dart';
-import 'package:calentre/shared/button.dart';
-import 'package:calentre/shared/navbar.dart';
-import 'package:calentre/utils/logger.dart';
+import 'package:calentre/shared/widgets/button.dart';
+import 'package:calentre/shared/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,7 +17,14 @@ import 'package:go_router/go_router.dart';
 class SetAvailabilityView extends StatelessWidget {
   SetAvailabilityView({super.key});
 
-  final List<String> days = ["Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+  final List<WeekDays> days = [
+    WeekDays.tuesday,
+    WeekDays.wednesday,
+    WeekDays.thursday,
+    WeekDays.friday,
+    WeekDays.saturday,
+    WeekDays.sunday,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,104 +34,106 @@ class SetAvailabilityView extends StatelessWidget {
         BlocProvider<SetAvailabilityBloc>(
             create: (context) => SetAvailabilityBloc()),
       ],
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: SizedBox(
-            // constraints: BoxConstraints(maxWidth: WebConstraints.maxWidth),
-            child: Column(
-              children: [
-                const NavBar(),
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  width: WebConstraints.maxWidth,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+      child: BlocBuilder<SetAvailabilityBloc, SetAvailabilityStates>(
+        builder: (context, state) {
+          return Scaffold(
+            body: SingleChildScrollView(
+              child: SizedBox(
+                child: Column(
+                  children: [
+                    const NavBar(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      width: WebConstraints.maxWidth,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
-                              onTap: () {
-                                context.pop();
-                              },
-                              child: const FaIcon(
-                                  FontAwesomeIcons.circleChevronLeft)),
-                          const SizedBox().x20(),
-                          Text("Set Availability",
-                              style: Theme.of(context).textTheme.headlineSmall),
+                          Row(
+                            children: [
+                              InkWell(
+                                  onTap: () {
+                                    context.pop();
+                                  },
+                                  child: const FaIcon(
+                                      FontAwesomeIcons.circleChevronLeft)),
+                              const SizedBox().x20(),
+                              Text("Set Availability",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineSmall),
+                            ],
+                          ),
+                          AppButton(
+                            title: "Publish Link",
+                            onPressed: () {},
+                            gradient: true,
+                            width: 100,
+                          )
                         ],
                       ),
-                      AppButton(
-                        title: "Publish Link",
-                        onPressed: () {},
-                        gradient: true,
-                        width: 100,
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: AppColors.grey.s700,
-                          width: 1.0,
-                        ),
+                    ),
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: AppColors.grey.s700,
+                              width: 1.0,
+                            ),
+                          ),
+                        )),
+                    const SizedBox().y20(),
+                    const SizedBox().y20(),
+                    Container(
+                      width: 700,
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      child: Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(bottom: 20.0),
+                            child: Text(
+                                "Choose your Available time for this event"),
+                          ),
+                          const SizedBox().y20(),
+                          AvailabilityScheduler(
+                              isFirstElement: true, day: WeekDays.monday),
+                          ...days.map((day) => Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: (8.0 + 8), bottom: 8),
+                                    child: Divider(
+                                      thickness: .5,
+                                      color: AppColors.grey.s500,
+                                    ),
+                                  ),
+                                  AvailabilityScheduler(
+                                    day: day,
+                                  ),
+                                ],
+                              ))
+                        ],
                       ),
-                    )),
-                const SizedBox().y20(),
-                const SizedBox().y20(),
-                Container(
-                  width: 700,
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 20.0),
-                        child:
-                            Text("Choose your Available time for this event"),
+                    ),
+                    const SizedBox().y20(),
+                    AppButton(
+                      title: "Finish",
+                      width: 600,
+                      gradient: true,
+                      onPressed: () {
+                        context.goNamed(AppRoutes.completionFeedBack);
+                      },
+                      icon: const FaIcon(
+                        FontAwesomeIcons.boltLightning,
+                        color: Colors.amber,
                       ),
-                      const SizedBox().y20(),
-                      AvailabilityScheduler(isFirstElement: true, day: "Mon"),
-                      ...days.map((day) => Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: (8.0 + 8), bottom: 8),
-                                child: Divider(
-                                  thickness: .5,
-                                  color: AppColors.grey.s500,
-                                ),
-                              ),
-                              AvailabilityScheduler(
-                                day: day,
-                              ),
-                            ],
-                          ))
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-                const SizedBox().y20(),
-                AppButton(
-                  title: "Finish",
-                  width: 600,
-                  gradient: true,
-                  onPressed: () {
-                    // context.goNamed(AppRoutes.completionFeedBack);
-                    final calentreEventBloc =
-                        BlocProvider.of<CalentreEventBloc>(context);
-                    CL.logSuccess(
-                        "${calentreEventBloc.eventName} was added to CalentreEventBloc state");
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.boltLightning,
-                    color: Colors.amber,
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

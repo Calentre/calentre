@@ -18,3 +18,5 @@ class FormDropDownUpdatedState extends FormDropDownState {
   @override
   List<Object?> get props => [value];
 }
+
+class RebuildDropDownState extends FormDropDownState {}

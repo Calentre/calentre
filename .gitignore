@@ -30,7 +30,8 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
-/build/
+/build/*
+!/build/web
 
 # Symbolication related
 app.*.symbols
@@ -45,3 +46,6 @@ app.*.map.json
 
 # Secrets
 /lib/secrets.dart
+
+# FVM Version Cache
+.fvm/

@@ -2,6 +2,7 @@ import 'package:calentre/features/events/presentation/bloc/set_availability_even
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+///Each day of the week uses a unique instance of the [SetAvailablityBloc]
 class SetAvailabilityBloc
     extends Bloc<SetAvailabilityEvents, SetAvailabilityStates> {
   int listLength = 0;
@@ -16,6 +17,7 @@ class SetAvailabilityBloc
   void onClickAddExtraTimeField(
       AddExtraTimeFieldEvent event, Emitter<SetAvailabilityStates> emit) {
     listLength++;
+
     emit(ExtraTimeFieldUpdatedState(listLength));
   }
 

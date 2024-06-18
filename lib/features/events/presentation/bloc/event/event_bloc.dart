@@ -1,131 +1,69 @@
-import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
+import 'package:calentre/features/events/presentation/helpers/add_new_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/remove_extra_time_field.dart';
+import 'package:calentre/features/events/presentation/helpers/update_current_day_details.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CalentreEventBloc extends Bloc<CalentreEventEvent, CalentreEventState> {
-  String? eventName;
-  String? eventDescription;
-  String? platform;
-  String? duration;
-  String? eventLink;
-  String? eventType;
-  String? amount;
-  String? isMultiple;
-  CalDays days = CalDays(
-    monday: [
-      CalTimeSlot(
-          start: mondayTimeList.timeList.first,
-          end: mondayTimeList.timeList.last)
-    ],
-    tuesday: [
-      CalTimeSlot(
-          start: tuesdayTimeList.timeList.first,
-          end: tuesdayTimeList.timeList.last)
-    ],
-    wednesday: [
-      CalTimeSlot(
-          start: wednesdayTimeList.timeList.first,
-          end: wednesdayTimeList.timeList.last)
-    ],
-    thursday: [
-      CalTimeSlot(
-          start: thursdayTimeList.timeList.first,
-          end: thursdayTimeList.timeList.last)
-    ],
-    friday: [
-      CalTimeSlot(
-          start: fridayTimeList.timeList.first,
-          end: fridayTimeList.timeList.last)
-    ],
-    saturday: [
-      CalTimeSlot(
-          start: saturdayTimeList.timeList.first,
-          end: saturdayTimeList.timeList.last)
-    ],
-    sunday: [
-      CalTimeSlot(
-          start: sundayTimeList.timeList.first,
-          end: sundayTimeList.timeList.last)
-    ],
-  );
+class CalentreEventBloc
+    extends Bloc<CalentreEventEvent, CalentreEventBaseState> {
+  //initialize all states relating to the CalentreEvent Bloc
+  CalentreEventState _calentreEventState = CalentreEventState.initial();
+  DayScheduleValidationState _dayScheduleValidationState =
+      DayScheduleValidationState.initial();
 
-  CalentreEventBloc() : super(CalentreEventInitialState()) {
-    on<ProceedToSetAvailabilityEvent>(onClickDropDownItem);
+  CalentreEventBloc() : super(CalentreEventState.initial()) {
+    on<UpdateCalentreEventDetailsEvent>(onUpdateFormFields);
+    on<UpdateDayScheduleEvent>(onUpdateDaySchedule);
+    on<UpdateDayScheduleValidationEvent>(onUpdateDayScheduleValidationState);
+    on<AddNewTimeFieldEvent>(onAddNewTimeField);
+    on<RemoveTimeFieldEvent>(onRemoveTimeField);
   }
 
-  void onClickDropDownItem(
-      ProceedToSetAvailabilityEvent event, Emitter<CalentreEventState> emit) {
-    //infuse all the class variables into CalentreEvent to create an update state
-    emit(CalentreEventUpdatedState(calentreEvent: CalentreEvent()));
+  void onUpdateFormFields(UpdateCalentreEventDetailsEvent event,
+      Emitter<CalentreEventBaseState> emit) {
+    emit(_calentreEventState.clone(_calentreEventState,
+        eventName: event.eventName, amount: event.amount));
   }
 
-  void modifyTimeList(String day, num index, String selectedTime) {
-    switch (day) {
-      case "Mon":
-        //get the index for the element in the TimeList
-        final timeIndex = mondayTimeList.timeList.indexOf(selectedTime);
-        final reducedTimeList = mondayTimeList.timeList.sublist(timeIndex);
-        mondayTimeList.timeList = reducedTimeList;
+  ///
+  void onUpdateDayScheduleValidationState(
+      UpdateDayScheduleValidationEvent event,
+      Emitter<CalentreEventBaseState> emit) {
+    emit(_dayScheduleValidationState.clone(
+      _dayScheduleValidationState,
+      errorList: _dayScheduleValidationState.errorList,
+    ));
+  }
 
-        //get the index of the TimeSlot in CalTimeSlot
+  ///initializes each of the week with a default [TimeSlot]
+  void onAddNewTimeField(
+      AddNewTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
+    final states = addNewTimeFieldHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+  }
 
-        //on select start time of the TimeSlot index
-        //reduce the mondayTimelist
-        //onSelect end Time
-        //reduce the mondayTimeList
-        break;
-      case "Tue":
-        tuesdayTimeList.timeList;
-        break;
-      case "Wed":
-        wednesdayTimeList.timeList;
-        break;
-      case "Thur":
-        thursdayTimeList.timeList;
-        break;
-      case "Fri":
-        fridayTimeList.timeList;
-        break;
-      case "Sat":
-        saturdayTimeList.timeList;
-        break;
-      case "Sun":
-        sundayTimeList.timeList;
-        break;
-      default:
-        TimeList().timeList;
-    }
+  void onRemoveTimeField(
+      RemoveTimeFieldEvent event, Emitter<CalentreEventBaseState> emit) {
+    final states = removeNewTimeFieldHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+  }
+
+  void onUpdateDaySchedule(
+      UpdateDayScheduleEvent event, Emitter<CalentreEventBaseState> emit) {
+    final states = updateCurrentDayDetailsHelper(
+        _calentreEventState, _dayScheduleValidationState, event);
+    _calentreEventState = states[0];
+    _dayScheduleValidationState = states[1];
+    emit(_calentreEventState);
+    emit(_dayScheduleValidationState.clone(_dayScheduleValidationState));
   }
 }
 
-class CalDays {
-  List<CalTimeSlot>? monday;
-  List<CalTimeSlot>? tuesday;
-  List<CalTimeSlot>? wednesday;
-  List<CalTimeSlot>? thursday;
-  List<CalTimeSlot>? friday;
-  List<CalTimeSlot>? saturday;
-  List<CalTimeSlot>? sunday;
 
-  CalDays({
-    this.monday,
-    this.tuesday,
-    this.wednesday,
-    this.thursday,
-    this.friday,
-    this.saturday,
-    this.sunday,
-  });
-}
-
-class CalTimeSlot {
-  String? start;
-  String? end;
-
-  CalTimeSlot({
-    this.start,
-    this.end,
-  });
-}
+//Delete UpdatedDayScheduleState

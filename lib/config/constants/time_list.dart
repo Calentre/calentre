@@ -51,10 +51,10 @@ class TimeList {
   ];
 }
 
-TimeList mondayTimeList = TimeList();
-TimeList tuesdayTimeList = TimeList();
-TimeList wednesdayTimeList = TimeList();
-TimeList thursdayTimeList = TimeList();
-TimeList fridayTimeList = TimeList();
-TimeList saturdayTimeList = TimeList();
-TimeList sundayTimeList = TimeList();
+// TimeList mondayTimeList = TimeList();
+// TimeList tuesdayTimeList = TimeList();
+// TimeList wednesdayTimeList = TimeList();
+// TimeList thursdayTimeList = TimeList();
+// TimeList fridayTimeList = TimeList();
+// TimeList saturdayTimeList = TimeList();
+// TimeList sundayTimeList = TimeList();

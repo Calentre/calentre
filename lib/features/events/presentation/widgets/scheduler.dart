@@ -1,11 +1,15 @@
 import 'package:calentre/config/enums/time_slots.dart';
+import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
 import 'package:calentre/features/events/presentation/widgets/time_drop_down.dart';
 import 'package:calentre/features/events/presentation/pages/set_availability_view.dart';
 import 'package:calentre/config/extensions/spacing.dart';
+import 'package:calentre/utils/element_color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,20 +17,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class AvailabilityScheduler extends StatelessWidget {
   AvailabilityScheduler({super.key, this.isFirstElement, required this.day});
   final bool? isFirstElement;
-  final String day;
-
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.blue;
-    }
-    return Colors.red;
-  }
-
+  final WeekDays day;
   final List extraTimeFieldList = [];
 
   @override
@@ -58,8 +49,8 @@ class AvailabilityScheduler extends StatelessWidget {
                       children: [
                         Checkbox(
                           checkColor: Colors.white,
-                          fillColor:
-                              MaterialStateProperty.resolveWith(getColor),
+                          fillColor: MaterialStateProperty.resolveWith(
+                              elementColorSelector),
                           value: BlocProvider.of<SetAvailabilityBloc>(
                             context,
                           ).checkBoxState,
@@ -70,7 +61,7 @@ class AvailabilityScheduler extends StatelessWidget {
                             ).add(CheckBoxEvent());
                           },
                         ),
-                        Text(day),
+                        Text(day.name.toString().substring(0, 3).toUpperCase()),
                         const SizedBox().x10(),
                       ],
                     ),
@@ -99,9 +90,29 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? TimeDropDown(
-                                day: {"day": day, "index": 0},
-                                timeSlotBoundary: TimeSlotBoundary.start)
+                            ? BlocBuilder<CalentreEventBloc,
+                                CalentreEventBaseState>(
+                                builder: (context, state) {
+                                  return Column(
+                                    children: [
+                                      TimeDropDown(
+                                          day: {"day": day, "index": 0},
+                                          timeSlotBoundary:
+                                              TimeSlotBoundary.start),
+                                      state is DayScheduleValidationState &&
+                                              state.day == day &&
+                                              checkError(
+                                                day,
+                                                state,
+                                                0,
+                                                context,
+                                              )
+                                          ? const Text("There was an error ")
+                                          : Container()
+                                    ],
+                                  );
+                                },
+                              )
                             : const Center(child: Text("Busy ")),
                         ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
@@ -109,9 +120,33 @@ class AvailabilityScheduler extends StatelessWidget {
                             ).listLength,
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
-                                  child: TimeDropDown(
-                                      day: {"day": day, "index": index + 1},
-                                      timeSlotBoundary: TimeSlotBoundary.start),
+                                  child: BlocBuilder<CalentreEventBloc,
+                                      CalentreEventBaseState>(
+                                    builder: (context, state) {
+                                      return Column(
+                                        children: [
+                                          TimeDropDown(
+                                              day: {
+                                                "day": day,
+                                                "index": index + 1
+                                              },
+                                              timeSlotBoundary:
+                                                  TimeSlotBoundary.start),
+                                          state is DayScheduleValidationState &&
+                                                  state.day == day &&
+                                                  checkError(
+                                                    day,
+                                                    state,
+                                                    index + 1,
+                                                    context,
+                                                  )
+                                              ? const Text(
+                                                  "There was an error ")
+                                              : Container()
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ))
                       ],
                     ))
@@ -151,21 +186,44 @@ class AvailabilityScheduler extends StatelessWidget {
                         BlocProvider.of<SetAvailabilityBloc>(
                           context,
                         ).checkBoxState
-                            ? TimeDropDown(
-                                day: {"day": day, "index": 0},
-                                timeSlotBoundary: TimeSlotBoundary.end,
+                            ? Column(
+                                children: [
+                                  TimeDropDown(
+                                      day: {"day": day, "index": 0},
+                                      timeSlotBoundary: TimeSlotBoundary.end),
+                                  // ((calentreEventBloc.currentDay == day)
+                                  //     ? (checkError(day.toString(), context, 0)
+                                  //         ? const Text(" ")
+                                  //         : Container())
+                                  //     : Container())
+                                ],
                               )
                             : const Center(child: Text("Busy")),
-                        // ... extraTimeFieldList.map((e) => const TimeDropDown()),
                         ...List.generate(
                             BlocProvider.of<SetAvailabilityBloc>(
                               context,
                             ).listLength,
                             (index) => Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
-                                  child: TimeDropDown(
-                                      day: {"day": day, "index": index + 1},
-                                      timeSlotBoundary: TimeSlotBoundary.end),
+                                  child: Column(
+                                    children: [
+                                      TimeDropDown(
+                                          //adding 1 because the index starts at 0
+                                          day: {
+                                            "day": day,
+                                            "index": index + 1
+                                          },
+                                          timeSlotBoundary:
+                                              TimeSlotBoundary.end),
+                                      // ((calentreEventBloc.currentDay ==
+                                      //         day.toString())
+                                      //     ? (checkError(day.toString(), context,
+                                      //             index + 1)
+                                      //         ? const Text(" ")
+                                      //         : Container())
+                                      //     : Container())
+                                    ],
+                                  ),
                                 ))
                       ],
                     ))
@@ -193,7 +251,10 @@ class AvailabilityScheduler extends StatelessWidget {
   }
 
   Widget actionIcons(context,
-      {required int? index, int? listLength, required String day}) {
+      {required int? index, int? listLength, required WeekDays day}) {
+    CalentreEventBloc calentreEventBloc = BlocProvider.of<CalentreEventBloc>(
+      context,
+    );
     return ((index ?? -1) >= 0 ||
             BlocProvider.of<SetAvailabilityBloc>(
                   context,
@@ -212,59 +273,7 @@ class AvailabilityScheduler extends StatelessWidget {
                       BlocProvider.of<SetAvailabilityBloc>(
                         context,
                       ).add(AddExtraTimeFieldEvent());
-                      //Add an initial TimeSlot for the new field
-                      switch (day) {
-                        case "Mon":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .monday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        case "Tue":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .tuesday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        case "Wed":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .wednesday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        case "Thur":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .thursday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        case "Fri":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .friday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        case "Sat":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .saturday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        case "Sun":
-                          BlocProvider.of<CalentreEventBloc>(context)
-                              .days
-                              .sunday!
-                              .add(
-                                  CalTimeSlot(start: "12 AM", end: "11:50 PM"));
-                          break;
-                        default:
-                      }
+                      calentreEventBloc.add(AddNewTimeFieldEvent(day: day));
                     },
                     child: const FaIcon(FontAwesomeIcons.solidSquarePlus)),
                 const SizedBox().x14(),
@@ -283,52 +292,8 @@ class AvailabilityScheduler extends StatelessWidget {
                               context,
                             ).add(RemoveExtraTimeFieldEvent());
 
-                            //You should come back to add a caseSwitch here to know day to act on.
-                            switch (day) {
-                              case "Mon":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .monday!
-                                    .removeLast();
-                                break;
-                              case "Tue":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .tuesday!
-                                    .removeLast();
-                                break;
-                              case "Wed":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .wednesday!
-                                    .removeLast();
-                                break;
-                              case "Thur":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .thursday!
-                                    .removeLast();
-                                break;
-                              case "Fri":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .friday!
-                                    .removeLast();
-                                break;
-                              case "Sat":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .saturday!
-                                    .removeLast();
-                                break;
-                              case "Sun":
-                                BlocProvider.of<CalentreEventBloc>(context)
-                                    .days
-                                    .sunday!
-                                    .removeLast();
-                                break;
-                              default:
-                            }
+                            calentreEventBloc
+                                .add(RemoveTimeFieldEvent(day: day));
                           },
                     child: FaIcon(
                       FontAwesomeIcons.trash,
@@ -342,5 +307,44 @@ class AvailabilityScheduler extends StatelessWidget {
               ],
             ),
           );
+  }
+}
+
+///[index] represent the extra timefield position.
+bool checkError(WeekDays day, DayScheduleValidationState state, int index,
+    BuildContext context) {
+  CalentreEventBloc calentreEventBloc = BlocProvider.of<CalentreEventBloc>(
+    context,
+  );
+  switch (day) {
+    case WeekDays.monday:
+      bool error = state.errorList[0][WeekDays.monday]![index];
+      if (error) {
+        //add new event to update errorList of this particular day and emit DayScheduleValidationState
+        calentreEventBloc
+            .add(UpdateDayScheduleValidationEvent(errorList: state.errorList));
+      }
+      return error;
+    case WeekDays.tuesday:
+      bool error = state.errorList[1][WeekDays.tuesday]![index];
+      return error;
+    case WeekDays.wednesday:
+      bool error = state.errorList[2][WeekDays.wednesday]![index];
+      return error;
+    case WeekDays.thursday:
+      bool error = state.errorList[3][WeekDays.thursday]![index];
+      return error;
+    case WeekDays.friday:
+      bool error = state.errorList[4][WeekDays.friday]![index];
+      return error;
+    case WeekDays.saturday:
+      bool error = state.errorList[5][WeekDays.saturday]![index];
+      return error;
+    case WeekDays.sunday:
+      bool error = state.errorList[6][WeekDays.sunday]![index];
+      return error;
+
+    default:
+      return false;
   }
 }

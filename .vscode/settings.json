@@ -1,11 +1,8 @@
 {
-  // "dart.flutterSdkPath": "/Users/intellisys/Desktop/flutter",
-  "dart.flutterSdkPath": ".fvm/flutter_sdk",
-  // Remove .fvm files from search
+  "dart.flutterSdkPath": ".fvm/versions/3.19.6",
   "search.exclude": {
     "**/.fvm": true
   },
-  // Remove from file watching
   "files.watcherExclude": {
     "**/.fvm": true
   }

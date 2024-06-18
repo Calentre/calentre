@@ -40,3 +40,12 @@ class CheckBoxUpdatedState extends SetAvailabilityStates {
   @override
   List<Object> get props => [state];
 }
+
+class RebuildSetAvailabilityScreenState extends SetAvailabilityStates {
+  final int state;
+
+  RebuildSetAvailabilityScreenState(this.state);
+
+  @override
+  List<Object> get props => [state];
+}
