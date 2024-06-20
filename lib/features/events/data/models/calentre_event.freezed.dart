@@ -28,7 +28,7 @@ mixin _$CalentreEvent {
   String? get eventType => throw _privateConstructorUsedError;
   String? get amount => throw _privateConstructorUsedError;
   String? get isMultiple => throw _privateConstructorUsedError;
-  Days? get days => throw _privateConstructorUsedError;
+  Days get days => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,9 +51,9 @@ abstract class $CalentreEventCopyWith<$Res> {
       String? eventType,
       String? amount,
       String? isMultiple,
-      Days? days});
+      Days days});
 
-  $DaysCopyWith<$Res>? get days;
+  $DaysCopyWith<$Res> get days;
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
     Object? eventType = freezed,
     Object? amount = freezed,
     Object? isMultiple = freezed,
-    Object? days = freezed,
+    Object? days = null,
   }) {
     return _then(_value.copyWith(
       eventName: freezed == eventName
@@ -112,21 +112,17 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
               as String?,
-      days: freezed == days
+      days: null == days
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
-              as Days?,
+              as Days,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DaysCopyWith<$Res>? get days {
-    if (_value.days == null) {
-      return null;
-    }
-
-    return $DaysCopyWith<$Res>(_value.days!, (value) {
+  $DaysCopyWith<$Res> get days {
+    return $DaysCopyWith<$Res>(_value.days, (value) {
       return _then(_value.copyWith(days: value) as $Val);
     });
   }
@@ -149,10 +145,10 @@ abstract class _$$_CalentreEventCopyWith<$Res>
       String? eventType,
       String? amount,
       String? isMultiple,
-      Days? days});
+      Days days});
 
   @override
-  $DaysCopyWith<$Res>? get days;
+  $DaysCopyWith<$Res> get days;
 }
 
 /// @nodoc
@@ -174,7 +170,7 @@ class __$$_CalentreEventCopyWithImpl<$Res>
     Object? eventType = freezed,
     Object? amount = freezed,
     Object? isMultiple = freezed,
-    Object? days = freezed,
+    Object? days = null,
   }) {
     return _then(_$_CalentreEvent(
       eventName: freezed == eventName
@@ -209,10 +205,10 @@ class __$$_CalentreEventCopyWithImpl<$Res>
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
               as String?,
-      days: freezed == days
+      days: null == days
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
-              as Days?,
+              as Days,
     ));
   }
 }
@@ -229,7 +225,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
       this.eventType,
       this.amount,
       this.isMultiple,
-      this.days});
+      required this.days});
 
   factory _$_CalentreEvent.fromJson(Map<String, dynamic> json) =>
       _$$_CalentreEventFromJson(json);
@@ -251,7 +247,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   @override
   final String? isMultiple;
   @override
-  final Days? days;
+  final Days days;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -326,7 +322,7 @@ abstract class _CalentreEvent implements CalentreEvent {
       final String? eventType,
       final String? amount,
       final String? isMultiple,
-      final Days? days}) = _$_CalentreEvent;
+      required final Days days}) = _$_CalentreEvent;
 
   factory _CalentreEvent.fromJson(Map<String, dynamic> json) =
       _$_CalentreEvent.fromJson;
@@ -348,7 +344,7 @@ abstract class _CalentreEvent implements CalentreEvent {
   @override
   String? get isMultiple;
   @override
-  Days? get days;
+  Days get days;
   @override
   @JsonKey(ignore: true)
   _$$_CalentreEventCopyWith<_$_CalentreEvent> get copyWith =>
@@ -361,13 +357,13 @@ Days _$DaysFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Days {
-  List<TimeSlot>? get monday => throw _privateConstructorUsedError;
-  List<TimeSlot>? get tuesday => throw _privateConstructorUsedError;
-  List<TimeSlot>? get wednesday => throw _privateConstructorUsedError;
-  List<TimeSlot>? get thursday => throw _privateConstructorUsedError;
-  List<TimeSlot>? get friday => throw _privateConstructorUsedError;
-  List<TimeSlot>? get saturday => throw _privateConstructorUsedError;
-  List<TimeSlot>? get sunday => throw _privateConstructorUsedError;
+  List<TimeSlot> get monday => throw _privateConstructorUsedError;
+  List<TimeSlot> get tuesday => throw _privateConstructorUsedError;
+  List<TimeSlot> get wednesday => throw _privateConstructorUsedError;
+  List<TimeSlot> get thursday => throw _privateConstructorUsedError;
+  List<TimeSlot> get friday => throw _privateConstructorUsedError;
+  List<TimeSlot> get saturday => throw _privateConstructorUsedError;
+  List<TimeSlot> get sunday => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -380,13 +376,13 @@ abstract class $DaysCopyWith<$Res> {
       _$DaysCopyWithImpl<$Res, Days>;
   @useResult
   $Res call(
-      {List<TimeSlot>? monday,
-      List<TimeSlot>? tuesday,
-      List<TimeSlot>? wednesday,
-      List<TimeSlot>? thursday,
-      List<TimeSlot>? friday,
-      List<TimeSlot>? saturday,
-      List<TimeSlot>? sunday});
+      {List<TimeSlot> monday,
+      List<TimeSlot> tuesday,
+      List<TimeSlot> wednesday,
+      List<TimeSlot> thursday,
+      List<TimeSlot> friday,
+      List<TimeSlot> saturday,
+      List<TimeSlot> sunday});
 }
 
 /// @nodoc
@@ -402,43 +398,43 @@ class _$DaysCopyWithImpl<$Res, $Val extends Days>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? monday = freezed,
-    Object? tuesday = freezed,
-    Object? wednesday = freezed,
-    Object? thursday = freezed,
-    Object? friday = freezed,
-    Object? saturday = freezed,
-    Object? sunday = freezed,
+    Object? monday = null,
+    Object? tuesday = null,
+    Object? wednesday = null,
+    Object? thursday = null,
+    Object? friday = null,
+    Object? saturday = null,
+    Object? sunday = null,
   }) {
     return _then(_value.copyWith(
-      monday: freezed == monday
+      monday: null == monday
           ? _value.monday
           : monday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      tuesday: freezed == tuesday
+              as List<TimeSlot>,
+      tuesday: null == tuesday
           ? _value.tuesday
           : tuesday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      wednesday: freezed == wednesday
+              as List<TimeSlot>,
+      wednesday: null == wednesday
           ? _value.wednesday
           : wednesday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      thursday: freezed == thursday
+              as List<TimeSlot>,
+      thursday: null == thursday
           ? _value.thursday
           : thursday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      friday: freezed == friday
+              as List<TimeSlot>,
+      friday: null == friday
           ? _value.friday
           : friday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      saturday: freezed == saturday
+              as List<TimeSlot>,
+      saturday: null == saturday
           ? _value.saturday
           : saturday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      sunday: freezed == sunday
+              as List<TimeSlot>,
+      sunday: null == sunday
           ? _value.sunday
           : sunday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
+              as List<TimeSlot>,
     ) as $Val);
   }
 }
@@ -450,13 +446,13 @@ abstract class _$$_DaysCopyWith<$Res> implements $DaysCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<TimeSlot>? monday,
-      List<TimeSlot>? tuesday,
-      List<TimeSlot>? wednesday,
-      List<TimeSlot>? thursday,
-      List<TimeSlot>? friday,
-      List<TimeSlot>? saturday,
-      List<TimeSlot>? sunday});
+      {List<TimeSlot> monday,
+      List<TimeSlot> tuesday,
+      List<TimeSlot> wednesday,
+      List<TimeSlot> thursday,
+      List<TimeSlot> friday,
+      List<TimeSlot> saturday,
+      List<TimeSlot> sunday});
 }
 
 /// @nodoc
@@ -468,43 +464,43 @@ class __$$_DaysCopyWithImpl<$Res> extends _$DaysCopyWithImpl<$Res, _$_Days>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? monday = freezed,
-    Object? tuesday = freezed,
-    Object? wednesday = freezed,
-    Object? thursday = freezed,
-    Object? friday = freezed,
-    Object? saturday = freezed,
-    Object? sunday = freezed,
+    Object? monday = null,
+    Object? tuesday = null,
+    Object? wednesday = null,
+    Object? thursday = null,
+    Object? friday = null,
+    Object? saturday = null,
+    Object? sunday = null,
   }) {
     return _then(_$_Days(
-      monday: freezed == monday
+      monday: null == monday
           ? _value._monday
           : monday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      tuesday: freezed == tuesday
+              as List<TimeSlot>,
+      tuesday: null == tuesday
           ? _value._tuesday
           : tuesday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      wednesday: freezed == wednesday
+              as List<TimeSlot>,
+      wednesday: null == wednesday
           ? _value._wednesday
           : wednesday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      thursday: freezed == thursday
+              as List<TimeSlot>,
+      thursday: null == thursday
           ? _value._thursday
           : thursday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      friday: freezed == friday
+              as List<TimeSlot>,
+      friday: null == friday
           ? _value._friday
           : friday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      saturday: freezed == saturday
+              as List<TimeSlot>,
+      saturday: null == saturday
           ? _value._saturday
           : saturday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
-      sunday: freezed == sunday
+              as List<TimeSlot>,
+      sunday: null == sunday
           ? _value._sunday
           : sunday // ignore: cast_nullable_to_non_nullable
-              as List<TimeSlot>?,
+              as List<TimeSlot>,
     ));
   }
 }
@@ -513,13 +509,13 @@ class __$$_DaysCopyWithImpl<$Res> extends _$DaysCopyWithImpl<$Res, _$_Days>
 @JsonSerializable()
 class _$_Days with DiagnosticableTreeMixin implements _Days {
   const _$_Days(
-      {final List<TimeSlot>? monday,
-      final List<TimeSlot>? tuesday,
-      final List<TimeSlot>? wednesday,
-      final List<TimeSlot>? thursday,
-      final List<TimeSlot>? friday,
-      final List<TimeSlot>? saturday,
-      final List<TimeSlot>? sunday})
+      {required final List<TimeSlot> monday,
+      required final List<TimeSlot> tuesday,
+      required final List<TimeSlot> wednesday,
+      required final List<TimeSlot> thursday,
+      required final List<TimeSlot> friday,
+      required final List<TimeSlot> saturday,
+      required final List<TimeSlot> sunday})
       : _monday = monday,
         _tuesday = tuesday,
         _wednesday = wednesday,
@@ -530,74 +526,60 @@ class _$_Days with DiagnosticableTreeMixin implements _Days {
 
   factory _$_Days.fromJson(Map<String, dynamic> json) => _$$_DaysFromJson(json);
 
-  final List<TimeSlot>? _monday;
+  final List<TimeSlot> _monday;
   @override
-  List<TimeSlot>? get monday {
-    final value = _monday;
-    if (value == null) return null;
+  List<TimeSlot> get monday {
     if (_monday is EqualUnmodifiableListView) return _monday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_monday);
   }
 
-  final List<TimeSlot>? _tuesday;
+  final List<TimeSlot> _tuesday;
   @override
-  List<TimeSlot>? get tuesday {
-    final value = _tuesday;
-    if (value == null) return null;
+  List<TimeSlot> get tuesday {
     if (_tuesday is EqualUnmodifiableListView) return _tuesday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_tuesday);
   }
 
-  final List<TimeSlot>? _wednesday;
+  final List<TimeSlot> _wednesday;
   @override
-  List<TimeSlot>? get wednesday {
-    final value = _wednesday;
-    if (value == null) return null;
+  List<TimeSlot> get wednesday {
     if (_wednesday is EqualUnmodifiableListView) return _wednesday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_wednesday);
   }
 
-  final List<TimeSlot>? _thursday;
+  final List<TimeSlot> _thursday;
   @override
-  List<TimeSlot>? get thursday {
-    final value = _thursday;
-    if (value == null) return null;
+  List<TimeSlot> get thursday {
     if (_thursday is EqualUnmodifiableListView) return _thursday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_thursday);
   }
 
-  final List<TimeSlot>? _friday;
+  final List<TimeSlot> _friday;
   @override
-  List<TimeSlot>? get friday {
-    final value = _friday;
-    if (value == null) return null;
+  List<TimeSlot> get friday {
     if (_friday is EqualUnmodifiableListView) return _friday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_friday);
   }
 
-  final List<TimeSlot>? _saturday;
+  final List<TimeSlot> _saturday;
   @override
-  List<TimeSlot>? get saturday {
-    final value = _saturday;
-    if (value == null) return null;
+  List<TimeSlot> get saturday {
     if (_saturday is EqualUnmodifiableListView) return _saturday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_saturday);
   }
 
-  final List<TimeSlot>? _sunday;
+  final List<TimeSlot> _sunday;
   @override
-  List<TimeSlot>? get sunday {
-    final value = _sunday;
-    if (value == null) return null;
+  List<TimeSlot> get sunday {
     if (_sunday is EqualUnmodifiableListView) return _sunday;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_sunday);
   }
 
   @override
@@ -662,30 +644,30 @@ class _$_Days with DiagnosticableTreeMixin implements _Days {
 
 abstract class _Days implements Days {
   const factory _Days(
-      {final List<TimeSlot>? monday,
-      final List<TimeSlot>? tuesday,
-      final List<TimeSlot>? wednesday,
-      final List<TimeSlot>? thursday,
-      final List<TimeSlot>? friday,
-      final List<TimeSlot>? saturday,
-      final List<TimeSlot>? sunday}) = _$_Days;
+      {required final List<TimeSlot> monday,
+      required final List<TimeSlot> tuesday,
+      required final List<TimeSlot> wednesday,
+      required final List<TimeSlot> thursday,
+      required final List<TimeSlot> friday,
+      required final List<TimeSlot> saturday,
+      required final List<TimeSlot> sunday}) = _$_Days;
 
   factory _Days.fromJson(Map<String, dynamic> json) = _$_Days.fromJson;
 
   @override
-  List<TimeSlot>? get monday;
+  List<TimeSlot> get monday;
   @override
-  List<TimeSlot>? get tuesday;
+  List<TimeSlot> get tuesday;
   @override
-  List<TimeSlot>? get wednesday;
+  List<TimeSlot> get wednesday;
   @override
-  List<TimeSlot>? get thursday;
+  List<TimeSlot> get thursday;
   @override
-  List<TimeSlot>? get friday;
+  List<TimeSlot> get friday;
   @override
-  List<TimeSlot>? get saturday;
+  List<TimeSlot> get saturday;
   @override
-  List<TimeSlot>? get sunday;
+  List<TimeSlot> get sunday;
   @override
   @JsonKey(ignore: true)
   _$$_DaysCopyWith<_$_Days> get copyWith => throw _privateConstructorUsedError;

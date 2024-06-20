@@ -19,7 +19,7 @@ class CalentreEvent with _$CalentreEvent {
     String? eventType,
     String? amount,
     String? isMultiple,
-    Days days,
+    required Days days,
   }) = _CalentreEvent;
 
   factory CalentreEvent.fromJson(Map<String, dynamic> json) =>
@@ -29,13 +29,13 @@ class CalentreEvent with _$CalentreEvent {
 @freezed
 class Days with _$Days {
   const factory Days({
-    List<TimeSlot> monday,
-    List<TimeSlot> tuesday,
-    List<TimeSlot> wednesday,
-    List<TimeSlot> thursday,
-    List<TimeSlot> friday,
-    List<TimeSlot> saturday,
-    List<TimeSlot> sunday,
+    required List<TimeSlot> monday,
+    required List<TimeSlot> tuesday,
+    required List<TimeSlot> wednesday,
+    required List<TimeSlot> thursday,
+    required List<TimeSlot> friday,
+    required List<TimeSlot> saturday,
+    required List<TimeSlot> sunday,
   }) = _Days;
 
   factory Days.fromJson(Map<String, dynamic> json) => _$DaysFromJson(json);

@@ -5,9 +5,22 @@ import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:equatable/equatable.dart';
 
+///We are using a single state to control the entire CalentreEvent feature.
+
+enum LoadingStatus {
+  idle, //to initialize the loading state
+  createEventIdle,
+  createEventLoading,
+  createEventDone,
+  createEventError,
+  getEventIdle,
+  getEventLoading,
+  getEventDone,
+  getEventError,
+}
+
 class CalentreEventBaseState extends Equatable {
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -21,8 +34,8 @@ class CalentreEventState extends CalentreEventBaseState {
   final String isMultiple;
   final String platformType;
   final Days days;
+  final LoadingStatus loadingStatus;
 
-  //constructor
   CalentreEventState(
       {required this.eventName,
       required this.eventType,
@@ -32,7 +45,8 @@ class CalentreEventState extends CalentreEventBaseState {
       required this.amount,
       required this.duration,
       required this.eventDescription,
-      required this.eventLink});
+      required this.eventLink,
+      required this.loadingStatus});
 
   //initial method
   static CalentreEventState initial() {
@@ -45,6 +59,7 @@ class CalentreEventState extends CalentreEventBaseState {
         eventType: "",
         isMultiple: "",
         platformType: "",
+        loadingStatus: LoadingStatus.idle,
         days: Days(
           monday: [
             TimeSlot(
@@ -87,18 +102,21 @@ class CalentreEventState extends CalentreEventBaseState {
       String? eventType,
       String? isMultiple,
       String? platformType,
+      LoadingStatus? loadingStatus,
       Days? days}) {
     // print("when cloning, state is ${state.days}");
     return CalentreEventState(
-        eventName: eventName ?? state.eventName,
-        eventType: eventType ?? state.eventType,
-        isMultiple: isMultiple ?? state.isMultiple,
-        platformType: platformType ?? state.platformType,
-        days: days ?? state.days,
-        amount: amount ?? state.amount,
-        duration: duration ?? state.duration,
-        eventDescription: eventDescription ?? state.eventDescription,
-        eventLink: eventLink ?? state.eventLink);
+      eventName: eventName ?? state.eventName,
+      eventType: eventType ?? state.eventType,
+      isMultiple: isMultiple ?? state.isMultiple,
+      platformType: platformType ?? state.platformType,
+      days: days ?? state.days,
+      amount: amount ?? state.amount,
+      duration: duration ?? state.duration,
+      eventDescription: eventDescription ?? state.eventDescription,
+      eventLink: eventLink ?? state.eventLink,
+      loadingStatus: loadingStatus ?? state.loadingStatus,
+    );
   }
 
   @override
@@ -172,29 +190,3 @@ class DayScheduleValidationState extends CalentreEventBaseState {
   @override
   List<Object> get props => [index, day, message, errorList];
 }
-
-
-
-// List<Map<String, List<bool>>> errorList = [
-  // {
-  //   "Mon": [false]
-  // },
-  // {
-  //   "Tue": [false]
-  // },
-  // {
-  //   "Wed": [false]
-  // },
-  // {
-  //   "Thur": [false]
-  // },
-  // {
-  //   "Fri": [false]
-  // },
-  // {
-  //   "Sat": [false]
-  // },
-  // {
-  //   "Sun": [false]
-  // },
-// ];

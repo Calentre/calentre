@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'calentre_event.dart';
 
 // **************************************************************************
@@ -18,9 +16,7 @@ _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
       eventType: json['eventType'] as String?,
       amount: json['amount'] as String?,
       isMultiple: json['isMultiple'] as String?,
-      days: json['days'] == null
-          ? null
-          : Days.fromJson(json['days'] as Map<String, dynamic>),
+      days: Days.fromJson(json['days'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
@@ -37,26 +33,26 @@ Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
     };
 
 _$_Days _$$_DaysFromJson(Map<String, dynamic> json) => _$_Days(
-      monday: (json['monday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      monday: (json['monday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      tuesday: (json['tuesday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      tuesday: (json['tuesday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      wednesday: (json['wednesday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      wednesday: (json['wednesday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      thursday: (json['thursday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      thursday: (json['thursday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      friday: (json['friday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      friday: (json['friday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      saturday: (json['saturday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      saturday: (json['saturday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      sunday: (json['sunday'] as List<dynamic>?)
-          ?.map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+      sunday: (json['sunday'] as List<dynamic>)
+          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
