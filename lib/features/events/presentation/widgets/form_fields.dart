@@ -215,7 +215,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                         const SizedBox().y20(),
                         const SizedBox().y10(),
                         Text(
-                          "Amount",
+                          "Amount (USD)",
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge!

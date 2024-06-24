@@ -45,7 +45,7 @@ final routerConfig = GoRouter(
         return sl<SupabaseClient>().auth.currentSession == null
             ? SocialSignIn()
             : BlocProvider.value(
-                value: CalentreEventBloc(),
+                value: BlocProvider.of<CalentreEventBloc>(context),
                 child: const CreateEventView(),
               );
       },
@@ -57,7 +57,7 @@ final routerConfig = GoRouter(
         return sl<SupabaseClient>().auth.currentSession == null
             ? SocialSignIn()
             : BlocProvider.value(
-                value: CalentreEventBloc(),
+                value: BlocProvider.of<CalentreEventBloc>(context),
                 child: SetAvailabilityView(),
               );
       },

@@ -59,3 +59,6 @@ class RemoveTimeFieldEvent extends CalentreEventEvent {
 
   RemoveTimeFieldEvent({required this.day});
 }
+
+class CreateCalentreEventEvent
+    extends CalentreEventEvent {} //get state from inside the bloc

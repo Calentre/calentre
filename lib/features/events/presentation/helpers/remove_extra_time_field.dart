@@ -3,7 +3,7 @@ import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 
-///Removes a the last [TimeSlot] and last value of the errorList
+///Removes the last [TimeSlot] and last value of the errorList
 ///within the [DayScheduleValidationState].
 List removeNewTimeFieldHelper(
     CalentreEventState calentreEventState,

@@ -92,7 +92,10 @@ class CalentreEventState extends CalentreEventBaseState {
         ));
   }
 
-  ///Returns a new instance(state) of the [CalentreEventState]
+  ///Returns a new instance(state) of the [CalentreEventState].
+  ///
+  ///The clone method is designed in such a way that it requires us to pass in the
+  ///current state of the class.
   CalentreEventState clone(CalentreEventState state,
       {String? amount,
       String? duration,
@@ -104,7 +107,6 @@ class CalentreEventState extends CalentreEventBaseState {
       String? platformType,
       LoadingStatus? loadingStatus,
       Days? days}) {
-    // print("when cloning, state is ${state.days}");
     return CalentreEventState(
       eventName: eventName ?? state.eventName,
       eventType: eventType ?? state.eventType,
@@ -146,6 +148,7 @@ class DayScheduleValidationState extends CalentreEventBaseState {
       required this.errorList});
 
   static DayScheduleValidationState initial() {
+    print("called");
     return DayScheduleValidationState(
         message: "",
         index: 0,
