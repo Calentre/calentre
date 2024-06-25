@@ -13,7 +13,7 @@ class CalentreEvent with _$CalentreEvent {
   const factory CalentreEvent({
     String? eventName,
     String? eventDescription,
-    String? videoCallType,
+    String? platformType,
     String? duration,
     String? eventLink,
     String? eventType,

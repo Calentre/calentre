@@ -10,7 +10,7 @@ _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
     _$_CalentreEvent(
       eventName: json['eventName'] as String?,
       eventDescription: json['eventDescription'] as String?,
-      videoCallType: json['videoCallType'] as String?,
+      platformType: json['platformType'] as String?,
       duration: json['duration'] as String?,
       eventLink: json['eventLink'] as String?,
       eventType: json['eventType'] as String?,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
     <String, dynamic>{
       'eventName': instance.eventName,
       'eventDescription': instance.eventDescription,
-      'videoCallType': instance.videoCallType,
+      'platformType': instance.platformType,
       'duration': instance.duration,
       'eventLink': instance.eventLink,
       'eventType': instance.eventType,

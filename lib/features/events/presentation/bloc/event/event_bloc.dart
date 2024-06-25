@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///properties. So we have to initialize our states that extends [CalentreEventBaseState]
 ///as private instances within this bloc class. This means we have to constantly update the private
 ///instances from inside the event handlers, to ensure it is always up-to date with data
-///from different events or state changes.
+///from different events or state changes. Not the best approach, and needs refactor in future
 class CalentreEventBloc
     extends Bloc<CalentreEventEvent, CalentreEventBaseState> {
   //initialize all states relating to the CalentreEvent Bloc
@@ -30,10 +30,18 @@ class CalentreEventBloc
 
   void onUpdateFormFields(UpdateCalentreEventDetailsEvent event,
       Emitter<CalentreEventBaseState> emit) {
-    final newState = _calentreEventState.clone(_calentreEventState,
-        eventName: event.eventName, amount: event.amount);
-    emit(newState);
+    final newState = _calentreEventState.clone(
+      _calentreEventState,
+      eventName: event.eventName,
+      eventDescription: event.eventDescription,
+      platformType: event.platformType,
+      duration: event.duration,
+      eventLink: event.eventLink,
+      eventType: event.eventType,
+      amount: event.amount,
+    );
     _calentreEventState = newState;
+    emit(newState);
 
     //update the calentreEventState
   }
@@ -78,8 +86,18 @@ class CalentreEventBloc
 
   void onCreateCalentreEvent(
       CreateCalentreEventEvent event, Emitter<CalentreEventBaseState> emit) {
-    // final eventObject = _calentreEventState.clone(_calentreEventState);
-    print("Event object is $_calentreEventState");
+    //call appi endpoint to create here
+    final toServer = CalentreEvent(
+            eventName: _calentreEventState.eventName,
+            eventDescription: _calentreEventState.eventDescription,
+            platformType: _calentreEventState.platformType,
+            duration: _calentreEventState.duration,
+            eventLink: _calentreEventState.eventLink,
+            eventType: _calentreEventState.eventType,
+            amount: _calentreEventState.amount,
+            days: _calentreEventState.days)
+        .toJson();
+    print("Event object is $toServer");
   }
 }
 

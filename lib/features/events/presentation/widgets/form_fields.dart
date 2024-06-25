@@ -28,9 +28,9 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   final eventNameController = TextEditingController();
   final descriptionController = TextEditingController();
   final meetingLinkController = TextEditingController();
-  String? platformValue;
-  String? durationValue;
-  String? eventTypeValue;
+  String platformValue = "Google meet";
+  String durationValue = "5 min";
+  String eventTypeValue = "Free";
 
   @override
   Widget build(BuildContext context) {
@@ -200,8 +200,6 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                 ),
                 BlocBuilder<EventTypeDropDownBloc, FormDropDownState>(
                     builder: (context, state) {
-                  debugPrint("Event type rebuild");
-                  debugPrint('$state');
                   var bloc = (BlocProvider.of<EventTypeDropDownBloc>(
                     context,
                   ));

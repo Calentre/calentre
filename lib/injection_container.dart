@@ -20,6 +20,17 @@ import 'features/auth/data/models/user_model.dart';
 
 final sl = GetIt.instance;
 
+///Initializes all of the singletons for the Blocs, Repositories and services.
+///
+///This is in-line with the clean architecture practice that is being followed in this
+/// project. The order in which each of these classes are implemented matters a lot. The
+/// reason behind that is because each instantiation is almost always going to be a
+/// dependency for another class (say the parent). This is particularly important because
+/// of the way clean architecture has employed dependency injection in the data and domain layers,
+/// especially in the concrete implementation side of these two layers.
+///
+/// Every developer working on this project is encourage to strive for this consistency when creating
+/// new classes.
 Future<void> initializeDependencies() async {
   //Auth Singletons
   sl.registerSingleton<Dio>(Dio());
@@ -42,6 +53,9 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SetAvailabilityBloc>(SetAvailabilityBloc());
 
   //Factory
+  ///Bloc classes should be registered as factories because there are cases where we
+  ///would new instances (say mapping through a list), and they also by nature Singleton classes
+  ///until a new instance is explicitly created via the [BlocProvider].
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
 
   //Non DI

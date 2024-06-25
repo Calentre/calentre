@@ -22,7 +22,7 @@ CalentreEvent _$CalentreEventFromJson(Map<String, dynamic> json) {
 mixin _$CalentreEvent {
   String? get eventName => throw _privateConstructorUsedError;
   String? get eventDescription => throw _privateConstructorUsedError;
-  String? get videoCallType => throw _privateConstructorUsedError;
+  String? get platformType => throw _privateConstructorUsedError;
   String? get duration => throw _privateConstructorUsedError;
   String? get eventLink => throw _privateConstructorUsedError;
   String? get eventType => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $CalentreEventCopyWith<$Res> {
   $Res call(
       {String? eventName,
       String? eventDescription,
-      String? videoCallType,
+      String? platformType,
       String? duration,
       String? eventLink,
       String? eventType,
@@ -71,7 +71,7 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
   $Res call({
     Object? eventName = freezed,
     Object? eventDescription = freezed,
-    Object? videoCallType = freezed,
+    Object? platformType = freezed,
     Object? duration = freezed,
     Object? eventLink = freezed,
     Object? eventType = freezed,
@@ -88,9 +88,9 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
           ? _value.eventDescription
           : eventDescription // ignore: cast_nullable_to_non_nullable
               as String?,
-      videoCallType: freezed == videoCallType
-          ? _value.videoCallType
-          : videoCallType // ignore: cast_nullable_to_non_nullable
+      platformType: freezed == platformType
+          ? _value.platformType
+          : platformType // ignore: cast_nullable_to_non_nullable
               as String?,
       duration: freezed == duration
           ? _value.duration
@@ -139,7 +139,7 @@ abstract class _$$_CalentreEventCopyWith<$Res>
   $Res call(
       {String? eventName,
       String? eventDescription,
-      String? videoCallType,
+      String? platformType,
       String? duration,
       String? eventLink,
       String? eventType,
@@ -164,7 +164,7 @@ class __$$_CalentreEventCopyWithImpl<$Res>
   $Res call({
     Object? eventName = freezed,
     Object? eventDescription = freezed,
-    Object? videoCallType = freezed,
+    Object? platformType = freezed,
     Object? duration = freezed,
     Object? eventLink = freezed,
     Object? eventType = freezed,
@@ -181,9 +181,9 @@ class __$$_CalentreEventCopyWithImpl<$Res>
           ? _value.eventDescription
           : eventDescription // ignore: cast_nullable_to_non_nullable
               as String?,
-      videoCallType: freezed == videoCallType
-          ? _value.videoCallType
-          : videoCallType // ignore: cast_nullable_to_non_nullable
+      platformType: freezed == platformType
+          ? _value.platformType
+          : platformType // ignore: cast_nullable_to_non_nullable
               as String?,
       duration: freezed == duration
           ? _value.duration
@@ -219,7 +219,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   const _$_CalentreEvent(
       {this.eventName,
       this.eventDescription,
-      this.videoCallType,
+      this.platformType,
       this.duration,
       this.eventLink,
       this.eventType,
@@ -235,7 +235,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   @override
   final String? eventDescription;
   @override
-  final String? videoCallType;
+  final String? platformType;
   @override
   final String? duration;
   @override
@@ -251,7 +251,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CalentreEvent(eventName: $eventName, eventDescription: $eventDescription, videoCallType: $videoCallType, duration: $duration, eventLink: $eventLink, eventType: $eventType, amount: $amount, isMultiple: $isMultiple, days: $days)';
+    return 'CalentreEvent(eventName: $eventName, eventDescription: $eventDescription, platformType: $platformType, duration: $duration, eventLink: $eventLink, eventType: $eventType, amount: $amount, isMultiple: $isMultiple, days: $days)';
   }
 
   @override
@@ -261,7 +261,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
       ..add(DiagnosticsProperty('type', 'CalentreEvent'))
       ..add(DiagnosticsProperty('eventName', eventName))
       ..add(DiagnosticsProperty('eventDescription', eventDescription))
-      ..add(DiagnosticsProperty('videoCallType', videoCallType))
+      ..add(DiagnosticsProperty('platformType', platformType))
       ..add(DiagnosticsProperty('duration', duration))
       ..add(DiagnosticsProperty('eventLink', eventLink))
       ..add(DiagnosticsProperty('eventType', eventType))
@@ -279,8 +279,8 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
                 other.eventName == eventName) &&
             (identical(other.eventDescription, eventDescription) ||
                 other.eventDescription == eventDescription) &&
-            (identical(other.videoCallType, videoCallType) ||
-                other.videoCallType == videoCallType) &&
+            (identical(other.platformType, platformType) ||
+                other.platformType == platformType) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.eventLink, eventLink) ||
@@ -296,7 +296,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, eventName, eventDescription,
-      videoCallType, duration, eventLink, eventType, amount, isMultiple, days);
+      platformType, duration, eventLink, eventType, amount, isMultiple, days);
 
   @JsonKey(ignore: true)
   @override
@@ -316,7 +316,7 @@ abstract class _CalentreEvent implements CalentreEvent {
   const factory _CalentreEvent(
       {final String? eventName,
       final String? eventDescription,
-      final String? videoCallType,
+      final String? platformType,
       final String? duration,
       final String? eventLink,
       final String? eventType,
@@ -332,7 +332,7 @@ abstract class _CalentreEvent implements CalentreEvent {
   @override
   String? get eventDescription;
   @override
-  String? get videoCallType;
+  String? get platformType;
   @override
   String? get duration;
   @override
