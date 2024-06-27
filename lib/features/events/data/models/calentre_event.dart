@@ -1,4 +1,6 @@
 // This file is "main.dart"
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,15 +14,15 @@ part 'calentre_event.g.dart';
 class CalentreEvent with _$CalentreEvent {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory CalentreEvent({
-    String? eventName,
-    String? eventDescription,
-    String? platformType,
-    String? duration,
-    String? eventLink,
-    String? eventType,
-    String? amount,
-    String? isMultiple,
-    required Days days,
+    required String eventName,
+    required String eventDescription,
+    required String platformType,
+    required String duration,
+    required String eventLink,
+    required String eventType,
+    required String amount,
+    bool? isMultiple, //not supporting this feature at the moment
+    required Days availability,
   }) = _CalentreEvent;
 
   factory CalentreEvent.fromJson(Map<String, dynamic> json) =>
@@ -47,8 +49,8 @@ class Days with _$Days {
 class TimeSlot with _$TimeSlot {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory TimeSlot({
-    String? start,
-    String? end,
+    required String start,
+    required String end,
   }) = _TimeSlot;
 
   factory TimeSlot.fromJson(Map<String, dynamic> json) =>

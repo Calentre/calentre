@@ -8,15 +8,15 @@ part of 'calentre_event.dart';
 
 _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
     _$_CalentreEvent(
-      eventName: json['event_name'] as String?,
-      eventDescription: json['event_description'] as String?,
-      platformType: json['platform_type'] as String?,
-      duration: json['duration'] as String?,
-      eventLink: json['event_link'] as String?,
-      eventType: json['event_type'] as String?,
-      amount: json['amount'] as String?,
-      isMultiple: json['is_multiple'] as String?,
-      days: Days.fromJson(json['days'] as Map<String, dynamic>),
+      eventName: json['event_name'] as String,
+      eventDescription: json['event_description'] as String,
+      platformType: json['platform_type'] as String,
+      duration: json['duration'] as String,
+      eventLink: json['event_link'] as String,
+      eventType: json['event_type'] as String,
+      amount: json['amount'] as String,
+      isMultiple: json['is_multiple'] as bool?,
+      availability: Days.fromJson(json['availability'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
       'event_type': instance.eventType,
       'amount': instance.amount,
       'is_multiple': instance.isMultiple,
-      'days': instance.days.toJson(),
+      'availability': instance.availability.toJson(),
     };
 
 _$_Days _$$_DaysFromJson(Map<String, dynamic> json) => _$_Days(
@@ -67,8 +67,8 @@ Map<String, dynamic> _$$_DaysToJson(_$_Days instance) => <String, dynamic>{
     };
 
 _$_TimeSlot _$$_TimeSlotFromJson(Map<String, dynamic> json) => _$_TimeSlot(
-      start: json['start'] as String?,
-      end: json['end'] as String?,
+      start: json['start'] as String,
+      end: json['end'] as String,
     );
 
 Map<String, dynamic> _$$_TimeSlotToJson(_$_TimeSlot instance) =>

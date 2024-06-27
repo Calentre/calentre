@@ -98,10 +98,9 @@ class CalentreEventBloc
             eventLink: _calentreEventState.eventLink,
             eventType: _calentreEventState.eventType,
             amount: _calentreEventState.amount,
-            days: _calentreEventState.days)
+            availability: _calentreEventState.days)
         .toJson();
 
-    /// TODO: create entities and fix days <> availability matching from DB
     final dataState = await _createEventUsesCase(param: toServer);
 
     print("req mad ${dataState.exception}");

@@ -20,15 +20,16 @@ CalentreEvent _$CalentreEventFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CalentreEvent {
-  String? get eventName => throw _privateConstructorUsedError;
-  String? get eventDescription => throw _privateConstructorUsedError;
-  String? get platformType => throw _privateConstructorUsedError;
-  String? get duration => throw _privateConstructorUsedError;
-  String? get eventLink => throw _privateConstructorUsedError;
-  String? get eventType => throw _privateConstructorUsedError;
-  String? get amount => throw _privateConstructorUsedError;
-  String? get isMultiple => throw _privateConstructorUsedError;
-  Days get days => throw _privateConstructorUsedError;
+  String get eventName => throw _privateConstructorUsedError;
+  String get eventDescription => throw _privateConstructorUsedError;
+  String get platformType => throw _privateConstructorUsedError;
+  String get duration => throw _privateConstructorUsedError;
+  String get eventLink => throw _privateConstructorUsedError;
+  String get eventType => throw _privateConstructorUsedError;
+  String get amount => throw _privateConstructorUsedError;
+  bool? get isMultiple =>
+      throw _privateConstructorUsedError; //not supporting this feature at the moment
+  Days get availability => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,17 +44,17 @@ abstract class $CalentreEventCopyWith<$Res> {
       _$CalentreEventCopyWithImpl<$Res, CalentreEvent>;
   @useResult
   $Res call(
-      {String? eventName,
-      String? eventDescription,
-      String? platformType,
-      String? duration,
-      String? eventLink,
-      String? eventType,
-      String? amount,
-      String? isMultiple,
-      Days days});
+      {String eventName,
+      String eventDescription,
+      String platformType,
+      String duration,
+      String eventLink,
+      String eventType,
+      String amount,
+      bool? isMultiple,
+      Days availability});
 
-  $DaysCopyWith<$Res> get days;
+  $DaysCopyWith<$Res> get availability;
 }
 
 /// @nodoc
@@ -69,61 +70,61 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventName = freezed,
-    Object? eventDescription = freezed,
-    Object? platformType = freezed,
-    Object? duration = freezed,
-    Object? eventLink = freezed,
-    Object? eventType = freezed,
-    Object? amount = freezed,
+    Object? eventName = null,
+    Object? eventDescription = null,
+    Object? platformType = null,
+    Object? duration = null,
+    Object? eventLink = null,
+    Object? eventType = null,
+    Object? amount = null,
     Object? isMultiple = freezed,
-    Object? days = null,
+    Object? availability = null,
   }) {
     return _then(_value.copyWith(
-      eventName: freezed == eventName
+      eventName: null == eventName
           ? _value.eventName
           : eventName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eventDescription: freezed == eventDescription
+              as String,
+      eventDescription: null == eventDescription
           ? _value.eventDescription
           : eventDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platformType: freezed == platformType
+              as String,
+      platformType: null == platformType
           ? _value.platformType
           : platformType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      duration: freezed == duration
+              as String,
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eventLink: freezed == eventLink
+              as String,
+      eventLink: null == eventLink
           ? _value.eventLink
           : eventLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eventType: freezed == eventType
+              as String,
+      eventType: null == eventType
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      amount: freezed == amount
+              as String,
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       isMultiple: freezed == isMultiple
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
-              as String?,
-      days: null == days
-          ? _value.days
-          : days // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      availability: null == availability
+          ? _value.availability
+          : availability // ignore: cast_nullable_to_non_nullable
               as Days,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DaysCopyWith<$Res> get days {
-    return $DaysCopyWith<$Res>(_value.days, (value) {
-      return _then(_value.copyWith(days: value) as $Val);
+  $DaysCopyWith<$Res> get availability {
+    return $DaysCopyWith<$Res>(_value.availability, (value) {
+      return _then(_value.copyWith(availability: value) as $Val);
     });
   }
 }
@@ -137,18 +138,18 @@ abstract class _$$_CalentreEventCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? eventName,
-      String? eventDescription,
-      String? platformType,
-      String? duration,
-      String? eventLink,
-      String? eventType,
-      String? amount,
-      String? isMultiple,
-      Days days});
+      {String eventName,
+      String eventDescription,
+      String platformType,
+      String duration,
+      String eventLink,
+      String eventType,
+      String amount,
+      bool? isMultiple,
+      Days availability});
 
   @override
-  $DaysCopyWith<$Res> get days;
+  $DaysCopyWith<$Res> get availability;
 }
 
 /// @nodoc
@@ -162,52 +163,52 @@ class __$$_CalentreEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventName = freezed,
-    Object? eventDescription = freezed,
-    Object? platformType = freezed,
-    Object? duration = freezed,
-    Object? eventLink = freezed,
-    Object? eventType = freezed,
-    Object? amount = freezed,
+    Object? eventName = null,
+    Object? eventDescription = null,
+    Object? platformType = null,
+    Object? duration = null,
+    Object? eventLink = null,
+    Object? eventType = null,
+    Object? amount = null,
     Object? isMultiple = freezed,
-    Object? days = null,
+    Object? availability = null,
   }) {
     return _then(_$_CalentreEvent(
-      eventName: freezed == eventName
+      eventName: null == eventName
           ? _value.eventName
           : eventName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eventDescription: freezed == eventDescription
+              as String,
+      eventDescription: null == eventDescription
           ? _value.eventDescription
           : eventDescription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platformType: freezed == platformType
+              as String,
+      platformType: null == platformType
           ? _value.platformType
           : platformType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      duration: freezed == duration
+              as String,
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eventLink: freezed == eventLink
+              as String,
+      eventLink: null == eventLink
           ? _value.eventLink
           : eventLink // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eventType: freezed == eventType
+              as String,
+      eventType: null == eventType
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      amount: freezed == amount
+              as String,
+      amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       isMultiple: freezed == isMultiple
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
-              as String?,
-      days: null == days
-          ? _value.days
-          : days // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      availability: null == availability
+          ? _value.availability
+          : availability // ignore: cast_nullable_to_non_nullable
               as Days,
     ));
   }
@@ -218,41 +219,42 @@ class __$$_CalentreEventCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   const _$_CalentreEvent(
-      {this.eventName,
-      this.eventDescription,
-      this.platformType,
-      this.duration,
-      this.eventLink,
-      this.eventType,
-      this.amount,
+      {required this.eventName,
+      required this.eventDescription,
+      required this.platformType,
+      required this.duration,
+      required this.eventLink,
+      required this.eventType,
+      required this.amount,
       this.isMultiple,
-      required this.days});
+      required this.availability});
 
   factory _$_CalentreEvent.fromJson(Map<String, dynamic> json) =>
       _$$_CalentreEventFromJson(json);
 
   @override
-  final String? eventName;
+  final String eventName;
   @override
-  final String? eventDescription;
+  final String eventDescription;
   @override
-  final String? platformType;
+  final String platformType;
   @override
-  final String? duration;
+  final String duration;
   @override
-  final String? eventLink;
+  final String eventLink;
   @override
-  final String? eventType;
+  final String eventType;
   @override
-  final String? amount;
+  final String amount;
   @override
-  final String? isMultiple;
+  final bool? isMultiple;
+//not supporting this feature at the moment
   @override
-  final Days days;
+  final Days availability;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CalentreEvent(eventName: $eventName, eventDescription: $eventDescription, platformType: $platformType, duration: $duration, eventLink: $eventLink, eventType: $eventType, amount: $amount, isMultiple: $isMultiple, days: $days)';
+    return 'CalentreEvent(eventName: $eventName, eventDescription: $eventDescription, platformType: $platformType, duration: $duration, eventLink: $eventLink, eventType: $eventType, amount: $amount, isMultiple: $isMultiple, availability: $availability)';
   }
 
   @override
@@ -268,7 +270,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
       ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('amount', amount))
       ..add(DiagnosticsProperty('isMultiple', isMultiple))
-      ..add(DiagnosticsProperty('days', days));
+      ..add(DiagnosticsProperty('availability', availability));
   }
 
   @override
@@ -291,13 +293,23 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.isMultiple, isMultiple) ||
                 other.isMultiple == isMultiple) &&
-            (identical(other.days, days) || other.days == days));
+            (identical(other.availability, availability) ||
+                other.availability == availability));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventName, eventDescription,
-      platformType, duration, eventLink, eventType, amount, isMultiple, days);
+  int get hashCode => Object.hash(
+      runtimeType,
+      eventName,
+      eventDescription,
+      platformType,
+      duration,
+      eventLink,
+      eventType,
+      amount,
+      isMultiple,
+      availability);
 
   @JsonKey(ignore: true)
   @override
@@ -315,37 +327,37 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
 
 abstract class _CalentreEvent implements CalentreEvent {
   const factory _CalentreEvent(
-      {final String? eventName,
-      final String? eventDescription,
-      final String? platformType,
-      final String? duration,
-      final String? eventLink,
-      final String? eventType,
-      final String? amount,
-      final String? isMultiple,
-      required final Days days}) = _$_CalentreEvent;
+      {required final String eventName,
+      required final String eventDescription,
+      required final String platformType,
+      required final String duration,
+      required final String eventLink,
+      required final String eventType,
+      required final String amount,
+      final bool? isMultiple,
+      required final Days availability}) = _$_CalentreEvent;
 
   factory _CalentreEvent.fromJson(Map<String, dynamic> json) =
       _$_CalentreEvent.fromJson;
 
   @override
-  String? get eventName;
+  String get eventName;
   @override
-  String? get eventDescription;
+  String get eventDescription;
   @override
-  String? get platformType;
+  String get platformType;
   @override
-  String? get duration;
+  String get duration;
   @override
-  String? get eventLink;
+  String get eventLink;
   @override
-  String? get eventType;
+  String get eventType;
   @override
-  String? get amount;
+  String get amount;
   @override
-  String? get isMultiple;
-  @override
-  Days get days;
+  bool? get isMultiple;
+  @override //not supporting this feature at the moment
+  Days get availability;
   @override
   @JsonKey(ignore: true)
   _$$_CalentreEventCopyWith<_$_CalentreEvent> get copyWith =>
@@ -681,8 +693,8 @@ TimeSlot _$TimeSlotFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TimeSlot {
-  String? get start => throw _privateConstructorUsedError;
-  String? get end => throw _privateConstructorUsedError;
+  String get start => throw _privateConstructorUsedError;
+  String get end => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -695,7 +707,7 @@ abstract class $TimeSlotCopyWith<$Res> {
   factory $TimeSlotCopyWith(TimeSlot value, $Res Function(TimeSlot) then) =
       _$TimeSlotCopyWithImpl<$Res, TimeSlot>;
   @useResult
-  $Res call({String? start, String? end});
+  $Res call({String start, String end});
 }
 
 /// @nodoc
@@ -711,18 +723,18 @@ class _$TimeSlotCopyWithImpl<$Res, $Val extends TimeSlot>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
+    Object? start = null,
+    Object? end = null,
   }) {
     return _then(_value.copyWith(
-      start: freezed == start
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
-              as String?,
-      end: freezed == end
+              as String,
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -734,7 +746,7 @@ abstract class _$$_TimeSlotCopyWith<$Res> implements $TimeSlotCopyWith<$Res> {
       __$$_TimeSlotCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? start, String? end});
+  $Res call({String start, String end});
 }
 
 /// @nodoc
@@ -748,18 +760,18 @@ class __$$_TimeSlotCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? start = freezed,
-    Object? end = freezed,
+    Object? start = null,
+    Object? end = null,
   }) {
     return _then(_$_TimeSlot(
-      start: freezed == start
+      start: null == start
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
-              as String?,
-      end: freezed == end
+              as String,
+      end: null == end
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -768,15 +780,15 @@ class __$$_TimeSlotCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_TimeSlot with DiagnosticableTreeMixin implements _TimeSlot {
-  const _$_TimeSlot({this.start, this.end});
+  const _$_TimeSlot({required this.start, required this.end});
 
   factory _$_TimeSlot.fromJson(Map<String, dynamic> json) =>
       _$$_TimeSlotFromJson(json);
 
   @override
-  final String? start;
+  final String start;
   @override
-  final String? end;
+  final String end;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -820,15 +832,15 @@ class _$_TimeSlot with DiagnosticableTreeMixin implements _TimeSlot {
 }
 
 abstract class _TimeSlot implements TimeSlot {
-  const factory _TimeSlot({final String? start, final String? end}) =
-      _$_TimeSlot;
+  const factory _TimeSlot(
+      {required final String start, required final String end}) = _$_TimeSlot;
 
   factory _TimeSlot.fromJson(Map<String, dynamic> json) = _$_TimeSlot.fromJson;
 
   @override
-  String? get start;
+  String get start;
   @override
-  String? get end;
+  String get end;
   @override
   @JsonKey(ignore: true)
   _$$_TimeSlotCopyWith<_$_TimeSlot> get copyWith =>
