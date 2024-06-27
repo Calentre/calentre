@@ -1,4 +1,5 @@
 // import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/core/resources.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/domain/usecases/event_usecase.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
@@ -89,8 +90,8 @@ class CalentreEventBloc
 
   void onCreateCalentreEvent(CreateCalentreEventEvent event,
       Emitter<CalentreEventBaseState> emit) async {
-    //call api endpoint to create here
-    final toServer = CalentreEvent(
+    //convert object to json
+    final result = CalentreEvent(
             eventName: _calentreEventState.eventName,
             eventDescription: _calentreEventState.eventDescription,
             platformType: _calentreEventState.platformType,
@@ -101,9 +102,18 @@ class CalentreEventBloc
             availability: _calentreEventState.days)
         .toJson();
 
-    final dataState = await _createEventUsesCase(param: toServer);
+    emit(_calentreEventState.clone(_calentreEventState,
+        loadingStatus: LoadingStatus.createEventLoading));
 
-    print("req mad ${dataState.exception}");
+    final dataState = await _createEventUsesCase(param: result);
+
+    if (dataState is DataSuccess && dataState.data != null) {
+      print("success ${dataState}");
+      emit(_calentreEventState.clone(_calentreEventState,
+          loadingStatus: LoadingStatus.createEventDone));
+    }
+
+    print("failure ${dataState.exception}");
   }
 }
 

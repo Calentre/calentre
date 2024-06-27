@@ -20,7 +20,7 @@ class CalentreEvent with _$CalentreEvent {
     required String duration,
     required String eventLink,
     required String eventType,
-    required String amount,
+    num? amount,
     bool? isMultiple, //not supporting this feature at the moment
     required Days availability,
   }) = _CalentreEvent;

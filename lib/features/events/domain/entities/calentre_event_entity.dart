@@ -7,7 +7,7 @@ class CalentreEventEntity {
   final String duration;
   final String eventLink;
   final String eventType;
-  final String amount;
+  final num? amount;
   final bool isMultiple = false;
   final Days availability;
 

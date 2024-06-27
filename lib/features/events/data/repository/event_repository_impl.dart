@@ -22,7 +22,7 @@ class EventRepositoryImpl implements EventRepository {
         return response;
       } else {
         return DataFailure(const AuthException(
-            "Unable to sign this user in : CODE 1",
+            "Unable to create event : CODE 2",
             statusCode: '500'));
       }
     } on Exception catch (e) {

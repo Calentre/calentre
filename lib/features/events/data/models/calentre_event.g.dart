@@ -14,7 +14,7 @@ _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
       duration: json['duration'] as String,
       eventLink: json['event_link'] as String,
       eventType: json['event_type'] as String,
-      amount: json['amount'] as String,
+      amount: json['amount'] as num?,
       isMultiple: json['is_multiple'] as bool?,
       availability: Days.fromJson(json['availability'] as Map<String, dynamic>),
     );

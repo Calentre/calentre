@@ -25,7 +25,7 @@ class CalentreEventBaseState extends Equatable {
 }
 
 class CalentreEventState extends CalentreEventBaseState {
-  final String amount;
+  final num? amount;
   final String duration;
   final String eventDescription;
   final String eventLink;
@@ -51,7 +51,7 @@ class CalentreEventState extends CalentreEventBaseState {
   //initial method
   static CalentreEventState initial() {
     return CalentreEventState(
-        amount: "",
+        amount: null,
         duration: "",
         eventDescription: "",
         eventLink: "",
@@ -97,7 +97,7 @@ class CalentreEventState extends CalentreEventBaseState {
   ///The clone method is designed in such a way that it requires us to pass in the
   ///current state of the class.
   CalentreEventState clone(CalentreEventState state,
-      {String? amount,
+      {num? amount,
       String? duration,
       String? eventDescription,
       String? eventLink,

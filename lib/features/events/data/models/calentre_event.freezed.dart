@@ -26,7 +26,7 @@ mixin _$CalentreEvent {
   String get duration => throw _privateConstructorUsedError;
   String get eventLink => throw _privateConstructorUsedError;
   String get eventType => throw _privateConstructorUsedError;
-  String get amount => throw _privateConstructorUsedError;
+  num? get amount => throw _privateConstructorUsedError;
   bool? get isMultiple =>
       throw _privateConstructorUsedError; //not supporting this feature at the moment
   Days get availability => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $CalentreEventCopyWith<$Res> {
       String duration,
       String eventLink,
       String eventType,
-      String amount,
+      num? amount,
       bool? isMultiple,
       Days availability});
 
@@ -76,7 +76,7 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
     Object? duration = null,
     Object? eventLink = null,
     Object? eventType = null,
-    Object? amount = null,
+    Object? amount = freezed,
     Object? isMultiple = freezed,
     Object? availability = null,
   }) {
@@ -105,10 +105,10 @@ class _$CalentreEventCopyWithImpl<$Res, $Val extends CalentreEvent>
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: null == amount
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num?,
       isMultiple: freezed == isMultiple
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ abstract class _$$_CalentreEventCopyWith<$Res>
       String duration,
       String eventLink,
       String eventType,
-      String amount,
+      num? amount,
       bool? isMultiple,
       Days availability});
 
@@ -169,7 +169,7 @@ class __$$_CalentreEventCopyWithImpl<$Res>
     Object? duration = null,
     Object? eventLink = null,
     Object? eventType = null,
-    Object? amount = null,
+    Object? amount = freezed,
     Object? isMultiple = freezed,
     Object? availability = null,
   }) {
@@ -198,10 +198,10 @@ class __$$_CalentreEventCopyWithImpl<$Res>
           ? _value.eventType
           : eventType // ignore: cast_nullable_to_non_nullable
               as String,
-      amount: null == amount
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num?,
       isMultiple: freezed == isMultiple
           ? _value.isMultiple
           : isMultiple // ignore: cast_nullable_to_non_nullable
@@ -225,7 +225,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
       required this.duration,
       required this.eventLink,
       required this.eventType,
-      required this.amount,
+      this.amount,
       this.isMultiple,
       required this.availability});
 
@@ -245,7 +245,7 @@ class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   @override
   final String eventType;
   @override
-  final String amount;
+  final num? amount;
   @override
   final bool? isMultiple;
 //not supporting this feature at the moment
@@ -333,7 +333,7 @@ abstract class _CalentreEvent implements CalentreEvent {
       required final String duration,
       required final String eventLink,
       required final String eventType,
-      required final String amount,
+      final num? amount,
       final bool? isMultiple,
       required final Days availability}) = _$_CalentreEvent;
 
@@ -353,7 +353,7 @@ abstract class _CalentreEvent implements CalentreEvent {
   @override
   String get eventType;
   @override
-  String get amount;
+  num? get amount;
   @override
   bool? get isMultiple;
   @override //not supporting this feature at the moment

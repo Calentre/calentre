@@ -6,7 +6,7 @@ class CalentreEventEvent {}
 class ProceedToSetAvailabilityEvent extends CalentreEventEvent {}
 
 class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
-  String? amount;
+  num? amount;
   String? duration;
   String? eventDescription;
   String? eventLink;
