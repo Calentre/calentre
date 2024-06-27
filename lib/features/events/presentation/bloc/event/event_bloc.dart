@@ -1,5 +1,6 @@
 // import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/usecases/event_usecase.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 import 'package:calentre/features/events/presentation/helpers/add_new_time_field.dart';
@@ -18,8 +19,10 @@ class CalentreEventBloc
   CalentreEventState _calentreEventState = CalentreEventState.initial();
   DayScheduleValidationState _dayScheduleValidationState =
       DayScheduleValidationState.initial();
+  final CreateEventUsesCase _createEventUsesCase;
 
-  CalentreEventBloc() : super(CalentreEventState.initial()) {
+  CalentreEventBloc(this._createEventUsesCase)
+      : super(CalentreEventState.initial()) {
     on<UpdateCalentreEventDetailsEvent>(onUpdateFormFields);
     on<UpdateDayScheduleEvent>(onUpdateDaySchedule);
     on<UpdateDayScheduleValidationEvent>(onUpdateDayScheduleValidationState);
@@ -84,8 +87,8 @@ class CalentreEventBloc
         _dayScheduleValidationState)); //controls error display on the setAvailability form fields
   }
 
-  void onCreateCalentreEvent(
-      CreateCalentreEventEvent event, Emitter<CalentreEventBaseState> emit) {
+  void onCreateCalentreEvent(CreateCalentreEventEvent event,
+      Emitter<CalentreEventBaseState> emit) async {
     //call api endpoint to create here
     final toServer = CalentreEvent(
             eventName: _calentreEventState.eventName,
@@ -97,7 +100,11 @@ class CalentreEventBloc
             amount: _calentreEventState.amount,
             days: _calentreEventState.days)
         .toJson();
-    print("Event object is $toServer");
+
+    /// TODO: create entities and fix days <> availability matching from DB
+    final dataState = await _createEventUsesCase(param: toServer);
+
+    print("req mad ${dataState.exception}");
   }
 }
 

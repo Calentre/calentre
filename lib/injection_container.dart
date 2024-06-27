@@ -20,7 +20,7 @@ import 'features/auth/data/models/user_model.dart';
 
 final sl = GetIt.instance;
 
-///Initializes all of the singletons for the Blocs, Repositories and services.
+///Initializes all of the singletons for the Blocs, Usecases, Concrete Repositories and Services.
 ///
 ///This is in-line with the clean architecture practice that is being followed in this
 /// project. The order in which each of these classes are implemented matters a lot. The
@@ -48,13 +48,13 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<EventService>(EventService(sl()));
   sl.registerSingleton<EventRepository>(EventRepositoryImpl(sl()));
   sl.registerSingleton<CreateEventUsesCase>(CreateEventUsesCase(sl()));
-  sl.registerSingleton<CalentreEventBloc>(CalentreEventBloc());
+  sl.registerSingleton<CalentreEventBloc>(CalentreEventBloc(sl()));
   sl.registerSingleton<TimeDropDownBloc>(TimeDropDownBloc());
   sl.registerSingleton<SetAvailabilityBloc>(SetAvailabilityBloc());
 
   //Factory
   ///Bloc classes should be registered as factories because there are cases where we
-  ///would new instances (say mapping through a list), and they also by nature Singleton classes
+  ///would need new instances (say mapping through a list), and they are also by nature Singleton classes
   ///until a new instance is explicitly created via the [BlocProvider].
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
 

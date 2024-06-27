@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             create: (context) => HomeViewBloc(),
           ),
           BlocProvider<CalentreEventBloc>(
-            create: (context) => CalentreEventBloc(),
+            create: (context) => CalentreEventBloc(sl()),
           )
         ],
         child: MaterialApp.router(
