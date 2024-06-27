@@ -86,7 +86,7 @@ class CalentreEventBloc
 
   void onCreateCalentreEvent(
       CreateCalentreEventEvent event, Emitter<CalentreEventBaseState> emit) {
-    //call appi endpoint to create here
+    //call api endpoint to create here
     final toServer = CalentreEvent(
             eventName: _calentreEventState.eventName,
             eventDescription: _calentreEventState.eventDescription,

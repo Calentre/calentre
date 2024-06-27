@@ -214,7 +214,8 @@ class __$$_CalentreEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_CalentreEvent with DiagnosticableTreeMixin implements _CalentreEvent {
   const _$_CalentreEvent(
       {this.eventName,
@@ -506,7 +507,8 @@ class __$$_DaysCopyWithImpl<$Res> extends _$DaysCopyWithImpl<$Res, _$_Days>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_Days with DiagnosticableTreeMixin implements _Days {
   const _$_Days(
       {required final List<TimeSlot> monday,
@@ -763,7 +765,8 @@ class __$$_TimeSlotCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_TimeSlot with DiagnosticableTreeMixin implements _TimeSlot {
   const _$_TimeSlot({this.start, this.end});
 

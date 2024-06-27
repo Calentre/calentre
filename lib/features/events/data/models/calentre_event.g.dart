@@ -8,28 +8,28 @@ part of 'calentre_event.dart';
 
 _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
     _$_CalentreEvent(
-      eventName: json['eventName'] as String?,
-      eventDescription: json['eventDescription'] as String?,
-      platformType: json['platformType'] as String?,
+      eventName: json['event_name'] as String?,
+      eventDescription: json['event_description'] as String?,
+      platformType: json['platform_type'] as String?,
       duration: json['duration'] as String?,
-      eventLink: json['eventLink'] as String?,
-      eventType: json['eventType'] as String?,
+      eventLink: json['event_link'] as String?,
+      eventType: json['event_type'] as String?,
       amount: json['amount'] as String?,
-      isMultiple: json['isMultiple'] as String?,
+      isMultiple: json['is_multiple'] as String?,
       days: Days.fromJson(json['days'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
     <String, dynamic>{
-      'eventName': instance.eventName,
-      'eventDescription': instance.eventDescription,
-      'platformType': instance.platformType,
+      'event_name': instance.eventName,
+      'event_description': instance.eventDescription,
+      'platform_type': instance.platformType,
       'duration': instance.duration,
-      'eventLink': instance.eventLink,
-      'eventType': instance.eventType,
+      'event_link': instance.eventLink,
+      'event_type': instance.eventType,
       'amount': instance.amount,
-      'isMultiple': instance.isMultiple,
-      'days': instance.days,
+      'is_multiple': instance.isMultiple,
+      'days': instance.days.toJson(),
     };
 
 _$_Days _$$_DaysFromJson(Map<String, dynamic> json) => _$_Days(
@@ -57,13 +57,13 @@ _$_Days _$$_DaysFromJson(Map<String, dynamic> json) => _$_Days(
     );
 
 Map<String, dynamic> _$$_DaysToJson(_$_Days instance) => <String, dynamic>{
-      'monday': instance.monday,
-      'tuesday': instance.tuesday,
-      'wednesday': instance.wednesday,
-      'thursday': instance.thursday,
-      'friday': instance.friday,
-      'saturday': instance.saturday,
-      'sunday': instance.sunday,
+      'monday': instance.monday.map((e) => e.toJson()).toList(),
+      'tuesday': instance.tuesday.map((e) => e.toJson()).toList(),
+      'wednesday': instance.wednesday.map((e) => e.toJson()).toList(),
+      'thursday': instance.thursday.map((e) => e.toJson()).toList(),
+      'friday': instance.friday.map((e) => e.toJson()).toList(),
+      'saturday': instance.saturday.map((e) => e.toJson()).toList(),
+      'sunday': instance.sunday.map((e) => e.toJson()).toList(),
     };
 
 _$_TimeSlot _$$_TimeSlotFromJson(Map<String, dynamic> json) => _$_TimeSlot(

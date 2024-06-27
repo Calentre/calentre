@@ -10,6 +10,7 @@ part 'calentre_event.g.dart';
 
 @freezed
 class CalentreEvent with _$CalentreEvent {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory CalentreEvent({
     String? eventName,
     String? eventDescription,
@@ -28,6 +29,7 @@ class CalentreEvent with _$CalentreEvent {
 
 @freezed
 class Days with _$Days {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Days({
     required List<TimeSlot> monday,
     required List<TimeSlot> tuesday,
@@ -43,6 +45,7 @@ class Days with _$Days {
 
 @freezed
 class TimeSlot with _$TimeSlot {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory TimeSlot({
     String? start,
     String? end,
