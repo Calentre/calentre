@@ -108,12 +108,17 @@ class CalentreEventBloc
     final dataState = await _createEventUsesCase(param: result);
 
     if (dataState is DataSuccess && dataState.data != null) {
-      print("success ${dataState}");
-      emit(_calentreEventState.clone(_calentreEventState,
-          loadingStatus: LoadingStatus.createEventDone));
+      emit(_calentreEventState.clone(
+        _calentreEventState,
+        loadingStatus: LoadingStatus.createEventDone,
+      ));
+    } else {
+      emit(_calentreEventState.clone(
+        _calentreEventState,
+        loadingStatus: LoadingStatus.createEventError,
+      ));
     }
-
-    print("failure ${dataState.exception}");
+    print(" response ${dataState.data}");
   }
 }
 

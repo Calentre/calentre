@@ -9,7 +9,7 @@ class EventService implements EventMixin {
 
   @override
   Future<dynamic> createEvent(Map<String, dynamic> param) async {
-    final res = await supabase.from('event').insert(param);
+    final res = await supabase.from('event').insert(param).select();
     CL.logSuccess('Event created $res');
     return true;
   }

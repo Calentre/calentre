@@ -10,9 +10,9 @@ class EventRepositoryImpl implements EventRepository {
 
   final EventService _eventService;
   @override
-  Future<DataState<bool, Exception>> createEvent(
+  Future<DataState<List, Exception>> createEvent(
       Map<String, dynamic> param) async {
-    DataState<bool, Exception>? response;
+    DataState<List<dynamic>, Exception>? response;
 
     /// TODO: refactor error handling/design exception processing
     try {
@@ -26,6 +26,7 @@ class EventRepositoryImpl implements EventRepository {
             statusCode: '500'));
       }
     } on Exception catch (e) {
+      print("The exception is ${e.toString()}");
       if (e is AuthException) {
         response = DataFailure(Exception(
           "Unable to create event : CODE 2",
