@@ -10,13 +10,13 @@ List updateCurrentDayDetailsHelper(
     DayScheduleValidationState dayScheduleValidationState,
     UpdateDayScheduleEvent event) {
   //Create a new list from the current day states
-  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday!];
-  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday!];
-  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday!];
-  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday!];
-  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday!];
-  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday!];
-  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday!];
+  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday];
+  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday];
+  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday];
+  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday];
+  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday];
+  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday];
+  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday];
 
   //Create a new error list from from the current state
   List<Map<WeekDays, List<bool>>> errorList = [
@@ -35,9 +35,9 @@ List updateCurrentDayDetailsHelper(
 
   //set startTime and EndTime from the drop down
   final String startTime =
-      event.startTime ?? calentreEventState.days.monday![event.index].start!;
+      event.startTime ?? calentreEventState.days.monday[event.index].start;
   final String endTime =
-      event.endTime ?? calentreEventState.days.monday![event.index].end!;
+      event.endTime ?? calentreEventState.days.monday[event.index].end;
 
 //Check if the current time selection has an error
   final hasError = validateTimeSelection(

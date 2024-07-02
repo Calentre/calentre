@@ -13,13 +13,13 @@ List addNewTimeFieldHelper(
     DayScheduleValidationState dayScheduleValidationState,
     AddNewTimeFieldEvent event) {
   //Create a new list from the current day states
-  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday!];
-  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday!];
-  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday!];
-  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday!];
-  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday!];
-  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday!];
-  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday!];
+  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday];
+  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday];
+  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday];
+  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday];
+  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday];
+  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday];
+  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday];
 
   //Create a new object with the updated days schedule
   final updatedDays = Days(

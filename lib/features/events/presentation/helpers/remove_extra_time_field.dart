@@ -10,13 +10,13 @@ List removeNewTimeFieldHelper(
     DayScheduleValidationState dayScheduleValidationState,
     RemoveTimeFieldEvent event) {
   final days = calentreEventState.days;
-  List<TimeSlot> mondaySchedule = [...days.monday!];
-  List<TimeSlot> tuesdaySchedule = [...days.tuesday!];
-  List<TimeSlot> wednesdaySchedule = [...days.wednesday!];
-  List<TimeSlot> thursdaySchedule = [...days.thursday!];
-  List<TimeSlot> fridaySchedule = [...days.friday!];
-  List<TimeSlot> saturdaySchedule = [...days.saturday!];
-  List<TimeSlot> sundaySchedule = [...days.sunday!];
+  List<TimeSlot> mondaySchedule = [...days.monday];
+  List<TimeSlot> tuesdaySchedule = [...days.tuesday];
+  List<TimeSlot> wednesdaySchedule = [...days.wednesday];
+  List<TimeSlot> thursdaySchedule = [...days.thursday];
+  List<TimeSlot> fridaySchedule = [...days.friday];
+  List<TimeSlot> saturdaySchedule = [...days.saturday];
+  List<TimeSlot> sundaySchedule = [...days.sunday];
   final state = calentreEventState;
   switch (event.day) {
     case WeekDays.monday:
