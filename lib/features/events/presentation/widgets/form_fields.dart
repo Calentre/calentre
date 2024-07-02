@@ -28,9 +28,9 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
   final eventNameController = TextEditingController();
   final descriptionController = TextEditingController();
   final meetingLinkController = TextEditingController();
-  String? platformValue;
-  String? durationValue;
-  String? eventTypeValue;
+  String platformValue = "Google meet";
+  String durationValue = "5 min";
+  String eventTypeValue = "Free";
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +215,7 @@ class _CreateEventFormFieldsState extends State<CreateEventFormFields> {
                         const SizedBox().y20(),
                         const SizedBox().y10(),
                         Text(
-                          "Amount",
+                          "Amount (USD)",
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge!

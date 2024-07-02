@@ -1,5 +1,7 @@
 import 'package:calentre/config/enums/weekdays.dart';
 import 'package:calentre/config/routes/routes.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_bloc.dart';
 import 'package:calentre/features/events/presentation/bloc/set_availability_state.dart';
 import 'package:calentre/features/events/presentation/bloc/time_drop_down/time_drop_down_bloc.dart';
@@ -121,6 +123,8 @@ class SetAvailabilityView extends StatelessWidget {
                       width: 600,
                       gradient: true,
                       onPressed: () {
+                        BlocProvider.of<CalentreEventBloc>(context)
+                            .add(CreateCalentreEventEvent());
                         context.goNamed(AppRoutes.completionFeedBack);
                       },
                       icon: const FaIcon(

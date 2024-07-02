@@ -20,6 +20,17 @@ import 'features/auth/data/models/user_model.dart';
 
 final sl = GetIt.instance;
 
+///Initializes all of the singletons for the Blocs, Usecases, Concrete Repositories and Services.
+///
+///This is in-line with the clean architecture practice that is being followed in this
+/// project. The order in which each of these classes are implemented matters a lot. The
+/// reason behind that is because each instantiation is almost always going to be a
+/// dependency for another class (say the parent). This is particularly important because
+/// of the way clean architecture has employed dependency injection in the data and domain layers,
+/// especially in the concrete implementation side of these two layers.
+///
+/// Every developer working on this project is encourage to strive for this consistency when creating
+/// new classes.
 Future<void> initializeDependencies() async {
   //Auth Singletons
   sl.registerSingleton<Dio>(Dio());
@@ -37,11 +48,14 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<EventService>(EventService(sl()));
   sl.registerSingleton<EventRepository>(EventRepositoryImpl(sl()));
   sl.registerSingleton<CreateEventUsesCase>(CreateEventUsesCase(sl()));
-  sl.registerSingleton<CalentreEventBloc>(CalentreEventBloc());
+  sl.registerSingleton<CalentreEventBloc>(CalentreEventBloc(sl()));
   sl.registerSingleton<TimeDropDownBloc>(TimeDropDownBloc());
   sl.registerSingleton<SetAvailabilityBloc>(SetAvailabilityBloc());
 
   //Factory
+  ///Bloc classes should be registered as factories because there are cases where we
+  ///would need new instances (say mapping through a list), and they are also by nature Singleton classes
+  ///until a new instance is explicitly created via the [BlocProvider].
   sl.registerFactory<AuthBloc>(() => AuthBloc(sl()));
 
   //Non DI

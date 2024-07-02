@@ -1,4 +1,6 @@
 // This file is "main.dart"
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,16 +12,17 @@ part 'calentre_event.g.dart';
 
 @freezed
 class CalentreEvent with _$CalentreEvent {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory CalentreEvent({
-    String? eventName,
-    String? eventDescription,
-    String? videoCallType,
-    String? duration,
-    String? eventLink,
-    String? eventType,
-    String? amount,
-    String? isMultiple,
-    Days days,
+    required String eventName,
+    required String eventDescription,
+    required String platformType,
+    required String duration,
+    required String eventLink,
+    required String eventType,
+    num? amount,
+    bool? isMultiple, //not supporting this feature at the moment
+    required AvailabilityModel availability,
   }) = _CalentreEvent;
 
   factory CalentreEvent.fromJson(Map<String, dynamic> json) =>
@@ -27,27 +30,30 @@ class CalentreEvent with _$CalentreEvent {
 }
 
 @freezed
-class Days with _$Days {
-  const factory Days({
-    List<TimeSlot> monday,
-    List<TimeSlot> tuesday,
-    List<TimeSlot> wednesday,
-    List<TimeSlot> thursday,
-    List<TimeSlot> friday,
-    List<TimeSlot> saturday,
-    List<TimeSlot> sunday,
-  }) = _Days;
+class AvailabilityModel with _$AvailabilityModel {
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory AvailabilityModel({
+    required List<TimeSlotModel> monday,
+    required List<TimeSlotModel> tuesday,
+    required List<TimeSlotModel> wednesday,
+    required List<TimeSlotModel> thursday,
+    required List<TimeSlotModel> friday,
+    required List<TimeSlotModel> saturday,
+    required List<TimeSlotModel> sunday,
+  }) = _AvailabilityModel;
 
-  factory Days.fromJson(Map<String, dynamic> json) => _$DaysFromJson(json);
+  factory AvailabilityModel.fromJson(Map<String, dynamic> json) =>
+      _$AvailabilityModelFromJson(json);
 }
 
 @freezed
-class TimeSlot with _$TimeSlot {
-  const factory TimeSlot({
-    String? start,
-    String? end,
-  }) = _TimeSlot;
+class TimeSlotModel with _$TimeSlotModel {
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  const factory TimeSlotModel({
+    required String start,
+    required String end,
+  }) = _TimeSlotModel;
 
-  factory TimeSlot.fromJson(Map<String, dynamic> json) =>
-      _$TimeSlotFromJson(json);
+  factory TimeSlotModel.fromJson(Map<String, dynamic> json) =>
+      _$TimeSlotModelFromJson(json);
 }

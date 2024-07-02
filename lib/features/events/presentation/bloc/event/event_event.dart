@@ -1,12 +1,12 @@
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
 
 class CalentreEventEvent {}
 
 class ProceedToSetAvailabilityEvent extends CalentreEventEvent {}
 
 class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
-  String? amount;
+  num? amount;
   String? duration;
   String? eventDescription;
   String? eventLink;
@@ -14,7 +14,7 @@ class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
   String? eventType;
   String? isMultiple;
   String? platformType;
-  Days? days;
+  AvailabilityEntity? days;
 
   UpdateCalentreEventDetailsEvent(
       {this.amount,
@@ -59,3 +59,6 @@ class RemoveTimeFieldEvent extends CalentreEventEvent {
 
   RemoveTimeFieldEvent({required this.day});
 }
+
+class CreateCalentreEventEvent
+    extends CalentreEventEvent {} //get state from inside the bloc

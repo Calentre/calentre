@@ -2,17 +2,31 @@
 
 import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
+import 'package:calentre/features/events/domain/entities/time_slot_enitity.dart';
 import 'package:equatable/equatable.dart';
+
+///We are using a single state to control the entire CalentreEvent feature.
+
+enum LoadingStatus {
+  idle, //to initialize the loading state
+  createEventIdle,
+  createEventLoading,
+  createEventDone,
+  createEventError,
+  getEventIdle,
+  getEventLoading,
+  getEventDone,
+  getEventError,
+}
 
 class CalentreEventBaseState extends Equatable {
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
 class CalentreEventState extends CalentreEventBaseState {
-  final String amount;
+  final num? amount;
   final String duration;
   final String eventDescription;
   final String eventLink;
@@ -20,9 +34,9 @@ class CalentreEventState extends CalentreEventBaseState {
   final String eventType;
   final String isMultiple;
   final String platformType;
-  final Days days;
+  final AvailabilityEntity days;
+  final LoadingStatus loadingStatus;
 
-  //constructor
   CalentreEventState(
       {required this.eventName,
       required this.eventType,
@@ -32,12 +46,13 @@ class CalentreEventState extends CalentreEventBaseState {
       required this.amount,
       required this.duration,
       required this.eventDescription,
-      required this.eventLink});
+      required this.eventLink,
+      required this.loadingStatus});
 
   //initial method
   static CalentreEventState initial() {
     return CalentreEventState(
-        amount: "",
+        amount: null,
         duration: "",
         eventDescription: "",
         eventLink: "",
@@ -45,41 +60,38 @@ class CalentreEventState extends CalentreEventBaseState {
         eventType: "",
         isMultiple: "",
         platformType: "",
-        days: Days(
+        loadingStatus: LoadingStatus.idle,
+        days: AvailabilityEntity(
           monday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           tuesday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           wednesday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           thursday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           friday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           saturday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           sunday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
         ));
   }
 
-  ///Returns a new instance(state) of the [CalentreEventState]
+  ///Returns a new instance(state) of the [CalentreEventState].
+  ///
+  ///The clone method is designed in such a way that it requires us to pass in the
+  ///current state of the class.
   CalentreEventState clone(CalentreEventState state,
-      {String? amount,
+      {num? amount,
       String? duration,
       String? eventDescription,
       String? eventLink,
@@ -87,18 +99,20 @@ class CalentreEventState extends CalentreEventBaseState {
       String? eventType,
       String? isMultiple,
       String? platformType,
-      Days? days}) {
-    // print("when cloning, state is ${state.days}");
+      LoadingStatus? loadingStatus,
+      AvailabilityEntity? days}) {
     return CalentreEventState(
-        eventName: eventName ?? state.eventName,
-        eventType: eventType ?? state.eventType,
-        isMultiple: isMultiple ?? state.isMultiple,
-        platformType: platformType ?? state.platformType,
-        days: days ?? state.days,
-        amount: amount ?? state.amount,
-        duration: duration ?? state.duration,
-        eventDescription: eventDescription ?? state.eventDescription,
-        eventLink: eventLink ?? state.eventLink);
+      eventName: eventName ?? state.eventName,
+      eventType: eventType ?? state.eventType,
+      isMultiple: isMultiple ?? state.isMultiple,
+      platformType: platformType ?? state.platformType,
+      days: days ?? state.days,
+      amount: amount ?? state.amount,
+      duration: duration ?? state.duration,
+      eventDescription: eventDescription ?? state.eventDescription,
+      eventLink: eventLink ?? state.eventLink,
+      loadingStatus: loadingStatus ?? state.loadingStatus,
+    );
   }
 
   @override
@@ -128,6 +142,7 @@ class DayScheduleValidationState extends CalentreEventBaseState {
       required this.errorList});
 
   static DayScheduleValidationState initial() {
+    print("called");
     return DayScheduleValidationState(
         message: "",
         index: 0,
@@ -172,29 +187,3 @@ class DayScheduleValidationState extends CalentreEventBaseState {
   @override
   List<Object> get props => [index, day, message, errorList];
 }
-
-
-
-// List<Map<String, List<bool>>> errorList = [
-  // {
-  //   "Mon": [false]
-  // },
-  // {
-  //   "Tue": [false]
-  // },
-  // {
-  //   "Wed": [false]
-  // },
-  // {
-  //   "Thur": [false]
-  // },
-  // {
-  //   "Fri": [false]
-  // },
-  // {
-  //   "Sat": [false]
-  // },
-  // {
-  //   "Sun": [false]
-  // },
-// ];

@@ -1,4 +1,5 @@
 import 'package:calentre/config/constants/constants.dart';
+import 'package:calentre/features/events/presentation/bloc/event/event_bloc.dart';
 import 'package:calentre/features/home/presentation/bloc/home_bloc.dart';
 import 'package:calentre/config/routes/routes.dart';
 import 'package:calentre/config/theme/themes.dart';
@@ -30,13 +31,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => HomeViewBloc(),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<HomeViewBloc>(
+            create: (context) => HomeViewBloc(),
+          ),
+          BlocProvider<CalentreEventBloc>(
+            create: (context) => CalentreEventBloc(sl()),
+          )
+        ],
         child: MaterialApp.router(
           title: 'Calentre',
           themeMode: ThemeMode.dark,
           darkTheme: AppTheme.darkTheme(),
-          // theme: AppTheme.darkTheme(),
           routerConfig: routerConfig,
         ));
   }
