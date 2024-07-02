@@ -1,6 +1,7 @@
 import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
+import 'package:calentre/features/events/domain/entities/time_slot_enitity.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 
@@ -13,16 +14,18 @@ List addNewTimeFieldHelper(
     DayScheduleValidationState dayScheduleValidationState,
     AddNewTimeFieldEvent event) {
   //Create a new list from the current day states
-  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday];
-  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday];
-  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday];
-  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday];
-  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday];
-  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday];
-  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday];
+  List<TimeSlotEntity> mondaySchedule = [...calentreEventState.days.monday];
+  List<TimeSlotEntity> tuesdaySchedule = [...calentreEventState.days.tuesday];
+  List<TimeSlotEntity> wednesdaySchedule = [
+    ...calentreEventState.days.wednesday
+  ];
+  List<TimeSlotEntity> thursdaySchedule = [...calentreEventState.days.thursday];
+  List<TimeSlotEntity> fridaySchedule = [...calentreEventState.days.friday];
+  List<TimeSlotEntity> saturdaySchedule = [...calentreEventState.days.saturday];
+  List<TimeSlotEntity> sundaySchedule = [...calentreEventState.days.sunday];
 
   //Create a new object with the updated days schedule
-  final updatedDays = Days(
+  final updatedDays = AvailabilityEntity(
       monday: mondaySchedule,
       tuesday: tuesdaySchedule,
       wednesday: wednesdaySchedule,
@@ -38,8 +41,8 @@ List addNewTimeFieldHelper(
 
   switch (event.day) {
     case WeekDays.monday:
-      mondaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      mondaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
@@ -49,8 +52,8 @@ List addNewTimeFieldHelper(
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.tuesday:
-      tuesdaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      tuesdaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
@@ -60,8 +63,8 @@ List addNewTimeFieldHelper(
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.wednesday:
-      wednesdaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      wednesdaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
@@ -71,8 +74,8 @@ List addNewTimeFieldHelper(
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.thursday:
-      thursdaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      thursdaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
@@ -82,8 +85,8 @@ List addNewTimeFieldHelper(
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.friday:
-      fridaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      fridaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
@@ -93,8 +96,8 @@ List addNewTimeFieldHelper(
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.saturday:
-      saturdaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      saturdaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 
@@ -104,8 +107,8 @@ List addNewTimeFieldHelper(
       return [calentreEventState, dayScheduleValidationState];
 
     case WeekDays.sunday:
-      sundaySchedule.add(TimeSlot(
-          start: TimeList().timeList.first, end: TimeList().timeList[1]));
+      sundaySchedule.add(
+          TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1]));
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
 

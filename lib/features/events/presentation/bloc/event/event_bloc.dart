@@ -1,6 +1,7 @@
 // import 'package:calentre/features/events/data/models/calentre_event.dart';
 import 'package:calentre/core/resources.dart';
 import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
 import 'package:calentre/features/events/domain/usecases/event_usecase.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
@@ -99,7 +100,8 @@ class CalentreEventBloc
             eventLink: _calentreEventState.eventLink,
             eventType: _calentreEventState.eventType,
             amount: _calentreEventState.amount,
-            availability: _calentreEventState.days)
+            availability:
+                AvailabilityMapper.fromEntity(_calentreEventState.days))
         .toJson();
 
     emit(_calentreEventState.clone(_calentreEventState,

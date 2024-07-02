@@ -1,4 +1,5 @@
 import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
 
 class CalentreEventEntity {
   final String eventName;
@@ -9,7 +10,7 @@ class CalentreEventEntity {
   final String eventType;
   final num? amount;
   final bool isMultiple = false;
-  final Days availability;
+  final AvailabilityEntity availability;
 
   CalentreEventEntity(
       this.eventName,
@@ -34,21 +35,28 @@ class CalentreEventMapper {
       calentreEventModel.eventLink,
       calentreEventModel.eventType,
       calentreEventModel.amount,
-      calentreEventModel.availability,
+      mapToEntity(calentreEventModel.availability),
     );
   }
 
   /// returns an instance of the [CalentreEvent] model class.
   static CalentreEvent fromEntity(CalentreEventEntity calentreEventEntity) {
     return CalentreEvent(
-      eventName: calentreEventEntity.eventName,
-      eventDescription: calentreEventEntity.eventDescription,
-      platformType: calentreEventEntity.platformType,
-      duration: calentreEventEntity.duration,
-      eventLink: calentreEventEntity.eventLink,
-      eventType: calentreEventEntity.eventType,
-      amount: calentreEventEntity.amount,
-      availability: calentreEventEntity.availability,
-    );
+        eventName: calentreEventEntity.eventName,
+        eventDescription: calentreEventEntity.eventDescription,
+        platformType: calentreEventEntity.platformType,
+        duration: calentreEventEntity.duration,
+        eventLink: calentreEventEntity.eventLink,
+        eventType: calentreEventEntity.eventType,
+        amount: calentreEventEntity.amount,
+        availability: mapToModel(calentreEventEntity.availability));
   }
+}
+
+AvailabilityEntity mapToEntity(AvailabilityModel availabilityModel) {
+  return AvailabilityMapper.toEntity(availabilityModel);
+}
+
+AvailabilityModel mapToModel(AvailabilityEntity availabilityEntity) {
+  return AvailabilityMapper.fromEntity(availabilityEntity);
 }
