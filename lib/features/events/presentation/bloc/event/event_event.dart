@@ -1,5 +1,5 @@
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
 
 class CalentreEventEvent {}
 
@@ -14,7 +14,7 @@ class UpdateCalentreEventDetailsEvent extends CalentreEventEvent {
   String? eventType;
   String? isMultiple;
   String? platformType;
-  Days? days;
+  AvailabilityEntity? days;
 
   UpdateCalentreEventDetailsEvent(
       {this.amount,

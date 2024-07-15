@@ -2,7 +2,8 @@
 
 import 'package:calentre/config/constants/time_list.dart';
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
+import 'package:calentre/features/events/domain/entities/time_slot_enitity.dart';
 import 'package:equatable/equatable.dart';
 
 ///We are using a single state to control the entire CalentreEvent feature.
@@ -33,7 +34,7 @@ class CalentreEventState extends CalentreEventBaseState {
   final String eventType;
   final String isMultiple;
   final String platformType;
-  final Days days;
+  final AvailabilityEntity days;
   final LoadingStatus loadingStatus;
 
   CalentreEventState(
@@ -60,34 +61,27 @@ class CalentreEventState extends CalentreEventBaseState {
         isMultiple: "",
         platformType: "",
         loadingStatus: LoadingStatus.idle,
-        days: Days(
+        days: AvailabilityEntity(
           monday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           tuesday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           wednesday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           thursday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           friday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           saturday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
           sunday: [
-            TimeSlot(
-                start: TimeList().timeList.first, end: TimeList().timeList[1])
+            TimeSlotEntity(TimeList().timeList.first, TimeList().timeList[1])
           ],
         ));
   }
@@ -106,7 +100,7 @@ class CalentreEventState extends CalentreEventBaseState {
       String? isMultiple,
       String? platformType,
       LoadingStatus? loadingStatus,
-      Days? days}) {
+      AvailabilityEntity? days}) {
     return CalentreEventState(
       eventName: eventName ?? state.eventName,
       eventType: eventType ?? state.eventType,

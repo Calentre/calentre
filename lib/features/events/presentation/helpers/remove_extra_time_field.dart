@@ -1,5 +1,6 @@
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
+import 'package:calentre/features/events/domain/entities/time_slot_enitity.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 
@@ -10,19 +11,19 @@ List removeNewTimeFieldHelper(
     DayScheduleValidationState dayScheduleValidationState,
     RemoveTimeFieldEvent event) {
   final days = calentreEventState.days;
-  List<TimeSlot> mondaySchedule = [...days.monday];
-  List<TimeSlot> tuesdaySchedule = [...days.tuesday];
-  List<TimeSlot> wednesdaySchedule = [...days.wednesday];
-  List<TimeSlot> thursdaySchedule = [...days.thursday];
-  List<TimeSlot> fridaySchedule = [...days.friday];
-  List<TimeSlot> saturdaySchedule = [...days.saturday];
-  List<TimeSlot> sundaySchedule = [...days.sunday];
+  List<TimeSlotEntity> mondaySchedule = [...days.monday];
+  List<TimeSlotEntity> tuesdaySchedule = [...days.tuesday];
+  List<TimeSlotEntity> wednesdaySchedule = [...days.wednesday];
+  List<TimeSlotEntity> thursdaySchedule = [...days.thursday];
+  List<TimeSlotEntity> fridaySchedule = [...days.friday];
+  List<TimeSlotEntity> saturdaySchedule = [...days.saturday];
+  List<TimeSlotEntity> sundaySchedule = [...days.sunday];
   final state = calentreEventState;
   switch (event.day) {
     case WeekDays.monday:
       mondaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,
@@ -41,7 +42,7 @@ List removeNewTimeFieldHelper(
     case WeekDays.tuesday:
       tuesdaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,
@@ -60,7 +61,7 @@ List removeNewTimeFieldHelper(
     case WeekDays.wednesday:
       wednesdaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,
@@ -79,7 +80,7 @@ List removeNewTimeFieldHelper(
     case WeekDays.thursday:
       thursdaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,
@@ -98,7 +99,7 @@ List removeNewTimeFieldHelper(
     case WeekDays.friday:
       fridaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,
@@ -117,7 +118,7 @@ List removeNewTimeFieldHelper(
     case WeekDays.saturday:
       saturdaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,
@@ -136,7 +137,7 @@ List removeNewTimeFieldHelper(
     case WeekDays.sunday:
       sundaySchedule.removeLast();
       calentreEventState = calentreEventState.clone(state,
-          days: Days(
+          days: AvailabilityEntity(
               monday: mondaySchedule,
               tuesday: tuesdaySchedule,
               wednesday: wednesdaySchedule,

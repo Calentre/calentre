@@ -16,7 +16,8 @@ _$_CalentreEvent _$$_CalentreEventFromJson(Map<String, dynamic> json) =>
       eventType: json['event_type'] as String,
       amount: json['amount'] as num?,
       isMultiple: json['is_multiple'] as bool?,
-      availability: Days.fromJson(json['availability'] as Map<String, dynamic>),
+      availability: AvailabilityModel.fromJson(
+          json['availability'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
@@ -32,31 +33,34 @@ Map<String, dynamic> _$$_CalentreEventToJson(_$_CalentreEvent instance) =>
       'availability': instance.availability.toJson(),
     };
 
-_$_Days _$$_DaysFromJson(Map<String, dynamic> json) => _$_Days(
+_$_AvailabilityModel _$$_AvailabilityModelFromJson(Map<String, dynamic> json) =>
+    _$_AvailabilityModel(
       monday: (json['monday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       tuesday: (json['tuesday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       wednesday: (json['wednesday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       thursday: (json['thursday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       friday: (json['friday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       saturday: (json['saturday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       sunday: (json['sunday'] as List<dynamic>)
-          .map((e) => TimeSlot.fromJson(e as Map<String, dynamic>))
+          .map((e) => TimeSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_DaysToJson(_$_Days instance) => <String, dynamic>{
+Map<String, dynamic> _$$_AvailabilityModelToJson(
+        _$_AvailabilityModel instance) =>
+    <String, dynamic>{
       'monday': instance.monday.map((e) => e.toJson()).toList(),
       'tuesday': instance.tuesday.map((e) => e.toJson()).toList(),
       'wednesday': instance.wednesday.map((e) => e.toJson()).toList(),
@@ -66,12 +70,13 @@ Map<String, dynamic> _$$_DaysToJson(_$_Days instance) => <String, dynamic>{
       'sunday': instance.sunday.map((e) => e.toJson()).toList(),
     };
 
-_$_TimeSlot _$$_TimeSlotFromJson(Map<String, dynamic> json) => _$_TimeSlot(
+_$_TimeSlotModel _$$_TimeSlotModelFromJson(Map<String, dynamic> json) =>
+    _$_TimeSlotModel(
       start: json['start'] as String,
       end: json['end'] as String,
     );
 
-Map<String, dynamic> _$$_TimeSlotToJson(_$_TimeSlot instance) =>
+Map<String, dynamic> _$$_TimeSlotModelToJson(_$_TimeSlotModel instance) =>
     <String, dynamic>{
       'start': instance.start,
       'end': instance.end,

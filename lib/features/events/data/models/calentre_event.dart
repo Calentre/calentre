@@ -22,7 +22,7 @@ class CalentreEvent with _$CalentreEvent {
     required String eventType,
     num? amount,
     bool? isMultiple, //not supporting this feature at the moment
-    required Days availability,
+    required AvailabilityModel availability,
   }) = _CalentreEvent;
 
   factory CalentreEvent.fromJson(Map<String, dynamic> json) =>
@@ -30,29 +30,30 @@ class CalentreEvent with _$CalentreEvent {
 }
 
 @freezed
-class Days with _$Days {
+class AvailabilityModel with _$AvailabilityModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-  const factory Days({
-    required List<TimeSlot> monday,
-    required List<TimeSlot> tuesday,
-    required List<TimeSlot> wednesday,
-    required List<TimeSlot> thursday,
-    required List<TimeSlot> friday,
-    required List<TimeSlot> saturday,
-    required List<TimeSlot> sunday,
-  }) = _Days;
+  const factory AvailabilityModel({
+    required List<TimeSlotModel> monday,
+    required List<TimeSlotModel> tuesday,
+    required List<TimeSlotModel> wednesday,
+    required List<TimeSlotModel> thursday,
+    required List<TimeSlotModel> friday,
+    required List<TimeSlotModel> saturday,
+    required List<TimeSlotModel> sunday,
+  }) = _AvailabilityModel;
 
-  factory Days.fromJson(Map<String, dynamic> json) => _$DaysFromJson(json);
+  factory AvailabilityModel.fromJson(Map<String, dynamic> json) =>
+      _$AvailabilityModelFromJson(json);
 }
 
 @freezed
-class TimeSlot with _$TimeSlot {
+class TimeSlotModel with _$TimeSlotModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory TimeSlot({
+  const factory TimeSlotModel({
     required String start,
     required String end,
-  }) = _TimeSlot;
+  }) = _TimeSlotModel;
 
-  factory TimeSlot.fromJson(Map<String, dynamic> json) =>
-      _$TimeSlotFromJson(json);
+  factory TimeSlotModel.fromJson(Map<String, dynamic> json) =>
+      _$TimeSlotModelFromJson(json);
 }

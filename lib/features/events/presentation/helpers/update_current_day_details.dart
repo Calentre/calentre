@@ -1,5 +1,6 @@
 import 'package:calentre/config/enums/weekdays.dart';
-import 'package:calentre/features/events/data/models/calentre_event.dart';
+import 'package:calentre/features/events/domain/entities/availability_entity.dart';
+import 'package:calentre/features/events/domain/entities/time_slot_enitity.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_event.dart';
 import 'package:calentre/features/events/presentation/bloc/event/event_state.dart';
 import 'package:calentre/features/events/presentation/helpers/validate_time_selection.dart';
@@ -10,13 +11,15 @@ List updateCurrentDayDetailsHelper(
     DayScheduleValidationState dayScheduleValidationState,
     UpdateDayScheduleEvent event) {
   //Create a new list from the current day states
-  List<TimeSlot> mondaySchedule = [...calentreEventState.days.monday];
-  List<TimeSlot> tuesdaySchedule = [...calentreEventState.days.tuesday];
-  List<TimeSlot> wednesdaySchedule = [...calentreEventState.days.wednesday];
-  List<TimeSlot> thursdaySchedule = [...calentreEventState.days.thursday];
-  List<TimeSlot> fridaySchedule = [...calentreEventState.days.friday];
-  List<TimeSlot> saturdaySchedule = [...calentreEventState.days.saturday];
-  List<TimeSlot> sundaySchedule = [...calentreEventState.days.sunday];
+  List<TimeSlotEntity> mondaySchedule = [...calentreEventState.days.monday];
+  List<TimeSlotEntity> tuesdaySchedule = [...calentreEventState.days.tuesday];
+  List<TimeSlotEntity> wednesdaySchedule = [
+    ...calentreEventState.days.wednesday
+  ];
+  List<TimeSlotEntity> thursdaySchedule = [...calentreEventState.days.thursday];
+  List<TimeSlotEntity> fridaySchedule = [...calentreEventState.days.friday];
+  List<TimeSlotEntity> saturdaySchedule = [...calentreEventState.days.saturday];
+  List<TimeSlotEntity> sundaySchedule = [...calentreEventState.days.sunday];
 
   //Create a new error list from from the current state
   List<Map<WeekDays, List<bool>>> errorList = [
@@ -24,7 +27,7 @@ List updateCurrentDayDetailsHelper(
   ];
 
   //Create a new object with the updated days schedule
-  final updatedDays = Days(
+  final updatedDays = AvailabilityEntity(
       monday: mondaySchedule,
       tuesday: tuesdaySchedule,
       wednesday: wednesdaySchedule,
@@ -64,7 +67,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      mondaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      mondaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
@@ -86,7 +89,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      tuesdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      tuesdaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
@@ -107,7 +110,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      wednesdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      wednesdaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
@@ -128,7 +131,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      thursdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      thursdaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
@@ -149,7 +152,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      fridaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      fridaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
@@ -170,7 +173,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      saturdaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      saturdaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
@@ -191,7 +194,7 @@ List updateCurrentDayDetailsHelper(
         dayScheduleValidationState = dayScheduleValidationState
             .clone(dayScheduleValidationState, errorList: errorList);
       }
-      sundaySchedule[event.index] = TimeSlot(start: startTime, end: endTime);
+      sundaySchedule[event.index] = TimeSlotEntity(startTime, endTime);
       calentreEventState =
           calentreEventState.clone(calentreEventState, days: updatedDays);
       return [calentreEventState, dayScheduleValidationState];
